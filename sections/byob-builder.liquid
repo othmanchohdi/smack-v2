@@ -1,0 +1,1208 @@
+{% comment %}
+  ============================================================
+  Build Your Own Box — Le Petit Sucré
+  ============================================================
+  TWO CART MODES (pick per product via template assignment):
+
+  1. "single"  — one cart line + line item properties
+       Cart shows: "Box of 25 - Cappuccino × 1"
+                     Box Contents: 4 × Rose, 4 × Vanilla, …
+       PROS: Clean cart line, single product to manage.
+       CONS: Customer cannot swap a flavor from the cart.
+
+  2. "multi"   — one cart line per flavor
+       Cart shows: "Box of 25 - Rose × 4"
+                   "Box of 25 - Vanilla × 4" …
+       PROS: Customer can change quantities or remove flavors right in the cart.
+       CONS: Variant prices must be PER MACARON, not per box.
+             For a Box of 25 at $50, every variant price must be $2.00.
+
+  MINIMUM ORDER QUANTITY (MOQ):
+    - Read from product metafield: custom.minimum_order_quantity_moq
+    - If set (e.g. 10): the box-quantity stepper starts at 10 and
+      increments/decrements by 10 (so 10, 20, 30, …)
+    - If unset/blank: stepper starts at 1, step = 1
+    - In single mode: quantity passed via Shopify's form `quantity` input
+    - In multi mode: each variant's quantity in the cart-add payload
+      is multiplied by the box quantity
+
+  USAGE:
+    - Section setting `cart_mode` controls the behavior
+    - templates/product.byob.json       → cart_mode: "single"
+    - templates/product.byob-multi.json → cart_mode: "multi"
+  ============================================================
+{% endcomment %}
+
+{%- assign cart_mode = section.settings.cart_mode | default: 'single' -%}
+
+{%- comment -%} Detect size from product title {%- endcomment -%}
+{%- assign title_cleaned = product.title | replace: '-', ' ' | replace: '_', ' ' | replace: '(', ' ' | replace: ')', ' ' -%}
+{%- assign title_parts = title_cleaned | split: ' ' -%}
+{%- assign box_size = 0 -%}
+{%- for part in title_parts -%}
+  {%- assign maybe = part | plus: 0 -%}
+  {%- if maybe > 0 -%}
+    {%- assign box_size = maybe -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%} Read MOQ metafield. If unset or zero, treat as 1. {%- endcomment -%}
+{%- assign moq_raw = product.metafields.custom.minimum_order_quantity_moq -%}
+{%- assign moq = moq_raw | plus: 0 -%}
+{%- if moq < 1 -%}{%- assign moq = 1 -%}{%- endif -%}
+
+{%- comment -%} Count flavor variants {%- endcomment -%}
+{%- assign flavor_count = 0 -%}
+{%- for v in product.variants -%}
+  {%- assign vn = v.title | downcase -%}
+  {%- unless vn contains 'custom' or vn contains 'build' or vn contains 'byob' -%}
+    {%- assign flavor_count = flavor_count | plus: 1 -%}
+  {%- endunless -%}
+{%- endfor -%}
+
+<style>
+  .byob {
+    --byob-bg:               {{ section.settings.cream_color }};
+    --byob-card:             #ffffff;
+    --byob-card-soft:        {{ section.settings.flavor_card_color }};
+    --byob-card-sel:         {{ section.settings.flavor_card_selected_color }};
+    --byob-tray-bg:          {{ section.settings.tray_color }};
+    --byob-pairings-card-bg: {{ section.settings.pairings_card_color }};
+    --byob-primary:          {{ section.settings.primary_color }};
+    --byob-teal:             {{ section.settings.teal_color }};
+    --byob-muted:            #598e7e;
+    --byob-text:             #0a2540;
+    --byob-border:           #ece4d2;
+    --byob-radius:           18px;
+    --byob-radius-sm:        12px;
+
+    background: var(--byob-bg);
+    font-family: var(--font-body--family);
+    color: var(--byob-text);
+    padding: 24px 20px 60px;
+  }
+  .byob *, .byob *::before, .byob *::after { box-sizing: border-box; }
+
+  .byob__container { max-width: 1320px; margin: 0 auto; }
+
+  .byob__top-bar { margin-bottom: 16px; }
+  .byob__back-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--byob-primary);
+    font-size: 1.35rem; font-weight: 500;
+    text-decoration: none;
+  }
+  .byob__back-link:hover { text-decoration: underline; }
+
+  .byob__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 380px;
+    gap: 22px;
+    align-items: start;
+  }
+  @media (max-width: 980px) { .byob__grid { grid-template-columns: 1fr; } }
+
+  .byob__card {
+    background: var(--byob-card);
+    border-radius: var(--byob-radius);
+    padding: 28px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.03);
+  }
+
+  .byob__flavors-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--byob-border);
+  }
+  .byob__title {
+    font-family: var(--font-subheading--family, var(--font-body--family));
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    font-weight: 700;
+    color: var(--byob-primary);
+    margin: 0 0 6px;
+    line-height: 1.15;
+  }
+  .byob__subtitle {
+    font-size: 1.35rem;
+    color: var(--byob-muted);
+    margin: 0;
+    max-width: 56ch;
+  }
+  .byob__actions { display: flex; gap: 20px; padding-top: 6px; }
+  .byob__btn-text {
+    background: none; border: none; padding: 0;
+    color: var(--byob-primary);
+    font-size: 1.35rem; font-weight: 500;
+    cursor: pointer; font-family: inherit;
+  }
+  .byob__btn-text:hover { text-decoration: underline; }
+
+  .byob__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .byob__chip {
+    background: var(--byob-card); color: var(--byob-primary);
+    border: 1.5px solid var(--byob-border);
+    border-radius: 100px;
+    padding: 9px 18px; font-size: 1.3rem; font-weight: 500;
+    cursor: pointer; transition: all .15s;
+    font-family: inherit;
+  }
+  .byob__chip[aria-pressed="true"] {
+    background: var(--byob-primary); color: #fff; border-color: var(--byob-primary);
+  }
+
+  .byob__flavor-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 700px) { .byob__flavor-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .byob__flavor-card {
+    background: var(--byob-card-soft);
+    border-radius: var(--byob-radius-sm);
+    padding: 16px 12px 12px;
+    text-align: center;
+    position: relative;
+    transition: background .15s;
+  }
+  .byob__flavor-card.has-selection { background: var(--byob-card-sel); }
+  .byob__flavor-badge {
+    position: absolute; top: 8px; right: 8px;
+    background: var(--byob-teal); color: #fff;
+    width: 22px; height: 22px; border-radius: 50%;
+    display: none; align-items: center; justify-content: center;
+    font-size: 1.15rem; font-weight: 700;
+  }
+  .byob__flavor-card.has-selection .byob__flavor-badge { display: flex; }
+
+  .byob__macaron {
+    width: 64%; max-width: 90px;
+    margin: 0 auto 10px;
+    aspect-ratio: 100 / 64;
+    display: block;
+  }
+  .byob__macaron img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+  .byob__flavor-name {
+    font-size: 1.3rem; font-weight: 600;
+    color: var(--byob-primary);
+    margin: 0 0 6px;
+    line-height: 1.2;
+    min-height: 2.4em;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .byob__flavor-price {
+    font-size: 1.15rem; color: var(--byob-muted);
+    margin: 0 0 8px;
+  }
+  .byob__flavor-stepper {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .byob__stepper-btn {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 1.5px solid var(--byob-primary); background: transparent;
+    color: var(--byob-primary);
+    font-size: 1.5rem; line-height: 1;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-family: inherit; padding: 0;
+    transition: background .15s, opacity .15s;
+  }
+  .byob__stepper-btn:hover:not(:disabled) { background: var(--byob-primary); color: #fff; }
+  .byob__stepper-btn:disabled { opacity: .25; cursor: not-allowed; }
+  .byob__stepper-count {
+    min-width: 18px; text-align: center; font-weight: 700; font-size: 1.4rem;
+    color: var(--byob-primary);
+  }
+
+  .byob__sidebar {
+    position: sticky; top: 90px;
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  @media (max-width: 980px) { .byob__sidebar { position: static; } }
+
+  .byob__box-card {
+    background: var(--byob-card);
+    border-radius: var(--byob-radius);
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,.03);
+  }
+  .byob__box-card-header {
+    background: var(--byob-primary); color: #fff;
+    padding: 14px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .byob__box-card-header h2 {
+    margin: 0; font-size: 1.6rem; font-weight: 600; color: #fff;
+    font-family: var(--font-subheading--family, var(--font-body--family));
+  }
+  .byob__count-pill {
+    background: rgba(255,255,255,.18); color: #fff;
+    padding: 4px 12px; border-radius: 100px;
+    font-size: 1.2rem; font-weight: 600;
+  }
+  .byob__box-card-body { padding: 18px 18px 20px; }
+
+  .byob__tray-visual {
+    background: var(--byob-tray-bg);
+    border-radius: var(--byob-radius-sm);
+    padding: 18px 18px 12px;
+    margin-bottom: 16px;
+  }
+  .byob__tray-grid { display: grid; gap: 6px; margin-bottom: 10px; }
+  .byob__tray-slot {
+    aspect-ratio: 1; border-radius: 50%;
+    background: rgba(0,0,0,.06);
+    transition: background .2s;
+    position: relative; overflow: hidden;
+  }
+  .byob__tray-slot.is-filled {
+    box-shadow: inset 0 -3px 6px rgba(0,0,0,.16), 0 1px 2px rgba(0,0,0,.08);
+    animation: byob-drop .35s cubic-bezier(.34, 1.56, .64, 1);
+  }
+  .byob__tray-slot.is-filled img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  @keyframes byob-drop {
+    0%   { transform: translateY(-10px) scale(.5); opacity: 0; }
+    60%  { transform: translateY(2px) scale(1.05); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+  .byob__tray-brand {
+    text-align: center;
+    font-size: 1rem; letter-spacing: .15em;
+    color: var(--byob-muted);
+    margin: 4px 0 0; font-weight: 600;
+  }
+
+  .byob__progress-bar {
+    height: 5px; background: rgba(0,0,0,.06); border-radius: 100px;
+    overflow: hidden; margin-bottom: 16px;
+  }
+  .byob__progress-fill {
+    height: 100%; background: var(--byob-teal);
+    border-radius: 100px; transition: width .3s ease;
+  }
+
+  .byob__breakdown { list-style: none; padding: 0; margin: 0 0 16px; max-height: 140px; overflow-y: auto; }
+  .byob__breakdown li {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 1.3rem; padding: 4px 0;
+    color: var(--byob-text);
+  }
+  .byob__breakdown-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 -1px 2px rgba(0,0,0,.15); }
+  .byob__breakdown-name { flex: 1; }
+  .byob__breakdown-count { color: var(--byob-muted); font-weight: 600; }
+  .byob__breakdown-empty { color: var(--byob-muted); font-style: italic; }
+
+  /* ----- Box quantity stepper (number of boxes the customer buys) ----- */
+  .byob__qty-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid var(--byob-border);
+  }
+  .byob__qty-label {
+    font-size: 1.3rem; color: var(--byob-text); font-weight: 500;
+    margin: 0;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .byob__qty-hint {
+    font-size: 1.1rem; color: var(--byob-muted); font-weight: 400;
+  }
+  .byob__qty-stepper {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--byob-card);
+    border: 1px solid var(--byob-border);
+    border-radius: 100px;
+    padding: 4px 6px;
+  }
+  .byob__qty-btn {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: none; background: var(--byob-primary); color: #fff;
+    font-size: 1.4rem; line-height: 1;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-family: inherit; padding: 0;
+    transition: opacity .15s;
+  }
+  .byob__qty-btn:hover:not(:disabled) { opacity: .85; }
+  .byob__qty-btn:disabled { opacity: .3; cursor: not-allowed; }
+  .byob__qty-value {
+    min-width: 36px; text-align: center;
+    font-weight: 700; font-size: 1.4rem;
+    color: var(--byob-primary);
+  }
+
+  .byob__date-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid var(--byob-border);
+    margin-bottom: 6px;
+  }
+  .byob__date-label { font-size: 1.3rem; color: var(--byob-text); font-weight: 500; margin: 0; }
+  .byob__date {
+    border: 1px solid var(--byob-border);
+    background: var(--byob-card);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font: inherit; font-size: 1.25rem;
+    color: var(--byob-text);
+    max-width: 160px;
+  }
+
+  .byob__line-items { padding-top: 6px; border-top: 1px solid var(--byob-border); }
+  .byob__line-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 4px 0;
+    font-size: 1.3rem;
+  }
+  .byob__line-item--muted { color: var(--byob-muted); }
+  .byob__total {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 12px 0 6px;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--byob-primary);
+  }
+  .byob__total-amount { font-size: 2rem; }
+
+  .byob__cta-wrap { padding-top: 10px; display: flex; flex-direction: column; gap: 10px; }
+  .byob__atc {
+    width: 100%;
+    border: none;
+    padding: 14px;
+    border-radius: 100px;
+    font-size: 1.4rem; font-weight: 600;
+    cursor: pointer;
+    transition: opacity .2s, transform .1s, background .2s;
+    font-family: inherit;
+    letter-spacing: .01em;
+  }
+  .byob__atc:hover:not(:disabled) { transform: translateY(-1px); }
+  .byob__atc:active:not(:disabled) { transform: scale(.99); }
+  .byob__atc--primary { background: var(--byob-primary); color: #fff; }
+  .byob__atc--primary:hover:not(:disabled) { background: #06346a; }
+  .byob__atc--primary:disabled { background: #d0d8e0; color: #6b7785; cursor: not-allowed; }
+  .byob__atc--outline {
+    background: transparent; color: var(--byob-primary);
+    border: 1.5px solid var(--byob-primary);
+  }
+  .byob__atc--outline:hover:not(:disabled) { background: var(--byob-primary); color: #fff; }
+  .byob__atc--outline:disabled { color: #b0b8c2; border-color: #d0d8e0; cursor: not-allowed; }
+
+  .byob__pairings-card {
+    padding: 18px 20px;
+    background: var(--byob-pairings-card-bg);
+  }
+  .byob__pairings-title {
+    font-size: 1.4rem; font-weight: 600; color: var(--byob-primary);
+    margin: 0 0 12px;
+    font-family: var(--font-subheading--family, var(--font-body--family));
+  }
+  .byob__pairing {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--byob-card-soft);
+    border-radius: 100px;
+    padding: 6px 14px 6px 8px;
+    margin-bottom: 8px;
+    width: 100%;
+    border: none; cursor: pointer; font-family: inherit;
+    transition: background .15s; text-align: left;
+  }
+  .byob__pairing:hover { background: var(--byob-card-sel); }
+  .byob__pairing:last-child { margin-bottom: 0; }
+  .byob__pairing-icons { display: flex; }
+  .byob__pairing-icon {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid var(--byob-card-soft);
+    margin-right: -8px;
+    box-shadow: inset 0 -1px 2px rgba(0,0,0,.15);
+  }
+  .byob__pairing:hover .byob__pairing-icon { border-color: var(--byob-card-sel); }
+  .byob__pairing-label {
+    font-size: 1.25rem; color: var(--byob-primary); font-weight: 500;
+    margin-left: 14px;
+  }
+
+  .byob__empty {
+    border: 2px dashed var(--byob-teal);
+    background: var(--byob-card);
+    border-radius: var(--byob-radius);
+    padding: 28px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .byob__empty h3 { margin: 0 0 10px; color: var(--byob-primary); font-size: 1.8rem; }
+  .byob__empty p { margin: 0 0 10px; color: var(--byob-muted); font-size: 1.4rem; line-height: 1.5; }
+  .byob__empty code {
+    background: var(--byob-card-soft); padding: 2px 8px; border-radius: 4px;
+    font-size: 1.3rem; color: var(--byob-primary);
+  }
+</style>
+
+<div class="byob">
+  <div class="byob__container">
+
+    {%- if box_size == 0 -%}
+
+      <div class="byob__empty">
+        <h3>This product needs a number in its title</h3>
+        <p>The builder reads the box size from the product title. Examples: <code>Box of 12</code>, <code>Macarons - 25</code>.</p>
+        <p>Current title: <code>{{ product.title }}</code></p>
+      </div>
+
+    {%- else -%}
+
+      {%- if section.settings.back_link != blank -%}
+        <div class="byob__top-bar">
+          <a class="byob__back-link" href="{{ section.settings.back_link }}">‹ Back to box sizes</a>
+        </div>
+      {%- endif -%}
+
+      <div class="byob__grid">
+
+        <article class="byob__card">
+          <header class="byob__flavors-header">
+            <div>
+              <h1 class="byob__title">{{ product.title }} — Pick Your Flavors</h1>
+              <p class="byob__subtitle">Choose any combination from {{ flavor_count }} flavors. Each macaron is hand-piped &amp; baked fresh daily.</p>
+            </div>
+            <div class="byob__actions">
+              <button type="button" class="byob__btn-text" data-byob-surprise>Surprise me</button>
+              <button type="button" class="byob__btn-text" data-byob-clear>Clear</button>
+            </div>
+          </header>
+
+          <div class="byob__chips" data-byob-chips>
+            <button type="button" class="byob__chip" aria-pressed="true"  data-byob-filter="all">All Flavors</button>
+            <button type="button" class="byob__chip" aria-pressed="false" data-byob-filter="Classics">Classics</button>
+            <button type="button" class="byob__chip" aria-pressed="false" data-byob-filter="Fruity">Fruity</button>
+            <button type="button" class="byob__chip" aria-pressed="false" data-byob-filter="Signature">Signature</button>
+          </div>
+
+          <div class="byob__flavor-grid" data-byob-flavor-list></div>
+        </article>
+
+        <aside class="byob__sidebar">
+
+          <article class="byob__box-card">
+            <header class="byob__box-card-header">
+              <h2>Your {{ product.title }}</h2>
+              <span class="byob__count-pill"><span data-byob-progress-text>0 / {{ box_size }}</span></span>
+            </header>
+            <div class="byob__box-card-body">
+
+              <div class="byob__progress-bar">
+                <div class="byob__progress-fill" data-byob-progress-fill style="width: 0%"></div>
+              </div>
+
+              <div class="byob__tray-visual">
+                <div class="byob__tray-grid" data-byob-tray></div>
+                <p class="byob__tray-brand">LE PETIT SUCRÉ · CHICAGO</p>
+              </div>
+
+              <ul class="byob__breakdown" data-byob-breakdown>
+                <li class="byob__breakdown-empty">Pick some flavors to get started!</li>
+              </ul>
+
+              {%- comment -%} Box quantity stepper. Hidden if MOQ=1 AND step=1 — but we always show it
+              when MOQ > 1 so customers see the minimum clearly. {%- endcomment -%}
+              <div class="byob__qty-row">
+                <div class="byob__qty-label">
+                  <span>How many boxes?</span>
+                  {%- if moq > 1 -%}
+                    <span class="byob__qty-hint">Minimum {{ moq }} &middot; step of {{ moq }}</span>
+                  {%- endif -%}
+                </div>
+                <div class="byob__qty-stepper">
+                  <button type="button" class="byob__qty-btn" data-byob-qty-step="-1" aria-label="Decrease boxes">−</button>
+                  <span class="byob__qty-value" data-byob-qty-value>{{ moq }}</span>
+                  <button type="button" class="byob__qty-btn" data-byob-qty-step="1"  aria-label="Increase boxes">+</button>
+                </div>
+              </div>
+
+              <div class="byob__date-row">
+                <label class="byob__date-label" for="byob-date-{{ section.id }}">Event date</label>
+                <input id="byob-date-{{ section.id }}" type="date" class="byob__date" data-byob-event-date>
+              </div>
+
+              <div class="byob__line-items">
+                <div class="byob__line-item">
+                  <span data-byob-subtotal-label>Subtotal</span>
+                  <span data-byob-subtotal>—</span>
+                </div>
+                <div class="byob__line-item byob__line-item--muted">
+                  <span>Shipping</span>
+                  <span>Calculated at checkout</span>
+                </div>
+              </div>
+              <div class="byob__total">
+                <span>Total</span>
+                <span class="byob__total-amount" data-byob-total>—</span>
+              </div>
+
+              <div class="byob__cta-wrap">
+                {%- if cart_mode == 'single' -%}
+                  {%- comment -%} SINGLE MODE: wrap in product-form-component, native theme cart handling {%- endcomment -%}
+                  {%- assign byob_form_id = 'byob-form-' | append: section.id -%}
+                  <product-form-component
+                    class="byob__product-form"
+                    data-section-id="{{ section.id }}"
+                    data-product-id="{{ product.id }}"
+                    data-product-url="{{ product.url }}"
+                  >
+                    {%- form 'product', product, id: byob_form_id, class: 'byob__atc-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                      <input type="hidden" name="id" ref="variantId" data-byob-variant-input class="product-variant-id">
+                      <input type="hidden" name="quantity" value="{{ moq }}" data-byob-qty-input>
+                      <input type="hidden" name="properties[Box Contents]" data-byob-contents-input>
+                      <input type="hidden" name="properties[Event Date]" data-byob-date-input>
+                      <button type="submit" name="add" class="byob__atc byob__atc--primary" data-byob-atc disabled>
+                        Pick {{ box_size }} flavors to begin
+                      </button>
+                    {%- endform -%}
+                  </product-form-component>
+                {%- else -%}
+                  {%- comment -%} MULTI MODE: vanilla form, our JS handles the multi-item add {%- endcomment -%}
+                  <form data-byob-form action="/cart/add" method="post" class="byob__atc-form">
+                    <button type="submit" class="byob__atc byob__atc--primary" data-byob-atc disabled>
+                      Pick {{ box_size }} flavors to begin
+                    </button>
+                  </form>
+                {%- endif -%}
+
+                <button type="button" class="byob__atc byob__atc--outline" data-byob-buy-now disabled>
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </article>
+
+          {%- if section.settings.show_pairings -%}
+            <article class="byob__card byob__pairings-card">
+              <h3 class="byob__pairings-title">Most-loved pairings</h3>
+              <div data-byob-pairings></div>
+            </article>
+          {%- endif -%}
+
+        </aside>
+      </div>
+
+      <script type="application/json" data-byob-variants>
+        [
+          {%- for variant in product.variants -%}
+            {
+              "id": {{ variant.id | json }},
+              "name": {{ variant.title | json }},
+              "price": {{ variant.price }},
+              "available": {{ variant.available }},
+              "image": {%- if variant.featured_image -%}{{ variant.featured_image | image_url: width: 240 | json }}{%- else -%}null{%- endif -%}
+            }{%- unless forloop.last -%},{%- endunless -%}
+          {%- endfor -%}
+        ]
+      </script>
+      <script type="application/json" data-byob-config>
+        {
+          "boxSize": {{ box_size }},
+          "productTitle": {{ product.title | json }},
+          "productPrice": {{ product.price }},
+          "cartMode": {{ cart_mode | json }},
+          "moq": {{ moq }}
+        }
+      </script>
+
+    {%- endif -%}
+
+  </div>
+</div>
+
+{%- if box_size > 0 -%}
+<script>
+(function() {
+  const root = document.currentScript.parentElement;
+  if (!root || root.dataset.byobInit) return;
+  root.dataset.byobInit = '1';
+
+  const SHOP_CURRENCY = {{ shop.currency | json }};
+
+  const config   = JSON.parse(root.querySelector('[data-byob-config]').textContent);
+  const variants = JSON.parse(root.querySelector('[data-byob-variants]').textContent);
+
+  const BOX_SIZE   = config.boxSize;
+  const UNIT_PRICE = config.productPrice;
+  const CART_MODE  = config.cartMode; // "single" | "multi"
+  const MOQ        = Math.max(1, parseInt(config.moq, 10) || 1);
+  const QTY_STEP   = MOQ; // step equals MOQ (1 if none set)
+
+  // Flavor metadata: color + category
+  const FLAVOR_META = {
+    vanilla:             { category: 'Classics',  color: '#f5e6c4' },
+    darkchocolate:       { category: 'Classics',  color: '#3d2817' },
+    coffee:              { category: 'Classics',  color: '#6b4423' },
+    cappuccino:          { category: 'Classics',  color: '#c9a07e' },
+    vanillalatte:        { category: 'Classics',  color: '#d4a87a' },
+    rose:                { category: 'Classics',  color: '#e8a5b8' },
+    saltedcaramel:       { category: 'Classics',  color: '#c9925a' },
+    coconut:             { category: 'Classics',  color: '#f5f0e8' },
+    greentea:            { category: 'Classics',  color: '#a8c89a' },
+    tiramisu:            { category: 'Classics',  color: '#a07a52' },
+    irishcream:          { category: 'Classics',  color: '#d6c7a8' },
+    whitechocolate:      { category: 'Classics',  color: '#f0e8d4' },
+    chocolatemint:       { category: 'Classics',  color: '#a3d3b8' },
+    nutella:             { category: 'Classics',  color: '#7a4a2c' },
+    lemon:               { category: 'Fruity',    color: '#f4d96b' },
+    strawberry:          { category: 'Fruity',    color: '#ec8da0' },
+    blueberry:           { category: 'Fruity',    color: '#6b87b8' },
+    raspberry:           { category: 'Fruity',    color: '#d4486a' },
+    blackberry:          { category: 'Fruity',    color: '#5a3a5e' },
+    passionfruit:        { category: 'Fruity',    color: '#f0b94a' },
+    lemonblueberrycake:  { category: 'Fruity',    color: '#c4b8d4' },
+    hatchchilechocolate: { category: 'Signature', color: '#6b3a2c' },
+    lavenderhoney:       { category: 'Signature', color: '#b5a4cf' },
+    champagnerose:       { category: 'Signature', color: '#f0d4d4' },
+    cookiedough:         { category: 'Signature', color: '#d4a574' },
+    cookiescream:        { category: 'Signature', color: '#e8e3dc' },
+    cottoncandy:         { category: 'Signature', color: '#f8a4d0' },
+    fruitypebbles:       { category: 'Signature', color: '#ff7f9e' },
+    birthdaycake:        { category: 'Signature', color: '#f5d4d8' },
+    smores:              { category: 'Signature', color: '#a07560' },
+    americancheesecake:  { category: 'Signature', color: '#f0e8c4' },
+    skittles:            { category: 'Signature', color: '#ff8a65' },
+    ricecrispy:          { category: 'Signature', color: '#d4c4a0' },
+    luckycharm:          { category: 'Signature', color: '#9bd4d4' },
+    redvelvet:           { category: 'Signature', color: '#a83545' }
+  };
+
+  // ----- Cart-line variant detection (used in SINGLE mode only) -----
+  const CUSTOM_PATTERNS = /custom|build\s*your\s*own|byob/i;
+  const customVariant = variants.find(v => CUSTOM_PATTERNS.test(v.name) && v.available);
+  const cartVariant   = customVariant
+                     || variants.find(v => v.available)
+                     || variants[0];
+
+  // Flavor catalog = variants minus the custom one (if present)
+  const flavorVariants = customVariant
+    ? variants.filter(v => v.id !== customVariant.id)
+    : variants.slice();
+
+  function norm(s) { return s.toLowerCase().replace(/[^a-z0-9]/g, ''); }
+
+  function fallbackColor(name) {
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
+    const hue = Math.abs(h) % 360;
+    return `hsl(${hue}, 55%, 70%)`;
+  }
+
+  function creamFor() { return '#f4e8d8'; }
+
+  const FLAVORS = flavorVariants.map(v => {
+    const meta = FLAVOR_META[norm(v.name)] || { category: 'Other', color: fallbackColor(v.name) };
+    return {
+      id: String(v.id),
+      name: v.name,
+      category: meta.category,
+      color: meta.color,
+      image: v.image,
+      price: v.price,
+      available: v.available
+    };
+  });
+  const FLAVOR_BY_ID = Object.fromEntries(FLAVORS.map(f => [f.id, f]));
+
+  const GRID_LAYOUT = { 2: 2, 6: 3, 9: 3, 12: 4, 15: 5, 16: 4, 20: 5, 24: 6, 25: 5, 30: 6 };
+  const cols = GRID_LAYOUT[BOX_SIZE] || Math.max(2, Math.ceil(Math.sqrt(BOX_SIZE)));
+
+  const PAIRINGS = [
+    { label: 'Rose · Raspberry · Vanilla',                       names: ['Rose', 'Raspberry', 'Vanilla'] },
+    { label: 'Dark Chocolate · Salted Caramel · Coffee',         names: ['Dark Chocolate', 'Salted caramel', 'Coffee'] },
+    { label: 'Cookies & Cream · Birthday Cake · S\u2019mores',   names: ['Cookies & Cream', 'Birthday cake', 'S\u2019mores'] }
+  ];
+
+  const state = {
+    filter:     'all',
+    selections: {},
+    eventDate:  '',
+    boxQty:     MOQ   // how many boxes the customer wants
+  };
+
+  const $  = sel => root.querySelector(sel);
+  const $$ = sel => root.querySelectorAll(sel);
+  const totalCount = () => Object.values(state.selections).reduce((a, b) => a + b, 0);
+  const remaining  = () => BOX_SIZE - totalCount();
+
+  function fmtMoney(cents) {
+    try {
+      return new Intl.NumberFormat(undefined, { style: 'currency', currency: SHOP_CURRENCY }).format(cents / 100);
+    } catch (e) { return '$' + (cents / 100).toFixed(2); }
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function macaronSvg(color) {
+    const cream = creamFor();
+    return `<svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <ellipse cx="60" cy="22" rx="52" ry="17" fill="${color}"/>
+      <rect x="10" y="32" width="100" height="9" fill="${cream}"/>
+      <ellipse cx="60" cy="51" rx="52" ry="17" fill="${color}"/>
+      <ellipse cx="48" cy="17" rx="22" ry="3" fill="rgba(255,255,255,0.28)"/>
+    </svg>`;
+  }
+
+  // ----- Pricing -----
+  // Per-box price (one box):
+  //   multi mode  → sum of picked variants' prices (per-macaron pricing × qty each)
+  //   single mode → same — variant prices are set per macaron, summing gives box total
+  function pricePerBox() {
+    let total = 0;
+    for (const [vid, qty] of Object.entries(state.selections)) {
+      const f = FLAVOR_BY_ID[vid];
+      if (f) total += f.price * qty;
+    }
+    return total;
+  }
+  function grandTotal() {
+    return pricePerBox() * state.boxQty;
+  }
+
+  // ----- Elements -----
+  const flavorList     = $('[data-byob-flavor-list]');
+  const chips          = $$('[data-byob-filter]');
+  const surpriseBtn    = $('[data-byob-surprise]');
+  const clearBtn       = $('[data-byob-clear]');
+  const trayEl         = $('[data-byob-tray]');
+  const progressText   = $('[data-byob-progress-text]');
+  const progressFill   = $('[data-byob-progress-fill]');
+  const breakdownEl    = $('[data-byob-breakdown]');
+  const subtotalEl     = $('[data-byob-subtotal]');
+  const subtotalLabel  = $('[data-byob-subtotal-label]');
+  const totalEl        = $('[data-byob-total]');
+  const atcBtn         = $('[data-byob-atc]');
+  const buyNowBtn      = $('[data-byob-buy-now]');
+  const form           = root.querySelector('form');
+  const variantInput   = $('[data-byob-variant-input]');   // null in multi mode
+  const qtyInput       = $('[data-byob-qty-input]');       // null in multi mode
+  const contentsInput  = $('[data-byob-contents-input]');  // null in multi mode
+  const dateInput      = $('[data-byob-date-input]');      // null in multi mode
+  const dateField      = $('[data-byob-event-date]');
+  const pairingsHost   = $('[data-byob-pairings]');
+  const qtyValueEl     = $('[data-byob-qty-value]');
+  const qtyDecBtn      = root.querySelector('[data-byob-qty-step="-1"]');
+  const qtyIncBtn      = root.querySelector('[data-byob-qty-step="1"]');
+
+  if (variantInput && cartVariant) variantInput.value = cartVariant.id;
+  trayEl.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+  // ----- Keep hidden form inputs in sync (single mode only) -----
+  function syncForm() {
+    if (CART_MODE !== 'single') return;
+    const contents = Object.entries(state.selections)
+      .map(([id, c]) => `${c} \u00D7 ${FLAVOR_BY_ID[id].name}`)
+      .join(', ');
+    if (contentsInput) contentsInput.value = contents;
+    if (dateInput)     dateInput.value = state.eventDate || '';
+    // Quantity = total macarons (boxes × macarons per box)
+    // e.g. Box of 15, 1 box → 15 macarons → Shopify: $2 × 15 = $30
+    // e.g. Box of 2, 10 boxes → 20 macarons → Shopify: $2 × 20 = $40
+    if (qtyInput)      qtyInput.value = state.boxQty * BOX_SIZE;
+  }
+
+  // ----- Box-quantity stepper -----
+  function setBoxQty(n) {
+    // Always a multiple of MOQ, at least MOQ
+    let q = Math.max(MOQ, Math.round(n / QTY_STEP) * QTY_STEP);
+    if (q !== state.boxQty) {
+      state.boxQty = q;
+      renderQty();
+      renderSummary();
+      syncForm();
+    }
+  }
+  qtyDecBtn.addEventListener('click', () => setBoxQty(state.boxQty - QTY_STEP));
+  qtyIncBtn.addEventListener('click', () => setBoxQty(state.boxQty + QTY_STEP));
+
+  function renderQty() {
+    qtyValueEl.textContent = state.boxQty;
+    qtyDecBtn.disabled = state.boxQty <= MOQ;
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+      chip.setAttribute('aria-pressed', 'true');
+      state.filter = chip.dataset.byobFilter;
+      renderFlavors();
+    });
+  });
+
+  surpriseBtn.addEventListener('click', () => {
+    const pool = FLAVORS.filter(f => f.available);
+    if (!pool.length) return;
+    state.selections = {};
+    for (let i = 0; i < BOX_SIZE; i++) {
+      const f = pool[Math.floor(Math.random() * pool.length)];
+      state.selections[f.id] = (state.selections[f.id] || 0) + 1;
+    }
+    renderAll();
+  });
+
+  clearBtn.addEventListener('click', () => {
+    state.selections = {};
+    renderAll();
+  });
+
+  dateField.addEventListener('change', e => {
+    state.eventDate = e.target.value;
+    syncForm();
+  });
+
+  flavorList.addEventListener('click', e => {
+    const btn = e.target.closest('[data-byob-stepper]');
+    if (!btn) return;
+    const id = btn.dataset.byobId;
+    const action = btn.dataset.byobStepper;
+    if (action === 'plus' && remaining() > 0) {
+      state.selections[id] = (state.selections[id] || 0) + 1;
+    } else if (action === 'minus' && state.selections[id] > 0) {
+      state.selections[id]--;
+      if (state.selections[id] === 0) delete state.selections[id];
+    }
+    renderAll();
+  });
+
+  function applyPairing(names) {
+    const ids = names
+      .map(n => FLAVORS.find(f => f.name.toLowerCase() === n.toLowerCase() && f.available))
+      .filter(Boolean)
+      .map(f => f.id);
+    if (!ids.length) return;
+    state.selections = {};
+    for (let i = 0; i < BOX_SIZE; i++) {
+      const id = ids[i % ids.length];
+      state.selections[id] = (state.selections[id] || 0) + 1;
+    }
+    renderAll();
+  }
+
+  // ----- Multi-mode add to cart -----
+  // Each picked flavor variant's quantity is multiplied by boxQty.
+  async function multiAddToCart(redirectTo) {
+    const items = Object.entries(state.selections).map(([vid, qty]) => {
+      const item = { id: parseInt(vid, 10), quantity: qty * state.boxQty };
+      if (state.eventDate) item.properties = { 'Event Date': state.eventDate };
+      return item;
+    });
+    const res = await fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ items })
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.description || 'Could not add to cart');
+    }
+    if (redirectTo) { window.location.href = redirectTo; return; }
+    refreshCartDrawer();
+  }
+
+  function refreshCartDrawer() {
+    document.dispatchEvent(new CustomEvent('cart:item-added', { bubbles: true }));
+    document.dispatchEvent(new CustomEvent('cart:refresh',    { bubbles: true }));
+    document.dispatchEvent(new CustomEvent('cart:update',     { bubbles: true }));
+    document.dispatchEvent(new CustomEvent('cart-update',     { bubbles: true }));
+    const drawer = document.querySelector('cart-drawer, [id*="cart-drawer" i], #CartDrawer, side-drawer[id*="Cart" i]');
+    if (drawer) {
+      if (typeof drawer.open === 'function') return drawer.open();
+      if (typeof drawer.show === 'function') return drawer.show();
+    }
+    window.location.href = '/cart';
+  }
+
+  // ----- Submit handling -----
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      if (atcBtn.disabled) { e.preventDefault(); return; }
+      if (CART_MODE === 'multi') {
+        e.preventDefault();
+        const originalLabel = atcBtn.textContent;
+        atcBtn.disabled = true;
+        atcBtn.textContent = 'Adding\u2026';
+        try {
+          await multiAddToCart();
+        } catch (err) {
+          console.error('[byob] multi add failed:', err);
+          alert('Sorry, there was a problem adding your box. Please try again.');
+          atcBtn.disabled = false;
+          atcBtn.textContent = originalLabel;
+        }
+      } else {
+        // Single mode: let product-form-component handle it; just show feedback
+        syncForm();
+        atcBtn.textContent = 'Adding\u2026';
+      }
+    });
+  }
+
+  if (buyNowBtn) {
+    buyNowBtn.addEventListener('click', async () => {
+      if (buyNowBtn.disabled) return;
+      const originalLabel = buyNowBtn.textContent;
+      buyNowBtn.disabled = true;
+      buyNowBtn.textContent = 'Loading\u2026';
+      try {
+        if (CART_MODE === 'multi') {
+          await multiAddToCart('/checkout');
+        } else {
+          if (!cartVariant) throw new Error('No variant');
+          syncForm();
+          const properties = { 'Box Contents': contentsInput.value };
+          if (state.eventDate) properties['Event Date'] = state.eventDate;
+          const res = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              id: parseInt(cartVariant.id, 10),
+              quantity: state.boxQty * BOX_SIZE,
+              properties: properties
+            })
+          });
+          if (!res.ok) throw new Error('add failed');
+          window.location.href = '/checkout';
+        }
+      } catch (err) {
+        console.error('[byob] buy-now failed:', err);
+        alert('Sorry, there was a problem. Please try again.');
+        buyNowBtn.disabled = false;
+        buyNowBtn.textContent = originalLabel;
+      }
+    });
+  }
+
+  // ----- Renderers -----
+  function renderFlavors() {
+    const groups = ['Classics', 'Fruity', 'Signature', 'Other'];
+    const filtered = state.filter === 'all'
+      ? FLAVORS
+      : FLAVORS.filter(f => f.category === state.filter);
+    const ordered = state.filter === 'all'
+      ? groups.flatMap(g => filtered.filter(f => f.category === g))
+      : filtered;
+
+    let html = '';
+    for (const f of ordered) {
+      const count   = state.selections[f.id] || 0;
+      const hasSel  = count > 0 ? 'has-selection' : '';
+      const dPlus   = (remaining() <= 0 || !f.available) ? 'disabled' : '';
+      const dMinus  = count === 0 ? 'disabled' : '';
+      const safe    = escapeHtml(f.name);
+      const visual  = f.image
+        ? `<img src="${f.image}" alt="${safe} macaron" loading="lazy">`
+        : macaronSvg(f.color);
+      const priceHint = CART_MODE === 'multi'
+        ? `<div class="byob__flavor-price">${fmtMoney(f.price)} each</div>`
+        : '';
+      html += `
+        <div class="byob__flavor-card ${hasSel}">
+          <span class="byob__flavor-badge">${count}</span>
+          <div class="byob__macaron">${visual}</div>
+          <div class="byob__flavor-name">${safe}</div>
+          ${priceHint}
+          <div class="byob__flavor-stepper">
+            <button type="button" class="byob__stepper-btn" data-byob-stepper="minus" data-byob-id="${f.id}" ${dMinus} aria-label="Remove ${safe}">\u2212</button>
+            <span class="byob__stepper-count">${count}</span>
+            <button type="button" class="byob__stepper-btn" data-byob-stepper="plus" data-byob-id="${f.id}" ${dPlus} aria-label="Add ${safe}">+</button>
+          </div>
+        </div>
+      `;
+    }
+    flavorList.innerHTML = html;
+  }
+
+  function renderTray() {
+    const filled = [];
+    for (const [id, count] of Object.entries(state.selections)) {
+      for (let i = 0; i < count; i++) filled.push(id);
+    }
+    let html = '';
+    for (let i = 0; i < BOX_SIZE; i++) {
+      if (filled[i]) {
+        const f = FLAVOR_BY_ID[filled[i]];
+        if (f.image) {
+          html += `<div class="byob__tray-slot is-filled" style="background:${f.color}"><img src="${f.image}" alt=""></div>`;
+        } else {
+          html += `<div class="byob__tray-slot is-filled" style="background:${f.color}"></div>`;
+        }
+      } else {
+        html += `<div class="byob__tray-slot"></div>`;
+      }
+    }
+    trayEl.innerHTML = html;
+  }
+
+  function renderSummary() {
+    const count = totalCount();
+    progressText.textContent = `${count} / ${BOX_SIZE}`;
+    progressFill.style.width = (count / BOX_SIZE * 100) + '%';
+
+    const entries = Object.entries(state.selections);
+    if (!entries.length) {
+      breakdownEl.innerHTML = `<li class="byob__breakdown-empty">Pick some flavors to get started!</li>`;
+    } else {
+      breakdownEl.innerHTML = entries.map(([id, c]) => {
+        const f = FLAVOR_BY_ID[id];
+        const subtotalNote = CART_MODE === 'multi' ? ` <span style="color:var(--byob-muted)">(${fmtMoney(f.price * c)})</span>` : '';
+        return `
+          <li>
+            <span class="byob__breakdown-dot" style="background:${f.color}"></span>
+            <span class="byob__breakdown-name">${escapeHtml(f.name)}${subtotalNote}</span>
+            <span class="byob__breakdown-count">\u00D7${c}</span>
+          </li>
+        `;
+      }).join('');
+    }
+
+    // Subtotal / total — only reveal when box is full
+    const isFull = count === BOX_SIZE;
+    const per   = pricePerBox();
+    const total = grandTotal();
+    if (isFull) {
+      if (state.boxQty > 1) {
+        subtotalLabel.textContent = `Per box (${fmtMoney(per)}) × ${state.boxQty}`;
+      } else {
+        subtotalLabel.textContent = 'Subtotal';
+      }
+      subtotalEl.textContent = fmtMoney(total);
+      totalEl.textContent    = fmtMoney(total);
+    } else {
+      subtotalLabel.textContent = 'Subtotal';
+      subtotalEl.textContent    = '—';
+      totalEl.textContent       = '—';
+    }
+
+    atcBtn.disabled = !isFull;
+    if (buyNowBtn) buyNowBtn.disabled = !isFull;
+    atcBtn.textContent = isFull
+      ? 'Add to Cart'
+      : `Pick ${remaining()} more flavor${remaining() === 1 ? '' : 's'}`;
+  }
+
+  function renderPairings() {
+    if (!pairingsHost) return;
+    const html = PAIRINGS.map((p, idx) => {
+      const flavors = p.names
+        .map(n => FLAVORS.find(f => f.name.toLowerCase() === n.toLowerCase()))
+        .filter(Boolean);
+      if (!flavors.length) return '';
+      const icons = flavors.map(f => `<span class="byob__pairing-icon" style="background:${f.color}"></span>`).join('');
+      return `
+        <button type="button" class="byob__pairing" data-byob-pairing-idx="${idx}">
+          <span class="byob__pairing-icons">${icons}</span>
+          <span class="byob__pairing-label">${escapeHtml(p.label)}</span>
+        </button>
+      `;
+    }).join('');
+    pairingsHost.innerHTML = html;
+    pairingsHost.querySelectorAll('[data-byob-pairing-idx]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.byobPairingIdx, 10);
+        applyPairing(PAIRINGS[idx].names);
+      });
+    });
+  }
+
+  function renderAll() {
+    renderFlavors();
+    renderTray();
+    renderSummary();
+    syncForm();
+  }
+
+  renderPairings();
+  renderQty();
+  renderAll();
+})();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Build Your Own Box",
+  "settings": [
+    {
+      "type": "select",
+      "id": "cart_mode",
+      "label": "Cart behavior",
+      "info": "Multi-line requires per-macaron variant pricing (Box price ÷ box size)",
+      "options": [
+        { "value": "single", "label": "Single cart line + flavor properties" },
+        { "value": "multi",  "label": "One cart line per flavor (editable in cart)" }
+      ],
+      "default": "single"
+    },
+    {
+      "type": "url",
+      "id": "back_link",
+      "label": "\"Back to box sizes\" link (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pairings",
+      "label": "Show \"Most-loved pairings\"",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary (navy)",
+      "default": "#044792"
+    },
+    {
+      "type": "color",
+      "id": "teal_color",
+      "label": "Accent (teal)",
+      "default": "#49b9b6"
+    },
+    {
+      "type": "color",
+      "id": "cream_color",
+      "label": "Page background (cream)",
+      "default": "#fbf3e3"
+    },
+    {
+      "type": "color",
+      "id": "flavor_card_color",
+      "label": "Flavor card background",
+      "default": "#fbe7c4"
+    },
+    {
+      "type": "color",
+      "id": "flavor_card_selected_color",
+      "label": "Flavor card — when selected",
+      "default": "#d8e8de"
+    },
+    {
+      "type": "color",
+      "id": "tray_color",
+      "label": "Tray background",
+      "default": "#fbe7c4"
+    },
+    {
+      "type": "color",
+      "id": "pairings_card_color",
+      "label": "Pairings card background",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Build Your Own Box"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,425 @@
+{%- comment -%}
+  Section: Ingredient / Benefits Grid (Ella 7.1.0 compatible)
+  - 2 or 3 column responsive grid
+  - Each card is a block: image, title, up to 3 colored tags, description
+  - All CSS scoped under #shopify-section-{{ section.id }} to avoid bleed
+{%- endcomment -%}
+
+{%- liquid
+  assign cols = section.settings.columns | plus: 0
+  assign gap = section.settings.column_gap
+  assign radius = section.settings.card_radius
+  assign pad = section.settings.card_padding
+  assign img_h = section.settings.image_height
+  assign align = section.settings.text_align
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} .ibg-wrap {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .ibg-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto {{ section.settings.header_spacing }}px;
+  }
+  #shopify-section-{{ section.id }} .ibg-header h2 {
+    margin: 0 0 12px;
+    font-size: {{ section.settings.heading_size }}px;
+    line-height: 1.15;
+    color: {{ section.settings.heading_color }};
+  }
+  #shopify-section-{{ section.id }} .ibg-header p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: {{ section.settings.subheading_color }};
+  }
+  #shopify-section-{{ section.id }} .ibg-tabs{display:flex;justify-content:center;gap:12px;margin:0 0 30px;}
+  .ibg-tab{padding:10px 22px;border:1px solid #ddd;background:#fff;cursor:pointer;border-radius:999px;font-weight:700;}
+  .ibg-tab.active{background:#111;color:#fff;}
+  .ibg-grid {
+    display: grid;
+    grid-template-columns: repeat({{ cols }}, minmax(0, 1fr));
+    gap: {{ gap }}px;
+  }
+  #shopify-section-{{ section.id }} .ibg-card {
+    background: var(--card-bg, #ffffff);
+    border-radius: {{ radius }}px;
+    padding: {{ pad }}px;
+    text-align: {{ align }};
+    box-shadow: 0 2px 14px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    {% if align == 'center' %}align-items: center;{% endif %}
+  }
+  #shopify-section-{{ section.id }} .ibg-card__media {
+    height: {{ img_h }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+  #shopify-section-{{ section.id }} .ibg-card__media img {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+  #shopify-section-{{ section.id }} .ibg-card__title {
+    margin: 0 0 14px;
+    font-size: {{ section.settings.card_title_size }}px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: {{ section.settings.card_title_color }};
+  }
+  #shopify-section-{{ section.id }} .ibg-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    {% if align == 'center' %}justify-content: center;{% endif %}
+    margin-bottom: 18px;
+  }
+  #shopify-section-{{ section.id }} .ibg-card__tags:empty { display: none; margin: 0; }
+  #shopify-section-{{ section.id }} .ibg-tag {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.2px;
+  }
+  #shopify-section-{{ section.id }} .ibg-card__text {
+    font-size: {{ section.settings.body_size }}px;
+    line-height: 1.6;
+    color: {{ section.settings.body_color }};
+  }
+  #shopify-section-{{ section.id }} .ibg-card__text p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 1024px) {
+    #shopify-section-{{ section.id }} .ibg-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 640px) {
+    #shopify-section-{{ section.id }} .ibg-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
+
+<div class="ibg-wrap">
+  <div class="container">
+    {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+      <div class="ibg-header">
+        {%- if section.settings.heading != blank -%}
+          <h2>{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p>{{ section.settings.subheading }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="ibg-tabs">
+<button class="ibg-tab active" data-filter="animal">Animal Protein Ingredients</button>
+<button class="ibg-tab" data-filter="plant">Plant-Based Ingredients</button>
+
+</div>
+
+<div class="ibg-grid">
+      {%- for block in section.blocks -%}
+        <div class="ibg-card" data-type="{{ block.settings.ingredient_type }}" style="--card-bg: {{ block.settings.card_bg }};" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <div class="ibg-card__media">
+              {%- assign img = block.settings.image -%}
+              <img
+                src="{{ img | image_url: width: 600 }}"
+                srcset="{{ img | image_url: width: 300 }} 300w, {{ img | image_url: width: 600 }} 600w"
+                sizes="(max-width: 640px) 80vw, 300px"
+                width="{{ img.width }}"
+                height="{{ img.height }}"
+                alt="{{ img.alt | default: block.settings.title | escape }}"
+                loading="lazy">
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.title != blank -%}
+            <h3 class="ibg-card__title">{{ block.settings.title }}</h3>
+          {%- endif -%}
+
+          <div class="ibg-card__tags">
+            {%- if block.settings.tag_1 != blank -%}
+              <span class="ibg-tag" style="background:{{ block.settings.tag_1_bg }};color:{{ block.settings.tag_1_text }};">{{ block.settings.tag_1 }}</span>
+            {%- endif -%}
+            {%- if block.settings.tag_2 != blank -%}
+              <span class="ibg-tag" style="background:{{ block.settings.tag_2_bg }};color:{{ block.settings.tag_2_text }};">{{ block.settings.tag_2 }}</span>
+            {%- endif -%}
+            {%- if block.settings.tag_3 != blank -%}
+              <span class="ibg-tag" style="background:{{ block.settings.tag_3_bg }};color:{{ block.settings.tag_3_text }};">{{ block.settings.tag_3 }}</span>
+            {%- endif -%}
+          </div>
+
+          {%- if block.settings.description != blank -%}
+            <div class="ibg-card__text">{{ block.settings.description }}</div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+const s=document.getElementById('shopify-section-{{ section.id }}');
+if(!s)return;
+const tabs=s.querySelectorAll('.ibg-tab');
+const cards=s.querySelectorAll('.ibg-card');
+function f(t){
+cards.forEach(c=>c.style.display=(c.dataset.type===t)?'':'none');
+tabs.forEach(b=>b.classList.toggle('active',b.dataset.filter===t));
+}
+tabs.forEach(b=>b.addEventListener('click',()=>f(b.dataset.filter)));
+f('animal');
+});
+</script>
+
+{% schema %}
+
+{
+  "name": "Ingredient Benefits Grid",
+  "tag": "section",
+  "class": "section-ingredient-benefits",
+  "settings": [
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "options": [
+        { "value": "2", "label": "2 columns" },
+        { "value": "3", "label": "3 columns" }
+      ],
+      "default": "2"
+    },
+    { "type": "range", "id": "column_gap", "label": "Gap between cards", "min": 8, "max": 60, "step": 2, "unit": "px", "default": 28 },
+    { "type": "select", "id": "text_align", "label": "Card text alignment", "options": [ { "value": "center", "label": "Center" }, { "value": "left", "label": "Left" } ], "default": "center" },
+
+    { "type": "header", "content": "Heading" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Our Ingredients" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading" },
+    { "type": "range", "id": "heading_size", "label": "Heading size", "min": 20, "max": 60, "step": 1, "unit": "px", "default": 36 },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#1a1a1a" },
+    { "type": "color", "id": "subheading_color", "label": "Subheading color", "default": "#555555" },
+    { "type": "range", "id": "header_spacing", "label": "Space below header", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 48 },
+
+    { "type": "header", "content": "Card style" },
+    { "type": "range", "id": "card_padding", "label": "Card padding", "min": 12, "max": 64, "step": 2, "unit": "px", "default": 40 },
+    { "type": "range", "id": "card_radius", "label": "Card corner radius", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "image_height", "label": "Image area height", "min": 80, "max": 320, "step": 5, "unit": "px", "default": 150 },
+    { "type": "range", "id": "card_title_size", "label": "Card title size", "min": 14, "max": 40, "step": 1, "unit": "px", "default": 24 },
+    { "type": "color", "id": "card_title_color", "label": "Card title color", "default": "#1a1a1a" },
+    { "type": "range", "id": "body_size", "label": "Body text size", "min": 12, "max": 22, "step": 1, "unit": "px", "default": 16 },
+    { "type": "color", "id": "body_color", "label": "Body text color", "default": "#333333" },
+
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type":"select","id":"ingredient_type","label":"Ingredient type","default":"plant","options":[
+{"value":"plant","label":"Plant-Based"},
+{"value":"animal","label":"Animal Protein"}]},
+        { "type": "text", "id": "title", "label": "Title", "default": "Organic Blueberry" },
+        { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Add the benefit description for this ingredient here.</p>" },
+
+        { "type": "header", "content": "Tag 1" },
+        { "type": "text", "id": "tag_1", "label": "Tag 1 text", "default": "Organic" },
+        { "type": "color", "id": "tag_1_bg", "label": "Tag 1 background", "default": "#d6249f" },
+        { "type": "color", "id": "tag_1_text", "label": "Tag 1 text color", "default": "#ffffff" },
+
+        { "type": "header", "content": "Tag 2" },
+        { "type": "text", "id": "tag_2", "label": "Tag 2 text" },
+        { "type": "color", "id": "tag_2_bg", "label": "Tag 2 background", "default": "#2f9e44" },
+        { "type": "color", "id": "tag_2_text", "label": "Tag 2 text color", "default": "#ffffff" },
+
+        { "type": "header", "content": "Tag 3" },
+        { "type": "text", "id": "tag_3", "label": "Tag 3 text" },
+        { "type": "color", "id": "tag_3_bg", "label": "Tag 3 background", "default": "#1971c2" },
+        { "type": "color", "id": "tag_3_text", "label": "Tag 3 text color", "default": "#ffffff" },
+
+        { "type": "header", "content": "Card" },
+        { "type": "color", "id": "card_bg", "label": "Card background", "default": "#ffffff" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredient Benefits Grid",
+      "settings": { "heading": "Our Ingredients", "columns": "2" },
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Blueberry",
+            "tag_1": "Organic",
+            "description": "<p>Our Canadian-grown organic GMO-free blueberries are delicious and benefit-rich. Studies on blueberries have shown that including them in your dog's diet may improve functional night vision, learned movement behaviour, memory and exploratory behaviour.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Blackberry",
+            "tag_1": "Organic",
+            "description": "<p>Our Canadian-grown organic GMO-free blackberry contains high amounts of ellagic acid, a phytochemical known to be a powerful anti-cancer fighter that also reduces oxidative stress. Rated the 2nd highest antioxidant concentration for all US foods, based on “common serving sizes”. Blackberry's high tannin content tightens tissues, has antiseptic and anti-bacterial properties, and helps relieve intestinal inflammation and diarrhea.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Spinach",
+            "tag_1": "Organic",
+            "description": "<p>Smack Pet Food uses organic GMO-free spinach grown on Canadian farms. Recent studies have shown that glycoclycerolipids in spinach help protect the lining of the digestive tract from damage – especially damage related to inflammation. In a recent study, out of 9 vegetables, including kale, spinach was the only one to show evidence of significant protection against certain aggressive and early stage cancers. This is due to unusually high amounts of epoxyxanthophylls found in the leaves of spinach. Research of spinach has also linked improved eye-health and consumption of spinach, especially the reduction of macular degeneration and other age-related eye problems.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Coconut",
+            "tag_1": "Organic",
+            "description": "<p>Smack Pet Food uses organic GMO-free coconut to support healthy digestion and nutrient absorption. Studies have found that coconut can help fight viral, fungal, and parasitic infection. Coconut relives symptoms of ulerative colitis, stomach ulcers, reduces inflammation, and improves immune function as well as improve thyroid function.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Mango",
+            "tag_1": "Organic",
+            "description": "<p>Our organic GMO-free mangoes grown on certified organic farms in Mexico, are a delicious, low-acid fruit known to reduce the risk of cancer. They also contain a high amount of dietary fiber, improving the digestive health of your dog and also reduce the risk of gastrointestinal disorders known to occur in dogs with a low fiber diet. These dietary fibers also increase the rate of absorption of vitamins and minerals in a dogs' intestines. Mangoes' unique dietary fiber benefits are not shared with the dietary fibers of grains.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Parsley",
+            "tag_1": "Organic",
+            "description": "<p>Smack Pet Food uses organic GMO-free curly parsley grown in Canada. Parsley is a known chemoprotective food. What this means is that it has shown, in animal studies to inhibit tumor formation and even neutralize carcinogens! Furthermore, parsley has shown to increase antioxidant capacity of the blood! Parsley also contains a high amount of Vitamin C, which fights against free-radicals in all water-soluble areas of the body further reducing the development and progression of a wide variety of diseases.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Carrot",
+            "tag_1": "Organic",
+            "description": "<p>Smack Pet Food uses organic GMO-free carrots grown in Canada. The 3 main areas of benefits related to consumption of carrots are: Vision Health, Cancer Fighting, and Cardiovascular Health. According to a new, 10-year long study, carrots were shown to be the most effective food for reducing cardiovascular disease when consumed in regular, “low” amounts. In studies on the risk of cataracts in animals, geranyl acetate, a substance in carrots, was repeatedly shown to reduce the risk of cataracts. Studies show that carrot extract has the powerful ability to inhibit the growth of cancer cells in the colon.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Cranberry",
+            "tag_1": "Organic",
+            "description": "<p>Our Canadian-grown GMO-free cranberry helps prevent urinary tract infections by inhibiting microorganisms from adhering to the bladder and urinary tract. Cranberry contains high amounts of ellagic acid, a phytochemical known to be a powerful anti-cancer fighter! The tannins found in cranberries help reduce tooth decay and inhibit bad stomach bacteria from adhering to the stomach.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Pineapple",
+            "tag_1": "Organic",
+            "description": "<p>Smack uses organic GMO-free pineapple grown on certified organic farms in Costa Rica. Pineapple contain high amounts of a complex substance called bromelain, which facilitates in protein digestion. However, the benefits don't stop there! Studies on bromelain have shown that it reduces growth of certain tumors. The use of bromelain is popular among athletes for its ability to reduce muscle aches and inflammation, important for speedy muscle recovery!</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Strawberry",
+            "tag_1": "Organic",
+            "description": "<p>Our organic GMO-free strawberries come from certified organic farms in Canada. In terms of common serving size, strawberries are ranked as the second-most antioxidant containing fruit, just behind blackberry. Strawberry polyphenols help regulate blood sugar levels and even reduce blood sugar spikes. Regular intake of strawberries has also shown to reduce inflammation, the root of nearly all disease!</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Thyme",
+            "tag_1": "Organic",
+            "description": "<p>Rich in an oil called thymol, our organic GMO-free thyme (grown in Egypt) has been proven in studies to protect and significantly increase the percentage of healthy fats found in the cell membranes of the brain, kidney and heart. Thyme also has powerful antimicrobial activity against bacteria such as E. coli, meaning that thyme can actually decontaminate contaminated food!</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Peppermint",
+            "tag_1": "Organic",
+            "description": "<p>Smack Pet Food uses organic GMO-free peppermint grown in Egypt. Peppermint is a popular as a remedy to ease indigestion by calming the muscles of the stomach. Peppermint's soothing effects on the smooth muscles of the intestines also make it a great cure for IBS - relieving issues such as gas, diarrhea, and pain due to spasms.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Celery",
+            "tag_1": "Organic",
+            "description": "<p>Our Canadian-grown organic GMO-free celery claims a very long list of phytonutrients known to decrease risk of oxidative damage to body fats and risk of oxidative damage to blood vessel walls. Studies on celery extract have shown to protect the digestive tract and liver. In animals, the pectin-based polysaccharides found in celery have been shown to improve the integrity of the stomach lining and reduce the risk of stomach ulcers and help control healthy levels of stomach secretions.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Shiitake Mushroom",
+            "tag_1": "Organic",
+            "description": "<p>Shiitake mushrooms are a delicious superfood with a rich, savoury taste that aligns with pets' natural preferences. This perfectly complements our whole-prey proteins, maximizing the appeal for pets! Far from just a tasty ingredient, they're packed with essential vitamins and minerals linked to improved coat and skin health. The triterpenes in shiitake have antibacterial and antiviral effects which improve the immune system. Shiitake mushrooms also contain natural compounds that improve dental health, reduce inflammation, and promote healthy circulation.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Kelp",
+            "tag_1": "Organic",
+            "description": "<p>Kelp is a nutrient-packed superfood, providing vitamins like A, B, D, E, and K with plenty of essential minerals, amino acids, and fibre. It's an excellent source of iodine, which is essential for thyroid function, helping maintain your pet's metabolic health. Kelp also helps the body maintain blood sugar levels and provides plenty of cancer-fighting antioxidants. It fosters healthy gut bacteria, immune function, and dental health, for truly far-reaching benefits.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Dried Yeast",
+            "tag_1": "",
+            "description": "<p>Dried yeast is a true superfood. Because it contains all essential amino acids, it is considered a complete protein, helping boost your pet's energy. It contains beta-glucans, highly beneficial fibers that stimulate white blood cells and support healthy immune function. It's a flavourful, whole-food source of vitamins and minerals that support metabolic health, digestion, coat and skin health, cognitive function, muscle development, bone formation, reproductive health, and more.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic Sprouted Quinoa",
+            "tag_1": "Organic",
+            "description": "<p>Sprouted quinoa provides essential vitamins and minerals linked to improved metabolism and energy, cancer prevention, blood cell and nerve formation, skin and coat health, nervous system and brain function, and immunity. Sprouted quinoa contains fewer lectins and more anti-inflammatory compounds than un-sprouted quinoa, making it much easier on your pet's digestive system.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Sea Salt",
+            "tag_1": "",
+            "description": "<p>Salt is an essential mineral for life that helps maintain a proper electrolyte balance, enabling key processes like nerve activation and muscle contraction. It's also a healthy, tasty source of magnesium, which helps regulate blood pressure and fight adrenal fatigue. Smack uses premium salt with lower sodium than other sea salt and more natural mineral electrolytes. It's pure, delicious, and sustainably sourced.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Marine Microalgae Oil",
+            "tag_1": "",
+            "description": "<p>Marine microalgae oil is very high in essential omega-3 fatty acids that contribute to a shinier coat and healthier skin while also supporting heart and joint health. Studies have shown that omega-3s may inhibit compounds that trigger inflammation, helping alleviate joint pain and arthritis.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

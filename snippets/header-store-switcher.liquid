@@ -1,0 +1,111 @@
+{% comment %}
+  Renders a two-store (multi-domain) country switcher.
+
+  Since the US and CA storefronts are two SEPARATE Shopify stores, this does
+  NOT use Shopify's native `localization` object (that object only knows
+  about Markets configured inside the current store's own admin — it has
+  no concept of a sibling store on another domain). Instead this compares
+  the current request host against two manually configured domains from
+  the theme editor and links straight to the other store.
+
+  Params:
+  - us_domain:  string, e.g. "www.smackpetfood.com"
+  - ca_domain:  string, e.g. "ca.smackpetfood.com"
+  - localization_position: 'left' | 'right'  (controls dropdown alignment)
+  - localization_type: 'text' | 'icon'        (icon = flag only, no label)
+  - hide_mobile: boolean
+  - section_id: string, unique id for the element
+{% endcomment %}
+
+{%- liquid
+  assign current_host = request.host | downcase
+  assign us_clean = us_domain | remove: 'https://' | remove: 'http://' | split: '/' | first | downcase
+  assign ca_clean = ca_domain | remove: 'https://' | remove: 'http://' | split: '/' | first | downcase
+
+  assign current_code = 'US'
+  assign current_flag = '🇺🇸'
+  assign current_name = 'United States'
+
+  if current_host == ca_clean
+    assign current_code = 'CA'
+    assign current_flag = '🇨🇦'
+    assign current_name = 'Canada'
+  endif
+
+  if current_code == 'US'
+    assign other_flag = '🇨🇦'
+    assign other_name = 'Canada'
+    assign other_domain = ca_clean
+  else
+    assign other_flag = '🇺🇸'
+    assign other_name = 'United States'
+    assign other_domain = us_clean
+  endif
+
+  assign other_url = 'https://' | append: other_domain | append: '/'
+-%}
+
+<details class="store-switcher{% if hide_mobile %} max-md:hidden{% endif %} store-switcher--{{ localization_position }}" id="StoreSwitcher-{{ section_id }}">
+  <summary class="store-switcher__toggle" aria-label="Change store region">
+    <span class="store-switcher__flag" aria-hidden="true">{{ current_flag }}</span>
+    {% if localization_type != 'icon' %}
+      <span class="store-switcher__label">{{ current_name }}</span>
+    {% endif %}
+    <span class="store-switcher__caret" aria-hidden="true">▾</span>
+  </summary>
+  <ul class="store-switcher__menu" role="list">
+    <li class="store-switcher__item store-switcher__item--current" aria-current="true">
+      <span class="store-switcher__flag" aria-hidden="true">{{ current_flag }}</span>
+      <span>{{ current_name }}</span>
+    </li>
+    <li class="store-switcher__item">
+      <a href="{{ other_url }}" class="store-switcher__link">
+        <span class="store-switcher__flag" aria-hidden="true">{{ other_flag }}</span>
+        <span>{{ other_name }}</span>
+      </a>
+    </li>
+  </ul>
+</details>
+
+<style>
+  .store-switcher { position: relative; }
+  .store-switcher__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    list-style: none;
+    padding: 4px 8px;
+  }
+  .store-switcher__toggle::-webkit-details-marker { display: none; }
+  .store-switcher__flag { font-size: 1.4rem; line-height: 1; }
+  .store-switcher__caret { font-size: 1rem; transition: transform 0.2s ease; }
+  .store-switcher[open] .store-switcher__caret { transform: rotate(180deg); }
+  .store-switcher__menu {
+    position: absolute;
+    top: 100%;
+    margin-top: 6px;
+    min-width: 160px;
+    background: var(--color-background, #fff);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 4px;
+    list-style: none;
+    z-index: 20;
+  }
+  .store-switcher--right .store-switcher__menu { right: 0; }
+  .store-switcher--left .store-switcher__menu { left: 0; }
+  .store-switcher__item,
+  .store-switcher__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 3px;
+  }
+  .store-switcher__link:hover { background: rgba(0,0,0,0.05); }
+  .store-switcher__item--current { opacity: 0.6; cursor: default; }
+</style>

@@ -1,0 +1,134 @@
+{%- liquid
+  assign block_settings = block.settings
+  assign current_tag = blog.current_tag
+  assign open_tag = '<a'
+-%}
+
+<div class="blog-editorial-header" {{ block.shopify_attributes }}>
+  <div class="blog-editorial-header__inner">
+
+    <div class="blog-editorial-header__title">
+      {{ block_settings.title | default: 'Latest articles' }}
+    </div>
+
+    <div class="blog-editorial-header__controls">
+
+      <div class="blog-editorial-header__search">
+        <form action="{{ blog.url }}" method="get" role="search">
+          <div class="blog-editorial-header__search-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input
+              type="search"
+              name="q"
+              placeholder="{{ block_settings.search_placeholder | default: 'Search for...' }}"
+              class="blog-editorial-header__search-input"
+              aria-label="{{ block_settings.search_placeholder | default: 'Search for...' }}"
+            >
+          </div>
+        </form>
+      </div>
+
+      <div class="blog-editorial-header__tags">
+        {%- if block_settings.tag_1 != blank -%}
+          {{ open_tag }}
+            href="{{ blog.url }}/tagged/{{ block_settings.tag_1 | handleize }}"
+            class="blog-editorial-header__tag{% if current_tag == block_settings.tag_1 %} is-active{% endif %}"
+          >{{- block_settings.tag_1 -}}</a>
+        {%- endif -%}
+        {%- if block_settings.tag_2 != blank -%}
+          {{ open_tag }}
+            href="{{ blog.url }}/tagged/{{ block_settings.tag_2 | handleize }}"
+            class="blog-editorial-header__tag{% if current_tag == block_settings.tag_2 %} is-active{% endif %}"
+          >{{- block_settings.tag_2 -}}</a>
+        {%- endif -%}
+        {%- if block_settings.tag_3 != blank -%}
+          {{ open_tag }}
+            href="{{ blog.url }}/tagged/{{ block_settings.tag_3 | handleize }}"
+            class="blog-editorial-header__tag{% if current_tag == block_settings.tag_3 %} is-active{% endif %}"
+          >{{- block_settings.tag_3 -}}</a>
+        {%- endif -%}
+        {%- if block_settings.tag_4 != blank -%}
+          {{ open_tag }}
+            href="{{ blog.url }}/tagged/{{ block_settings.tag_4 | handleize }}"
+            class="blog-editorial-header__tag{% if current_tag == block_settings.tag_4 %} is-active{% endif %}"
+          >{{- block_settings.tag_4 -}}</a>
+        {%- endif -%}
+        {%- if block_settings.tag_5 != blank -%}
+          {{ open_tag }}
+            href="{{ blog.url }}/tagged/{{ block_settings.tag_5 | handleize }}"
+            class="blog-editorial-header__tag{% if current_tag == block_settings.tag_5 %} is-active{% endif %}"
+          >{{- block_settings.tag_5 -}}</a>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog Post Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Latest articles"
+    },
+    {
+      "type": "header",
+      "content": "Search"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "Search for..."
+    },
+    {
+      "type": "header",
+      "content": "Tags"
+    },
+    {
+      "type": "text",
+      "id": "tag_1",
+      "label": "Tag 1",
+      "default": "Recipes"
+    },
+    {
+      "type": "text",
+      "id": "tag_2",
+      "label": "Tag 2",
+      "default": "Events"
+    },
+    {
+      "type": "text",
+      "id": "tag_3",
+      "label": "Tag 3",
+      "default": "News"
+    },
+    {
+      "type": "text",
+      "id": "tag_4",
+      "label": "Tag 4"
+    },
+    {
+      "type": "text",
+      "id": "tag_5",
+      "label": "Tag 5"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Post Header"
+    }
+  ]
+}
+{% endschema %}

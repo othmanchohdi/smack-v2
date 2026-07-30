@@ -1,0 +1,990 @@
+{% capture children %}
+
+  {%- style -%}
+    #shopify-section-{{ section.id }} .timeline-header {
+      text-align: {{ section.settings.header_alignment }};
+      margin-bottom: {{ section.settings.header_mb }}px;
+    }
+    #shopify-section-{{ section.id }} .timeline-section-heading {
+      font-family: {{ section.settings.heading_font }};
+      font-size: {{ section.settings.heading_font_size }};
+      line-height: {{ section.settings.heading_line_height }};
+      letter-spacing: {{ section.settings.heading_letter_spacing }};
+      text-transform: {{ section.settings.heading_case }};
+      color: {{ section.settings.heading_color }};
+      margin: 0 0 {{ section.settings.heading_mb }}px;
+    }
+    #shopify-section-{{ section.id }} .timeline-section-description {
+      font-family: {{ section.settings.description_font }};
+      font-size: {{ section.settings.description_font_size }};
+      line-height: {{ section.settings.description_line_height }};
+      letter-spacing: {{ section.settings.description_letter_spacing }};
+      text-transform: {{ section.settings.description_case }};
+      color: {{ section.settings.description_color }};
+      margin: 0;
+    }
+    #shopify-section-{{ section.id }} .timeline-line {
+      background-color: {{ section.settings.line_color }};
+    }
+    #shopify-section-{{ section.id }} .timeline-dot {
+      background-color: {{ section.settings.dot_color }};
+    }
+    #shopify-section-{{ section.id }} .timeline-card {
+      background-color: {{ section.settings.card_background }};
+      {% if section.settings.card_shadow %}box-shadow: 0 4px 24px rgba(0,0,0,0.07);{% endif %}
+    }
+    #shopify-section-{{ section.id }} .timeline-label {
+      background-color: {{ section.settings.label_background }};
+      color: {{ section.settings.label_text_color }};
+      font-family: {{ section.settings.label_font }};
+      font-size: {{ section.settings.label_font_size }};
+      letter-spacing: {{ section.settings.label_letter_spacing }};
+      text-transform: {{ section.settings.label_case }};
+    }
+    #shopify-section-{{ section.id }} .timeline-card-title {
+      color: {{ section.settings.card_title_color }};
+      font-family: {{ section.settings.card_title_font }};
+      font-size: {{ section.settings.card_title_font_size }};
+      line-height: {{ section.settings.card_title_line_height }};
+      letter-spacing: {{ section.settings.card_title_letter_spacing }};
+      text-transform: {{ section.settings.card_title_case }};
+    }
+    #shopify-section-{{ section.id }} .timeline-card-text {
+      color: {{ section.settings.card_text_color }};
+      font-family: {{ section.settings.card_text_font }};
+      font-size: {{ section.settings.card_text_font_size }};
+      line-height: {{ section.settings.card_text_line_height }};
+      letter-spacing: {{ section.settings.card_text_letter_spacing }};
+      text-transform: {{ section.settings.card_text_case }};
+    }
+  {%- endstyle -%}
+
+  {%- if section.settings.heading != blank or section.settings.description != blank -%}
+    <div class="timeline-header">
+      {%- if section.settings.heading != blank -%}
+        <{{ section.settings.heading_tag }} class="timeline-section-heading">
+          {{ section.settings.heading }}
+        </{{ section.settings.heading_tag }}>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <div class="timeline-section-description rte">{{ section.settings.description }}</div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="timeline-container">
+    <div class="timeline-line"></div>
+
+    {%- for block in section.blocks -%}
+      {%- assign is_right = forloop.index | modulo: 2 -%}
+      <div
+        class="timeline-item timeline-item--{% if is_right == 1 %}right{% else %}left{% endif %}"
+        {{ block.shopify_attributes }}
+      >
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          {%- if block.settings.label != blank -%}
+            <span class="timeline-label">{{ block.settings.label }}</span>
+          {%- endif -%}
+          {%- if block.settings.title != blank -%}
+            <h3 class="timeline-card-title">{{ block.settings.title }}</h3>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <div class="timeline-card-text rte">{{ block.settings.text }}</div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  <style>
+    #shopify-section-{{ section.id }} .timeline-header {
+      width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .timeline-container {
+      position: relative;
+      padding: 16px 0;
+      width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .timeline-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      z-index: 0;
+    }
+
+    #shopify-section-{{ section.id }} .timeline-item {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: {{ section.settings.items_gap }}px;
+      width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .timeline-item--right {
+      justify-content: flex-end;
+    }
+
+    #shopify-section-{{ section.id }} .timeline-item--left {
+      justify-content: flex-start;
+    }
+
+    #shopify-section-{{ section.id }} .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      transform: translate(-50%, -50%);
+      width: {{ section.settings.dot_size }}px;
+      height: {{ section.settings.dot_size }}px;
+      border-radius: 50%;
+      z-index: 2;
+      flex-shrink: 0;
+    }
+
+    #shopify-section-{{ section.id }} .timeline-card {
+      width: calc(50% - {{ section.settings.card_offset }}px);
+      border-radius: {{ section.settings.card_border_radius }}px;
+      padding: {{ section.settings.card_padding }}px;
+      position: relative;
+      z-index: 1;
+    }
+
+    #shopify-section-{{ section.id }} .timeline-label {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .timeline-card-title {
+      margin: 0 0 10px;
+    }
+
+    #shopify-section-{{ section.id }} .timeline-card-text p {
+      margin: 0;
+    }
+
+    @media screen and (max-width: 749px) {
+      #shopify-section-{{ section.id }} .timeline-line {
+        left: 16px;
+        transform: none;
+      }
+
+      #shopify-section-{{ section.id }} .timeline-item--right,
+      #shopify-section-{{ section.id }} .timeline-item--left {
+        justify-content: flex-end;
+      }
+
+      #shopify-section-{{ section.id }} .timeline-dot {
+        left: 16px;
+        transform: translate(-50%, -50%);
+      }
+
+      #shopify-section-{{ section.id }} .timeline-card {
+        width: calc(100% - 48px);
+        padding: 18px;
+      }
+    }
+  </style>
+
+{% endcapture %}
+
+{% render 'section', section: section, children: children %}
+
+{% schema %}
+{
+  "name": "Timeline",
+  "class": "section-wrapper",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Timeline item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "2015",
+          "info": "Short badge text e.g. year or milestone name"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Milestone Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Describe what happened at this milestone.</p>"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.popup", "aside"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Journey"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading HTML tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_font",
+      "label": "Heading font",
+      "options": [
+        { "value": "var(--font-heading--family)", "label": "Heading font" },
+        { "value": "var(--font-body--family)", "label": "Body font" }
+      ],
+      "default": "var(--font-heading--family)"
+    },
+    {
+      "type": "text",
+      "id": "heading_font_size",
+      "label": "Heading font size",
+      "default": "2.4rem",
+      "info": "e.g. 2.4rem, 40px"
+    },
+    {
+      "type": "select",
+      "id": "heading_line_height",
+      "label": "Heading line height",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "1", "label": "1" },
+        { "value": "1.1", "label": "1.1" },
+        { "value": "1.2", "label": "1.2" },
+        { "value": "1.3", "label": "1.3" },
+        { "value": "1.4", "label": "1.4" },
+        { "value": "1.5", "label": "1.5" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "heading_letter_spacing",
+      "label": "Heading letter spacing",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "tight", "label": "Tight" },
+        { "value": "wide", "label": "Wide" },
+        { "value": "wider", "label": "Wider" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "heading_case",
+      "label": "Heading text case",
+      "options": [
+        { "value": "none", "label": "Default" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_mb",
+      "label": "Heading bottom spacing",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>From French tradition to American innovation</p>"
+    },
+    {
+      "type": "select",
+      "id": "description_font",
+      "label": "Description font",
+      "options": [
+        { "value": "var(--font-body--family)", "label": "Body font" },
+        { "value": "var(--font-heading--family)", "label": "Heading font" }
+      ],
+      "default": "var(--font-body--family)"
+    },
+    {
+      "type": "text",
+      "id": "description_font_size",
+      "label": "Description font size",
+      "default": "1.2rem",
+      "info": "e.g. 1.2rem, 16px"
+    },
+    {
+      "type": "select",
+      "id": "description_line_height",
+      "label": "Description line height",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "1", "label": "1" },
+        { "value": "1.2", "label": "1.2" },
+        { "value": "1.4", "label": "1.4" },
+        { "value": "1.5", "label": "1.5" },
+        { "value": "1.6", "label": "1.6" },
+        { "value": "1.8", "label": "1.8" }
+      ],
+      "default": "1.5"
+    },
+    {
+      "type": "select",
+      "id": "description_letter_spacing",
+      "label": "Description letter spacing",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "tight", "label": "Tight" },
+        { "value": "wide", "label": "Wide" },
+        { "value": "wider", "label": "Wider" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "description_case",
+      "label": "Description text case",
+      "options": [
+        { "value": "none", "label": "Default" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "header_mb",
+      "label": "Header bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Card title style"
+    },
+    {
+      "type": "select",
+      "id": "card_title_font",
+      "label": "Font",
+      "options": [
+        { "value": "var(--font-heading--family)", "label": "Heading font" },
+        { "value": "var(--font-body--family)", "label": "Body font" }
+      ],
+      "default": "var(--font-heading--family)"
+    },
+    {
+      "type": "text",
+      "id": "card_title_font_size",
+      "label": "Font size",
+      "default": "1.4rem",
+      "info": "e.g. 1.4rem, 22px"
+    },
+    {
+      "type": "select",
+      "id": "card_title_line_height",
+      "label": "Line height",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "1", "label": "1" },
+        { "value": "1.1", "label": "1.1" },
+        { "value": "1.2", "label": "1.2" },
+        { "value": "1.3", "label": "1.3" },
+        { "value": "1.4", "label": "1.4" }
+      ],
+      "default": "1.3"
+    },
+    {
+      "type": "select",
+      "id": "card_title_letter_spacing",
+      "label": "Letter spacing",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "tight", "label": "Tight" },
+        { "value": "wide", "label": "Wide" },
+        { "value": "wider", "label": "Wider" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "card_title_case",
+      "label": "Text case",
+      "options": [
+        { "value": "none", "label": "Default" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Color",
+      "default": "#3a9e96"
+    },
+    {
+      "type": "header",
+      "content": "Card text style"
+    },
+    {
+      "type": "select",
+      "id": "card_text_font",
+      "label": "Font",
+      "options": [
+        { "value": "var(--font-body--family)", "label": "Body font" },
+        { "value": "var(--font-heading--family)", "label": "Heading font" }
+      ],
+      "default": "var(--font-body--family)"
+    },
+    {
+      "type": "text",
+      "id": "card_text_font_size",
+      "label": "Font size",
+      "default": "1rem",
+      "info": "e.g. 1rem, 14px"
+    },
+    {
+      "type": "select",
+      "id": "card_text_line_height",
+      "label": "Line height",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "1.4", "label": "1.4" },
+        { "value": "1.5", "label": "1.5" },
+        { "value": "1.6", "label": "1.6" },
+        { "value": "1.7", "label": "1.7" },
+        { "value": "1.8", "label": "1.8" }
+      ],
+      "default": "1.6"
+    },
+    {
+      "type": "select",
+      "id": "card_text_letter_spacing",
+      "label": "Letter spacing",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "tight", "label": "Tight" },
+        { "value": "wide", "label": "Wide" },
+        { "value": "wider", "label": "Wider" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "card_text_case",
+      "label": "Text case",
+      "options": [
+        { "value": "none", "label": "Default" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Label style"
+    },
+    {
+      "type": "select",
+      "id": "label_font",
+      "label": "Font",
+      "options": [
+        { "value": "var(--font-body--family)", "label": "Body font" },
+        { "value": "var(--font-heading--family)", "label": "Heading font" }
+      ],
+      "default": "var(--font-body--family)"
+    },
+    {
+      "type": "text",
+      "id": "label_font_size",
+      "label": "Font size",
+      "default": "0.85rem",
+      "info": "e.g. 0.85rem, 13px"
+    },
+    {
+      "type": "select",
+      "id": "label_letter_spacing",
+      "label": "Letter spacing",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "tight", "label": "Tight" },
+        { "value": "wide", "label": "Wide" },
+        { "value": "wider", "label": "Wider" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "label_case",
+      "label": "Text case",
+      "options": [
+        { "value": "none", "label": "Default" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "label_background",
+      "label": "Label background",
+      "default": "#3a9e96"
+    },
+    {
+      "type": "color",
+      "id": "label_text_color",
+      "label": "Label text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Timeline"
+    },
+    {
+      "type": "range",
+      "id": "items_gap",
+      "label": "Gap between items",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "card_offset",
+      "label": "Card offset from center line",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card padding",
+      "min": 8,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "card_shadow",
+      "label": "Show card shadow",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "dot_size",
+      "label": "Dot size",
+      "min": 6,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Timeline colors"
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Timeline line",
+      "default": "#3a9e96"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot",
+      "default": "#3a9e96"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "content_direction",
+      "label": "t:settings.direction",
+      "options": [
+        { "value": "column", "label": "t:options.vertical" },
+        { "value": "row", "label": "t:options.horizontal" }
+      ],
+      "default": "column"
+    },
+    {
+      "type": "select",
+      "id": "content_direction_mobile",
+      "label": "t:settings.direction_on_mobile",
+      "options": [
+        { "value": "column", "label": "t:options.vertical" },
+        { "value": "row", "label": "t:options.horizontal" }
+      ],
+      "default": "column"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "t:content.size"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        { "value": "page-width", "label": "t:options.page" },
+        { "value": "full-width", "label": "t:options.full" },
+        { "value": "custom", "label": "t:options.custom" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "range",
+      "id": "page_width_custom",
+      "min": 800,
+      "max": 1600,
+      "step": 10,
+      "default": 1170,
+      "unit": "px",
+      "label": "t:settings.page_width",
+      "visible_if": "{{ section.settings.section_width == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "t:settings.height",
+      "options": [
+        { "value": "", "label": "t:options.auto" },
+        { "value": "small", "label": "t:options.small" },
+        { "value": "medium", "label": "t:options.medium" },
+        { "value": "large", "label": "t:options.large" },
+        { "value": "full-screen", "label": "t:options.full_screen" },
+        { "value": "custom", "label": "t:options.custom" }
+      ],
+      "default": ""
+    },
+    {
+      "type": "range",
+      "id": "section_height_custom",
+      "label": "t:settings.custom_height",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 50,
+      "unit": "%",
+      "visible_if": "{{ section.settings.section_height == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "background_media",
+      "label": "t:settings.background_media",
+      "options": [
+        { "value": "none", "label": "t:options.none" },
+        { "value": "image", "label": "t:options.image" },
+        { "value": "video", "label": "t:options.video" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "t:settings.video",
+      "visible_if": "{{ section.settings.background_media == 'video' }}"
+    },
+    {
+      "type": "select",
+      "id": "video_position",
+      "label": "t:settings.video_position",
+      "options": [
+        { "value": "cover", "label": "t:options.cover" },
+        { "value": "contain", "label": "t:options.contain" }
+      ],
+      "default": "cover",
+      "visible_if": "{{ section.settings.background_media == 'video' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:settings.image",
+      "visible_if": "{{ section.settings.background_media == 'image' }}"
+    },
+    {
+      "type": "select",
+      "id": "background_image_position",
+      "label": "t:settings.image_position",
+      "options": [
+        { "value": "cover", "label": "t:options.cover" },
+        { "value": "fit", "label": "t:options.fit" }
+      ],
+      "default": "cover",
+      "visible_if": "{{ section.settings.background_media == 'image' }}"
+    },
+    {
+      "type": "select",
+      "id": "border",
+      "label": "t:settings.borders",
+      "options": [
+        { "value": "none", "label": "t:options.none" },
+        { "value": "solid", "label": "t:options.solid" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "t:settings.border_width",
+      "default": 1,
+      "visible_if": "{{ section.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0,
+      "visible_if": "{{ section.settings.border != 'none' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "toggle_overlay",
+      "label": "t:settings.background_overlay"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "t:settings.overlay_color",
+      "alpha": true,
+      "default": "#00000026",
+      "visible_if": "{{ section.settings.toggle_overlay }}"
+    },
+    {
+      "type": "select",
+      "id": "overlay_style",
+      "label": "t:settings.overlay_style",
+      "options": [
+        { "value": "solid", "label": "t:options.solid" },
+        { "value": "gradient", "label": "t:options.gradient" }
+      ],
+      "default": "solid",
+      "visible_if": "{{ section.settings.toggle_overlay }}"
+    },
+    {
+      "type": "select",
+      "id": "gradient_direction",
+      "label": "t:settings.gradient_direction",
+      "options": [
+        { "value": "to top", "label": "t:options.up" },
+        { "value": "to bottom", "label": "t:options.down" }
+      ],
+      "default": "to top",
+      "visible_if": "{{ section.settings.toggle_overlay and section.settings.overlay_style == 'gradient' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.animations",
+      "visible_if": "{{ section.settings.background_media == 'image' }}"
+    },
+    {
+      "type": "select",
+      "id": "image_behavior",
+      "options": [
+        { "value": "none", "label": "t:options.none" },
+        { "value": "ambient", "label": "t:options.ambient_movement" },
+        { "value": "zoom-in", "label": "t:options.zoom_in_on_scroll" }
+      ],
+      "default": "none",
+      "label": "t:settings.image_behavior",
+      "visible_if": "{{ section.settings.background_media == 'image' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Timeline",
+      "category": "t:categories.storytelling",
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "label": "Born in France",
+            "title": "Marseille Beginnings",
+            "text": "<p>Chef Sharon learned traditional French cuisine from her family, absorbing generations of culinary wisdom.</p>"
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "label": "Age 19",
+            "title": "Chicago Dreams",
+            "text": "<p>Moved to Chicago with a dream to pursue culinary arts and share authentic French flavors with America.</p>"
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "label": "Culinary School",
+            "title": "Le Cordon Bleu Graduate",
+            "text": "<p>Graduated from the prestigious Le Cordon Bleu and studied at Lenotre Paris to perfect macaron techniques.</p>"
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "label": "2015",
+            "title": "Le Petit Sucre Launch",
+            "text": "<p>Opened the first Le Petit Sucre kiosk, introducing Americans to authentic French macarons.</p>"
+          }
+        }
+      },
+      "block_order": ["item_1", "item_2", "item_3", "item_4"],
+      "settings": {
+        "heading": "Our Journey",
+        "description": "<p>From French tradition to American innovation</p>",
+        "header_alignment": "center",
+        "content_direction": "column",
+        "content_direction_mobile": "column",
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
+    }
+  ]
+}
+{% endschema %}

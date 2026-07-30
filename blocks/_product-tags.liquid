@@ -1,0 +1,226 @@
+{%- liquid
+  assign bl_stts = block.settings
+  assign product_resource = closest.product
+  assign max_tags = bl_stts.max_tags | default: 4
+  assign tag_count = 0
+-%}
+
+<product-tags
+  class="spacing-style"
+  data-block-id="{{ block.id }}"
+  data-product-id="{{ product_resource.id }}"
+  style="
+    {% render 'spacing-style', settings: bl_stts %}
+    --tag-bg-color: {{ bl_stts.tag_background_color }};
+    --tag-text-color: {{ bl_stts.tag_text_color }};
+    --tag-border-color: {{ bl_stts.tag_border_color }};
+    --tag-border-radius: {{ bl_stts.tag_border_radius }}px;
+    --tag-font-size: {{ bl_stts.tag_font_size }};
+    --tag-font-weight: {{ bl_stts.tag_font_weight }};
+    --tag-padding-v: {{ bl_stts.tag_padding_vertical }}px;
+    --tag-padding-h: {{ bl_stts.tag_padding_horizontal }}px;
+  "
+  {{ block.shopify_attributes }}
+>
+  {%- if product_resource.tags.size > 0 -%}
+    <div
+      class="product-tags-list flex flex-wrap"
+      style="{% render 'gap-style', value: bl_stts.gap %}"
+    >
+      {%- for tag in product_resource.tags -%}
+        {%- if tag_count < max_tags -%}
+          <span class="product-tag">{{ tag | escape }}</span>
+          {%- assign tag_count = tag_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</product-tags>
+
+<style>
+  product-tags .product-tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--tag-bg-color);
+    color: var(--tag-text-color);
+    border: 1px solid var(--tag-border-color);
+    border-radius: var(--tag-border-radius);
+    font-size: var(--tag-font-size);
+    font-weight: var(--tag-font-weight);
+    padding: var(--tag-padding-v) var(--tag-padding-h);
+    line-height: 1;
+    white-space: nowrap;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product tags",
+  "tag": null,
+  "settings": [
+    {
+      "type": "range",
+      "id": "max_tags",
+      "label": "Maximum tags to show",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between tags",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Tag appearance"
+    },
+    {
+      "type": "color",
+      "id": "tag_background_color",
+      "label": "Background color",
+      "default": "#E8EEEC"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "Text color",
+      "default": "#3D5249"
+    },
+    {
+      "type": "color",
+      "id": "tag_border_color",
+      "label": "Border color",
+      "default": "#E8EEEC"
+    },
+    {
+      "type": "range",
+      "id": "tag_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "tag_padding_vertical",
+      "label": "Vertical padding",
+      "min": 2,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "tag_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 4,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "tag_font_size",
+      "label": "Font size",
+      "options": [
+        { "value": "1.0rem", "label": "10px" },
+        { "value": "1.1rem", "label": "11px" },
+        { "value": "1.2rem", "label": "12px" },
+        { "value": "1.3rem", "label": "13px" },
+        { "value": "1.4rem", "label": "14px" },
+        { "value": "1.6rem", "label": "16px" }
+      ],
+      "default": "1.2rem"
+    },
+    {
+      "type": "select",
+      "id": "tag_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semibold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "Left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "Right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product tags",
+      "category": "Product",
+      "settings": {
+        "max_tags": 4,
+        "gap": 8,
+        "tag_background_color": "#E8EEEC",
+        "tag_text_color": "#3D5249",
+        "tag_border_color": "#E8EEEC",
+        "tag_border_radius": 6,
+        "tag_padding_vertical": 6,
+        "tag_padding_horizontal": 12,
+        "tag_font_size": "1.2rem",
+        "tag_font_weight": "400"
+      }
+    }
+  ]
+}
+{% endschema %}

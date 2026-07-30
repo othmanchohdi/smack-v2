@@ -1,0 +1,459 @@
+{% assign bl_stts = block.settings %}
+
+<div
+  class="cart-items__wrapper spacing-style"
+  style="{% render 'spacing-style', settings: bl_stts %}"
+  {{ block.shopify_attributes }}
+>
+  {% if cart.empty? %}
+    <div class="cart__warnings">
+      <h1 class="cart__empty-text">{{ 'content.empty' | t }}</h1>
+      <a href="{{ routes.all_products_collection_url }}" class="button">
+        {{ 'content.continue_shopping' | t }}
+      </a>
+
+      {%- if shop.customer_accounts_enabled and customer == null -%}
+        <h2 class="cart__login-title">{{ 'content.login.title' | t }}</h2>
+        <p class="cart__login-paragraph">
+          {{ 'content.login.paragraph_html' | t: link: routes.account_login_url }}
+        </p>
+      {%- endif -%}
+    </div>
+  {%- else -%}
+    <span class="cart-item-count visually-hidden" aria-hidden="true">
+      {{- cart.item_count -}}
+    </span>
+    <form
+      action="{{ routes.cart_url }}"
+      class="cart__contents critical-hidden"
+      method="post"
+      id="cart"
+    >
+      <div
+        class="cart__items" id="main-cart-items"
+        data-id="{{ section.id }}"
+        style="--cart-items-gap:{{ bl_stts.gap | append: "px" }};"
+      >
+        <div class="js-contents">
+          {%- if cart != empty -%}
+            <table class="cart-items cart-items__table" role="table">
+              <caption class="visually-hidden" role="caption">
+                {{ 'content.cart_total' | t }}
+                <span>{{ cart.total_price | money_with_currency }}</span>
+              </caption>
+              <thead role="rowgroup">
+                <tr role="row" class="cart-items__table-row">
+                  <th id="productImage"
+                    class="cart-items__table-heading cart-item__media caption-with-letter-spacing--medium font-bold"
+                    scope="col" role="columnheader">
+                    <span>{{ 'content.product' | t }}</span>
+                  </th>
+                  <th id="productInformation"
+                    class="cart-items__table-heading cart-item__details caption-with-letter-spacing--medium font-bold"
+                    scope="col" role="columnheader">
+                    <span class="visually-hidden">{{ 'content.product_information' | t }}</span>
+                  </th>
+                  <th id="productPrice"
+                    class="cart-items__table-heading cart-item__price small-hide center caption-with-letter-spacing--medium font-bold"
+                    scope="col" role="columnheader">
+                    <span>{{ 'content.price' | t }}</span>
+                  </th>
+                  <th id="productTotalMobile"
+                    class="cart-items__table-heading cart-item__totals medium-hide large-up-hide right caption-with-letter-spacing--medium font-bold"
+                    scope="col" role="columnheader">
+                    <span>{{ 'content.total' | t }}</span>
+                  </th>
+                  <th id="quantity"
+                    class="cart-items__table-heading cart-item__quantity cart-items__heading--wide cart-items__heading--quantity small-hide center caption-with-letter-spacing--medium font-bold"
+                    scope="col" role="columnheader">
+                    <span>{{ 'content.quantity' | t }}</span>
+                  </th>
+                  <th id="productTotal"
+                    class="cart-items__table-heading cart-item__totals small-hide center caption-with-letter-spacing--medium font-bold"
+                    scope="col" role="columnheader">
+                    <span>{{ 'content.total' | t }}</span>
+                  </th>
+                  <th id="productRemove"
+                    class="cart-items__table-heading right caption-with-letter-spacing--medium font-bold"
+                    scope="col" role="columnheader">
+                    <span class="visually-hidden">{{ 'content.remove' | t }}</span>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody role="rowgroup">
+                {%- for item in cart.items -%}
+
+                  {%- comment -%}
+                    ============================================================
+                    MOQ + MACARONS-PER-BOX LOGIC
+                    ============================================================
+                    moq             = minimum number of BOXES (e.g. 10)
+                    macarons_per_box = how many macarons make one box (e.g. 2)
+                    
+                    For BYOB multi-mode products, cart quantities are in
+                    individual macarons, so the effective step/min is:
+                      effective_step = moq × macarons_per_box  (e.g. 20)
+
+                    For single-mode BYOB or MOQ-only products (no macarons_per_box),
+                    cart quantities are already in boxes:
+                      effective_step = moq  (e.g. 10)
+
+                    For regular products (no metafields):
+                      effective_step = 1
+                    ============================================================
+                  {%- endcomment -%}
+
+                  {%- comment -%} Only apply MOQ/step logic to products tagged "Build Your Own Box" {%- endcomment -%}
+                  {%- assign is_byob = false -%}
+                  {%- for tag in item.product.tags -%}
+                    {%- if tag == 'Build Your Own Box' -%}
+                      {%- assign is_byob = true -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  {%- comment -%} Read macarons_per_box from variant first, fall back to product {%- endcomment -%}
+                  {%- assign item_mpb_variant = item.variant.metafields.custom.macarons_per_box | plus: 0 -%}
+                  {%- assign item_mpb_product = item.product.metafields.custom.macarons_per_box | plus: 0 -%}
+                  {%- if item_mpb_variant > 0 -%}
+                    {%- assign item_mpb = item_mpb_variant -%}
+                  {%- else -%}
+                    {%- assign item_mpb = item_mpb_product -%}
+                  {%- endif -%}
+                  {%- if item_mpb < 1 -%}{%- assign item_mpb = 0 -%}{%- endif -%}
+
+                  {%- comment -%} MOQ and step: only enforce for BYOB products, else step = 1 {%- endcomment -%}
+                  {%- if is_byob -%}
+                    {%- assign item_moq = item.product.metafields.custom.minimum_order_quantity_moq | plus: 0 -%}
+                    {%- if item_moq < 1 -%}{%- assign item_moq = 1 -%}{%- endif -%}
+                    {%- if item_mpb > 1 -%}
+                      {%- assign item_step = item_moq | times: item_mpb -%}
+                    {%- else -%}
+                      {%- assign item_step = item_moq -%}
+                    {%- endif -%}
+                  {%- else -%}
+                    {%- assign item_moq  = 1 -%}
+                    {%- assign item_step = 1 -%}
+                  {%- endif -%}
+                  {%- assign item_min = item_step -%}
+
+                  {%- comment -%} Nb Boxes display — shown whenever macarons_per_box is set {%- endcomment -%}
+                  {%- if item_mpb > 1 -%}
+                    {%- if is_byob -%}
+                      {%- assign nb_boxes = item.quantity | times: 1.0 | divided_by: item_mpb | ceil -%}
+                      {%- assign nb_boxes_label = nb_boxes | append: '' -%}
+                    {%- else -%}
+                      {%- assign nb_boxes_label = item.quantity | append: '' -%}
+                    {%- endif -%}
+                  {%- elsif is_byob and item_moq > 1 -%}
+                    {%- assign nb_boxes_label = item.quantity | append: '' -%}
+                  {%- else -%}
+                    {%- assign nb_boxes_label = '—' -%}
+                  {%- endif -%}
+
+                  <tr
+                    role="row"
+                    class="cart-item cart-items__table-row{% if item.parent_relationship.parent != null %} cart-items__nested-line{% endif %}{% if bl_stts.border == true %} cart-items--border{% endif %}"
+                    data-line="{{ item.index | plus: 1 }}"
+                    id="CartItem-{{ item.index | plus: 1 }}"
+                    data-byob-step="{{ item_step }}"
+                    data-byob-min="{{ item_min }}"
+                  >
+                    <td class="cart-item__media" role="cell" headers="productImage">
+                      {% if item.image %}
+                        {% liquid
+                          assign ratio = 1
+                          if bl_stts.image_ratio == 'portrait'
+                            assign ratio = 0.8
+                          elsif bl_stts.image_ratio == 'adapt'
+                            assign ratio = item.image.aspect_ratio
+                          endif
+                        %}
+                        <a href="{{ item.url }}" class="cart-item__link" aria-hidden="true" tabindex="-1"></a>
+                        <div class="cart-item__image-container" style="--aspect-ratio:{{ ratio }};">
+                          <img
+                            src="{{ item.image | image_url: width: 300 }}"
+                            class="cart-item__image"
+                            alt="{{ item.image.alt | escape }}"
+                            loading="lazy"
+                            width="150"
+                            height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
+                          >
+                        </div>
+                      {% endif %}
+                    </td>
+
+                    <td class="cart-item__details" role="cell" headers="productInformation">
+                      {%- if bl_stts.vendor -%}
+                        <p class="caption-with-letter-spacing">{{ item.product.vendor }}</p>
+                      {%- endif -%}
+
+                      <a href="{{ item.url }}" class="cart-item__name break link--hover-underline">
+                        <span class="text">{{ item.product.title | escape }}</span>
+                      </a>
+
+                      {%- if item.product.has_only_default_variant == false
+                        or item.properties.size != 0
+                        or item.selling_plan_allocation != null
+                      -%}
+                        {%- if item.product.has_only_default_variant == false -%}
+                          <div class="product-option flex items-center gap-sm">
+                            {{ item.variant.title }}
+                            {%- if settings.show_quick_edit_cart -%}
+                              <edit-cart>
+                                <button
+                                  type="button"
+                                  class="product-edit button-unstyled cursor-pointer"
+                                  data-modal="#halo-edit-cart-popup"
+                                  data-open-edit-cart
+                                  data-edit-cart-url="{{ item.url }}&view=ajax_edit_cart"
+                                  data-edit-cart-id="{{ item.id }}"
+                                  data-edit-cart-quantity="{{ item.quantity }}"
+                                  data-line="{{ item.key }}"
+                                  data-index="{{ item.index | plus: 1 }}"
+                                  title="{{ 'content.cart.edit_title' | t: title: item.variant.title }}"
+                                >
+                                  <span class="svg-wrapper">{% render 'icon-edit' %}</span>
+                                </button>
+                              </edit-cart>
+                            {%- endif -%}
+                          </div>
+                        {%- endif -%}
+                        {%- if item.selling_plan_allocation != null -%}
+                          <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                        {%- endif -%}
+                      {%- endif -%}
+
+                      {%- comment -%} Nb Boxes badge — shown in details cell on all screen sizes {%- endcomment -%}
+                      {%- if item_mpb > 1 -%}
+                        {%- if is_byob -%}
+                          {%- assign nb_boxes_display = item.quantity | times: 1.0 | divided_by: item_mpb | ceil -%}
+                        {%- else -%}
+                          {%- assign nb_boxes_display = item.quantity -%}
+                        {%- endif -%}
+                        <div class="cart-item__nb-boxes-badge" style="display:inline-flex;align-items:center;gap:4px;margin-top:4px;padding:2px 10px;background:#f0f4f0;border-radius:100px;font-size:1.15rem;color:#044792;font-weight:600;">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 8H3M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8m18 0-1.5-4H4.5L3 8" stroke="#044792" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          {{ nb_boxes_display }} box{%- if nb_boxes_display != 1 -%}es{%- endif -%}
+                          <span style="font-weight:400;color:#598e7e;">&nbsp;({{ item_mpb }} macarons each)</span>
+                        </div>
+                      {%- endif -%}
+
+                      {%- for property in item.properties -%}
+                        {%- assign property_first_char = property.first | slice: 0 -%}
+                        {%- if property.last != blank and property.last != 'undefined' and property_first_char != '_' -%}
+                          <div class="customization-option product-option flex items-center gap-xs whitespace-nowrap">
+                            <dt>{{ property.first }}:</dt>
+                            <dd>
+                              {%- if property.last contains '/uploads/' -%}
+                                <a href="{{ property.last }}" class="link" target="_blank">{{ property.last | split: '/' | last }}</a>
+                              {%- else -%}
+                                {{ property.last }}
+                              {%- endif -%}
+                            </dd>
+                          </div>
+                        {%- endif -%}
+                      {%- endfor -%}
+
+                      <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+                        {%- for discount in item.line_level_discount_allocations -%}
+                          <li class="discounts__discount">
+                            <span class="discounts__discount-text font-medium">
+                              <span class="svg-wrapper">{{- 'icon-discount.svg' | inline_asset_content -}}</span>
+                              {{ discount.discount_application.title | escape }}
+                            </span>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+
+                      {%- comment -%} Mobile price {%- endcomment -%}
+                      <div class="cart-item__price-wrapper relative medium-hide large-up-hide">
+                        <text-loader-component>
+                          {%- render 'loading-spinner' -%}
+                          <div class="cart-item__price-wrapper">
+                            {%- if is_byob and item_mpb > 1 -%}
+                              {%- assign price_per_box = item.final_price | times: item_mpb -%}
+                              <span class="price price--end center">{{ price_per_box | money }}</span>
+                              <span style="display:block;font-size:1.05rem;color:#598e7e;text-align:center;">per box</span>
+                            {%- else -%}
+                              {%- assign compare_price = item.variant.compare_at_price -%}
+                              {%- assign regular_price = item.original_price -%}
+                              {%- assign final_price = item.final_price -%}
+                              {%- if compare_price > regular_price or regular_price > final_price -%}
+                                <dl class="cart-item__discounted-prices">
+                                  <dt class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</dt>
+                                  <dd class="center"><s class="cart-item__old-price price price--end">{{ compare_price | default: regular_price | money }}</s></dd>
+                                  <dt class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</dt>
+                                  <dd class="price price--end center">{{ final_price | money }}</dd>
+                                </dl>
+                              {%- else -%}
+                                <span class="price price--end center">{{ final_price | money }}</span>
+                              {%- endif -%}
+                            {%- endif -%}
+                          </div>
+                        </text-loader-component>
+                      </div>
+
+                    </td>
+
+                    <td class="cart-item__price relative small-hide" role="cell" headers="productPrice">
+                      <text-loader-component>
+                        {%- render 'loading-spinner' -%}
+                        <div class="cart-item__price-wrapper">
+                          {%- if is_byob and item_mpb > 1 -%}
+                            {%- comment -%}
+                              BYOB: show price per box (unit price × macarons per box),
+                              not the per-macaron price which would confuse customers.
+                            {%- endcomment -%}
+                            {%- assign price_per_box = item.final_price | times: item_mpb -%}
+                            <span class="price price--end center">{{ price_per_box | money }}</span>
+                            <span style="display:block;font-size:1.05rem;color:#598e7e;text-align:center;">per box</span>
+                          {%- else -%}
+                            {%- assign compare_price = item.variant.compare_at_price -%}
+                            {%- assign regular_price = item.original_price -%}
+                            {%- assign final_price = item.final_price -%}
+                            {%- if compare_price > regular_price or regular_price > final_price -%}
+                              <dl class="cart-item__discounted-prices">
+                                <dt class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</dt>
+                                <dd class="center"><s class="cart-item__old-price price price--end">{{ compare_price | default: regular_price | money }}</s></dd>
+                                <dt class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</dt>
+                                <dd class="price price--end center">{{ final_price | money }}</dd>
+                              </dl>
+                            {%- else -%}
+                              <span class="price price--end center">{{ final_price | money }}</span>
+                            {%- endif -%}
+                          {%- endif -%}
+                        </div>
+                      </text-loader-component>
+                    </td>
+
+                    <td class="cart-item__quantity" role="cell" headers="quantity">
+                      {% liquid
+                        assign variant = item.product.selected_or_first_available_variant
+                        assign can_update_quantity = item.instructions.can_update_quantity | default: true, allow_false: true
+                      %}
+                      <quantity-selector-component class="quantity-selector quantity cart-quantity"
+                        {% if item.index == null %}{{- block.shopify_attributes -}}{% endif %}
+                      >
+                        <button
+                          class="button quantity__button quantity-minus button-unstyled"
+                          type="button"
+                          name="minus"
+                          onclick="this.closest('quantity-selector-component').dispatchEvent(new CustomEvent('decreaseQuantity', { bubbles: true }))"
+                          {% if can_update_quantity == false %}disabled{% endif %}
+                        >
+                          <span class="visually-hidden">{{- 'products.product.quantity.decrease' | t: product: item.product.title | escape -}}</span>
+                          <span class="svg-wrapper icon-minus">{{- 'icon-minus.svg' | inline_asset_content -}}</span>
+                        </button>
+
+                        <input
+                          class="quantity__input"
+                          type="number"
+                          name="{% if item.index %}updates[]{% else %}quantity{% endif %}"
+                          value="{{ item.quantity | default: item_min }}"
+                          min="{{ item_min }}"
+                          step="{{ item_step }}"
+                          data-moq="{{ item_moq }}"
+                          data-mpb="{{ item_mpb }}"
+                          data-step="{{ item_step }}"
+                          onblur="(function(inp){
+                            var step = parseInt(inp.dataset.step, 10) || 1;
+                            var min  = parseInt(inp.min, 10) || step;
+                            var v    = parseInt(inp.value, 10);
+                            if (isNaN(v) || v < min) { inp.value = min; }
+                            else { inp.value = Math.round(v / step) * step; }
+                            inp.closest('quantity-selector-component').dispatchEvent(
+                              new CustomEvent('quantity-selector:update', { bubbles: true })
+                            );
+                          })(this)"
+                          onfocus="this.closest('quantity-selector-component').selectInputValue()"
+                          data-index="{{ item.index | plus: 1 }}"
+                          aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                          inputmode="numeric"
+                          data-quantity-variant-id="{{ item.variant.id }}"
+                          {% if item.index %}data-cart-line="{{ item.index | plus: 1 }}"{% endif %}
+                          {% if variant.quantity_rule.max %}max="{{ variant.quantity_rule.max }}"{% endif %}
+                          {% if can_update_quantity == false or variant.available == false %}disabled{% endif %}
+                        >
+
+                        <button
+                          class="button quantity__button quantity-plus button-unstyled"
+                          type="button"
+                          name="plus"
+                          onclick="this.closest('quantity-selector-component').dispatchEvent(new CustomEvent('increaseQuantity', { bubbles: true }))"
+                          {% if can_update_quantity == false %}disabled{% endif %}
+                        >
+                          <span class="visually-hidden">{{- 'products.product.quantity.increase' | t: product: item.product.title | escape -}}</span>
+                          <span class="svg-wrapper icon-plus">{{- 'icon-plus.svg' | inline_asset_content -}}</span>
+                        </button>
+                      </quantity-selector-component>
+
+                      <div class="cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
+                        <small class="cart-item__error-text"></small>
+                        <span class="svg-wrapper">{{- 'icon-error.svg' | inline_asset_content -}}</span>
+                      </div>
+                    </td>
+
+                    <td class="cart-item__totals relative right" role="cell" headers="productTotal">
+                      <text-loader-component>
+                        {%- render 'loading-spinner' -%}
+                        <div class="cart-item__price-wrapper">
+                          {% assign compare_line_price = item.variant.compare_at_price | times: item.quantity %}
+                          {% assign regular_line_price = item.original_price | times: item.quantity %}
+                          {% assign final_line_price = item.final_line_price %}
+                          {% if compare_line_price > final_line_price or regular_line_price > final_line_price %}
+                            <dl class="cart-item__discounted-prices">
+                              <dt class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</dt>
+                              <dd class="center">
+                                <s class="cart-item__old-price price price--end">
+                                  {% if compare_line_price == 0 or compare_line_price == nil %}{{ regular_line_price | money }}{% else %}{{ compare_line_price | money }}{% endif %}
+                                </s>
+                              </dd>
+                              <dt class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</dt>
+                              <dd class="price price--end center">{{ final_line_price | money }}</dd>
+                            </dl>
+                          {% else %}
+                            <span class="price price--end center">{{ final_line_price | money }}</span>
+                          {% endif %}
+                        </div>
+                      </text-loader-component>
+                    </td>
+
+                    <td class="cart-item__remove" role="cell" headers="productRemove">
+                      <button
+                        class="button button-unstyled button-close-circle"
+                        type="button"
+                        aria-label="{{ 'accessibility.remove_item' | t: title: item.title | escape }}"
+                        onclick="
+                          const container = this.closest('cart-items-component') || this.closest('cart-drawer-items');
+                          if (container) {
+                            container.dispatchEvent(
+                              new CustomEvent('onLineItemRemove', {
+                                detail: { line: {{ item.index | plus: 1 }} },
+                                bubbles: true
+                              })
+                            );
+                          }
+                        "
+                        {% assign can_remove = item.instructions.can_remove | default: true, allow_false: true %}
+                        {% if can_remove == false %}hidden{% endif %}
+                      >
+                        <span class="svg-wrapper icon-remove">{{- 'icon-close.svg' | inline_asset_content -}}</span>
+                        <span class="visually-hidden">{{ 'content.remove_title' | t: title: item.title | escape }}</span>
+                      </button>
+                    </td>
+                  </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <p class="visually-hidden" id="cart-live-region-text" aria-live="polite" role="status"></p>
+      <p class="visually-hidden" id="shopping-cart-line-item-status" aria-live="polite" aria-hidden="true" role="status">
+        {{ 'accessibility.loading' | t }}
+      </p>
+    </form>
+  {%- endif -%}
+</div>
