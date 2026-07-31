@@ -1,0 +1,45 @@
+{%- comment -%}
+  wholesale-config.liquid
+  =======================
+  This section renders nothing on the storefront.
+  It exists solely to provide multi-select collection pickers
+  for the wholesale gate in the theme customizer.
+
+  Access anywhere in the theme via:
+    sections['wholesale_config'].settings.gated_collections
+    sections['wholesale_config'].settings.retail_redirect_collections
+{%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Wholesale Collections",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Wholesale-only Collections"
+    },
+    {
+      "type": "paragraph",
+      "content": "Select all collections that only wholesale customers (W1 tag) can access. Non-wholesale visitors will be redirected."
+    },
+    {
+      "type": "collection_list",
+      "id": "gated_collections",
+      "label": "Wholesale-only collections"
+    },
+    {
+      "type": "header",
+      "content": "Retail Collections (block from wholesale customers)"
+    },
+    {
+      "type": "paragraph",
+      "content": "Wholesale customers who land on any of these collections will be redirected away."
+    },
+    {
+      "type": "collection_list",
+      "id": "retail_redirect_collections",
+      "label": "Retail collections to block from wholesale customers"
+    }
+  ]
+}
+{% endschema %}

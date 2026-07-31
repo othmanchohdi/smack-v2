@@ -98,37 +98,8 @@
       "info": "Logged-in retail customers who try to access a wholesale page are sent here"
     },
     {
-      "type": "header",
-      "content": "Wholesale-only Collections"
-    },
-    {
       "type": "paragraph",
-      "content": "Only customers with the wholesale tag can access these collections. Select up to 5."
-    },
-    {
-      "type": "collection",
-      "id": "wholesale_gated_col_1",
-      "label": "Wholesale-only collection 1"
-    },
-    {
-      "type": "collection",
-      "id": "wholesale_gated_col_2",
-      "label": "Wholesale-only collection 2"
-    },
-    {
-      "type": "collection",
-      "id": "wholesale_gated_col_3",
-      "label": "Wholesale-only collection 3"
-    },
-    {
-      "type": "collection",
-      "id": "wholesale_gated_col_4",
-      "label": "Wholesale-only collection 4"
-    },
-    {
-      "type": "collection",
-      "id": "wholesale_gated_col_5",
-      "label": "Wholesale-only collection 5"
+      "content": "Wholesale-only and retail-blocked collections are configured in the 'Wholesale Collections' section (under Theme sections > General)."
     },
     {
       "type": "header",
@@ -136,7 +107,7 @@
     },
     {
       "type": "paragraph",
-      "content": "Only customers with the wholesale tag can access these pages. Select up to 3."
+      "content": "Select up to 3 pages that only wholesale customers can access."
     },
     {
       "type": "page",
@@ -152,39 +123,6 @@
       "type": "page",
       "id": "wholesale_gated_page_3",
       "label": "Wholesale-only page 3"
-    },
-    {
-      "type": "header",
-      "content": "Collections to redirect wholesale customers away from"
-    },
-    {
-      "type": "paragraph",
-      "content": "Wholesale customers who visit these retail collections will be redirected. Select up to 5."
-    },
-    {
-      "type": "collection",
-      "id": "wholesale_retail_col_1",
-      "label": "Blocked retail collection 1"
-    },
-    {
-      "type": "collection",
-      "id": "wholesale_retail_col_2",
-      "label": "Blocked retail collection 2"
-    },
-    {
-      "type": "collection",
-      "id": "wholesale_retail_col_3",
-      "label": "Blocked retail collection 3"
-    },
-    {
-      "type": "collection",
-      "id": "wholesale_retail_col_4",
-      "label": "Blocked retail collection 4"
-    },
-    {
-      "type": "collection",
-      "id": "wholesale_retail_col_5",
-      "label": "Blocked retail collection 5"
     },
     {
       "type": "header",
