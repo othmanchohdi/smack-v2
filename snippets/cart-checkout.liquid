@@ -1,20 +1,51 @@
+{%- comment -%} Wholesale MOV check {%- endcomment -%}
+{%- assign _ws_mov_blocked = false -%}
+{%- if settings.wholesale_gate_enabled and settings.wholesale_mov_enabled and customer -%}
+  {%- assign _ws_tag = settings.wholesale_customer_tag | default: 'W1' | strip -%}
+  {%- assign _ws_customer = false -%}
+  {%- for _t in customer.tags -%}
+    {%- if _t == _ws_tag -%}{%- assign _ws_customer = true -%}{%- break -%}{%- endif -%}
+  {%- endfor -%}
+  {%- if _ws_customer and cart.total_price < settings.wholesale_mov_amount -%}
+    {%- assign _ws_mov_blocked = true -%}
+  {%- endif -%}
+{%- endif -%}
+
 <div class="cart__ctas">
-  <button
-    type="submit"
-    id="checkout"
-    class="cart__checkout-button button"
-    name="checkout"
-    {% if cart == empty %}
+  {%- if _ws_mov_blocked -%}
+    {%- assign _ws_mov_formatted = settings.wholesale_mov_amount | money -%}
+    {%- assign _ws_mov_msg = settings.wholesale_mov_message | default: 'Wholesale orders require a minimum of {amount}. Please add more items to continue.' -%}
+    {%- assign _ws_mov_msg = _ws_mov_msg | replace: '{amount}', _ws_mov_formatted -%}
+    <p class="wholesale-mov-message">{{ _ws_mov_msg }}</p>
+    <button
+      type="button"
+      class="cart__checkout-button button"
       disabled
-    {% endif %}
-    form="cart"
-  >
-    <span class="button-overflow relative overflow-hidden" data-button-text="{{ 'content.checkout' | t }}">
-      <span class="button-text-main inline-block relative z-1">
-        {{- 'content.checkout' | t -}}
+    >
+      <span class="button-overflow relative overflow-hidden">
+        <span class="button-text-main inline-block relative z-1">
+          {{- 'content.checkout' | t -}}
+        </span>
       </span>
-    </span>
-  </button>
+    </button>
+  {%- else -%}
+    <button
+      type="submit"
+      id="checkout"
+      class="cart__checkout-button button"
+      name="checkout"
+      {% if cart == empty %}
+        disabled
+      {% endif %}
+      form="cart"
+    >
+      <span class="button-overflow relative overflow-hidden" data-button-text="{{ 'content.checkout' | t }}">
+        <span class="button-text-main inline-block relative z-1">
+          {{- 'content.checkout' | t -}}
+        </span>
+      </span>
+    </button>
+  {%- endif -%}
 </div>
 
 {%- if additional_checkout_buttons -%}

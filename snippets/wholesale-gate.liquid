@@ -1,0 +1,90 @@
+{%- comment -%}
+  wholesale-gate.liquid
+  =====================
+  Rendered in <head> via layout/theme.liquid.
+  Checks if the current page is wholesale-gated and redirects
+  non-wholesale visitors away. Also redirects wholesale customers
+  away from retail-only collections.
+
+  All config comes from theme settings (Customizer > Wholesale).
+{%- endcomment -%}
+
+{%- if settings.wholesale_gate_enabled -%}
+
+  {%- comment -%} Resolve the wholesale customer tag from settings {%- endcomment -%}
+  {%- assign _ws_tag = settings.wholesale_customer_tag | default: 'W1' | strip -%}
+
+  {%- comment -%} Check if the logged-in customer carries the wholesale tag {%- endcomment -%}
+  {%- assign _ws_customer = false -%}
+  {%- if customer -%}
+    {%- for _t in customer.tags -%}
+      {%- if _t == _ws_tag -%}
+        {%- assign _ws_customer = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- comment -%}
+    GATE — Wholesale-only collections
+    Non-wholesale visitors (guests or logged-in retail customers)
+    are redirected: guests → /login, retail customers → redirect URL.
+  {%- endcomment -%}
+  {%- if template contains 'collection' -%}
+    {%- assign _gated_cols = settings.wholesale_gated_collections | split: ',' -%}
+    {%- assign _gate = false -%}
+    {%- for _ch in _gated_cols -%}
+      {%- if collection.handle == _ch | strip -%}
+        {%- assign _gate = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if _gate and _ws_customer == false -%}
+      <meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE,NOSNIPPET">
+      {%- if customer -%}
+        <script>window.location.replace({{ settings.wholesale_redirect_url | default: '/pages/how-to-order' | json }});</script>
+      {%- else -%}
+        <script>window.location.replace('/account/login?return_url={{ request.path | url_encode }}');</script>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- comment -%}
+    GATE — Wholesale-only pages
+  {%- endcomment -%}
+  {%- if template contains 'page' -%}
+    {%- assign _gated_pages = settings.wholesale_gated_pages | split: ',' -%}
+    {%- assign _gate_page = false -%}
+    {%- for _ph in _gated_pages -%}
+      {%- if page.handle == _ph | strip -%}
+        {%- assign _gate_page = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if _gate_page and _ws_customer == false -%}
+      <meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE,NOSNIPPET">
+      {%- if customer -%}
+        <script>window.location.replace({{ settings.wholesale_redirect_url | default: '/pages/how-to-order' | json }});</script>
+      {%- else -%}
+        <script>window.location.replace('/account/login?return_url={{ request.path | url_encode }}');</script>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- comment -%}
+    REVERSE GATE — Redirect wholesale customers away from retail-only collections.
+    e.g. /collections/super-food-for-cats → send to /pages/how-to-order
+  {%- endcomment -%}
+  {%- if _ws_customer and template contains 'collection' -%}
+    {%- assign _retail_cols = settings.wholesale_retail_redirect_collections | split: ',' -%}
+    {%- for _rh in _retail_cols -%}
+      {%- if collection.handle == _rh | strip -%}
+        <script>window.location.replace({{ settings.wholesale_redirect_url | default: '/pages/how-to-order' | json }});</script>
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+{%- endif -%}

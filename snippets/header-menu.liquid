@@ -33,10 +33,38 @@
 
     assign block_id = 'MainMenu'
   -%}
+  {%- comment -%} Wholesale menu filtering {%- endcomment -%}
+  {%- assign _ws_menu_filter = false -%}
+  {%- assign _ws_menu_is_wholesale = false -%}
+  {%- if settings.wholesale_gate_enabled and settings.wholesale_menu_filter_enabled -%}
+    {%- assign _ws_menu_filter = true -%}
+    {%- assign _ws_menu_tag = settings.wholesale_customer_tag | default: 'W1' | strip -%}
+    {%- if customer -%}
+      {%- for _mt in customer.tags -%}
+        {%- if _mt == _ws_menu_tag -%}{%- assign _ws_menu_is_wholesale = true -%}{%- break -%}{%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- assign _ws_hide_from_ws = settings.wholesale_hide_from_wholesale | split: ',' -%}
+    {%- assign _ws_show_only_ws = settings.wholesale_show_only_to_wholesale | split: ',' -%}
+  {%- endif -%}
+
   <div class="header__menu-wrapper" data-main-menu>
     <nav class="header__inline-menu">
       <ul class="list-menu list-menu-desktop list-menu--inline{% if has_menu_tab %} header-menu--tab{% endif %}" style="--gap-x: {{ menu_gap }}px;" role="list">
         {%- for link in header_settings.menu.links -%}
+          {%- if _ws_menu_filter -%}
+            {%- assign _ws_skip = false -%}
+            {%- if _ws_menu_is_wholesale -%}
+              {%- for _h in _ws_hide_from_ws -%}
+                {%- if link.handle == _h | strip -%}{%- assign _ws_skip = true -%}{%- break -%}{%- endif -%}
+              {%- endfor -%}
+            {%- else -%}
+              {%- for _h in _ws_show_only_ws -%}
+                {%- if link.handle == _h | strip -%}{%- assign _ws_skip = true -%}{%- break -%}{%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+            {%- if _ws_skip -%}{%- continue -%}{%- endif -%}
+          {%- endif -%}
           <li>
             {%- if link.links != blank -%}
               <details

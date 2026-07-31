@@ -70,6 +70,105 @@
     }
   ]
 },
+{
+  "name": "Wholesale",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Gate & Access Control"
+    },
+    {
+      "type": "checkbox",
+      "id": "wholesale_gate_enabled",
+      "label": "Enable wholesale gate",
+      "default": true,
+      "info": "When enabled, wholesale-only collections and pages are locked to W1-tagged customers only"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_customer_tag",
+      "label": "Wholesale customer tag",
+      "default": "W1",
+      "info": "The Shopify customer tag that identifies wholesale buyers (e.g. W1)"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_gated_collections",
+      "label": "Wholesale-only collection handles",
+      "default": "super-food-for-cats-w1,super-food-for-dogs-w1,wholesale-catalogue-order",
+      "info": "Comma-separated handles of collections only visible to wholesale customers"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_gated_pages",
+      "label": "Wholesale-only page handles",
+      "info": "Comma-separated handles of pages only visible to wholesale customers (leave blank if none)"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_retail_redirect_collections",
+      "label": "Retail collections to block from wholesale customers",
+      "default": "super-food-for-cats,super-food-for-dogs,all",
+      "info": "Comma-separated handles — wholesale customers visiting these are redirected away"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_redirect_url",
+      "label": "Redirect URL for non-wholesale customers",
+      "default": "/pages/how-to-order",
+      "info": "Where to send logged-in retail customers who try to access wholesale pages"
+    },
+    {
+      "type": "header",
+      "content": "Minimum Order Value (MOV)"
+    },
+    {
+      "type": "checkbox",
+      "id": "wholesale_mov_enabled",
+      "label": "Enable minimum order value check at checkout",
+      "default": true,
+      "info": "Hides the checkout button for wholesale customers until the MOV is met"
+    },
+    {
+      "type": "number",
+      "id": "wholesale_mov_amount",
+      "label": "Minimum order value in cents",
+      "default": 45000,
+      "info": "e.g. 45000 = $450.00. Must be a whole number in cents."
+    },
+    {
+      "type": "text",
+      "id": "wholesale_mov_message",
+      "label": "MOV message shown to wholesale customers",
+      "default": "Wholesale orders require a minimum of {amount}. Please add more items to continue.",
+      "info": "Use {amount} as a placeholder — it will be replaced with the formatted dollar amount"
+    },
+    {
+      "type": "header",
+      "content": "Menu Filtering"
+    },
+    {
+      "type": "checkbox",
+      "id": "wholesale_menu_filter_enabled",
+      "label": "Enable menu filtering based on wholesale status",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "wholesale_hide_from_wholesale",
+      "label": "Nav link handles to HIDE from wholesale customers",
+      "default": "dogs,cats",
+      "info": "Comma-separated top-level nav link handles hidden when customer has the wholesale tag"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_show_only_to_wholesale",
+      "label": "Nav link handles to show ONLY to wholesale customers",
+      "default": "wholesale",
+      "info": "Comma-separated top-level nav link handles hidden from non-wholesale visitors"
+    }
+  ]
+},
   {
     "name": "t:names.colors",
     "settings": [
