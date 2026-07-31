@@ -82,7 +82,7 @@
       "id": "wholesale_gate_enabled",
       "label": "Enable wholesale gate",
       "default": true,
-      "info": "When enabled, wholesale-only collections and pages are locked to W1-tagged customers only"
+      "info": "When enabled, wholesale-only collections and pages are locked to customers with the wholesale tag"
     },
     {
       "type": "text",
@@ -92,31 +92,99 @@
       "info": "The Shopify customer tag that identifies wholesale buyers (e.g. W1)"
     },
     {
-      "type": "text",
-      "id": "wholesale_gated_collections",
-      "label": "Wholesale-only collection handles",
-      "default": "super-food-for-cats-w1,super-food-for-dogs-w1,wholesale-catalogue-order",
-      "info": "Comma-separated handles of collections only visible to wholesale customers"
-    },
-    {
-      "type": "text",
-      "id": "wholesale_gated_pages",
-      "label": "Wholesale-only page handles",
-      "info": "Comma-separated handles of pages only visible to wholesale customers (leave blank if none)"
-    },
-    {
-      "type": "text",
-      "id": "wholesale_retail_redirect_collections",
-      "label": "Retail collections to block from wholesale customers",
-      "default": "super-food-for-cats,super-food-for-dogs,all",
-      "info": "Comma-separated handles — wholesale customers visiting these are redirected away"
-    },
-    {
-      "type": "text",
+      "type": "url",
       "id": "wholesale_redirect_url",
-      "label": "Redirect URL for non-wholesale customers",
-      "default": "/pages/how-to-order",
-      "info": "Where to send logged-in retail customers who try to access wholesale pages"
+      "label": "Redirect non-wholesale customers to",
+      "info": "Logged-in retail customers who try to access a wholesale page are sent here"
+    },
+    {
+      "type": "header",
+      "content": "Wholesale-only Collections"
+    },
+    {
+      "type": "paragraph",
+      "content": "Only customers with the wholesale tag can access these collections. Select up to 5."
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_1",
+      "label": "Wholesale-only collection 1"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_2",
+      "label": "Wholesale-only collection 2"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_3",
+      "label": "Wholesale-only collection 3"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_4",
+      "label": "Wholesale-only collection 4"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_5",
+      "label": "Wholesale-only collection 5"
+    },
+    {
+      "type": "header",
+      "content": "Wholesale-only Pages"
+    },
+    {
+      "type": "paragraph",
+      "content": "Only customers with the wholesale tag can access these pages. Select up to 3."
+    },
+    {
+      "type": "page",
+      "id": "wholesale_gated_page_1",
+      "label": "Wholesale-only page 1"
+    },
+    {
+      "type": "page",
+      "id": "wholesale_gated_page_2",
+      "label": "Wholesale-only page 2"
+    },
+    {
+      "type": "page",
+      "id": "wholesale_gated_page_3",
+      "label": "Wholesale-only page 3"
+    },
+    {
+      "type": "header",
+      "content": "Collections to redirect wholesale customers away from"
+    },
+    {
+      "type": "paragraph",
+      "content": "Wholesale customers who visit these retail collections will be redirected. Select up to 5."
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_1",
+      "label": "Blocked retail collection 1"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_2",
+      "label": "Blocked retail collection 2"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_3",
+      "label": "Blocked retail collection 3"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_4",
+      "label": "Blocked retail collection 4"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_5",
+      "label": "Blocked retail collection 5"
     },
     {
       "type": "header",
@@ -127,14 +195,14 @@
       "id": "wholesale_mov_enabled",
       "label": "Enable minimum order value check at checkout",
       "default": true,
-      "info": "Hides the checkout button for wholesale customers until the MOV is met"
+      "info": "Disables the checkout button for wholesale customers until the MOV is met"
     },
     {
       "type": "number",
       "id": "wholesale_mov_amount",
       "label": "Minimum order value in cents",
       "default": 45000,
-      "info": "e.g. 45000 = $450.00. Must be a whole number in cents."
+      "info": "e.g. 45000 = $450.00. Enter as a whole number in cents."
     },
     {
       "type": "text",
@@ -145,27 +213,25 @@
     },
     {
       "type": "header",
-      "content": "Menu Filtering"
+      "content": "Navigation"
     },
     {
       "type": "checkbox",
       "id": "wholesale_menu_filter_enabled",
-      "label": "Enable menu filtering based on wholesale status",
+      "label": "Show different navigation menus based on wholesale status",
       "default": true
     },
     {
-      "type": "text",
-      "id": "wholesale_hide_from_wholesale",
-      "label": "Nav link handles to HIDE from wholesale customers",
-      "default": "dogs,cats",
-      "info": "Comma-separated top-level nav link handles hidden when customer has the wholesale tag"
+      "type": "link_list",
+      "id": "wholesale_retail_menu",
+      "label": "Retail customer navigation menu",
+      "info": "Shown to guests and non-wholesale customers. Leave blank to use the header's default menu."
     },
     {
-      "type": "text",
-      "id": "wholesale_show_only_to_wholesale",
-      "label": "Nav link handles to show ONLY to wholesale customers",
-      "default": "wholesale",
-      "info": "Comma-separated top-level nav link handles hidden from non-wholesale visitors"
+      "type": "link_list",
+      "id": "wholesale_wholesale_menu",
+      "label": "Wholesale customer navigation menu",
+      "info": "Shown instead when the customer has the wholesale tag. Leave blank to use the header's default menu."
     }
   ]
 },

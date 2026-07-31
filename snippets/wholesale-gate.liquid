@@ -2,9 +2,8 @@
   wholesale-gate.liquid
   =====================
   Rendered in <head> via layout/theme.liquid.
-  Checks if the current page is wholesale-gated and redirects
-  non-wholesale visitors away. Also redirects wholesale customers
-  away from retail-only collections.
+  Gates wholesale-only collections and pages, and redirects
+  wholesale customers away from retail-only collections.
 
   All config comes from theme settings (Customizer > Wholesale).
 {%- endcomment -%}
@@ -25,26 +24,27 @@
     {%- endfor -%}
   {%- endif -%}
 
+  {%- assign _ws_redirect = settings.wholesale_redirect_url | default: '/pages/how-to-order' -%}
+
   {%- comment -%}
     GATE — Wholesale-only collections
-    Non-wholesale visitors (guests or logged-in retail customers)
-    are redirected: guests → /login, retail customers → redirect URL.
+    Non-wholesale visitors are redirected: guests → /login, retail customers → redirect page.
   {%- endcomment -%}
-  {%- if template contains 'collection' -%}
-    {%- assign _gated_cols = settings.wholesale_gated_collections | split: ',' -%}
+  {%- if template contains 'collection' and _ws_customer == false -%}
     {%- assign _gate = false -%}
-    {%- for _ch in _gated_cols -%}
-      {%- assign _ch_clean = _ch | strip -%}
-      {%- if collection.handle == _ch_clean -%}
+    {%- for i in (1..5) -%}
+      {%- assign _col_key = 'wholesale_gated_col_' | append: i -%}
+      {%- assign _col_handle = settings[_col_key] -%}
+      {%- if _col_handle != blank and collection.handle == _col_handle -%}
         {%- assign _gate = true -%}
         {%- break -%}
       {%- endif -%}
     {%- endfor -%}
 
-    {%- if _gate and _ws_customer == false -%}
+    {%- if _gate -%}
       <meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE,NOSNIPPET">
       {%- if customer -%}
-        <script>window.location.replace({{ settings.wholesale_redirect_url | default: '/pages/how-to-order' | json }});</script>
+        <script>window.location.replace({{ _ws_redirect | json }});</script>
       {%- else -%}
         <script>window.location.replace('/account/login?return_url={{ request.path | url_encode }}');</script>
       {%- endif -%}
@@ -54,21 +54,21 @@
   {%- comment -%}
     GATE — Wholesale-only pages
   {%- endcomment -%}
-  {%- if template contains 'page' -%}
-    {%- assign _gated_pages = settings.wholesale_gated_pages | split: ',' -%}
+  {%- if template contains 'page' and _ws_customer == false -%}
     {%- assign _gate_page = false -%}
-    {%- for _ph in _gated_pages -%}
-      {%- assign _ph_clean = _ph | strip -%}
-      {%- if page.handle == _ph_clean -%}
+    {%- for i in (1..3) -%}
+      {%- assign _page_key = 'wholesale_gated_page_' | append: i -%}
+      {%- assign _page_handle = settings[_page_key] -%}
+      {%- if _page_handle != blank and page.handle == _page_handle -%}
         {%- assign _gate_page = true -%}
         {%- break -%}
       {%- endif -%}
     {%- endfor -%}
 
-    {%- if _gate_page and _ws_customer == false -%}
+    {%- if _gate_page -%}
       <meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE,NOSNIPPET">
       {%- if customer -%}
-        <script>window.location.replace({{ settings.wholesale_redirect_url | default: '/pages/how-to-order' | json }});</script>
+        <script>window.location.replace({{ _ws_redirect | json }});</script>
       {%- else -%}
         <script>window.location.replace('/account/login?return_url={{ request.path | url_encode }}');</script>
       {%- endif -%}
@@ -77,14 +77,13 @@
 
   {%- comment -%}
     REVERSE GATE — Redirect wholesale customers away from retail-only collections.
-    e.g. /collections/super-food-for-cats → send to /pages/how-to-order
   {%- endcomment -%}
   {%- if _ws_customer and template contains 'collection' -%}
-    {%- assign _retail_cols = settings.wholesale_retail_redirect_collections | split: ',' -%}
-    {%- for _rh in _retail_cols -%}
-      {%- assign _rh_clean = _rh | strip -%}
-      {%- if collection.handle == _rh_clean -%}
-        <script>window.location.replace({{ settings.wholesale_redirect_url | default: '/pages/how-to-order' | json }});</script>
+    {%- for i in (1..5) -%}
+      {%- assign _retail_key = 'wholesale_retail_col_' | append: i -%}
+      {%- assign _retail_handle = settings[_retail_key] -%}
+      {%- if _retail_handle != blank and collection.handle == _retail_handle -%}
+        <script>window.location.replace({{ _ws_redirect | json }});</script>
         {%- break -%}
       {%- endif -%}
     {%- endfor -%}
