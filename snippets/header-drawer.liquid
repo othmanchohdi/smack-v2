@@ -78,11 +78,13 @@
                   {%- assign _ws_drawer_skip = false -%}
                   {%- if _ws_drawer_is_wholesale -%}
                     {%- for _dh in _ws_drawer_hide -%}
-                      {%- if link.handle == _dh | strip -%}{%- assign _ws_drawer_skip = true -%}{%- break -%}{%- endif -%}
+                      {%- assign _dh_clean = _dh | strip -%}
+                      {%- if link.handle == _dh_clean -%}{%- assign _ws_drawer_skip = true -%}{%- break -%}{%- endif -%}
                     {%- endfor -%}
                   {%- else -%}
                     {%- for _dh in _ws_drawer_show -%}
-                      {%- if link.handle == _dh | strip -%}{%- assign _ws_drawer_skip = true -%}{%- break -%}{%- endif -%}
+                      {%- assign _dh_clean = _dh | strip -%}
+                      {%- if link.handle == _dh_clean -%}{%- assign _ws_drawer_skip = true -%}{%- break -%}{%- endif -%}
                     {%- endfor -%}
                   {%- endif -%}
                   {%- if _ws_drawer_skip -%}{%- continue -%}{%- endif -%}

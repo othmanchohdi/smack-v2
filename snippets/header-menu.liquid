@@ -56,11 +56,13 @@
             {%- assign _ws_skip = false -%}
             {%- if _ws_menu_is_wholesale -%}
               {%- for _h in _ws_hide_from_ws -%}
-                {%- if link.handle == _h | strip -%}{%- assign _ws_skip = true -%}{%- break -%}{%- endif -%}
+                {%- assign _h_clean = _h | strip -%}
+                {%- if link.handle == _h_clean -%}{%- assign _ws_skip = true -%}{%- break -%}{%- endif -%}
               {%- endfor -%}
             {%- else -%}
               {%- for _h in _ws_show_only_ws -%}
-                {%- if link.handle == _h | strip -%}{%- assign _ws_skip = true -%}{%- break -%}{%- endif -%}
+                {%- assign _h_clean = _h | strip -%}
+                {%- if link.handle == _h_clean -%}{%- assign _ws_skip = true -%}{%- break -%}{%- endif -%}
               {%- endfor -%}
             {%- endif -%}
             {%- if _ws_skip -%}{%- continue -%}{%- endif -%}

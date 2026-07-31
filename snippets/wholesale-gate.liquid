@@ -34,7 +34,8 @@
     {%- assign _gated_cols = settings.wholesale_gated_collections | split: ',' -%}
     {%- assign _gate = false -%}
     {%- for _ch in _gated_cols -%}
-      {%- if collection.handle == _ch | strip -%}
+      {%- assign _ch_clean = _ch | strip -%}
+      {%- if collection.handle == _ch_clean -%}
         {%- assign _gate = true -%}
         {%- break -%}
       {%- endif -%}
@@ -57,7 +58,8 @@
     {%- assign _gated_pages = settings.wholesale_gated_pages | split: ',' -%}
     {%- assign _gate_page = false -%}
     {%- for _ph in _gated_pages -%}
-      {%- if page.handle == _ph | strip -%}
+      {%- assign _ph_clean = _ph | strip -%}
+      {%- if page.handle == _ph_clean -%}
         {%- assign _gate_page = true -%}
         {%- break -%}
       {%- endif -%}
@@ -80,7 +82,8 @@
   {%- if _ws_customer and template contains 'collection' -%}
     {%- assign _retail_cols = settings.wholesale_retail_redirect_collections | split: ',' -%}
     {%- for _rh in _retail_cols -%}
-      {%- if collection.handle == _rh | strip -%}
+      {%- assign _rh_clean = _rh | strip -%}
+      {%- if collection.handle == _rh_clean -%}
         <script>window.location.replace({{ settings.wholesale_redirect_url | default: '/pages/how-to-order' | json }});</script>
         {%- break -%}
       {%- endif -%}
