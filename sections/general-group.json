@@ -2,13 +2,6 @@
   "name": "General group",
   "type": "aside",
   "sections": {
-    "wholesale_config": {
-      "type": "wholesale-config",
-      "settings": {
-        "gated_collections": [],
-        "retail_redirect_collections": []
-      }
-    },
     "color_swatches_wJV8Fg": {
       "type": "color-swatches",
       "blocks": {
@@ -48,7 +41,6 @@
     }
   },
   "order": [
-    "wholesale_config",
     "color_swatches_wJV8Fg"
   ]
 }

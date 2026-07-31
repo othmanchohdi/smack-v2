@@ -75,31 +75,143 @@
   "settings": [
     {
       "type": "header",
-      "content": "Gate & Access Control"
+      "content": "General"
     },
     {
       "type": "checkbox",
       "id": "wholesale_gate_enabled",
       "label": "Enable wholesale gate",
       "default": true,
-      "info": "When enabled, wholesale-only collections and pages are locked to customers with the wholesale tag"
+      "info": "When disabled, all wholesale gating, MOV checks, and menu filtering are turned off"
     },
     {
       "type": "text",
       "id": "wholesale_customer_tag",
       "label": "Wholesale customer tag",
       "default": "W1",
-      "info": "The Shopify customer tag that identifies wholesale buyers (e.g. W1)"
+      "info": "The Shopify customer tag that identifies wholesale buyers"
     },
     {
       "type": "url",
       "id": "wholesale_redirect_url",
       "label": "Redirect non-wholesale customers to",
-      "info": "Logged-in retail customers who try to access a wholesale page are sent here"
+      "info": "Where to send logged-in retail customers who try to access a wholesale page"
+    },
+    {
+      "type": "header",
+      "content": "Wholesale-only Collections"
     },
     {
       "type": "paragraph",
-      "content": "Wholesale-only and retail-blocked collections are configured in the 'Wholesale Collections' section (under Theme sections > General)."
+      "content": "Only customers with the wholesale tag can access these collections. Non-wholesale visitors are redirected."
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_1",
+      "label": "Wholesale-only collection 1"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_2",
+      "label": "Wholesale-only collection 2"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_3",
+      "label": "Wholesale-only collection 3"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_4",
+      "label": "Wholesale-only collection 4"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_5",
+      "label": "Wholesale-only collection 5"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_6",
+      "label": "Wholesale-only collection 6"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_7",
+      "label": "Wholesale-only collection 7"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_8",
+      "label": "Wholesale-only collection 8"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_9",
+      "label": "Wholesale-only collection 9"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_gated_col_10",
+      "label": "Wholesale-only collection 10"
+    },
+    {
+      "type": "header",
+      "content": "Retail Collections (redirect wholesale customers away)"
+    },
+    {
+      "type": "paragraph",
+      "content": "Wholesale customers who visit any of these collections will be redirected away."
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_1",
+      "label": "Retail collection 1"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_2",
+      "label": "Retail collection 2"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_3",
+      "label": "Retail collection 3"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_4",
+      "label": "Retail collection 4"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_5",
+      "label": "Retail collection 5"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_6",
+      "label": "Retail collection 6"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_7",
+      "label": "Retail collection 7"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_8",
+      "label": "Retail collection 8"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_9",
+      "label": "Retail collection 9"
+    },
+    {
+      "type": "collection",
+      "id": "wholesale_retail_col_10",
+      "label": "Retail collection 10"
     },
     {
       "type": "header",
@@ -107,7 +219,7 @@
     },
     {
       "type": "paragraph",
-      "content": "Select up to 3 pages that only wholesale customers can access."
+      "content": "Only customers with the wholesale tag can access these pages."
     },
     {
       "type": "page",
@@ -123,6 +235,16 @@
       "type": "page",
       "id": "wholesale_gated_page_3",
       "label": "Wholesale-only page 3"
+    },
+    {
+      "type": "page",
+      "id": "wholesale_gated_page_4",
+      "label": "Wholesale-only page 4"
+    },
+    {
+      "type": "page",
+      "id": "wholesale_gated_page_5",
+      "label": "Wholesale-only page 5"
     },
     {
       "type": "header",
