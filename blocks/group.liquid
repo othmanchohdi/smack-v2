@@ -562,11 +562,31 @@
   "visible_if": "{{ block.settings.background_media == 'image' }}"
 },
 {
+  "type": "checkbox",
+  "id": "ab_test_enabled",
+  "label": "Enable A/B test",
+  "default": false,
+  "visible_if": "{{ block.settings.background_media == 'image' }}"
+},
+{
+  "type": "image_picker",
+  "id": "background_image_b",
+  "label": "A/B test: variant B image",
+  "visible_if": "{{ block.settings.ab_test_enabled }}"
+},
+{
   "type": "image_picker",
   "id": "background_image_mobile",
   "label": "Mobile image",
   "info": "Optional. If empty, the desktop image is used.",
   "visible_if": "{{ block.settings.background_media == 'image' }}"
+},
+{
+  "type": "image_picker",
+  "id": "background_image_b_mobile",
+  "label": "A/B test: variant B mobile image",
+  "info": "Optional. If empty, variant B uses the desktop A/B image.",
+  "visible_if": "{{ block.settings.ab_test_enabled }}"
 },
       {
         "type": "select",

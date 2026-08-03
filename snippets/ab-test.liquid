@@ -1,0 +1,67 @@
+{%- comment -%}
+  Client-side A/B bucketing for the hero background image (test id "hero-v1").
+  Must stay client-side: Shopify caches storefront HTML at the CDN edge for
+  logged-out visitors, so Liquid-side randomization would be baked into the
+  cached response and served identically to everyone.
+
+  Variant B is hidden by class alone (no attribute condition needed), so
+  JS-off visitors and crawlers always render variant A. The show/hide toggle
+  targets the .ab-variant wrapper with display:none, which removes the whole
+  subtree from rendering regardless of how the image inside it is positioned
+  (absolute/inset:0 or otherwise) - see snippets/section.liquid and
+  snippets/group.liquid for the two positioning contexts this covers.
+{%- endcomment -%}
+<style>
+  .ab-variant[data-ab-variant="b"] {
+    display: none;
+  }
+  html[data-hero-v1="b"] .ab-variant[data-ab-variant="a"] {
+    display: none;
+  }
+  html[data-hero-v1="b"] .ab-variant[data-ab-variant="b"] {
+    display: block;
+  }
+</style>
+<script>
+  (function () {
+    var TEST = 'hero-v1';
+    var COOKIE = 'ab_hero_v1';
+
+    if (window.Shopify && Shopify.designMode) return;
+
+    function getCookie(name) {
+      var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return match ? decodeURIComponent(match[1]) : null;
+    }
+
+    function setCookie(name, value) {
+      document.cookie = name + '=' + value + '; path=/; max-age=2592000; SameSite=Lax';
+    }
+
+    var variant = getCookie(COOKIE);
+    if (variant !== 'a' && variant !== 'b') {
+      variant = Math.random() < 0.5 ? 'a' : 'b';
+      setCookie(COOKIE, variant);
+    }
+
+    document.documentElement.setAttribute('data-hero-v1', variant);
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'ab_assign', ab_test: TEST, ab_variant: variant });
+
+    document.addEventListener('click', function (event) {
+      var target = event.target.closest('a, button');
+      if (!target) return;
+      var hero = target.closest('[data-ab-hero]');
+      if (!hero) return;
+
+      var label = (target.textContent || '').trim().slice(0, 60);
+      window.dataLayer.push({
+        event: 'ab_hero_click',
+        ab_test: TEST,
+        ab_variant: variant,
+        ab_label: label
+      });
+    });
+  })();
+</script>

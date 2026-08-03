@@ -8,6 +8,7 @@
   @param {string} [ratio] - The ratio of the background image
   @param {object} [section] - The section object
   @param {string} [placeholder] - The placeholder of the background image
+  @param {string} [loading] - Overrides the computed loading attribute ('lazy' or 'eager')
 {%- enddoc -%}
 
 {%- liquid
@@ -46,10 +47,13 @@
   {%- if background_image != blank -%}
     {% liquid
       assign fetch_priority = 'auto'
-      assign loading = 'lazy'
+      assign resolved_loading = 'lazy'
       if section and section.index == 1
         assign fetch_priority = 'high'
-        assign loading = 'eager'
+        assign resolved_loading = 'eager'
+      endif
+      if loading != blank
+        assign resolved_loading = loading
       endif
     %}
     {{
@@ -59,7 +63,7 @@
         height: height,
         sizes: sizes,
         widths: widths,
-        loading: loading,
+        loading: resolved_loading,
         fetchpriority: fetch_priority,
         style: style_value,
         class: class

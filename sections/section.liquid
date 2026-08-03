@@ -377,6 +377,19 @@
       "visible_if": "{{ section.settings.background_media == 'image' }}"
     },
     {
+      "type": "checkbox",
+      "id": "ab_test_enabled",
+      "label": "Enable A/B test",
+      "default": false,
+      "visible_if": "{{ section.settings.background_media == 'image' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_b",
+      "label": "A/B test: variant B image",
+      "visible_if": "{{ section.settings.ab_test_enabled }}"
+    },
+    {
       "type": "select",
       "id": "background_image_position",
       "label": "t:settings.image_position",

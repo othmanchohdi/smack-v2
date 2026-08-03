@@ -18,6 +18,11 @@
   if is_lookbook == true
     assign class_name = 'section-lookbook overflow-hidden'
   endif
+
+  assign ab_active = false
+  if section.settings.ab_test_enabled and section.settings.background_image_b != blank and section.settings.background_media == 'image'
+    assign ab_active = true
+  endif
 %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
@@ -26,6 +31,10 @@
 
   {% if request.visual_preview_mode %}
     data-shopify-visual-preview
+  {% endif %}
+
+  {% if ab_active %}
+    data-ab-hero
   {% endif %}
 
   style="
@@ -58,14 +67,39 @@
   "
 >
   <div class="custom-section-background">
-    {% render 'background-media',
-      background_media: section.settings.background_media,
-      background_video: section.settings.video,
-      background_video_position: section.settings.video_position,
-      background_image: section.settings.background_image,
-      background_image_position: section.settings.background_image_position,
-      image_behavior: section.settings.image_behavior
-    %}
+    {% if ab_active %}
+      <div class="ab-variant" data-ab-variant="a">
+        {% render 'background-media',
+          background_media: section.settings.background_media,
+          background_video: section.settings.video,
+          background_video_position: section.settings.video_position,
+          background_image: section.settings.background_image,
+          background_image_position: section.settings.background_image_position,
+          image_behavior: section.settings.image_behavior,
+          loading: 'lazy'
+        %}
+      </div>
+      <div class="ab-variant" data-ab-variant="b">
+        {% render 'background-media',
+          background_media: section.settings.background_media,
+          background_video: section.settings.video,
+          background_video_position: section.settings.video_position,
+          background_image: section.settings.background_image_b,
+          background_image_position: section.settings.background_image_position,
+          image_behavior: section.settings.image_behavior,
+          loading: 'lazy'
+        %}
+      </div>
+    {% else %}
+      {% render 'background-media',
+        background_media: section.settings.background_media,
+        background_video: section.settings.video,
+        background_video_position: section.settings.video_position,
+        background_image: section.settings.background_image,
+        background_image_position: section.settings.background_image_position,
+        image_behavior: section.settings.image_behavior
+      %}
+    {% endif %}
   </div>
 
   <div

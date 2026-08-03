@@ -70,6 +70,11 @@
   assign disable_parallax_mobile = disable_parallax_mobile | default: settings.disable_parallax_mobile
   assign toggle_overlay = toggle_overlay | default: settings.toggle_overlay
 
+  assign ab_active = false
+  if settings.ab_test_enabled and settings.background_image_b != blank and background_media == 'image'
+    assign ab_active = true
+  endif
+
   case image_ratio
     when 'landscape'
       assign ratio = '16 / 9'
@@ -140,6 +145,9 @@
   {% if enable_parallax == 'parallax_items' and disable_parallax_mobile %}
     data-disable-parallax-mobile="true"
   {% endif %}
+  {% if ab_active %}
+    data-ab-hero
+  {% endif %}
 >
   {%- if link != blank -%}
     <a
@@ -161,27 +169,84 @@
 -%}
 
 <div class="group-block__media-wrapper{% if background_image == blank %} media--empty{% endif %}{% if background_media == 'none' %} none{% endif %}{% if has_mobile_image %} group-block__media-wrapper--has-mobile{% endif %}">
-  {% render 'background-media',
-    background_media: background_media,
-    background_video: video,
-    background_video_position: video_position,
-    background_image: background_image,
-    background_image_position: background_image_position,
-    placeholder: placeholder,
-    ratio: ratio,
-    enable_parallax: enable_parallax,
-  %}
-
-  {%- if has_mobile_image -%}
-    <div class="group-block__media-wrapper__mobile">
+  {% if ab_active %}
+    <div class="ab-variant" data-ab-variant="a">
       {% render 'background-media',
-        background_media: 'image',
-        background_image: background_image_mobile,
+        background_media: background_media,
+        background_video: video,
+        background_video_position: video_position,
+        background_image: background_image,
         background_image_position: background_image_position,
         placeholder: placeholder,
         ratio: ratio,
         enable_parallax: enable_parallax,
+        loading: 'lazy',
       %}
+    </div>
+    <div class="ab-variant" data-ab-variant="b">
+      {% render 'background-media',
+        background_media: background_media,
+        background_video: video,
+        background_video_position: video_position,
+        background_image: settings.background_image_b,
+        background_image_position: background_image_position,
+        placeholder: placeholder,
+        ratio: ratio,
+        enable_parallax: enable_parallax,
+        loading: 'lazy',
+      %}
+    </div>
+  {% else %}
+    {% render 'background-media',
+      background_media: background_media,
+      background_video: video,
+      background_video_position: video_position,
+      background_image: background_image,
+      background_image_position: background_image_position,
+      placeholder: placeholder,
+      ratio: ratio,
+      enable_parallax: enable_parallax,
+    %}
+  {% endif %}
+
+  {%- if has_mobile_image -%}
+    <div class="group-block__media-wrapper__mobile">
+      {% if ab_active %}
+        {%- liquid
+          assign background_image_b_mobile = settings.background_image_b_mobile | default: settings.background_image_b
+        -%}
+        <div class="ab-variant" data-ab-variant="a">
+          {% render 'background-media',
+            background_media: 'image',
+            background_image: background_image_mobile,
+            background_image_position: background_image_position,
+            placeholder: placeholder,
+            ratio: ratio,
+            enable_parallax: enable_parallax,
+            loading: 'lazy',
+          %}
+        </div>
+        <div class="ab-variant" data-ab-variant="b">
+          {% render 'background-media',
+            background_media: 'image',
+            background_image: background_image_b_mobile,
+            background_image_position: background_image_position,
+            placeholder: placeholder,
+            ratio: ratio,
+            enable_parallax: enable_parallax,
+            loading: 'lazy',
+          %}
+        </div>
+      {% else %}
+        {% render 'background-media',
+          background_media: 'image',
+          background_image: background_image_mobile,
+          background_image_position: background_image_position,
+          placeholder: placeholder,
+          ratio: ratio,
+          enable_parallax: enable_parallax,
+        %}
+      {% endif %}
     </div>
   {%- endif -%}
 </div>
