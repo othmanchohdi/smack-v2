@@ -5721,6 +5721,7 @@
             "image_zHdQ93": {
               "type": "image",
               "name": "t:names.image",
+              "disabled": true,
               "settings": {
                 "image": "shopify://shop_images/d835e0173f8fa22e7443c43a1c4c7c96fcf2e66e.png",
                 "link": "",
