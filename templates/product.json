@@ -247,14 +247,14 @@
                 "text_xrnftG"
               ]
             },
-            "product_description_iiQ3zx": {
-              "type": "product-description",
-              "name": "t:names.product_short_description",
+            "product_description_c4h6TB": {
+              "type": "_product-description",
+              "name": "t:names.product_description",
               "settings": {
-                "text": "{{ closest.product.description }}",
+                "text": "<p>{{ closest.product.description }}</p>",
                 "width": "fit-content",
                 "max_width": "normal",
-                "truncate_type": "words",
+                "truncate_type": "none",
                 "truncatewords": 30,
                 "alignment": "left",
                 "type_preset": "rte",
@@ -1179,7 +1179,7 @@
                   "type": "_accordion-row",
                   "name": "Ingredients",
                   "settings": {
-                    "heading": "Ingredients & guaranteed analysis",
+                    "heading": "Guaranteed analysis",
                     "open_by_default": false,
                     "inherit_color_scheme": true,
                     "scheme_background": "#ffffff",
@@ -1207,7 +1207,7 @@
                     "text_tiUjcL": {
                       "type": "text",
                       "settings": {
-                        "text": "{{ closest.product.metafields.custom.product_ingredients | metafield_tag }}",
+                        "text": "{{ closest.product.metafields.custom.product_guaranteed_analysis | metafield_tag }}",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
@@ -1549,7 +1549,7 @@
           },
           "block_order": [
             "group_icgrde",
-            "product_description_iiQ3zx",
+            "product_description_c4h6TB",
             "group_wYP4rr",
             "price_wUxKFf",
             "variant_picker_R3rGDr",
