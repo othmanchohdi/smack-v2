@@ -177,7 +177,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>★ 4.9 · 12,000+ happy pets</p>",
+                    "text": "<p>★ 4.9 · 10,000+ happy pets</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
