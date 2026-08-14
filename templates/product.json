@@ -1207,7 +1207,7 @@
                     "text_tiUjcL": {
                       "type": "text",
                       "settings": {
-                        "text": "{{ closest.product.metafields.custom.product_guaranteed_analysis | metafield_tag }}",
+                        "text": "<p>{{ closest.product.metafields.custom.product_guaranteed_analysis | metafield_tag }}</p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
@@ -1608,7 +1608,8 @@
       "custom_css": [
         ".product-details,.group-block {border-radius: 12px;}",
         ".rating {display: flex;}",
-        ".swiper-controls__thumbnails-container {margin-top: 15px;}"
+        ".swiper-controls__thumbnails-container {margin-top: 15px;}",
+        ".yotpo-star-rating-reviews-highly-rated-topics span{font-size: 12px;}"
       ],
       "settings": {
         "page_width": "page-width",
