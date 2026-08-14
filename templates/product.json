@@ -1609,7 +1609,7 @@
         ".product-details,.group-block {border-radius: 12px;}",
         ".rating {display: flex;}",
         ".swiper-controls__thumbnails-container {margin-top: 15px;}",
-        ".yotpo-star-rating-reviews-highly-rated-topics span{font-size: 12px;}"
+        ".yotpo-star-rating-reviews-highly-rated-topics span {font-size: 13px;}"
       ],
       "settings": {
         "page_width": "page-width",
