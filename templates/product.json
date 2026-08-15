@@ -251,7 +251,7 @@
               "type": "_product-description",
               "name": "t:names.product_description",
               "settings": {
-                "text": "<p>{{ closest.product.description }}</p>",
+                "text": "{{ closest.product.metafields.custom.product_description | metafield_tag }}",
                 "width": "fit-content",
                 "max_width": "normal",
                 "truncate_type": "none",
@@ -1609,7 +1609,8 @@
         ".product-details,.group-block {border-radius: 12px;}",
         ".rating {display: flex;}",
         ".swiper-controls__thumbnails-container {margin-top: 15px;}",
-        ".yotpo-star-rating-reviews-highly-rated-topics span {font-size: 13px;}"
+        ".yotpo-star-rating-reviews-highly-rated-topics span {font-size: 13px;}",
+        ".text-blockstrong{}"
       ],
       "settings": {
         "page_width": "page-width",
