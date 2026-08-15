@@ -1204,30 +1204,6 @@
                     "padding-inline-end": 50
                   },
                   "blocks": {
-                    "html_content_CAVUrP": {
-                      "type": "html-content",
-                      "name": "HTML / Table content",
-                      "settings": {
-                        "raw_html": "",
-                        "width": "fit-content",
-                        "unit": "percent",
-                        "custom_width": 100,
-                        "custom_width_pixel": 500,
-                        "width_tablet": "fit-content",
-                        "unit_tablet": "percent",
-                        "custom_width_tablet": 100,
-                        "custom_width_tablet_pixel": 100,
-                        "width_mobile": "fit-content",
-                        "unit_mobile": "percent",
-                        "custom_width_mobile": 100,
-                        "custom_width_mobile_pixel": 100,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    },
                     "text_KWyQeH": {
                       "type": "text",
                       "settings": {
@@ -1311,7 +1287,6 @@
                     }
                   },
                   "block_order": [
-                    "html_content_CAVUrP",
                     "text_KWyQeH"
                   ]
                 },
