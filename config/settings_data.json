@@ -235,7 +235,7 @@
       },
       "973392885551459638": {
         "type": "shopify://apps/powr-wholesale-orders/blocks/app-embed/668426c5-7e7a-462e-b09e-e672a6f17c5e",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       }
     },
