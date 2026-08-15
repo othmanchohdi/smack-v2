@@ -1322,7 +1322,7 @@
                     "text_DH6QAK": {
                       "type": "text",
                       "settings": {
-                        "text": "",
+                        "text": "<p>{{ closest.product.metafields.custom.total_daily_feeding | metafield_tag }}</p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
@@ -1610,7 +1610,7 @@
         ".rating {display: flex;}",
         ".swiper-controls__thumbnails-container {margin-top: 15px;}",
         ".yotpo-star-rating-reviews-highly-rated-topics span {font-size: 13px;}",
-        ".text-blockstrong{}"
+        ".text-blockstrong {}"
       ],
       "settings": {
         "page_width": "page-width",
