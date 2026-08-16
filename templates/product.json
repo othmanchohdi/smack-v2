@@ -383,7 +383,7 @@
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
               "settings": {
-                "variant_style": "dropdowns",
+                "variant_style": "pills",
                 "show_swatches": true,
                 "swatch_size": 34,
                 "alignment": "left",
@@ -1499,7 +1499,7 @@
         ".product-media-constraint-wrapper {background-color: #fff; border-radius: 12px;}",
         "table:not([class]) {width: 100%; color: #000 !important;}",
         ".swiper-controls__thumbnails .swiper-control img {background-color: #fff;}",
-        "table:not([class]) td, table:not([class]) th {text-align: left;}"
+        "table:not([class]) td,table:not([class]) th {text-align: left;}"
       ],
       "settings": {
         "page_width": "page-width",
@@ -1527,6 +1527,7 @@
       "block_order": [
         "yotpo_product_reviews_reviews_CL6Xkx"
       ],
+      "custom_css": [],
       "settings": {
         "include_margins": true
       }
