@@ -1610,13 +1610,13 @@
       },
       "custom_css": [
         ".product-details,.group-block {border-radius: 12px;}",
-        ".metafield-rich_text_field p, .{margin: 10px 0; color: #000;}",
+        ".metafield-rich_text_field p, .html-content-block__scroll strong{margin: 10px 0; color: #000;}",
         ".swiper-controls__thumbnails-container {margin-top: 15px;}",
         ".yotpo-star-rating-reviews-highly-rated-topics span {font-size: 13px;}",
         ".product-media-constraint-wrapper {background-color: #fff; border-radius: 12px;}",
         "table:not([class]) {width: 100%; color: #000 !important;}",
         ".swiper-controls__thumbnails .swiper-control img {background-color: #fff;}",
-        "table:not([class]) td,table:not([class]) th {text-align: left;}"
+        "table:not([class]) th {text-align: left;}"
       ],
       "settings": {
         "page_width": "page-width",
