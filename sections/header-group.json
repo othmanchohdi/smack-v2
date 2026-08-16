@@ -155,7 +155,7 @@
       "custom_css": [
         "details {width: auto;}",
         ".header__inline-menu a {color: inherit !important;}",
-        ".mega-menu__content {width: 27rem;}"
+        ".mega-menu__content {min-width: 28rem;}"
       ],
       "name": "Header - Jewelry",
       "settings": {
