@@ -1,3 +1,7 @@
+{% capture accordion_children %}{% content_for 'blocks' %}{% endcapture %}
+{% assign accordion_children_stripped = accordion_children | strip %}
+
+{% if accordion_children_stripped != blank %}
 <accordion-custom
   class="block spacing-style"
   style="{% render 'spacing-style', settings: block.settings, suffix: 'row' %}"
@@ -30,10 +34,11 @@
     </summary>
 
     <div class="details-content">
-      {% content_for 'blocks' %}
+      {{ accordion_children }}
     </div>
   </details>
 </accordion-custom>
+{% endif %}
 
 {% schema %}
 {
