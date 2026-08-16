@@ -1610,7 +1610,7 @@
       },
       "custom_css": [
         ".product-details,.group-block {border-radius: 12px;}",
-        ".metafield-rich_text_field p, . {margin: 10px 0; color: #000;}",
+        ".metafield-rich_text_field p, .{margin: 10px 0; color: #000;}",
         ".swiper-controls__thumbnails-container {margin-top: 15px;}",
         ".yotpo-star-rating-reviews-highly-rated-topics span {font-size: 13px;}",
         ".product-media-constraint-wrapper {background-color: #fff; border-radius: 12px;}",
