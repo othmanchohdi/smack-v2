@@ -1405,13 +1405,72 @@
                   "block_order": [
                     "html_content_GtK8bB"
                   ]
+                },
+                "accordion_row_NWRQkJ": {
+                  "type": "_accordion-row",
+                  "name": "Ingredients",
+                  "settings": {
+                    "heading": "Daily Cost of Feeding",
+                    "open_by_default": false,
+                    "inherit_color_scheme": true,
+                    "scheme_background": "#ffffff",
+                    "scheme_background_gradient": "",
+                    "scheme_foreground_heading": "#000000",
+                    "scheme_foreground": "#000000",
+                    "scheme_primary": "#000f9f",
+                    "scheme_primary_hover": "#000000",
+                    "scheme_border": "#e6e6e6",
+                    "scheme_shadow": "#000000",
+                    "margin-block-start-row": 0,
+                    "margin-block-start-mobile-row": 0,
+                    "margin-block-end-row": 0,
+                    "margin-block-end-mobile-row": 0,
+                    "margin-inline-start-row": 0,
+                    "margin-inline-start-mobile-row": 0,
+                    "margin-inline-end-row": 0,
+                    "margin-inline-end-mobile-row": 0,
+                    "padding-block-start": 15,
+                    "padding-block-end": 15,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 50
+                  },
+                  "blocks": {
+                    "html_content_BWFHCn": {
+                      "type": "html-content",
+                      "name": "HTML / Table content",
+                      "settings": {
+                        "metafield_key": "product_ingredients",
+                        "width": "fit-content",
+                        "unit": "percent",
+                        "custom_width": 100,
+                        "custom_width_pixel": 500,
+                        "width_tablet": "fit-content",
+                        "unit_tablet": "percent",
+                        "custom_width_tablet": 100,
+                        "custom_width_tablet_pixel": 100,
+                        "width_mobile": "fit-content",
+                        "unit_mobile": "percent",
+                        "custom_width_mobile": 100,
+                        "custom_width_mobile_pixel": 100,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "html_content_BWFHCn"
+                  ]
                 }
               },
               "block_order": [
                 "accordion_row_6BhEe7",
                 "accordion_row_Mgzq8Y",
                 "accordion_row_A3yWPY",
-                "accordion_row_q4yitt"
+                "accordion_row_q4yitt",
+                "accordion_row_NWRQkJ"
               ]
             },
             "social-share-button": {
