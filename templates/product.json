@@ -1323,8 +1323,6 @@
                       "type": "html-content",
                       "name": "HTML / Table content",
                       "settings": {
-                        "metafield_namespace": "custom",
-                        "metafield_key": "custom.total_daily_feeding",
                         "width": "fit-content",
                         "unit": "percent",
                         "custom_width": 100,
@@ -1382,7 +1380,6 @@
                       "type": "html-content",
                       "name": "HTML / Table content",
                       "settings": {
-                        "metafield_key": "",
                         "width": "fit-content",
                         "unit": "percent",
                         "custom_width": 100,
