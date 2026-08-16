@@ -1323,7 +1323,7 @@
                       "type": "html-content",
                       "name": "HTML / Table content",
                       "settings": {
-                        "raw_content": "total_daily_feeding",
+                        "metafield_key": "custom.total_daily_feeding",
                         "width": "fit-content",
                         "unit": "percent",
                         "custom_width": 100,
@@ -1381,7 +1381,7 @@
                       "type": "html-content",
                       "name": "HTML / Table content",
                       "settings": {
-                        "raw_content": "daily_cost_of_feeding",
+                        "metafield_key": "",
                         "width": "fit-content",
                         "unit": "percent",
                         "custom_width": 100,
