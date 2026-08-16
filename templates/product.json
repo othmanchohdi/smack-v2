@@ -1297,10 +1297,10 @@
                     "heading": "Total Daily Feeding (Dry Volume, in Cups)",
                     "open_by_default": false,
                     "inherit_color_scheme": true,
-                    "scheme_background": "#ffffff",
+                    "scheme_background": "rgba(0,0,0,0)",
                     "scheme_background_gradient": "",
                     "scheme_foreground_heading": "#b01f5f",
-                    "scheme_foreground": "#b01f5f",
+                    "scheme_foreground": "#000000",
                     "scheme_primary": "#000f9f",
                     "scheme_primary_hover": "#000000",
                     "scheme_border": "#e6e6e6",
@@ -1480,7 +1480,8 @@
         ".rating {display: flex;}",
         ".swiper-controls__thumbnails-container {margin-top: 15px;}",
         ".yotpo-star-rating-reviews-highly-rated-topics span {font-size: 13px;}",
-        ".product-media-constraint-wrapper {background-color: #fff; border-radius: 12px;}"
+        ".product-media-constraint-wrapper {background-color: #fff; border-radius: 12px;}",
+        "table:not([class]) {width: 100%; color: #000 !important;}"
       ],
       "settings": {
         "page_width": "page-width",
