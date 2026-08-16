@@ -1368,7 +1368,27 @@
                     "padding-inline-start": 0,
                     "padding-inline-end": 50
                   },
-                  "blocks": {}
+                  "blocks": {
+                    "html_content_GtK8bB": {
+                      "type": "html-content",
+                      "name": "HTML / Table content",
+                      "settings": {
+                        "metafield_key": "total_daily_feeding",
+                        "width": "fit-content",
+                        "unit": "percent",
+                        "custom_width": 100,
+                        "custom_width_pixel": 500,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "html_content_GtK8bB"
+                  ]
                 }
               },
               "block_order": [
