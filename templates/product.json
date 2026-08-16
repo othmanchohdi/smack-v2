@@ -383,7 +383,7 @@
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
               "settings": {
-                "variant_style": "pills",
+                "variant_style": "dropdowns",
                 "show_swatches": true,
                 "swatch_size": 34,
                 "alignment": "left",
