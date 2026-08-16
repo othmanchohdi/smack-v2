@@ -259,8 +259,8 @@
                 "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
-                "font_size": "1.2rem",
-                "font_weight": "default",
+                "font_size": "1.6rem",
+                "font_weight": "400",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
@@ -1480,7 +1480,7 @@
         ".rating {display: flex;}",
         ".swiper-controls__thumbnails-container {margin-top: 15px;}",
         ".yotpo-star-rating-reviews-highly-rated-topics span {font-size: 13px;}",
-        ".product-media-constraint-wrapper {background-color: #fff; border-radius: 12px; }"
+        ".product-media-constraint-wrapper {background-color: #fff; border-radius: 12px;}"
       ],
       "settings": {
         "page_width": "page-width",
