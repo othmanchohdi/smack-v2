@@ -1,5 +1,8 @@
 {% liquid
-  assign raw_content = block.settings.raw_content
+  assign mf_key = block.settings.metafield_key
+  if mf_key != blank
+    assign raw_content = product.metafields.custom[mf_key].value
+  endif
 %}
 <div
   class="size-style spacing-style html-content-block html-content-block--{{ block.id }}"
@@ -16,10 +19,10 @@
   "tag": null,
   "settings": [
     {
-      "type": "textarea",
-      "id": "raw_content",
-      "label": "Table / HTML content",
-      "info": "Connect this to a Multi-line text metafield via the dynamic source (chain-link) icon."
+      "type": "text",
+      "id": "metafield_key",
+      "label": "Metafield key (e.g. daily_cost_of_feeding)",
+      "info": "Type the key name of a product metafield in the custom namespace."
     },
     {
       "type": "header",
