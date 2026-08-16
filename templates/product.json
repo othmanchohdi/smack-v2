@@ -1064,7 +1064,7 @@
                   "type": "_accordion-row",
                   "name": "Guaranteed analysis",
                   "settings": {
-                    "heading": "Guaranteed analysis",
+                    "heading": "{{ closest.product.metafields.custom.guaranteed_analysis_title.value }}",
                     "open_by_default": false,
                     "inherit_color_scheme": true,
                     "scheme_background": "#ffffff",
@@ -1092,7 +1092,7 @@
                     "text_tiUjcL": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>{{ closest.product.metafields.custom.product_guaranteed_analysis | metafield_tag }}</p>",
+                        "text": "{{ closest.product.metafields.custom.product_guaranteed_analysis | metafield_tag }}",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
