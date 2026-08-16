@@ -1373,7 +1373,7 @@
                       "type": "html-content",
                       "name": "HTML / Table content",
                       "settings": {
-                        "metafield_key": "total_daily_feeding",
+                        "metafield_key": "daily_cost_of_feeding",
                         "width": "fit-content",
                         "unit": "percent",
                         "custom_width": 100,
