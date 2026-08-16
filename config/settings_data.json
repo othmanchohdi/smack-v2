@@ -321,7 +321,7 @@
       },
       "scheme-3": {
         "settings": {
-          "background": "#f1f1f1",
+          "background": "#F5F5F5",
           "background_gradient": "",
           "foreground_heading": "#e1238d",
           "foreground": "#2f3034",
@@ -399,7 +399,7 @@
       },
       "scheme-5": {
         "settings": {
-          "background": "#f1f1f1",
+          "background": "#F5F5F5",
           "background_gradient": "",
           "foreground_heading": "#e1238d",
           "foreground": "#161b1e",
@@ -477,7 +477,7 @@
       },
       "scheme-7": {
         "settings": {
-          "background": "#f1f1f1",
+          "background": "#F5F5F5",
           "background_gradient": "",
           "foreground_heading": "#e1238d",
           "foreground": "#e1238d",
