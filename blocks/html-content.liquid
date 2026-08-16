@@ -1,17 +1,52 @@
 {% liquid
-  assign mf_key = block.settings.metafield_key
-  if mf_key != blank
-    assign raw_content = product.metafields.custom[mf_key].value
+  assign metafield_namespace = block.settings.metafield_namespace | strip
+  assign metafield_key = block.settings.metafield_key | strip
+  assign raw_content = blank
+
+  if product != blank and metafield_namespace != blank and metafield_key != blank
+    assign raw_content = product.metafields[metafield_namespace][metafield_key].value
   endif
 %}
-<div
-  class="size-style spacing-style html-content-block html-content-block--{{ block.id }}"
-  style="
-    {% render 'size-style', settings: block.settings %}
-    {% render 'spacing-padding', settings: block.settings %}
-  "
-  {{ block.shopify_attributes }}
->{{ raw_content }}</div>
+
+{% if raw_content != blank %}
+  <div
+    class="size-style spacing-style html-content-block html-content-block--{{ block.id }}"
+    style="
+      {% render 'size-style', settings: block.settings %}
+      {% render 'spacing-padding', settings: block.settings %}
+    "
+    {{ block.shopify_attributes }}
+  >
+    <div class="html-content-block__inner">
+      {{ raw_content }}
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .html-content-block {
+    max-width: 100%;
+  }
+
+  .html-content-block__inner {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .html-content-block__inner table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+  }
+
+  .html-content-block__inner img,
+  .html-content-block__inner iframe,
+  .html-content-block__inner video {
+    max-width: 100%;
+    height: auto;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -20,9 +55,16 @@
   "settings": [
     {
       "type": "text",
+      "id": "metafield_namespace",
+      "label": "Metafield namespace",
+      "info": "Enter the product metafield namespace.",
+      "default": "custom"
+    },
+    {
+      "type": "text",
       "id": "metafield_key",
-      "label": "Metafield key (e.g. daily_cost_of_feeding)",
-      "info": "Type the key name of a product metafield in the custom namespace."
+      "label": "Metafield key",
+      "info": "Enter only the metafield key, for example: daily_cost_of_feeding."
     },
     {
       "type": "header",
@@ -69,7 +111,7 @@
       "type": "range",
       "id": "custom_width",
       "label": "t:settings.custom_width",
-      "min": 0,
+      "min": 1,
       "max": 100,
       "step": 1,
       "unit": "%",
@@ -143,7 +185,7 @@
       "max": 1000,
       "step": 10,
       "unit": "px",
-      "default": 100,
+      "default": 500,
       "visible_if": "{{ block.settings.width_tablet == 'custom' and block.settings.unit_tablet == 'pixel' }}"
     },
     {
@@ -164,7 +206,7 @@
           "label": "t:options.custom"
         }
       ],
-      "default": "fit-content"
+      "default": "100%"
     },
     {
       "type": "select",
@@ -202,7 +244,7 @@
       "max": 500,
       "step": 10,
       "unit": "px",
-      "default": 100,
+      "default": 300,
       "visible_if": "{{ block.settings.width_mobile == 'custom' and block.settings.unit_mobile == 'pixel' }}"
     },
     {
