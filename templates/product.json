@@ -1064,7 +1064,7 @@
                   "type": "_accordion-row",
                   "name": "Guaranteed analysis",
                   "settings": {
-                    "heading": "{{ closest.product.metafields.custom.guaranteed_analysis_title.value }}",
+                    "heading": "Guaranteed analysis",
                     "open_by_default": false,
                     "inherit_color_scheme": true,
                     "scheme_background": "#ffffff",
