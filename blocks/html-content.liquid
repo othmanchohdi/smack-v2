@@ -4,14 +4,7 @@
     assign raw_content = product.metafields.custom[mf_key].value
   endif
 %}
-<div
-  class="size-style spacing-style html-content-block html-content-block--{{ block.id }}"
-  style="
-    {% render 'size-style', settings: block.settings %}
-    {% render 'spacing-padding', settings: block.settings %}
-  "
-  {{ block.shopify_attributes }}
->{{ raw_content }}</div>
+<div class="size-style spacing-style html-content-block html-content-block--{{ block.id }}" style="{% render 'size-style', settings: block.settings %}{% render 'spacing-padding', settings: block.settings %}" {{ block.shopify_attributes }}>{{ raw_content }}</div>
 
 {% schema %}
 {
@@ -24,10 +17,7 @@
       "label": "Metafield key (e.g. total_daily_feeding)",
       "info": "Type the key name of a product metafield in the custom namespace."
     },
-    {
-      "type": "header",
-      "content": "t:content.layout"
-    },
+    { "type": "header", "content": "t:content.layout" },
     {
       "type": "select",
       "id": "width",
@@ -63,78 +53,6 @@
       "label": "t:settings.custom_width",
       "min": 500, "max": 2000, "step": 20, "unit": "px", "default": 500,
       "visible_if": "{{ block.settings.width == 'custom' and block.settings.unit == 'pixel' }}"
-    },
-    {
-      "type": "select",
-      "id": "width_tablet",
-      "label": "t:settings.width_tablet",
-      "options": [
-        { "value": "fit-content", "label": "t:options.fit" },
-        { "value": "100%", "label": "t:options.fill" },
-        { "value": "custom", "label": "t:options.custom" }
-      ],
-      "default": "fit-content"
-    },
-    {
-      "type": "select",
-      "id": "unit_tablet",
-      "label": "t:settings.unit",
-      "visible_if": "{{ block.settings.width_tablet == 'custom' }}",
-      "options": [
-        { "value": "pixel", "label": "t:options.pixel" },
-        { "value": "percent", "label": "t:options.percent" }
-      ],
-      "default": "percent"
-    },
-    {
-      "type": "range",
-      "id": "custom_width_tablet",
-      "label": "t:settings.custom_width",
-      "min": 1, "max": 100, "step": 1, "unit": "%", "default": 100,
-      "visible_if": "{{ block.settings.width_tablet == 'custom' and block.settings.unit_tablet == 'percent' }}"
-    },
-    {
-      "type": "range",
-      "id": "custom_width_tablet_pixel",
-      "label": "t:settings.custom_width",
-      "min": 100, "max": 1000, "step": 10, "unit": "px", "default": 100,
-      "visible_if": "{{ block.settings.width_tablet == 'custom' and block.settings.unit_tablet == 'pixel' }}"
-    },
-    {
-      "type": "select",
-      "id": "width_mobile",
-      "label": "t:settings.width_mobile",
-      "options": [
-        { "value": "fit-content", "label": "t:options.fit" },
-        { "value": "100%", "label": "t:options.fill" },
-        { "value": "custom", "label": "t:options.custom" }
-      ],
-      "default": "fit-content"
-    },
-    {
-      "type": "select",
-      "id": "unit_mobile",
-      "label": "t:settings.unit",
-      "visible_if": "{{ block.settings.width_mobile == 'custom' }}",
-      "options": [
-        { "value": "pixel", "label": "t:options.pixel" },
-        { "value": "percent", "label": "t:options.percent" }
-      ],
-      "default": "percent"
-    },
-    {
-      "type": "range",
-      "id": "custom_width_mobile",
-      "label": "t:settings.custom_width",
-      "min": 1, "max": 100, "step": 1, "unit": "%", "default": 100,
-      "visible_if": "{{ block.settings.width_mobile == 'custom' and block.settings.unit_mobile == 'percent' }}"
-    },
-    {
-      "type": "range",
-      "id": "custom_width_mobile_pixel",
-      "label": "t:settings.custom_width",
-      "min": 100, "max": 500, "step": 10, "unit": "px", "default": 100,
-      "visible_if": "{{ block.settings.width_mobile == 'custom' and block.settings.unit_mobile == 'pixel' }}"
     },
     { "type": "header", "content": "t:content.padding" },
     {
