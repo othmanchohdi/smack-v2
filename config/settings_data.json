@@ -33,6 +33,7 @@
     "type_size_h2": "4.0rem",
     "type_text_transform_h2": "none",
     "type_text_transform_h3": "uppercase",
+    "type_size_h5": "1.6rem",
     "page_width": 1320,
     "spacing_sections": 55,
     "spacing_grid_horizontal": 30,
