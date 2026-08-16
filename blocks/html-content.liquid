@@ -1,52 +1,14 @@
 {% liquid
-  assign metafield_namespace = block.settings.metafield_namespace | strip
-  assign metafield_key = block.settings.metafield_key | strip
-  assign raw_content = blank
-
-  if product != blank and metafield_namespace != blank and metafield_key != blank
-    assign raw_content = product.metafields[metafield_namespace][metafield_key].value
-  endif
+  assign raw_content = block.settings.raw_content
 %}
-
-{% if raw_content != blank %}
-  <div
-    class="size-style spacing-style html-content-block html-content-block--{{ block.id }}"
-    style="
-      {% render 'size-style', settings: block.settings %}
-      {% render 'spacing-padding', settings: block.settings %}
-    "
-    {{ block.shopify_attributes }}
-  >
-    <div class="html-content-block__inner">
-      {{ raw_content }}
-    </div>
-  </div>
-{% endif %}
-
-{% stylesheet %}
-  .html-content-block {
-    max-width: 100%;
-  }
-
-  .html-content-block__inner {
-    max-width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .html-content-block__inner table {
-    width: 100%;
-    max-width: 100%;
-    border-collapse: collapse;
-  }
-
-  .html-content-block__inner img,
-  .html-content-block__inner iframe,
-  .html-content-block__inner video {
-    max-width: 100%;
-    height: auto;
-  }
-{% endstylesheet %}
+<div
+  class="size-style spacing-style html-content-block html-content-block--{{ block.id }}"
+  style="
+    {% render 'size-style', settings: block.settings %}
+    {% render 'spacing-padding', settings: block.settings %}
+  "
+  {{ block.shopify_attributes }}
+>{{ raw_content }}</div>
 
 {% schema %}
 {
@@ -54,17 +16,10 @@
   "tag": null,
   "settings": [
     {
-      "type": "text",
-      "id": "metafield_namespace",
-      "label": "Metafield namespace",
-      "info": "Enter the product metafield namespace.",
-      "default": "custom"
-    },
-    {
-      "type": "text",
-      "id": "metafield_key",
-      "label": "Metafield key",
-      "info": "Enter only the metafield key, for example: daily_cost_of_feeding."
+      "type": "textarea",
+      "id": "raw_content",
+      "label": "Table / HTML content",
+      "info": "Connect this to a Multi-line text metafield via the dynamic source (chain-link) icon."
     },
     {
       "type": "header",
@@ -111,7 +66,7 @@
       "type": "range",
       "id": "custom_width",
       "label": "t:settings.custom_width",
-      "min": 1,
+      "min": 0,
       "max": 100,
       "step": 1,
       "unit": "%",
@@ -185,7 +140,7 @@
       "max": 1000,
       "step": 10,
       "unit": "px",
-      "default": 500,
+      "default": 100,
       "visible_if": "{{ block.settings.width_tablet == 'custom' and block.settings.unit_tablet == 'pixel' }}"
     },
     {
@@ -206,7 +161,7 @@
           "label": "t:options.custom"
         }
       ],
-      "default": "100%"
+      "default": "fit-content"
     },
     {
       "type": "select",
@@ -244,7 +199,7 @@
       "max": 500,
       "step": 10,
       "unit": "px",
-      "default": 300,
+      "default": 100,
       "visible_if": "{{ block.settings.width_mobile == 'custom' and block.settings.unit_mobile == 'pixel' }}"
     },
     {
