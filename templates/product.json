@@ -1410,7 +1410,7 @@
                   "type": "_accordion-row",
                   "name": "Ingredients",
                   "settings": {
-                    "heading": "Daily Cost of Feeding",
+                    "heading": "Ingredients",
                     "open_by_default": false,
                     "inherit_color_scheme": true,
                     "scheme_background": "#ffffff",
