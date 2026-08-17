@@ -848,6 +848,9 @@
         "divider_UQzF6p",
         "footer_group_GQfP9p"
       ],
+      "custom_css": [
+        ".list-social--custom .list-social__item {padding:7px;}"
+      ],
       "name": "Footer - Home default",
       "settings": {
         "content_direction": "column",
