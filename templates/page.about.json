@@ -1618,7 +1618,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Our passion for providing nutritious, convenient, and delicious dehydrated food for pets stems from a family love of animals. Expertise in biochemistry, food engineering, and holistic medicine combined with an innovative production approach allows us to create the highest quality dehydrated pet food in the world. Smack's raw dehydrated Crunchy Style superfoods are dehydrated using gentle, low-temperature air drying methods which retain more nutrients compared to freezing.</p><p>All Smack raw dehydrated foods feature a short list of the world’s best organic superfood ingredients that are proven highly beneficial for health and are also lip-smackingly good, without any fillers, gluten, or grain.</p>",
+                    "text": "<p>Our passion for providing nutritious, convenient, and delicious dehydrated food for pets stems from a family love of animals. Expertise in biochemistry, food engineering, and holistic medicine combined with an innovative production approach allows us to create the highest quality dehydrated pet food in the world. </p><p>Smack's raw dehydrated crunchy style superfoods are dehydrated using gentle, low-temperature air drying methods which retain more nutrients compared to freezing.</p><p>All Smack raw dehydrated foods feature a short list of the world’s best organic superfood ingredients that are proven highly beneficial for health and are also lip-smackingly good, without any fillers, gluten, or grain.</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
