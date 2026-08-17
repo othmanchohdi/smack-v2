@@ -248,17 +248,23 @@
           "product": ""
         }
       },
-      "8962992520437913685": {
-        "type": "shopify://apps/yotpo-loyalty-rewards/blocks/loader-app-embed-block/2f9660df-5018-4e02-9868-ee1fb88d6ccd",
-        "disabled": false,
+      "9431864395560886015": {
+        "type": "shopify://apps/polar-analytics/blocks/polar-tracker/019c2e93-19fa-7dab-8368-903d1c54902c",
+        "disabled": true,
         "settings": {
-          "inject_modules_loader": true,
-          "inject_sdk_loader": false
+          "debug_mode": false
+        }
+      },
+      "15351435345818755577": {
+        "type": "shopify://apps/pandectes-gdpr/blocks/banner/58c0baa2-6cc1-480c-9ea6-38d6d559556a",
+        "disabled": true,
+        "settings": {
+          "fast_load": false
         }
       },
       "2640576625794464016": {
         "type": "shopify://apps/yotpo-loyalty-rewards/blocks/spotlight-drawer-app-embed/2f9660df-5018-4e02-9868-ee1fb88d6ccd",
-        "disabled": false,
+        "disabled": true,
         "settings": {
           "loyalty_name": "My Loyalty Program",
           "greeting_text": "<p>Hey ##name##,<br>Check out your perks ✨</p>",
@@ -268,13 +274,13 @@
           "apply_reward_success_message": "Reward applied. Refresh page to see it.",
           "remove_reward_button_text": "Remove from cart",
           "background_color": "#ffffff",
-          "points_bg_color": "#D6D6D6",
+          "points_bg_color": "#d6d6d6",
           "button_bg_color": "#262626",
           "button_text_color": "#ffffff",
           "heading_font": "inter_n6",
           "heading_color": "#262626",
           "body_font": "inter_n4",
-          "body_color": "#4D4D4D",
+          "body_color": "#4d4d4d",
           "show_points_expiry": true,
           "expiry_date_format": "long",
           "expiry_label": "exp.",
@@ -284,7 +290,7 @@
           "tier_suffix": "Member",
           "direct_rewards_label": "Free",
           "days_left_text": "##days## day(s) left",
-          "reward_expiry_color": "#C93400",
+          "reward_expiry_color": "#c93400",
           "cart_empty_message": "Add items to cart first",
           "collection_requirement_text": "Collection items only",
           "missing_collection_item_error_message": "No collection items in your cart.",
@@ -297,6 +303,14 @@
           "signup_consent_text": "<p>By joining you agree to our Terms & Conditions.</p>",
           "signup_button_text": "Join",
           "signup_success_message": "You're in! Start exploring your rewards."
+        }
+      },
+      "8962992520437913685": {
+        "type": "shopify://apps/yotpo-loyalty-rewards/blocks/loader-app-embed-block/2f9660df-5018-4e02-9868-ee1fb88d6ccd",
+        "disabled": true,
+        "settings": {
+          "inject_modules_loader": true,
+          "inject_sdk_loader": false
         }
       }
     },
