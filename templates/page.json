@@ -133,6 +133,9 @@
     },
     "page_b8ezTa": {
       "type": "page",
+      "custom_css": [
+        ".page-title{display:none;}"
+      ],
       "name": "t:names.page",
       "settings": {
         "page": "{{ page }}",
