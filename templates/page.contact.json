@@ -1557,7 +1557,7 @@
         "group_G7iBCy"
       ],
       "custom_css": [
-        "@media (max-width: 768px) {.contact-form-section {margin-top: 250px; } .hide-on-mobile {display:none; }}"
+        "@media (max-width: 768px) {.contact-form-section {margin-top: 250px; } .contact-form-section {margin-top:25px; }}"
       ],
       "name": "t:names.custom_section",
       "settings": {
