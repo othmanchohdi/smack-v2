@@ -1016,7 +1016,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Through that experience, our family discovered a deeper purpose: helping pets live healthier, happier lives through better nutrition. With the support and guidance of our parents, Yuri and Emily, that passion became Smack Pet Food — raw dehydrated superfoods for dogs and cats, made with clean, whole-food ingredients and crafted to deliver the benefits of raw feeding with everyday convenience. With their support and Michael’s leadership, the company grew out of our family’s basement into our first manufacturing facility, and into the mouths of many thousands of happy pets.</p><p>To further support our commitment to complete and balanced nutrition, we worked with Serge Boutet, an agrologist with over 40 years of experience specializing in animal nutrition, to develop recipes that are healthy, natural, nutritious, and thoughtfully balanced for our pets.</p><p>At Smack, we want the very best for our pets: to keep them happy, energetic, and full of life. That belief continues to guide everything we make today.</p><p>continues to guide everything we make today.</p><p>Sincerely,</p><p>Jonathon (CEO) and Michael (Chief Innovation Officer), brothers and cofounders</p><p></p><p>*Emily is an Engineer-Technologist and has a Diploma in Food Production (equivalent to a Master’s in Food Science) from the Soviet Union. Upon graduation she worked for the National Academy of Sciences in Kiev where she conducted research in cancer immunology. When Emily came to Canada in the 1970’s she began to work for Canada Grain Commission’s Research Labs, where she continued her studies with graduate level coursework in food analysis and biochemistry through the University of Manitoba.</p>",
+            "text": "<p>Through that experience, our family discovered a deeper purpose: helping pets live healthier, happier lives through better nutrition. With the support and guidance of our parents, Yuri and Emily, that passion became Smack Pet Food — raw dehydrated superfoods for dogs and cats, made with clean, whole-food ingredients and crafted to deliver the benefits of raw feeding with everyday convenience. With their support and Michael’s leadership, the company grew out of our family’s basement into our first manufacturing facility, and into the mouths of many thousands of happy pets.</p><p>To further support our commitment to complete and balanced nutrition, we worked with Serge Boutet, an agrologist with over 40 years of experience specializing in animal nutrition, to develop recipes that are healthy, natural, nutritious, and thoughtfully balanced for our pets.</p><p>At Smack, we want the very best for our pets: to keep them happy, energetic, and full of life. That belief continues to guide everything we make today.</p><p>Sincerely,</p><p>Jonathon (CEO) and Michael (Chief Innovation Officer), brothers and cofounders</p><p>*Emily is an Engineer-Technologist and has a Diploma in Food Production (equivalent to a Master’s in Food Science) from the Soviet Union. Upon graduation she worked for the National Academy of Sciences in Kiev where she conducted research in cancer immunology. When Emily came to Canada in the 1970’s she began to work for Canada Grain Commission’s Research Labs, where she continued her studies with graduate level coursework in food analysis and biochemistry through the University of Manitoba.</p>",
             "collection_description_only": false,
             "collapse_text": false,
             "typing_text": false,
@@ -1098,7 +1098,9 @@
       "block_order": [
         "text_JG3zJH"
       ],
-      "custom_css": [],
+      "custom_css": [
+        "p {margin: 10px;}"
+      ],
       "name": "Our Story",
       "settings": {
         "content_direction": "column",
