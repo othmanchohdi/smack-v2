@@ -240,6 +240,64 @@
         "type": "shopify://apps/powr-wholesale-orders/blocks/app-embed/668426c5-7e7a-462e-b09e-e672a6f17c5e",
         "disabled": true,
         "settings": {}
+      },
+      "14339172867238703359": {
+        "type": "shopify://apps/yotpo-product-reviews/blocks/reviews_tab/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+        "disabled": false,
+        "settings": {
+          "product": ""
+        }
+      },
+      "8962992520437913685": {
+        "type": "shopify://apps/yotpo-loyalty-rewards/blocks/loader-app-embed-block/2f9660df-5018-4e02-9868-ee1fb88d6ccd",
+        "disabled": false,
+        "settings": {
+          "inject_modules_loader": true,
+          "inject_sdk_loader": false
+        }
+      },
+      "2640576625794464016": {
+        "type": "shopify://apps/yotpo-loyalty-rewards/blocks/spotlight-drawer-app-embed/2f9660df-5018-4e02-9868-ee1fb88d6ccd",
+        "disabled": false,
+        "settings": {
+          "loyalty_name": "My Loyalty Program",
+          "greeting_text": "<p>Hey ##name##,<br>Check out your perks ✨</p>",
+          "points_section_label": "You Earned",
+          "rewards_section_title": "Your Rewards",
+          "apply_reward_button_text": "Apply to cart",
+          "apply_reward_success_message": "Reward applied. Refresh page to see it.",
+          "remove_reward_button_text": "Remove from cart",
+          "background_color": "#ffffff",
+          "points_bg_color": "#D6D6D6",
+          "button_bg_color": "#262626",
+          "button_text_color": "#ffffff",
+          "heading_font": "inter_n6",
+          "heading_color": "#262626",
+          "body_font": "inter_n4",
+          "body_color": "#4D4D4D",
+          "show_points_expiry": true,
+          "expiry_date_format": "long",
+          "expiry_label": "exp.",
+          "points_label": "pts",
+          "show_points_worth": true,
+          "points_worth_label": "Worth",
+          "tier_suffix": "Member",
+          "direct_rewards_label": "Free",
+          "days_left_text": "##days## day(s) left",
+          "reward_expiry_color": "#C93400",
+          "cart_empty_message": "Add items to cart first",
+          "collection_requirement_text": "Collection items only",
+          "missing_collection_item_error_message": "No collection items in your cart.",
+          "cart_requirement_text": "Requires ##value## in cart",
+          "item_requirement_text": "Requires item in cart",
+          "points_requirement_text": "Requires +##points## pts",
+          "reward_stacking_text": "Can't combine with applied rewards",
+          "non_member_preview": false,
+          "signup_heading": "Start earning rewards today.",
+          "signup_consent_text": "<p>By joining you agree to our Terms & Conditions.</p>",
+          "signup_button_text": "Join",
+          "signup_success_message": "You're in! Start exploring your rewards."
+        }
       }
     },
     "color_schemes": {
