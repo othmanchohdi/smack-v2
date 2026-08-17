@@ -277,7 +277,7 @@
             "vertical_alignment_mobile": "center",
             "horizontal_alignment_flex_direction_column_mobile": "flex-start",
             "vertical_alignment_flex_direction_column_mobile": "center",
-            "gap": 80,
+            "gap": 23,
             "width": "fill",
             "custom_width": 100,
             "width_tablet": "fill",
@@ -345,7 +345,7 @@
                 "open_in_new_tab": false,
                 "hide_on_tablet": false,
                 "hide_on_mobile": true,
-                "custom_class": "",
+                "custom_class": "hide-on-mobile",
                 "content_direction": "column",
                 "content_direction_mobile": "column",
                 "horizontal_alignment": "flex-start",
@@ -1557,7 +1557,7 @@
         "group_G7iBCy"
       ],
       "custom_css": [
-        "@media (max-width: 768px) {.contact-form-section {margin-top: 250px; }}"
+        "@media (max-width: 768px) {.contact-form-section {margin-top: 250px; } .hide-on-mobile {display:none; }}"
       ],
       "name": "t:names.custom_section",
       "settings": {
@@ -1599,7 +1599,7 @@
     "section_gah6Xi": {
       "type": "section",
       "blocks": {
-        "group_LwcpT9": {
+        "group_pNNYMN": {
           "type": "group",
           "name": "t:names.group",
           "settings": {
@@ -1607,7 +1607,7 @@
             "open_in_new_tab": false,
             "hide_on_tablet": false,
             "hide_on_mobile": false,
-            "custom_class": "hide-desktop",
+            "custom_class": "",
             "content_direction": "column",
             "content_direction_mobile": "column",
             "horizontal_alignment": "flex-start",
@@ -1631,7 +1631,7 @@
             "inherit_color_scheme": false,
             "scheme_background": "#ffffff",
             "scheme_background_gradient": "",
-            "scheme_foreground_heading": "#044792",
+            "scheme_foreground_heading": "#f41c8b",
             "scheme_foreground": "#000000",
             "scheme_primary": "#000f9f",
             "scheme_primary_hover": "#000000",
@@ -1678,11 +1678,11 @@
             "padding-inline-end": 55
           },
           "blocks": {
-            "text_K8TyPd": {
+            "text_azCKjR": {
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>Information about us</p>",
+                "text": "<h2>Contact us</h2>",
                 "collection_description_only": false,
                 "collapse_text": false,
                 "typing_text": false,
@@ -1760,7 +1760,7 @@
               },
               "blocks": {}
             },
-            "group_fxnGEt": {
+            "group_Y7WPCR": {
               "type": "group",
               "name": "t:names.group",
               "settings": {
@@ -1839,7 +1839,7 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "icon_UXyjBc": {
+                "icon_TJ634Y": {
                   "type": "icon",
                   "name": "t:names.icon",
                   "settings": {
@@ -1858,11 +1858,11 @@
                   },
                   "blocks": {}
                 },
-                "text_7dxxkM": {
+                "text_UWJWnc": {
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>TEXT:091-123-ELLA</p>",
+                    "text": "<p>Toll-free:844-73-SMACK (76225)</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -1942,11 +1942,11 @@
                 }
               },
               "block_order": [
-                "icon_UXyjBc",
-                "text_7dxxkM"
+                "icon_TJ634Y",
+                "text_UWJWnc"
               ]
             },
-            "group_HBy7kh": {
+            "group_j6ckGt": {
               "type": "group",
               "name": "t:names.group",
               "settings": {
@@ -2025,7 +2025,7 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "icon_8H78jb": {
+                "icon_zgc9mA": {
                   "type": "icon",
                   "name": "t:names.icon",
                   "settings": {
@@ -2044,11 +2044,11 @@
                   },
                   "blocks": {}
                 },
-                "text_TtnJeP": {
+                "text_bEejpk": {
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>info@lepetitsucreltd.com</p>",
+                    "text": "<p>customercare@smackpetfood.com</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -2128,11 +2128,11 @@
                 }
               },
               "block_order": [
-                "icon_8H78jb",
-                "text_TtnJeP"
+                "icon_zgc9mA",
+                "text_bEejpk"
               ]
             },
-            "spacer_zXBdiF": {
+            "spacer_tKC6xw": {
               "type": "spacer",
               "name": "t:names.spacer",
               "settings": {
@@ -2142,7 +2142,7 @@
               },
               "blocks": {}
             },
-            "group_8ptqVK": {
+            "group_fjdaeR": {
               "type": "group",
               "name": "t:names.group",
               "settings": {
@@ -2221,11 +2221,11 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "text_AL4Txc": {
+                "text_ebQQRw": {
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Location - <strong>Not open for the public, only with appointments or order purchased for pickup.</strong></p>",
+                    "text": "<p>701-1200 Sherwin Road Winnipeg, </p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -2303,11 +2303,11 @@
                   },
                   "blocks": {}
                 },
-                "text_fHRnF8": {
+                "text_TPnNan": {
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>1939 W.Fulton st.Chicago, Illinois</p>",
+                    "text": "<p>Manitoba R3H 0K4 </p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -2385,11 +2385,11 @@
                   },
                   "blocks": {}
                 },
-                "text_gWye9X": {
+                "text_tj78yY": {
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>United States</p>",
+                    "text": "<p>Canada</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -2469,12 +2469,12 @@
                 }
               },
               "block_order": [
-                "text_AL4Txc",
-                "text_fHRnF8",
-                "text_gWye9X"
+                "text_ebQQRw",
+                "text_TPnNan",
+                "text_tj78yY"
               ]
             },
-            "spacer_qhmWiQ": {
+            "spacer_xzXWW6": {
               "type": "spacer",
               "name": "t:names.spacer",
               "settings": {
@@ -2486,17 +2486,17 @@
             }
           },
           "block_order": [
-            "text_K8TyPd",
-            "group_fxnGEt",
-            "group_HBy7kh",
-            "spacer_zXBdiF",
-            "group_8ptqVK",
-            "spacer_qhmWiQ"
+            "text_azCKjR",
+            "group_Y7WPCR",
+            "group_j6ckGt",
+            "spacer_tKC6xw",
+            "group_fjdaeR",
+            "spacer_xzXWW6"
           ]
         }
       },
       "block_order": [
-        "group_LwcpT9"
+        "group_pNNYMN"
       ],
       "custom_css": [
         "@media (min-width: 670px) {.hide-desktop {display: none; }}"
