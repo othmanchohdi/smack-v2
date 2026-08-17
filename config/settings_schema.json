@@ -98,6 +98,28 @@
       "info": "Where to send logged-in retail customers who try to access a wholesale page"
     },
     {
+      "type": "checkbox",
+      "id": "wholesale_gate_home_enabled",
+      "label": "Also redirect wholesale customers away from the home page",
+      "default": false,
+      "info": "When enabled, wholesale customers who land on the home page are redirected to the URL above. Leave off to let wholesale customers browse the home page normally."
+    },
+    {
+      "type": "header",
+      "content": "Wholesale-only Products"
+    },
+    {
+      "type": "paragraph",
+      "content": "Any product carrying this tag is only visible to wholesale customers. Retail visitors are redirected; wholesale customers are redirected away from products that do NOT carry this tag."
+    },
+    {
+      "type": "text",
+      "id": "wholesale_product_tag",
+      "label": "Wholesale product tag",
+      "default": "wholesale",
+      "info": "The Shopify product tag that identifies wholesale-only products"
+    },
+    {
       "type": "header",
       "content": "Wholesale-only Collections"
     },
@@ -245,6 +267,39 @@
       "type": "page",
       "id": "wholesale_gated_page_5",
       "label": "Wholesale-only page 5"
+    },
+    {
+      "type": "header",
+      "content": "Retail Pages (redirect wholesale customers away)"
+    },
+    {
+      "type": "paragraph",
+      "content": "Wholesale customers who visit any of these pages will be redirected away."
+    },
+    {
+      "type": "page",
+      "id": "wholesale_retail_page_1",
+      "label": "Retail page 1"
+    },
+    {
+      "type": "page",
+      "id": "wholesale_retail_page_2",
+      "label": "Retail page 2"
+    },
+    {
+      "type": "page",
+      "id": "wholesale_retail_page_3",
+      "label": "Retail page 3"
+    },
+    {
+      "type": "page",
+      "id": "wholesale_retail_page_4",
+      "label": "Retail page 4"
+    },
+    {
+      "type": "page",
+      "id": "wholesale_retail_page_5",
+      "label": "Retail page 5"
     },
     {
       "type": "header",

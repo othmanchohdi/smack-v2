@@ -2,8 +2,9 @@
   wholesale-gate.liquid
   =====================
   Rendered in <head> via layout/theme.liquid.
-  Gates wholesale-only collections and pages, and redirects
-  wholesale customers away from retail-only collections.
+  Gates wholesale-only collections, pages, and products, and redirects
+  wholesale customers away from retail-only collections, pages, products,
+  and (optionally) the home page.
 
   All config comes from theme settings (Customizer > Wholesale).
 {%- endcomment -%}
@@ -87,6 +88,56 @@
         {%- break -%}
       {%- endif -%}
     {%- endfor -%}
+  {%- endif -%}
+
+  {%- comment -%}
+    REVERSE GATE — Redirect wholesale customers away from retail-only pages.
+  {%- endcomment -%}
+  {%- if _ws_customer and template contains 'page' -%}
+    {%- for i in (1..5) -%}
+      {%- assign _retail_page_key = 'wholesale_retail_page_' | append: i -%}
+      {%- assign _retail_page_handle = settings[_retail_page_key] -%}
+      {%- if _retail_page_handle != blank and page.handle == _retail_page_handle -%}
+        <script>window.location.replace({{ _ws_redirect | json }});</script>
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- comment -%}
+    REVERSE GATE — Optionally redirect wholesale customers away from the home page.
+  {%- endcomment -%}
+  {%- if _ws_customer and settings.wholesale_gate_home_enabled and template == 'index' -%}
+    <script>window.location.replace({{ _ws_redirect | json }});</script>
+  {%- endif -%}
+
+  {%- comment -%}
+    GATE — Wholesale-only products.
+    Products carrying the wholesale product tag are only visible to wholesale
+    customers: guests → /login, retail customers → redirect page.
+    Wholesale customers are redirected away from products that do NOT carry
+    the tag, so they never land on retail-only products either.
+  {%- endcomment -%}
+  {%- if template contains 'product' -%}
+    {%- assign _ws_product_tag = settings.wholesale_product_tag | default: 'wholesale' | strip -%}
+    {%- assign _ws_product = false -%}
+    {%- for _t in product.tags -%}
+      {%- if _t == _ws_product_tag -%}
+        {%- assign _ws_product = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if _ws_product and _ws_customer == false -%}
+      <meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE,NOSNIPPET">
+      {%- if customer -%}
+        <script>window.location.replace({{ _ws_redirect | json }});</script>
+      {%- else -%}
+        <script>window.location.replace('/account/login?return_url={{ request.path | url_encode }}');</script>
+      {%- endif -%}
+    {%- elsif _ws_product == false and _ws_customer -%}
+      <script>window.location.replace({{ _ws_redirect | json }});</script>
+    {%- endif -%}
   {%- endif -%}
 
 {%- endif -%}
