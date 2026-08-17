@@ -351,6 +351,7 @@
                 "accordion_filter_yMULnG": {
                   "type": "_accordion-filter",
                   "name": "Accordion",
+                  "disabled": true,
                   "settings": {
                     "heading_filter": "<h2>Wholesale FAQs</h2>",
                     "highlight_text": false,
@@ -1593,6 +1594,7 @@
                     },
                     "accordion_row_kYg3PX": {
                       "type": "_accordion-row",
+                      "disabled": true,
                       "settings": {
                         "heading": "Your food costs a lot more than the kibble I used to feed; why is Smack more expensive?",
                         "open_by_default": false,
@@ -2527,7 +2529,7 @@
       "name": "FAQs",
       "settings": {
         "faqs_filter_title": "Filter by topic",
-        "faqs_filter": true,
+        "faqs_filter": false,
         "content_direction": "column",
         "content_direction_mobile": "column",
         "horizontal_alignment": "flex-start",
