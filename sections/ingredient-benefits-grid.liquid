@@ -12,6 +12,13 @@
   assign pad = section.settings.card_padding
   assign img_h = section.settings.image_height
   assign align = section.settings.text_align
+  assign visible_tab_count = 0
+  if section.settings.show_animal_tab
+    assign visible_tab_count = visible_tab_count | plus: 1
+  endif
+  if section.settings.show_plant_tab
+    assign visible_tab_count = visible_tab_count | plus: 1
+  endif
 -%}
 
 <style>
@@ -37,9 +44,9 @@
     color: {{ section.settings.subheading_color }};
   }
   #shopify-section-{{ section.id }} .ibg-tabs{display:flex;justify-content:center;gap:12px;margin:0 0 30px;}
-  .ibg-tab{padding:10px 22px;border:1px solid #ddd;background:#fff;cursor:pointer;border-radius:999px;font-weight:700;}
-  .ibg-tab.active{background:#111;color:#fff;}
-  .ibg-grid {
+  #shopify-section-{{ section.id }} .ibg-tab{padding:10px 22px;border:1px solid #ddd;background:#fff;cursor:pointer;border-radius:999px;font-weight:700;}
+  #shopify-section-{{ section.id }} .ibg-tab.active{background:#111;color:#fff;}
+  #shopify-section-{{ section.id }} .ibg-grid {
     display: grid;
     grid-template-columns: repeat({{ cols }}, minmax(0, 1fr));
     gap: {{ gap }}px;
@@ -123,13 +130,22 @@
       </div>
     {%- endif -%}
 
-    <div class="ibg-tabs">
-<button class="ibg-tab active" data-filter="animal">Animal Protein Ingredients</button>
-<button class="ibg-tab" data-filter="plant">Plant-Based Ingredients</button>
+    {%- if visible_tab_count > 1 -%}
+      <div class="ibg-tabs" role="tablist" aria-label="Ingredient categories">
+        {%- if section.settings.show_animal_tab -%}
+          <button class="ibg-tab" type="button" data-filter="animal" role="tab">
+            {{ section.settings.animal_tab_label | escape }}
+          </button>
+        {%- endif -%}
+        {%- if section.settings.show_plant_tab -%}
+          <button class="ibg-tab" type="button" data-filter="plant" role="tab">
+            {{ section.settings.plant_tab_label | escape }}
+          </button>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
 
-</div>
-
-<div class="ibg-grid">
+    <div class="ibg-grid">
       {%- for block in section.blocks -%}
         <div class="ibg-card" data-type="{{ block.settings.ingredient_type }}" style="--card-bg: {{ block.settings.card_bg }};" {{ block.shopify_attributes }}>
           {%- if block.settings.image != blank -%}
@@ -173,18 +189,32 @@
 
 
 <script>
-document.addEventListener('DOMContentLoaded',function(){
-const s=document.getElementById('shopify-section-{{ section.id }}');
-if(!s)return;
-const tabs=s.querySelectorAll('.ibg-tab');
-const cards=s.querySelectorAll('.ibg-card');
-function f(t){
-cards.forEach(c=>c.style.display=(c.dataset.type===t)?'':'none');
-tabs.forEach(b=>b.classList.toggle('active',b.dataset.filter===t));
-}
-tabs.forEach(b=>b.addEventListener('click',()=>f(b.dataset.filter)));
-f('animal');
-});
+(() => {
+  const section = document.getElementById('shopify-section-{{ section.id }}');
+  if (!section) return;
+
+  const tabs = section.querySelectorAll('.ibg-tab');
+  const cards = section.querySelectorAll('.ibg-card');
+  const fallbackFilter = {% if section.settings.show_animal_tab %}'animal'{% elsif section.settings.show_plant_tab %}'plant'{% else %}null{% endif %};
+
+  function filterCards(type) {
+    cards.forEach((card) => {
+      card.hidden = !type || card.dataset.type !== type;
+    });
+
+    tabs.forEach((tab) => {
+      const isActive = tab.dataset.filter === type;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => filterCards(tab.dataset.filter));
+  });
+
+  filterCards(tabs.length ? tabs[0].dataset.filter : fallbackFilter);
+})();
 </script>
 
 {% schema %}
@@ -207,6 +237,12 @@ f('animal');
     },
     { "type": "range", "id": "column_gap", "label": "Gap between cards", "min": 8, "max": 60, "step": 2, "unit": "px", "default": 28 },
     { "type": "select", "id": "text_align", "label": "Card text alignment", "options": [ { "value": "center", "label": "Center" }, { "value": "left", "label": "Left" } ], "default": "center" },
+
+    { "type": "header", "content": "Ingredient tabs" },
+    { "type": "checkbox", "id": "show_animal_tab", "label": "Show animal protein ingredients", "default": true },
+    { "type": "text", "id": "animal_tab_label", "label": "Animal tab label", "default": "Animal Protein Ingredients" },
+    { "type": "checkbox", "id": "show_plant_tab", "label": "Show plant-based ingredients", "default": true },
+    { "type": "text", "id": "plant_tab_label", "label": "Plant tab label", "default": "Plant-Based Ingredients" },
 
     { "type": "header", "content": "Heading" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Our Ingredients" },
