@@ -98,6 +98,9 @@
       "block_order": [
         "text_NmXhKd"
       ],
+      "custom_css": [
+        "p {margin:10px;}"
+      ],
       "settings": {
         "content_direction": "column",
         "content_direction_mobile": "column",
@@ -106,7 +109,7 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
+        "gap": 16,
         "section_width": "custom",
         "page_width_custom": 1000,
         "section_height": "",
