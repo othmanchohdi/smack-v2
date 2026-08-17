@@ -98,6 +98,7 @@
       "block_order": [
         "text_NmXhKd"
       ],
+      "disabled": true,
       "custom_css": [
         "p {margin: 10px;}"
       ],
@@ -130,19 +131,20 @@
         "padding-block-end": 80
       }
     },
-    "custom_liquid_k6rcWk": {
-      "type": "custom-liquid",
-      "name": "t:names.custom_liquid",
+    "page_b8ezTa": {
+      "type": "page",
+      "name": "t:names.page",
       "settings": {
-        "custom_liquid": "<div id='yotpo-testimonials-custom-tab'></div>",
+        "page": "{{ page }}",
+        "heading_size": "h1",
         "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding-block-start": 36,
+        "padding-block-end": 36
       }
     }
   },
   "order": [
     "main",
-    "custom_liquid_k6rcWk"
+    "page_b8ezTa"
   ]
 }
