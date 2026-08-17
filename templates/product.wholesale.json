@@ -247,6 +247,26 @@
                 "text_xrnftG"
               ]
             },
+            "wsh_order_form_app_block_nAXwkN": {
+              "type": "shopify://apps/wsh-order-form/blocks/app-block/35fcc7a6-685e-4b01-96c5-46c47f87fe6f",
+              "settings": {
+                "layoutSetting": "comprehensive-layout",
+                "show_price": true,
+                "show_sku": false,
+                "show_total": false,
+                "show_widget_when_variant_has_one_variant": false,
+                "add_to_cart_button_color": "#F41D8B",
+                "add_to_cart_button_hover_color": "#F33898",
+                "border_radius": 10,
+                "heading": "Wholesale Order Form",
+                "variantPrice": "Price",
+                "variantQuantity": "Quantity",
+                "variantSku": "SKU",
+                "variantTotal": "Total",
+                "addToCart": "Add [quantity] items to cart",
+                "addToCartSuccessMessage": "[quantity] Items added to cart!"
+              }
+            },
             "product_description_c4h6TB": {
               "type": "_product-description",
               "name": "t:names.product_description",
@@ -1552,6 +1572,7 @@
           },
           "block_order": [
             "group_icgrde",
+            "wsh_order_form_app_block_nAXwkN",
             "product_description_c4h6TB",
             "group_wYP4rr",
             "price_wUxKFf",
@@ -1610,7 +1631,7 @@
       },
       "custom_css": [
         ".product-details,.group-block {border-radius: 12px;}",
-        ".metafield-rich_text_field p, .html-content-block__scroll strong{margin: 10px 0; color: #000;}",
+        ".metafield-rich_text_field p,.html-content-block__scroll strong {margin: 10px 0; color: #000;}",
         ".swiper-controls__thumbnails-container {margin-top: 15px;}",
         ".yotpo-star-rating-reviews-highly-rated-topics span {font-size: 13px;}",
         ".product-media-constraint-wrapper {background-color: #fff; border-radius: 12px;}",
