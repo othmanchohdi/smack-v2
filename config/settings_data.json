@@ -13,6 +13,7 @@
     "logo_inverse": "",
     "favicon": "shopify://shop_images/LOGO.svg",
     "wholesale_redirect_url": "shopify://pages/how-to-order",
+    "wholesale_gate_home_enabled": true,
     "wholesale_product_tag": "W1",
     "wholesale_gated_col_1": "super-food-for-cats-w1",
     "wholesale_gated_col_2": "super-food-for-dogs-w1",
