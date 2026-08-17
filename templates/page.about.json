@@ -1503,7 +1503,7 @@
                 "border_opacity": 0,
                 "border_radius": 16,
                 "toggle_overlay": true,
-                "overlay_color": "#000000bd",
+                "overlay_color": "#E1238DBA",
                 "extend_left_overlay": false,
                 "extend_right_overlay": false,
                 "overlay_style": "solid",
