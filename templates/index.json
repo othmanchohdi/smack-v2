@@ -6131,7 +6131,7 @@
                         "alignment_mobile": "left",
                         "type_preset": "custom",
                         "font": "var(--font-heading--family)",
-                        "font_size": "2.6rem",
+                        "font_size": "2.0rem",
                         "font_weight": "default",
                         "line_height": "normal",
                         "letter_spacing": "normal",
@@ -7049,7 +7049,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p>✕ Never</p>",
+                        "text": "<p>X Made Without Compromise.</p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
@@ -7057,7 +7057,7 @@
                         "secondary_text": "Exclusive offers just for you.",
                         "third_text": "Shop now and enjoy deals!",
                         "highlight_text": true,
-                        "highlight_text_content": "✕ Never",
+                        "highlight_text_content": "X Made Without Compromise.",
                         "highlight_text_type": "text",
                         "underline_width": 100,
                         "underline_height": 18,
@@ -7099,7 +7099,7 @@
                         "alignment_mobile": "left",
                         "type_preset": "custom",
                         "font": "var(--font-heading--family)",
-                        "font_size": "2.4rem",
+                        "font_size": "2.0rem",
                         "font_weight": "default",
                         "line_height": "normal",
                         "letter_spacing": "normal",
@@ -7282,7 +7282,7 @@
                             "text_3ktHVV": {
                               "type": "text",
                               "settings": {
-                                "text": "<p>Mystery meat</p>",
+                                "text": "<p>No mystery meats</p>",
                                 "collection_description_only": false,
                                 "collapse_text": false,
                                 "typing_text": false,
@@ -7290,7 +7290,7 @@
                                 "secondary_text": "Exclusive offers just for you.",
                                 "third_text": "Shop now and enjoy deals!",
                                 "highlight_text": true,
-                                "highlight_text_content": "Mystery meat",
+                                "highlight_text_content": "No mystery meats",
                                 "highlight_text_type": "text",
                                 "underline_width": 100,
                                 "underline_height": 18,
@@ -7438,7 +7438,7 @@
                             "margin-inline-start-mobile": 0,
                             "margin-inline-end": 0,
                             "margin-inline-end-mobile": 0,
-                            "padding-block-start": 35,
+                            "padding-block-start": 0,
                             "padding-block-end": 0,
                             "padding-inline-start": 0,
                             "padding-inline-end": 0
@@ -7466,7 +7466,7 @@
                             "text_mNPqWt": {
                               "type": "text",
                               "settings": {
-                                "text": "<p>Fillers & Preservatives</p>",
+                                "text": "<p>Zero fillers, gluten, grains or synthetic vitamins</p>",
                                 "collection_description_only": false,
                                 "collapse_text": false,
                                 "typing_text": false,
@@ -7474,7 +7474,7 @@
                                 "secondary_text": "Exclusive offers just for you.",
                                 "third_text": "Shop now and enjoy deals!",
                                 "highlight_text": true,
-                                "highlight_text_content": "Fillers & Preservatives",
+                                "highlight_text_content": "Zero fillers, gluten, grains or synthetic vitamins",
                                 "highlight_text_type": "text",
                                 "underline_width": 100,
                                 "underline_height": 18,
@@ -7622,7 +7622,7 @@
                             "margin-inline-start-mobile": 0,
                             "margin-inline-end": 0,
                             "margin-inline-end-mobile": 0,
-                            "padding-block-start": 30,
+                            "padding-block-start": 0,
                             "padding-block-end": 0,
                             "padding-inline-start": 0,
                             "padding-inline-end": 0
@@ -7650,7 +7650,7 @@
                             "text_CFAxUV": {
                               "type": "text",
                               "settings": {
-                                "text": "<p>Artificial colors</p>",
+                                "text": "<p>Free of added hormones</p>",
                                 "collection_description_only": false,
                                 "collapse_text": false,
                                 "typing_text": false,
@@ -7658,7 +7658,7 @@
                                 "secondary_text": "Exclusive offers just for you.",
                                 "third_text": "Shop now and enjoy deals!",
                                 "highlight_text": true,
-                                "highlight_text_content": "Artificial colors",
+                                "highlight_text_content": "Free of added hormones",
                                 "highlight_text_type": "text",
                                 "underline_width": 100,
                                 "underline_height": 18,
