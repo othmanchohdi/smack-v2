@@ -133,8 +133,8 @@
                 "inherit_color_scheme": false,
                 "scheme_background": "rgba(0,0,0,0)",
                 "scheme_background_gradient": "",
-                "scheme_foreground_heading": "#FFFFFF",
-                "scheme_foreground": "#FFFFFF",
+                "scheme_foreground_heading": "#ffffff",
+                "scheme_foreground": "#ffffff",
                 "scheme_primary": "#000f9f",
                 "scheme_primary_hover": "#000000",
                 "scheme_border": "#ffffff",
@@ -302,11 +302,11 @@
                     "social_style": "custom",
                     "icon_size": 36,
                     "icon_size_mobile": 36,
-                    "icon_color": "#F41D8B",
-                    "icon_bg_color": "#FFFFFF",
-                    "icon_border_color": "#FFFFFF",
+                    "icon_color": "#f41d8b",
+                    "icon_bg_color": "#ffffff",
+                    "icon_border_color": "#ffffff",
                     "icon_color_hover": "#232323",
-                    "icon_bg_color_hover": "transparent",
+                    "icon_bg_color_hover": "rgba(0,0,0,0)",
                     "icon_border_color_hover": "#232323",
                     "gap_x": 10,
                     "gap_y": 10,
@@ -849,7 +849,7 @@
         "footer_group_GQfP9p"
       ],
       "custom_css": [
-        ".list-social--custom .list-social__item {padding:7px;}"
+        ".list-social--custom .list-social__item {padding: 7px;}"
       ],
       "name": "Footer - Home default",
       "settings": {

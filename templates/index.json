@@ -613,7 +613,7 @@
                     "mobile_columns_carousel": "2",
                     "vertical_alignment_flex_direction_column": "center",
                     "vertical_gap": 12,
-                    "column_gap": 8,
+                    "column_gap": 10,
                     "gap": 16,
                     "loop": false,
                     "navigation": "arrows",
@@ -729,8 +729,8 @@
                         "margin-inline-end-mobile": 0,
                         "padding-block-start": 7,
                         "padding-block-end": 7,
-                        "padding-inline-start": 10,
-                        "padding-inline-end": 10
+                        "padding-inline-start": 8,
+                        "padding-inline-end": 8
                       },
                       "blocks": {
                         "text_ARk8yc": {
@@ -841,9 +841,9 @@
                         "gap": 16,
                         "width": "fill",
                         "custom_width": 100,
-                        "width_tablet": "fill",
+                        "width_tablet": "fit-content",
                         "custom_width_tablet": 100,
-                        "width_mobile": "fill",
+                        "width_mobile": "fit-content",
                         "custom_width_mobile": 100,
                         "height": "fit",
                         "custom_height": 100,
@@ -893,8 +893,8 @@
                         "margin-inline-end-mobile": 0,
                         "padding-block-start": 7,
                         "padding-block-end": 7,
-                        "padding-inline-start": 10,
-                        "padding-inline-end": 10
+                        "padding-inline-start": 8,
+                        "padding-inline-end": 8
                       },
                       "blocks": {
                         "text_rNJUfx": {
@@ -1005,9 +1005,9 @@
                         "gap": 16,
                         "width": "fill",
                         "custom_width": 100,
-                        "width_tablet": "fill",
+                        "width_tablet": "fit-content",
                         "custom_width_tablet": 100,
-                        "width_mobile": "fill",
+                        "width_mobile": "fit-content",
                         "custom_width_mobile": 100,
                         "height": "fit",
                         "custom_height": 100,
@@ -1057,8 +1057,8 @@
                         "margin-inline-end-mobile": 0,
                         "padding-block-start": 7,
                         "padding-block-end": 7,
-                        "padding-inline-start": 10,
-                        "padding-inline-end": 10
+                        "padding-inline-start": 8,
+                        "padding-inline-end": 8
                       },
                       "blocks": {
                         "text_aqcJeR": {
