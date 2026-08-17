@@ -1214,7 +1214,7 @@
                 "border_opacity": 0,
                 "border_radius": 16,
                 "toggle_overlay": true,
-                "overlay_color": "#e1238dba",
+                "overlay_color": "#E1238D",
                 "extend_left_overlay": false,
                 "extend_right_overlay": false,
                 "overlay_style": "solid",
@@ -1318,7 +1318,7 @@
                     "heading_only": true,
                     "heading_effect": "none",
                     "animation_repeat": false,
-                    "padding-block-start": 0,
+                    "padding-block-start": 32,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
