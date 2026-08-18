@@ -1547,7 +1547,7 @@
         "page_width": "page-width",
         "page_width_custom": 1200,
         "color_scheme": "scheme-7",
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "swipe_on_mobile": false,
         "show_arrows": false,
         "show_dots": true,
@@ -4900,7 +4900,7 @@
       ],
       "custom_css": [
         ".swiper .swiper-pagination-progressbar {width: 35%; margin: 50px auto 0px;}",
-        "@media screen and (max-width: 749px) {h2 {font-size: 28px !important; }.grid__item .group-block--height-fill {min-height: 275px;}}"
+        "@media screen and (max-width: 749px) {h2 {font-size: 28px !important; } .grid__item .group-block--height-fill {min-height: 275px; }}"
       ],
       "name": "t:names.testimonial",
       "settings": {
