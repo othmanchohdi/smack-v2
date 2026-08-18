@@ -6868,7 +6868,7 @@
                             "text_c3WGzn": {
                               "type": "text",
                               "settings": {
-                                "text": "<p>all the benefits of raw with scoop and serve convenience.</p>",
+                                "text": "<p>All the benefits of raw with scoop and serve convenience.</p>",
                                 "collection_description_only": false,
                                 "collapse_text": false,
                                 "typing_text": false,
@@ -7049,7 +7049,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p>X Made Without Compromise.</p>",
+                        "text": "<p>X Never</p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
