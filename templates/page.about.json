@@ -2568,7 +2568,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/Inspired_by_Zorro.jpg",
+                    "image": "shopify://shop_images/IMG_5867.png",
                     "link": "",
                     "hide_on_mobile": false,
                     "image_ratio": "adapt",
@@ -3154,7 +3154,7 @@
                     "unit_mobile": "percent",
                     "custom_width_mobile": 100,
                     "custom_width_mobile_pixel": 100,
-                    "height": "fit",
+                    "height": "auto",
                     "image_position": "cover",
                     "border": "solid",
                     "border_width": 0,
@@ -3762,8 +3762,8 @@
         "multicolumn_DWyg4b"
       ],
       "custom_css": [
-        ".image-block {height: 260px;}",
-        ".image-block img {height: 260px;}"
+        ".image-block {height: 250px;}",
+        ".image-block img {height: 250px;}"
       ],
       "name": "t:names.multicolumn",
       "settings": {
