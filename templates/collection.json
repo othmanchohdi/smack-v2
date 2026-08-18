@@ -1578,7 +1578,7 @@
             "vertical_alignment_flex_direction_column": "center",
             "horizontal_alignment_mobile": "flex-start",
             "vertical_alignment_mobile": "center",
-            "horizontal_alignment_flex_direction_column_mobile": "flex-start",
+            "horizontal_alignment_flex_direction_column_mobile": "center",
             "vertical_alignment_flex_direction_column_mobile": "center",
             "gap": 12,
             "width": "fill",
@@ -2598,6 +2598,9 @@
       },
       "block_order": [
         "group_QhGH9T"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 749px) {h2 {font-size: 28px !important; }}"
       ],
       "name": "Icons",
       "settings": {
