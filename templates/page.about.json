@@ -3762,8 +3762,8 @@
         "multicolumn_DWyg4b"
       ],
       "custom_css": [
-        ".image-block {height: 250px;}",
-        ".image-block img {height: 250px;}"
+        ".image-block {height: 235px;}",
+        ".image-block img {height: 235px;}"
       ],
       "name": "t:names.multicolumn",
       "settings": {
