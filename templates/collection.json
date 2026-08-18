@@ -4900,7 +4900,7 @@
       ],
       "custom_css": [
         ".swiper .swiper-pagination-progressbar {width: 35%; margin: 50px auto 0px;}",
-        "@media screen and (max-width: 749px) {h2 {font-size: 28px !important; }}"
+        "@media screen and (max-width: 749px) {h2 {font-size: 28px !important; }.grid__item .group-block--height-fill {min-height: 275px;}}"
       ],
       "name": "t:names.testimonial",
       "settings": {
@@ -4934,7 +4934,7 @@
         "gradient_direction": "to top",
         "image_behavior": "none",
         "padding-block-start": 50,
-        "padding-block-end": 0,
+        "padding-block-end": 50,
         "padding-inline-start": 0,
         "padding-inline-end": 0
       }
