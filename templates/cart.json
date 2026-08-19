@@ -177,6 +177,7 @@
             },
             "cart-note": {
               "type": "_cart-note",
+              "disabled": true,
               "static": true,
               "settings": {
                 "alignment": "left",
