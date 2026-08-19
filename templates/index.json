@@ -4051,6 +4051,7 @@
             },
             "testimonial_item_9df4Uh": {
               "type": "_testimonial-item",
+              "name": "Prairie Harvest Pork",
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
@@ -4192,7 +4193,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p>Gene A. ✓ Verified Buyer</p>",
+                        "text": "<p>Rhonda G. ✓ Verified Buyer</p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
@@ -4200,7 +4201,7 @@
                         "secondary_text": "Exclusive offers just for you.",
                         "third_text": "Shop now and enjoy deals!",
                         "highlight_text": true,
-                        "highlight_text_content": "Gene A. ✓ Verified Buyer",
+                        "highlight_text_content": "Rhonda G. ✓ Verified Buyer",
                         "highlight_text_type": "text",
                         "underline_width": 100,
                         "underline_height": 18,
@@ -4274,7 +4275,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>“I have tried them all this Smack is the only one she will eat consistantly as long as I rotate between the different proteins.”</p>",
+                        "text": "<p><strong>Princess Violet is all better! <br/></strong>“Princess Violet is THRIVING on this recipe. People stop us on our walks to comment on her glowing coat. Skin is perfectly healed from major hotspots. Her eyes are bright & shiny too. Inflammation is GONE!”</p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
@@ -4441,7 +4442,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p>Chunky Chicken</p>",
+                        "text": "<p>Prairie Harvest Pork</p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
@@ -4530,7 +4531,7 @@
                         "custom_width": 80,
                         "svg_height": "fit-content",
                         "custom_height": 80,
-                        "image_upload": "shopify://shop_images/square.webp",
+                        "image_upload": "shopify://shop_images/PHP_Dog__2.5kg_Front_1.png",
                         "link": "",
                         "open_in_new_tab": false,
                         "width": 40,
@@ -5056,6 +5057,7 @@
             },
             "testimonial_item_YerbiT": {
               "type": "_testimonial-item",
+              "disabled": true,
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
