@@ -2602,7 +2602,7 @@
                     "gap": 12,
                     "width": "fill",
                     "custom_width": 100,
-                    "height": "fit-content",
+                    "height": "fill",
                     "padding-block-start": 25,
                     "padding-block-end": 25,
                     "padding-inline-start": 25,
