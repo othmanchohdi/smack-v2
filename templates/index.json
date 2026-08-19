@@ -2170,7 +2170,7 @@
         "multicolumn_TTxap9"
       ],
       "custom_css": [
-        ".swiper-button {top: 95%; z-index: 99999;}"
+        ".swiper-button {top: 90%; z-index: 99999; background-color: #dfdfdb;}"
       ],
       "name": "Icons",
       "settings": {
