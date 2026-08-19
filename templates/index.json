@@ -2564,10 +2564,10 @@
                 "navigation": "arrows-pagination",
                 "arrows_position": "bottom",
                 "arrow_horizontal_position": 0,
-                "pagination_type": "dynamic",
+                "pagination_type": "fraction",
                 "always_show_swiper_button": false,
                 "show_fraction_on_arrow": false,
-                "dots_top_offset": 40,
+                "dots_top_offset": 25,
                 "progress_top_offset": 40,
                 "progressbar_left": 0,
                 "progressbar_right": 0,
@@ -2765,7 +2765,7 @@
         "group_AmWWJD"
       ],
       "custom_css": [
-        ".card{min-height: 420px; margin-bottom: 25px;}"
+        ".card {min-height: 420px; margin-bottom: 25px;}"
       ],
       "name": "t:names.custom_section",
       "settings": {
