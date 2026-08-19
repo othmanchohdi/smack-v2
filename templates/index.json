@@ -1314,7 +1314,7 @@
             "loop": true,
             "navigation": "arrows-pagination",
             "pagination_type": "bullets",
-            "dots_top_offset": 41,
+            "dots_top_offset": 55,
             "progress_top_offset": 40,
             "width": "custom",
             "custom_width": 80,
