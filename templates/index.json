@@ -2565,7 +2565,7 @@
                 "arrows_position": "bottom",
                 "arrow_horizontal_position": 0,
                 "pagination_type": "fraction",
-                "always_show_swiper_button": false,
+                "always_show_swiper_button": true,
                 "show_fraction_on_arrow": false,
                 "dots_top_offset": 25,
                 "progress_top_offset": 40,
