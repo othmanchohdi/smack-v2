@@ -3548,6 +3548,7 @@
             },
             "testimonial_item_7jpeHW": {
               "type": "_testimonial-item",
+              "name": "Very Berry Chicken",
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
@@ -3689,7 +3690,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p>Darla N. ✓ Verified Buyer</p>",
+                        "text": "<p>Bonnie H.  ✓ Verified Buyer</p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
@@ -3697,7 +3698,7 @@
                         "secondary_text": "Exclusive offers just for you.",
                         "third_text": "Shop now and enjoy deals!",
                         "highlight_text": true,
-                        "highlight_text_content": "Darla N. ✓ Verified Buyer",
+                        "highlight_text_content": "Bonnie H.  ✓ Verified Buyer",
                         "highlight_text_type": "text",
                         "underline_width": 100,
                         "underline_height": 18,
@@ -3771,7 +3772,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>“My pups like this so much! It is softer than the lamb and pork which is why my small pups like it more!”</p>",
+                        "text": "<p><strong>The Best Choice Bar None<br/></strong>“ I switched my Pomeranian to Smack food 6 months ago and will never go back to off-the-shelf food again. He’s happier. His coat is healthier, and he seems to have infinite energy again. Thank you, Smack.”</p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
@@ -3821,7 +3822,7 @@
                         "alignment_mobile": "left",
                         "type_preset": "custom",
                         "font": "var(--font-body--family)",
-                        "font_size": "2.4rem",
+                        "font_size": "1.6rem",
                         "font_weight": "default",
                         "line_height": "normal",
                         "letter_spacing": "normal",
