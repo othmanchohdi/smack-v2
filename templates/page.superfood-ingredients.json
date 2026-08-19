@@ -1152,7 +1152,7 @@
         "columns": "2",
         "column_gap": 20,
         "text_align": "center",
-        "show_animal_tab": true,
+        "show_animal_tab": false,
         "animal_tab_label": "Animal Protein Ingredients",
         "show_plant_tab": true,
         "plant_tab_label": "Plant-Based Ingredients",
