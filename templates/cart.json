@@ -116,7 +116,7 @@
                 "horizontal_alignment": "flex-start",
                 "horizontal_alignment_mobile": "flex-start",
                 "vertical_alignment": "flex-end",
-                "align_baseline": false,
+                "align_baseline": true,
                 "gap": 15,
                 "icon_position": "icon-left",
                 "icon": "security",
@@ -309,7 +309,7 @@
         ".cart-page__summary {background-color: #fff; border-radius: 12px;}",
         "cart-items-component .cart-items thead tr {background-color: #ffffff; border-bottom: 1px solid #e4e4e4;}",
         ".field:after {box-shadow: 0 0 0 var(--inputs-border-width) rgb(224 224 224);}",
-        ".cart__summary .text-block {background: #14399a; color: #fff; padding: 10px 25px;}",
+        ".cart__summary .text-block {background: #E1228D; color: #fff; padding: 10px 25px;}",
         ".cart-shipping-calculator,.cart-discounts,.cart-total,.cart-checkout {padding: 15px 25px;}",
         ".cart-items__wrapper {padding: 35px;}"
       ],
