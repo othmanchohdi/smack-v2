@@ -2547,8 +2547,8 @@
                 "custom_width_tablet": 100,
                 "width_mobile": "fill",
                 "custom_width_mobile": 100,
-                "collection": "super-food-for-dogs",
-                "products_to_show": 3,
+                "collection": "shop-all",
+                "products_to_show": 12,
                 "columns_desktop": 4,
                 "columns_desktop_carousel": 4,
                 "columns_mobile": "1",
@@ -2561,10 +2561,10 @@
                 "custom_block_width": "full",
                 "horizontal_position": 0,
                 "vertical_position": 0,
-                "navigation": "pagination",
+                "navigation": "arrows-pagination",
                 "arrows_position": "bottom",
                 "arrow_horizontal_position": 0,
-                "pagination_type": "progressbar",
+                "pagination_type": "dynamic",
                 "always_show_swiper_button": false,
                 "show_fraction_on_arrow": false,
                 "dots_top_offset": 40,
@@ -2602,7 +2602,7 @@
                     "gap": 12,
                     "width": "fill",
                     "custom_width": 100,
-                    "height": "fill",
+                    "height": "fit-content",
                     "padding-block-start": 25,
                     "padding-block-end": 25,
                     "padding-inline-start": 25,
@@ -2763,6 +2763,9 @@
       },
       "block_order": [
         "group_AmWWJD"
+      ],
+      "custom_css": [
+        ".card{min-height: 420px; margin-bottom: 25px;}"
       ],
       "name": "t:names.custom_section",
       "settings": {
