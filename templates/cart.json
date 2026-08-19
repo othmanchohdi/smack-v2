@@ -140,7 +140,7 @@
                 "subtext": "",
                 "width": "fit-content",
                 "alignment": "left",
-                "padding-block-start": 0,
+                "padding-block-start": 20,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
@@ -311,7 +311,7 @@
         ".field:after {box-shadow: 0 0 0 var(--inputs-border-width) rgb(224 224 224);}",
         ".cart__summary .text-block {background: #14399a; color: #fff; padding: 10px 25px;}",
         ".cart-shipping-calculator,.cart-discounts,.cart-total,.cart-checkout {padding: 15px 25px;}",
-        ".cart-items__wrapper {padding: 75px;}"
+        ".cart-items__wrapper {padding: 35px;}"
       ],
       "settings": {
         "section_width": "custom",
