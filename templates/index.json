@@ -7290,7 +7290,7 @@
                             "text_3ktHVV": {
                               "type": "text",
                               "settings": {
-                                "text": "<p>No mystery meats</p>",
+                                "text": "<p>Mystery meats</p>",
                                 "collection_description_only": false,
                                 "collapse_text": false,
                                 "typing_text": false,
@@ -7298,7 +7298,7 @@
                                 "secondary_text": "Exclusive offers just for you.",
                                 "third_text": "Shop now and enjoy deals!",
                                 "highlight_text": true,
-                                "highlight_text_content": "No mystery meats",
+                                "highlight_text_content": "Mystery meats",
                                 "highlight_text_type": "text",
                                 "underline_width": 100,
                                 "underline_height": 18,
