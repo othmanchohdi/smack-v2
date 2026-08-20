@@ -1246,6 +1246,12 @@ svg {
   }
 }
 
+@media screen and (min-width: 750px) {
+  .sm\:hidden {
+    display: none !important;
+  }
+}
+
 @media screen and (max-width: 749px) {
   .max-sm\:w-full {
     width: 100%;
