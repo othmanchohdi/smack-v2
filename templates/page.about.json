@@ -342,6 +342,7 @@
                   "name": "t:names.image",
                   "settings": {
                     "image": "shopify://shop_images/about-hero.png",
+                    "mobile_image": "shopify://shop_images/Content_Cards_V1_3.png",
                     "link": "",
                     "hide_on_mobile": false,
                     "image_ratio": "adapt",
