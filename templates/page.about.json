@@ -3591,7 +3591,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Today</p>",
+                    "text": "<p>TODAY</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
