@@ -455,7 +455,9 @@
         "slide_jXJY6F"
       ],
       "custom_css": [
-        ".page-width,.signup-form{margin: auto;}"
+        ".page-width,.signup-form {margin: auto;}",
+        ".email-signup__button {margin-left: -5%; height: 46px;}",
+        ".email-signup__input {padding-left: 97%;}"
       ],
       "name": "t:names.slideshow",
       "settings": {
