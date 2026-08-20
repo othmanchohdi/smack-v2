@@ -24,7 +24,7 @@
             "navigation": "pagination",
             "arrows_position": "bottom_center",
             "swiper_buttons_gap": 20,
-            "pagination_type": "dynamic",
+            "pagination_type": "thumbnails",
             "thumbnail_position": "bottom",
             "thumbnail_width": 70,
             "pagination_position": "inside",
