@@ -265,7 +265,7 @@
                 "link": "",
                 "open_in_new_tab": false,
                 "hide_on_tablet": false,
-                "hide_on_mobile": true,
+                "hide_on_mobile": false,
                 "custom_class": "home-hero",
                 "content_direction": "column",
                 "content_direction_mobile": "column",
