@@ -9691,7 +9691,8 @@
   "platform_customizations": {
     "custom_css": [
       ".menu-drawer__utility-heading {color: #000; margin-bottom: 10px !important;}",
-      ".menu-drawer__utility-links {margin-left: 2rem !important;}"
+      ".menu-drawer__utility-links {margin-left: 2rem !important;}",
+      "@media screen and (max-width: 749px) {.swiper-controls__thumbnails-container {display: none;}}"
     ]
   }
 }
