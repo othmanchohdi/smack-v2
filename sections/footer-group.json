@@ -45,7 +45,7 @@
                 "open_in_new_tab": false,
                 "hide_on_tablet": false,
                 "hide_on_mobile": false,
-                "custom_class": "",
+                "custom_class": "signup-form",
                 "content_direction": "column",
                 "content_direction_mobile": "column",
                 "horizontal_alignment": "flex-start",
@@ -58,8 +58,8 @@
                 "horizontal_alignment_flex_direction_column_mobile": "flex-start",
                 "vertical_alignment_flex_direction_column_mobile": "center",
                 "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
+                "width": "custom",
+                "custom_width": 50,
                 "width_tablet": "fill",
                 "custom_width_tablet": 100,
                 "width_mobile": "fill",
@@ -453,6 +453,9 @@
       },
       "block_order": [
         "slide_jXJY6F"
+      ],
+      "custom_css": [
+        ".page-width,.signup-form{margin: auto;}"
       ],
       "name": "t:names.slideshow",
       "settings": {
