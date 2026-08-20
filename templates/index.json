@@ -57,7 +57,7 @@
             "background_image_b": "shopify://shop_images/New_Website_Homepage_Banner_Desktop.png",
             "background_image_mobile": "shopify://shop_images/home-hero-mobile.png",
             "background_image_b_mobile": "shopify://shop_images/New_Website_Homepage_Banner_Mobil_62646ade-181d-48ab-840c-e06f355dadc2.png",
-            "background_image_position": "fit",
+            "background_image_position": "cover",
             "content_overlay": false,
             "content_match_height": false,
             "image_ratio": "adapt",
