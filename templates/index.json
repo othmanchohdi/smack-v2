@@ -4945,7 +4945,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p>Rockin’ Rock Fish</p>",
+                        "text": "<p><a href=\"/products/rockin-rockfish-crunchy\" title=\"Rockin' Rockfish\">Rockin’ Rock Fish</a></p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
