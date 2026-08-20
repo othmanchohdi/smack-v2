@@ -237,11 +237,6 @@
         "disabled": false,
         "settings": {}
       },
-      "973392885551459638": {
-        "type": "shopify://apps/powr-wholesale-orders/blocks/app-embed/668426c5-7e7a-462e-b09e-e672a6f17c5e",
-        "disabled": true,
-        "settings": {}
-      },
       "14339172867238703359": {
         "type": "shopify://apps/yotpo-product-reviews/blocks/reviews_tab/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
         "disabled": false,
@@ -313,6 +308,11 @@
           "inject_modules_loader": true,
           "inject_sdk_loader": false
         }
+      },
+      "973392885551459638": {
+        "type": "shopify://apps/powr-wholesale-orders/blocks/app-embed/668426c5-7e7a-462e-b09e-e672a6f17c5e",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
@@ -9692,7 +9692,7 @@
     "custom_css": [
       ".menu-drawer__utility-heading {color: #000; margin-bottom: 10px !important;}",
       ".menu-drawer__utility-links {margin-left: 2rem !important;}",
-      "@media screen and (max-width: 749px) {.swiper-controls__thumbnails-container {display: none;}}"
+      "@media screen and (max-width: 749px) {.swiper-controls__thumbnails-container {display: none; }}"
     ]
   }
 }
