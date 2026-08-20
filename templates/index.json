@@ -8944,7 +8944,7 @@
                 "shadow_blur": 0,
                 "spread_radius": 0,
                 "margin-block-start": 0,
-                "margin-block-start-mobile": 50,
+                "margin-block-start-mobile": 0,
                 "margin-block-end": 0,
                 "margin-block-end-mobile": 0,
                 "margin-inline-start": 0,
