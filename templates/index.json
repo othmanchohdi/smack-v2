@@ -1322,7 +1322,7 @@
             "custom_width_tablet": 100,
             "width_mobile": "custom",
             "custom_width_mobile": 80,
-            "height": "fit",
+            "height": "fill",
             "custom_height": 100,
             "border": "none",
             "border_separator_items": false,
@@ -2204,7 +2204,7 @@
         "gradient_direction": "to top",
         "image_behavior": "none",
         "padding-block-start": 20,
-        "padding-block-end": 40,
+        "padding-block-end": 0,
         "padding-inline-start": 0,
         "padding-inline-end": 0
       }
