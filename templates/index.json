@@ -3436,7 +3436,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p>Meal Variety Pack for Dogs</p>",
+                        "text": "<p><a href=\"/products/meal-variety-pack-for-dogs\" title=\"Meal Variety Pack for Dogs\">Meal Variety Pack for Dogs</a></p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
@@ -3939,7 +3939,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p>Very Berry Chicken</p>",
+                        "text": "<p><a href=\"/products/very-berry-chicken-crunchy-style\" title=\"Very Berry Chicken\">Very Berry Chicken</a></p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
@@ -4442,7 +4442,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<p>Prairie Harvest Pork</p>",
+                        "text": "<p><a href=\"/products/prairie-harvest-pork\" title=\"Prairie Harvest Pork\">Prairie Harvest Pork</a></p>",
                         "collection_description_only": false,
                         "collapse_text": false,
                         "typing_text": false,
