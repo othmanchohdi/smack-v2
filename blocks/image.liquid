@@ -15,6 +15,8 @@
   endif
 
   assign image = block.settings.image
+  assign mobile_image = block.settings.mobile_image
+
   assign image_height = block.settings.image.height
   assign image_height_2x = image_height | times: 2
   assign image_width = block.settings.image.width
@@ -49,6 +51,7 @@
   assign widths = '300, 450, 600, 750, 900, 1050, 1200, 1350, 1500, 1650, 1800, 1950, 2000, 2500, 3000, 3500, 4000, 5000'
 
   assign element = 'div'
+
   if block.settings.animation_type == 'fancybox'
     assign element = 'a'
   elsif block.settings.animation_type == 'parallax'
@@ -80,9 +83,11 @@
 
 {% capture attributes %}
   {{ block.shopify_attributes }}
+
   {% if block.settings.animation_type == 'fancybox' %}
     {{ attributes_fancybox }}
   {% endif %}
+
   {% if block.settings.animation_type == 'parallax' %}
     {{ attributes_parllax }}
   {% endif %}
@@ -101,6 +106,7 @@
   style="{{ style }}"
   {{ attributes }}
 >
+
   {%- if block.settings.link != blank -%}
     <a
       href="{{ block.settings.link }}"
@@ -108,27 +114,72 @@
       aria-label="Image Block Link"
     ></a>
   {%- endif -%}
+
   {%- if image != blank -%}
+
     {% liquid
       assign fetch_priority = 'auto'
+
       if section and section.index == 1
         assign fetch_priority = 'high'
       endif
     %}
-    {%- render 'image',
-      image: image,
-      class: class_img,
-      width: image.width,
-      height: image.height,
-      widths: widths,
-      sizes: sizes,
-      fetch_priority: fetch_priority,
-      style: style_value
-    -%}
+
+    <picture class="image-block__picture">
+
+      {%- if mobile_image != blank -%}
+        <source
+          media="(max-width: 749px)"
+          srcset="
+            {{ mobile_image | image_url: width: 300 }} 300w,
+            {{ mobile_image | image_url: width: 450 }} 450w,
+            {{ mobile_image | image_url: width: 600 }} 600w,
+            {{ mobile_image | image_url: width: 750 }} 750w,
+            {{ mobile_image | image_url: width: 900 }} 900w,
+            {{ mobile_image | image_url: width: 1050 }} 1050w,
+            {{ mobile_image | image_url: width: 1200 }} 1200w
+          "
+          sizes="100vw"
+        >
+      {%- endif -%}
+
+      {{
+        image
+        | image_url: width: 5000
+        | image_tag:
+          class: class_img,
+          widths: widths,
+          sizes: sizes,
+          fetchpriority: fetch_priority,
+          style: style_value
+      }}
+
+    </picture>
+
   {%- else -%}
+
     {{ 'hero-apparel-1' | placeholder_svg_tag: 'image-block__image placeholder-svg' }}
+
   {%- endif -%}
+
 </{{ element }}>
+
+{% style %}
+
+  .image-block--{{ block.id }} .image-block__picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-block--{{ block.id }} .image-block__picture img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: var(--object-fit, cover);
+  }
+
+{% endstyle %}
 
 {% schema %}
 {
@@ -138,7 +189,12 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "t:settings.image"
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
     },
     {
       "type": "url",
@@ -162,6 +218,10 @@
         {
           "value": "adapt",
           "label": "t:options.adapt_to_image"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape"
         },
         {
           "value": "portrait",
