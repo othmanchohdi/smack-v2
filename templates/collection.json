@@ -993,7 +993,7 @@
                 "heading_effect": "none",
                 "animation_repeat": false,
                 "padding-block-start": 60,
-                "padding-block-end": 0,
+                "padding-block-end": 60,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
@@ -1009,7 +1009,7 @@
         "slide_Li68Lj"
       ],
       "custom_css": [
-        "@media screen and (max-width: 749px) {h1 {font-size: 28px !important; }}"
+        "@media screen and (max-width: 749px) {h1 {font-size: 28px !important; padding-top: 30px; padding-bottom: 70px; width: 80%; }}"
       ],
       "name": "t:names.slideshow",
       "settings": {
