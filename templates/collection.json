@@ -1009,7 +1009,7 @@
         "slide_Li68Lj"
       ],
       "custom_css": [
-        "@media screen and (max-width: 749px) {h1 {font-size: 28px !important; padding-top: 30px; padding-bottom: 70px; width: 80%; margin:auto; }}"
+        "@media screen and (max-width: 749px) {h1 {font-size: 28px !important; padding-top: 35px; padding-bottom: 70px; width: 80%; margin: auto; }}"
       ],
       "name": "t:names.slideshow",
       "settings": {
