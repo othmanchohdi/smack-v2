@@ -8608,7 +8608,7 @@
                 "unit_tablet": "percent",
                 "custom_width_tablet": 100,
                 "custom_width_tablet_pixel": 100,
-                "width_mobile": "fit-content",
+                "width_mobile": "custom",
                 "unit_mobile": "percent",
                 "custom_width_mobile": 100,
                 "custom_width_mobile_pixel": 100,
