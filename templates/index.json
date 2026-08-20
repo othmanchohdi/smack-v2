@@ -8166,7 +8166,7 @@
                             "text_CFAxUV": {
                               "type": "text",
                               "settings": {
-                                "text": "<p>Free of added hormones</p>",
+                                "text": "<p>Added hormones</p>",
                                 "collection_description_only": false,
                                 "collapse_text": false,
                                 "typing_text": false,
