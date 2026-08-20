@@ -358,7 +358,7 @@
                     "unit_mobile": "percent",
                     "custom_width_mobile": 100,
                     "custom_width_mobile_pixel": 100,
-                    "height": "auto",
+                    "height": "fit",
                     "image_position": "contain",
                     "border": "none",
                     "border_width": 1,
