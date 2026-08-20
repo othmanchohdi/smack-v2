@@ -992,7 +992,7 @@
                 "heading_only": true,
                 "heading_effect": "none",
                 "animation_repeat": false,
-                "padding-block-start": 0,
+                "padding-block-start": 60,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
