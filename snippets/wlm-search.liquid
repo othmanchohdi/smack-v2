@@ -1,0 +1,103 @@
+{%- assign w_continue = 'no' -%}
+{% assign wlmHideItem_Search = false %}{% assign wlmLockedTags19695 = false %}
+{% assign wlmLockedTags163973 = false %}
+{% assign wlmLockedTags163974 = false %}
+{% assign wlmLockedTags164322 = false %}
+{% assign wlmLockedTags163983 = false %}
+{% assign wlmLockedTags19752 = false %}
+{% assign wlmLockedTags163972 = false %}
+{% assign wlmLockedTags164237 = false %}
+{% assign wlmLockedTags352208 = false %}
+{% assign wlmLockedTags163998 = false %}
+{% assign wlmLockedTags171007 = false %}
+{% assign wlmLockedTags171910 = false %}
+{% assign wlmLockedTags177494 = false %}
+{% assign wlmLockedTags178177 = false %}
+{% assign wlmLockedTags244442 = false %}
+{% for tag in customer.tags %}
+{% if tag == 'W1' %}{% assign wlmLockedTags19695 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags163973 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags163974 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags164322 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags163983 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags19752 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags163972 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags164237 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags352208 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags163998 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags171007 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags171910 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags177494 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags178177 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags244442 = true %}{% endif %}
+{% endfor %}
+
+{%  if wlm-search.object_type == 'product' %}
+{% if wlm-search.id == 9221665985 or wlm-search.id == 9221659137 or wlm-search.id == 3886621949997 or wlm-search.id == 3886621753389 or wlm-search.id == 3886622015533 or wlm-search.id == 3886622507053 or wlm-search.id == 9221653057 or wlm-search.id == 9221655873 %} 
+ {% unless customer %}
+{% assign wlmLockON = true %}
+  {% assign wlmHideItem_Search = true %}
+{% else %}
+{% unless wlmLockedTags163983 %}{% assign wlmHideItem_Search = true %}{% endunless %}
+{% endunless %}
+{% endif %}
+{% endif %}
+
+
+{%  if wlm-search.object_type == 'product' and wlm-search.collections %}
+
+{% for c in wlm-search.collections %}
+
+    {% if c.id == 139662753837 or c.id == 150809411717 or c.id == 150809378949 %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+  {% assign wlmHideItem_Search = true %}
+{% else %}
+{% unless wlmLockedTags19752 %}{% assign wlmHideItem_Search = true %}{% endunless %}
+{% endunless %}
+
+{% endif %}
+{% endfor %}{% endif %}
+
+{%  if wlm-search.object_type == 'product' and wlm-search.collections %}
+
+{% for c in wlm-search.collections %}
+
+    {% if c.id == 324638465 or c.id == 136627879981 or c.id == 136627847213 or c.id == 322705653922 %}
+{% if customer %}
+{% if wlmLockedTags352208 %}{% assign wlmHideItem_Search = true %}
+{% else %}{% assign wlmHideItem_Search = false %}
+{% endif %}
+{% endif %}
+
+{% endif %}
+{% endfor %}{% endif %}
+
+{%  if wlm-search.object_type == 'product' and wlm-search.collections %}
+
+{% for c in wlm-search.collections %}
+
+    {% if c.id == 292363305122 %}
+{% if customer %}
+{% if wlmLockedTags163998 %}{% assign wlmHideItem_Search = true %}
+{% else %}{% assign wlmHideItem_Search = false %}
+{% endif %}
+{% endif %}
+
+{% endif %}
+{% endfor %}{% endif %}
+{%  if wlm-search.object_type == 'product' %}
+{% if wlm-search.id == 8233234137250 or wlm-search.id == 8233234268322 or wlm-search.id == 8233234333858 %} 
+ {% unless customer %}
+{% assign wlmLockON = true %}
+  {% assign wlmHideItem_Search = true %}
+{% else %}
+{% unless wlmLockedTags244442 %}{% assign wlmHideItem_Search = true %}{% endunless %}
+{% endunless %}
+{% endif %}
+{% endif %}
+
+
+
+{% if wlmHideItem_Search == true %}{% continue %}{% endif %} {%- if wlm_is_render == 'yes' -%}{{- w_continue -}}{%-endif -%} 
+

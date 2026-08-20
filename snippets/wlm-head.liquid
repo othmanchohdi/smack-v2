@@ -1,0 +1,466 @@
+<script type='text/javascript' src='/apps/wlm/js/wlm-1.1.js?v=3.0'></script>
+{% assign wlmEnabled = true %}
+{% assign wlmLockON = false %}
+{% assign wlmRedirectURL = '' %} 
+{% assign wlmPnfHead = '' %} 
+{% assign wlmPnfMsg = '' %}
+{% assign wlmPwdForm = false %}
+{% assign wlmPwdMsg = '' %}
+{% assign wlmSuperPage = false %}
+
+{% if template == 'customers/login' or template == 'customers/activate_account' or template == 'customers/reset_password' or canonical_url contains 'challenge' %}
+
+{% unless canonical_url contains '/products/' or canonical_url contains '/collection/' or canonical_url contains '/collections/' or canonical_url contains '/search' %} {% assign wlmSuperPage = true %}
+ {% endunless %}{% endif %}
+
+{% capture wlm_check %}{% include 'super_page_access' %}{% endcapture %}{% unless wlm_check contains 'Liquid error' %}{% include 'super_page_access' %}{% endunless %}
+{% if wlmEnabled %}
+<style type="text/css">.wlm-message-pnf{text-align:center}#wlm-pwd-form{padding:30px 0;text-align:center}#wlm-wrapper{display:inline-block}#wlm-pwd-error{display:none;color:#FB8077;text-align:left;margin-top:10px;font-size:1.3rem}#wlm-pwd-error.wlm-error{border:1px solid #FB8077}#wlm-pwd-form-button{display:inline-block !important;height:auto !important;padding:8px 15px !important;background:black;border-radius:0 !important;color:#fff !important;text-decoration:none !important;vertical-align:top}.wlm-instantclick-fix,.wlm-item-selector{position:absolute;z-index:-999;display:none;height:0;width:0;font-size:0;line-height:0}#wlm-pwd-msg{margin-bottom:20px;text-align:left}#wlm-pwd-msg>p{margin-top:0;margin-bottom:0}.wlm-form-holder{display:flex}#wlm-pwd{border-color:black;border-width:1px;border-right:0;padding:0 10px}#wlm-pwd:focus-visible{outline:0}</style>
+
+{% assign wlmLockedTags19695 = false %}
+{% assign wlmLockedTags163973 = false %}
+{% assign wlmLockedTags163974 = false %}
+{% assign wlmLockedTags164322 = false %}
+{% assign wlmLockedTags163983 = false %}
+{% assign wlmLockedTags19752 = false %}
+{% assign wlmLockedTags163972 = false %}
+{% assign wlmLockedTags164237 = false %}
+{% assign wlmLockedTags352208 = false %}
+{% assign wlmLockedTags163998 = false %}
+{% assign wlmLockedTags171007 = false %}
+{% assign wlmLockedTags171910 = false %}
+{% assign wlmLockedTags177494 = false %}
+{% assign wlmLockedTags178177 = false %}
+{% assign wlmLockedTags244442 = false %}
+{% for tag in customer.tags %}
+{% if tag == 'W1' %}{% assign wlmLockedTags19695 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags163973 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags163974 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags164322 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags163983 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags19752 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags163972 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags164237 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags352208 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags163998 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags171007 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags171910 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags177494 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags178177 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags244442 = true %}{% endif %}
+{% endfor %}
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains 'page' and page %}{% if page.id == 44854345861 %}{% assign wlmLockedContent = true %}{% endif %}{% endif %}
+{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% else %}
+{% unless wlmLockedTags19695 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains 'page' and page %}{% if page.id == 44854280325 %}{% assign wlmLockedContent = true %}{% endif %}{% endif %}
+{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% else %}
+{% unless wlmLockedTags163973 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains 'page' and page %}{% if page.id == 43705696301 %}{% assign wlmLockedContent = true %}{% endif %}{% endif %}
+{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% else %}
+{% unless wlmLockedTags163974 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains 'page' and page %}{% if page.id == 44854214789 %}{% assign wlmLockedContent = true %}{% endif %}{% endif %}
+{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% else %}
+{% unless wlmLockedTags164322 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains "product" and product %} {% if product.id == 9221665985 or product.id == 9221659137 or product.id == 3886621949997 or product.id == 3886621753389 or product.id == 3886622015533 or product.id == 3886622507053 or product.id == 9221653057 or product.id == 9221655873 %} {% assign wlmLockedContent = true %}{% endif %}{% endif %}{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% else %}
+{% unless wlmLockedTags163983 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}http://www.smackpetfood.com{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains "collection" or template contains "product" %}
+{% if product.collections %}
+{% for c in product.collections %}
+{% if c.id == 139662753837 or c.id == 150809411717 or c.id == 150809378949 %} 
+{% assign wlmLockedContent = true %}{% break %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% if template contains 'collection' or template contains 'product' %}
+{% if collection %}
+{% if   collection.handle == 'wholesale-catalogue-order' or  collection.handle == 'super-food-for-cats-w1' or  collection.handle == 'super-food-for-dogs-w1' %}
+{% assign wlmLockedContent = true %}
+{% endif %}
+{% endif %}
+{% endif %}
+{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% else %}
+{% unless wlmLockedTags19752 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains 'page' and page %}{% if page.id == 44855099525 %}{% assign wlmLockedContent = true %}{% endif %}{% endif %}
+{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% else %}
+{% unless wlmLockedTags163972 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template == 'index' %}{% assign wlmLockedContent = true %}{% endif %}
+{% if wlmLockedContent %}
+{% if customer %}
+{% if wlmLockedTags164237 %}{% assign wlmLockON = true %}{% else %}{% assign wlmLockON = false %}{% endif %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/how-to-order{% endcapture %}
+{% endif %}
+{% endif %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains "collection" or template contains "product" %}
+{% if product.collections %}
+{% for c in product.collections %}
+{% if c.id == 324638465 or c.id == 136627879981 or c.id == 136627847213 or c.id == 322705653922 %} 
+{% assign wlmLockedContent = true %}{% break %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% if template contains 'collection' or template contains 'product' %}
+{% if collection %}
+{% if   collection.handle == 'all' or  collection.handle == 'super-food-for-cats' or  collection.handle == 'super-food-for-dogs' or  collection.handle == 'black-friday-2025-dtc-deals-collection' %}
+{% assign wlmLockedContent = true %}
+{% endif %}
+{% endif %}
+{% endif %}
+{% if wlmLockedContent %}
+{% if customer %}
+{% if wlmLockedTags352208 %}{% assign wlmLockON = true %}{% else %}{% assign wlmLockON = false %}{% endif %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/how-to-order{% endcapture %}
+{% endif %}
+{% endif %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains "collection" or template contains "product" %}
+{% if product.collections %}
+{% for c in product.collections %}
+{% if c.id == 292363305122 %} 
+{% assign wlmLockedContent = true %}{% break %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% if template contains 'collection' or template contains 'product' %}
+{% if collection %}
+{% if   collection.handle == 'faq' %}
+{% assign wlmLockedContent = true %}
+{% endif %}
+{% endif %}
+{% endif %}
+{% if wlmLockedContent %}
+{% if customer %}
+{% if wlmLockedTags163998 %}{% assign wlmLockON = true %}{% else %}{% assign wlmLockON = false %}{% endif %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/faq{% endcapture %}
+{% endif %}
+{% endif %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% assign LockURL='smackpetfood.com/apps/shop/wholesale-catalogue-order' %}
+{% if canonical_url contains LockURL %}{% assign wlmLockedContent = true %}{% endif %}
+{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% else %}
+{% unless wlmLockedTags171007 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains 'page' and page %}{% if page.id == 94753194146 %}{% assign wlmLockedContent = true %}{% endif %}{% endif %}
+{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% else %}
+{% unless wlmLockedTags171910 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% assign LockURL='smackpetfood.com/pages/wholesale-1' %}
+{% if canonical_url contains LockURL %}{% assign wlmLockedContent = true %}{% endif %}
+{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% else %}
+{% unless wlmLockedTags177494 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains 'page' and page %}{% if page.id == 202636225 %}{% assign wlmLockedContent = true %}{% endif %}{% endif %}
+{% if wlmLockedContent %}
+{% if customer %}
+{% if wlmLockedTags178177 %}{% assign wlmLockON = true %}{% else %}{% assign wlmLockON = false %}{% endif %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/how-to-order{% endcapture %}
+{% endif %}
+{% endif %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains "product" and product %} {% if product.id == 8233234137250 or product.id == 8233234268322 or product.id == 8233234333858 %} {% assign wlmLockedContent = true %}{% endif %}{% endif %}{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}https://www.smackpetfood.com/{% endcapture %}
+{% else %}
+{% unless wlmLockedTags244442 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}https://www.smackpetfood.com/{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}https://www.smackpetfood.com/{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% endif %}
+
+{% capture wlm_check_hide %}{% include 'wlm-hideByLink' %}{% endcapture %}{% unless wlm_check_hide contains 'Liquid error' %}{% include 'wlm-hideByLink' %}{% endunless %}
+
+{% if wlmLockON %}<meta name='robots' content='NOINDEX,NOFOLLOW,NOARCHIVE,NOSNIPPET,NOODP,NOYDIR' />{% endif %}
+<script type='text/javascript'>
+{% if wlmLockON %}
+wlm.navigate('{{ wlmRedirectURL}}');
+{% else %}
+wlm.navigateByLocation();
+{% endif %}
+wlm.jq(document).ready(function(){
+wlm.removeLinks();
+});
+</script>
+{% capture wlm_hide_price_check %}{% include "wlm-hide-price" %}{% endcapture %}
+{% unless wlm_hide_price_check contains 'Liquid error' %}
+{% include "wlm-hide-price" %}
+{% endunless %}

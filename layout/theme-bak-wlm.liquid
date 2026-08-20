@@ -65,8 +65,7 @@
     {% render 'global-css', direction: direction %}
     {%- render 'global-script' -%}
 
-    {% unless request.design_mode %}{% include 'wlm-head' %}{% endunless %}
-{{ content_for_header }}
+    {{ content_for_header }}
 
     {%- render 'wholesale-gate' -%}
   </head>
@@ -114,7 +113,7 @@
       role="main"
       tabindex="-1"
     >
-      {% comment %}{{ content_for_layout }}{% endcomment %}{% include 'wlm-body' %}
+      {{ content_for_layout }}
     </main>
 
     {% sections 'footer-group' %}
