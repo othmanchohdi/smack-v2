@@ -359,7 +359,7 @@
                     "custom_width_mobile": 100,
                     "custom_width_mobile_pixel": 100,
                     "height": "auto",
-                    "image_position": "cover",
+                    "image_position": "contain",
                     "border": "none",
                     "border_width": 1,
                     "border_opacity": 100,
