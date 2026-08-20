@@ -8672,7 +8672,7 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "image_behavior": "none",
-        "padding-block-start": 30,
+        "padding-block-start": 0,
         "padding-block-end": 10,
         "padding-inline-start": 0,
         "padding-inline-end": 0
