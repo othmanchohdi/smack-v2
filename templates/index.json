@@ -5575,7 +5575,8 @@
       ],
       "custom_css": [
         ".swiper .swiper-pagination-progressbar {width: 35%; margin: 50px auto 0px;}",
-        ".group-block--content-overlay > .group-block-content {position: relative;}"
+        ".group-block--content-overlay > .group-block-content {position: relative;}",
+        ".swiper-slide .group-block{min-height: 395px;}"
       ],
       "name": "t:names.testimonial",
       "settings": {
