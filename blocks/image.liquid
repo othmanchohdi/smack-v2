@@ -28,6 +28,7 @@
   image-block--{{ block.id }}
   image-block--height-{{ block.settings.height }}
   {% if block.settings.hide_on_mobile %} max-sm:hidden{% endif %}
+  {% if block.settings.hide_on_desktop %} sm:hidden{% endif %}
   {% if block.settings.animation_type == 'zoom' %} image-zoomin{% endif %}
 {% endcapture %}
 
@@ -149,6 +150,12 @@
       "type": "checkbox",
       "id": "hide_on_mobile",
       "label": "t:settings.hide_on_mobile",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_on_desktop",
+      "label": "t:settings.hide_on_desktop",
       "default": false
     },
     {
