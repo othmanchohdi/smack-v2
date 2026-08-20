@@ -389,7 +389,7 @@
         "group_B7yHqw"
       ],
       "custom_css": [
-        "@media (max-width: 751px) {.home-hero {order: 2; } .custom-section-background {display: none; } .grid-layout p {font-size: 12px; } .grid-layout {gap: 5px; } .group-block {padding-inline-start: 5px !important; padding-inline-end: 5px !important; }}"
+        "@media (max-width: 751px) {.home-hero {order: 1; } .bottom-mobile-group {order: 2; } .custom-section-background {display: none; } .grid-layout p {font-size: 12px; } .grid-layout {gap: 5px; } .group-block {padding-inline-start: 5px !important; padding-inline-end: 5px !important; }}"
       ],
       "name": "Hero Section",
       "settings": {
