@@ -1677,7 +1677,7 @@
           "type": "group",
           "name": "t:names.group",
           "settings": {
-            "link": "",
+            "link": "shopify://collections/shop-all",
             "open_in_new_tab": false,
             "hide_on_tablet": false,
             "hide_on_mobile": false,
