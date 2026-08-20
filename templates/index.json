@@ -6228,7 +6228,7 @@
             "margin-inline-start-mobile": 0,
             "margin-inline-end": 0,
             "margin-inline-end-mobile": 0,
-            "padding-block-start": 60,
+            "padding-block-start": 20,
             "padding-block-end": 60,
             "padding-inline-start": 55,
             "padding-inline-end": 0
@@ -8656,7 +8656,7 @@
         "page_width_custom": 1570,
         "section_height": "medium",
         "section_height_custom": 19,
-        "section_height_mobile": "custom",
+        "section_height_mobile": "medium",
         "section_height_mobile_custom": 80,
         "color_scheme": "scheme-3",
         "background_media": "none",
