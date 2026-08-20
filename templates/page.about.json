@@ -404,7 +404,7 @@
         "gap": 12,
         "section_width": "page-width",
         "page_width_custom": 1570,
-        "section_height": "medium",
+        "section_height": "small",
         "section_height_custom": 19,
         "section_height_mobile": "small",
         "section_height_mobile_custom": 10,
