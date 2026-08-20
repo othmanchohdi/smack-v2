@@ -467,7 +467,7 @@
         "page_width_custom": 1570,
         "slide_height": "adapt_image",
         "section_height_custom": 100,
-        "slide_height_mb": "adapt_image",
+        "slide_height_mb": "medium",
         "section_height_custom_mb": 100,
         "masonry_image_radisus": 0,
         "masonry_gap": 22,
