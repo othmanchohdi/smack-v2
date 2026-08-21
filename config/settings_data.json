@@ -101,6 +101,8 @@
     "show_quick_edit_cart": false,
     "show_calculator_free_shipping_message": true,
     "calculator_free_shipping_message_price": "49",
+    "calculator_free_shipping_message_bg_2": "#FF4631",
+    "calculator_free_shipping_message_bg_3": "#F9813B",
     "swatch_type": "color",
     "variant_swatch_size": 20,
     "variant_pills_border_thickness": 1,
