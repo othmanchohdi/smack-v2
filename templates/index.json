@@ -557,7 +557,7 @@
                     "mobile_columns_carousel": "2",
                     "vertical_alignment_flex_direction_column": "center",
                     "vertical_gap": 12,
-                    "column_gap": 4,
+                    "column_gap": 10,
                     "gap": 16,
                     "loop": false,
                     "navigation": "arrows",
