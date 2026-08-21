@@ -642,7 +642,7 @@
                         "content_match_height": false,
                         "image_ratio": "adapt",
                         "border": "solid",
-                        "border_width": 0,
+                        "border_width": 1,
                         "border_opacity": 0,
                         "border_radius": 100,
                         "toggle_overlay": true,
@@ -671,8 +671,8 @@
                         "margin-inline-end-mobile": 0,
                         "padding-block-start": 7,
                         "padding-block-end": 7,
-                        "padding-inline-start": 8,
-                        "padding-inline-end": 8
+                        "padding-inline-start": 5,
+                        "padding-inline-end": 5
                       },
                       "blocks": {
                         "text_kTPTRp": {
@@ -740,7 +740,7 @@
                             "background_gradient": "",
                             "enable_border": true,
                             "enable_border_bottom": false,
-                            "border": "none",
+                            "border": "solid",
                             "border_width": 0,
                             "border_width_type": "100%",
                             "border_custom_width": 100,
@@ -806,7 +806,7 @@
                         "content_match_height": false,
                         "image_ratio": "adapt",
                         "border": "solid",
-                        "border_width": 0,
+                        "border_width": 1,
                         "border_opacity": 0,
                         "border_radius": 100,
                         "toggle_overlay": true,
@@ -835,8 +835,8 @@
                         "margin-inline-end-mobile": 0,
                         "padding-block-start": 7,
                         "padding-block-end": 7,
-                        "padding-inline-start": 8,
-                        "padding-inline-end": 8
+                        "padding-inline-start": 5,
+                        "padding-inline-end": 5
                       },
                       "blocks": {
                         "text_WYgbrL": {
@@ -970,7 +970,7 @@
                         "content_match_height": false,
                         "image_ratio": "adapt",
                         "border": "solid",
-                        "border_width": 0,
+                        "border_width": 1,
                         "border_opacity": 0,
                         "border_radius": 100,
                         "toggle_overlay": true,
@@ -999,8 +999,8 @@
                         "margin-inline-end-mobile": 0,
                         "padding-block-start": 7,
                         "padding-block-end": 7,
-                        "padding-inline-start": 8,
-                        "padding-inline-end": 8
+                        "padding-inline-start": 5,
+                        "padding-inline-end": 5
                       },
                       "blocks": {
                         "text_7BmjeC": {
@@ -1069,7 +1069,7 @@
                             "enable_border": true,
                             "enable_border_bottom": false,
                             "border": "none",
-                            "border_width": 0,
+                            "border_width": 1,
                             "border_width_type": "100%",
                             "border_custom_width": 100,
                             "border_radius": 30,
