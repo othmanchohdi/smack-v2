@@ -1,1 +1,57 @@
-{"name":"Popup group","type":"custom.popup","sections":{"cart_drawer_PFLQy3":{"type":"cart-drawer","blocks":{"cart-product":{"type":"_cart-product","static":true,"settings":{"gap":10,"image_ratio":"square","border":true,"vendor":false,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"cart-popular-products":{"type":"_cart-popular-products","disabled":true,"static":true,"settings":{"popular_products_title":"You May Also Like","popular_products_collection":"","popular_products_show":3,"popular_products_arrows":true,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"settings":{"cart_drawer_collection":"","color_scheme":"scheme-2"}}},"order":["cart_drawer_PFLQy3"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Popup group",
+  "type": "custom.popup",
+  "sections": {
+    "cart_drawer_PFLQy3": {
+      "type": "cart-drawer",
+      "blocks": {
+        "cart-product": {
+          "type": "_cart-product",
+          "static": true,
+          "settings": {
+            "gap": 10,
+            "image_ratio": "square",
+            "border": true,
+            "vendor": false,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "cart-popular-products": {
+          "type": "_cart-popular-products",
+          "static": true,
+          "settings": {
+            "popular_products_title": "You May Also Like",
+            "popular_products_collection": "best-sellers",
+            "popular_products_show": 3,
+            "popular_products_arrows": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {
+        "cart_drawer_collection": "best-sellers",
+        "color_scheme": "scheme-2"
+      }
+    }
+  },
+  "order": [
+    "cart_drawer_PFLQy3"
+  ]
+}
