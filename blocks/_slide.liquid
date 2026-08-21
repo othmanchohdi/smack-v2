@@ -56,7 +56,13 @@
     assign fetchpriority = 'low'
   endif
 
+  assign ab_slide_active = false
+  if block_stts.ab_test_enabled and block_stts.image_1_b != blank and media_type_1 == 'image'
+    assign ab_slide_active = true
+  endif
+
   assign height_1 = block_stts.image_1.width | divided_by: block_stts.image_1.aspect_ratio | round
+  assign height_1_b = block_stts.image_1_b.width | divided_by: block_stts.image_1_b.aspect_ratio | round
   assign height_2 = block_stts.image_2.width | divided_by: block_stts.image_2.aspect_ratio | round
   if block_stts.image_1 != blank and block_stts.image_2 != blank
     assign media_width_desktop = 100 | divided_by: 2 | append: 'vw'
@@ -78,6 +84,7 @@
   {%- if has_image_1 or has_image_mb_1 -%}
     {% assign media_count = media_count | plus: 1 %}
 
+    {% if ab_slide_active %}<div class="ab-variant ab-slide-variant" data-ab-variant="a">{% endif %}
     <picture
       class="media media--transparent h-full{% if sec_stts.image_behavior != 'none' %} animate--{{ sec_stts.image_behavior }}{% endif %}"
       data-swiper-parallax="35%"
@@ -106,6 +113,41 @@
         | image_tag: height: height_1, sizes: sizes, widths: widths, loading: loading, alt: block_stts.image_1.alt, fetchpriority: fetchpriority
       }}
     </picture>
+    {% if ab_slide_active %}
+    </div>
+    {%- liquid
+      assign image_mb_1_b = block_stts.image_mb_1_b | default: block_stts.image_1_b
+    -%}
+    <div class="ab-variant ab-slide-variant" data-ab-variant="b">
+      <picture
+        class="media media--transparent h-full{% if sec_stts.image_behavior != 'none' %} animate--{{ sec_stts.image_behavior }}{% endif %}"
+        data-swiper-parallax="35%"
+      >
+        {%- if image_mb_1_b != blank -%}
+          {% assign max_w_b = image_mb_1_b.width %}
+          <source
+            media="(max-width: 749px)"
+            sizes="100vw"
+            srcset="
+              {{ image_mb_1_b | image_url: width: 360 | escape }} 360w,
+              {{ image_mb_1_b | image_url: width: 480 | escape }} 480w,
+              {{ image_mb_1_b | image_url: width: 600 | escape }} 600w
+              {%- if max_w_b >= 750 -%}, {{ image_mb_1_b | image_url: width: 750 | escape }} 750w{%- endif -%}
+              {%- if max_w_b >= 828 -%}, {{ image_mb_1_b | image_url: width: 828 | escape }} 828w{%- endif -%}
+              {%- if max_w_b >= 1080 -%}, {{ image_mb_1_b | image_url: width: 1080 | escape }} 1080w{%- endif -%}
+            "
+            width="{{ image_mb_1_b.width }}"
+            height="{{ image_mb_1_b.height }}"
+          >
+        {%- endif -%}
+        {{
+          block_stts.image_1_b
+          | image_url: width: block_stts.image_1_b.width
+          | image_tag: height: height_1_b, sizes: sizes, widths: widths, loading: 'lazy', alt: block_stts.image_1_b.alt, fetchpriority: 'low'
+        }}
+      </picture>
+    </div>
+    {% endif %}
   {%- endif -%}
 
   {%- if has_video_1 -%}
@@ -194,7 +236,18 @@
   class="{{ class_slide_item }}"
   aria-hidden="{% if blockIndex == 1 %}false{% else %}true{% endif %}"
   {{ block.shopify_attributes }}
+  {% if ab_slide_active %}data-ab-hero{% endif %}
 >
+  {% if ab_slide_active %}
+    <style>
+      /* Keep the grid intact: active ab-slide-variant wrappers are transparent to layout */
+      .slide__img-wrapper .ab-slide-variant { display: contents; }
+      .slide__img-wrapper .ab-slide-variant[data-ab-variant="b"] { display: none; }
+      html[data-hero-v1="b"] .slide__img-wrapper .ab-slide-variant[data-ab-variant="a"] { display: none; }
+      html[data-hero-v1="b"] .slide__img-wrapper .ab-slide-variant[data-ab-variant="b"] { display: contents; }
+    </style>
+  {% endif %}
+
   {% style %}
     {%- if sec_stts.slide_height == 'adapt_image' and blockIndex == 1 and block_stts.image_1 != blank or block_stts.image_2 != blank -%}
       {%- liquid
@@ -398,6 +451,26 @@
       "id": "image_mb_1",
       "label": "t:settings.mobile_image",
       "visible_if": "{{ block.settings.slide_background and block.settings.media_type_1 == 'image' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "ab_test_enabled",
+      "label": "Enable A/B test",
+      "default": false,
+      "visible_if": "{{ block.settings.slide_background and block.settings.media_type_1 == 'image' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1_b",
+      "label": "A/B test: variant B desktop image",
+      "visible_if": "{{ block.settings.ab_test_enabled }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mb_1_b",
+      "label": "A/B test: variant B mobile image",
+      "info": "Optional. If empty, variant B uses the desktop A/B image.",
+      "visible_if": "{{ block.settings.ab_test_enabled }}"
     },
     {
       "type": "video",
