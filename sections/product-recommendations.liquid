@@ -104,21 +104,23 @@
           endif
         %}
         {% capture list_items %}
-          {% for product in products limit: max_items %}
-            <li id="Slide-{{ section.id }}-{{ product.id }}-{{ forloop.index }}" class="grid__item{% if show_mobile_slider or layout_type == 'carousel' %} swiper-slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {% if settings.animations_reveal_on_scroll %} style="--animation-order: {{ forloop.index }};"{% endif %}
+          {% assign displayed = 0 %}
+          {% for product in products %}
+            {% if settings.wholesale_gate_enabled and product.tags contains settings.wholesale_product_tag %}{% continue %}{% endif %}
+            {% assign displayed = displayed | plus: 1 %}
+            {% if displayed > max_items %}{% break %}{% endif %}
+            <li id="Slide-{{ section.id }}-{{ product.id }}-{{ displayed }}" class="grid__item{% if show_mobile_slider or layout_type == 'carousel' %} swiper-slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %} style="--animation-order: {{ displayed }};"{% endif %}
             >
               {% content_for "block", type: "card-product-flex", id: "product-slide-item", closest.product: product %}
             </li>
 
-            {% unless forloop.last %}
-              <!--@list/split-->
-            {% endunless %}
+            <!--@list/split-->
           {% endfor %}
         {% endcapture %}
 
         {% liquid
-          if products != blank and products.size > 0
+          if products != blank and displayed > 0
             assign has_recommendations = 'true'
           else
             assign has_recommendations = 'false'
