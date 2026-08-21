@@ -86,7 +86,7 @@
                 "border_opacity": 0,
                 "border_radius": 0,
                 "toggle_overlay": false,
-                "overlay_color": "#00000026",
+                "overlay_color": "#FFFFFF",
                 "extend_left_overlay": false,
                 "extend_right_overlay": false,
                 "overlay_style": "solid",
@@ -555,7 +555,7 @@
                     "mobile_columns_carousel": "2",
                     "vertical_alignment_flex_direction_column": "center",
                     "vertical_gap": 12,
-                    "column_gap": 10,
+                    "column_gap": 7,
                     "gap": 16,
                     "loop": false,
                     "navigation": "arrows",
@@ -749,10 +749,10 @@
                             "heading_only": false,
                             "heading_effect": "none",
                             "animation_repeat": false,
-                            "padding-block-start": 0,
-                            "padding-block-end": 0,
-                            "padding-inline-start": 0,
-                            "padding-inline-end": 0
+                            "padding-block-start": 10,
+                            "padding-block-end": 10,
+                            "padding-inline-start": 10,
+                            "padding-inline-end": 10
                           },
                           "blocks": {}
                         }
@@ -1115,7 +1115,8 @@
         "slide_nixTtG"
       ],
       "custom_css": [
-        ".slideshow__slides {border-radius: 12px;}"
+        ".slideshow__slides {border-radius: 12px;}",
+        "@media (max-width: 751px) {.grid-layout p {font-size: 12px; } .grid-layout {gap: 5px; } .group-block {padding-inline-start: 5px !important; padding-inline-end: 5px !important; }}"
       ],
       "name": "t:names.slideshow",
       "settings": {
@@ -1125,8 +1126,8 @@
         "page_width_custom": 1570,
         "slide_height": "medium",
         "section_height_custom": 100,
-        "slide_height_mb": "medium",
-        "section_height_custom_mb": 100,
+        "slide_height_mb": "custom",
+        "section_height_custom_mb": 90,
         "masonry_image_radisus": 0,
         "masonry_gap": 22,
         "m_row_1": "244",
@@ -1155,7 +1156,7 @@
         "dot_appearance": false,
         "dot_background": "#ffffff",
         "dot_border_radius": 0,
-        "stack_content_mobile": false,
+        "stack_content_mobile": true,
         "show_left_categories": false,
         "left_categories_title": "Shop by categories",
         "left_categories_title_color": "#000000",
@@ -1172,7 +1173,7 @@
         "color_scheme": "scheme-2",
         "color_scheme_mobile": "scheme-2",
         "padding-block-start": 36,
-        "padding-block-end": 36
+        "padding-block-end": 50
       }
     },
     "section_8mpw6b": {
