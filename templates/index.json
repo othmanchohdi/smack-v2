@@ -8660,7 +8660,7 @@
                     "open_in_new_tab": false,
                     "hide_on_tablet": false,
                     "hide_on_mobile": false,
-                    "custom_class": "",
+                    "custom_class": "never-class",
                     "content_direction": "column",
                     "content_direction_mobile": "column",
                     "horizontal_alignment": "flex-start",
@@ -8743,7 +8743,7 @@
                         "secondary_text": "Exclusive offers just for you.",
                         "third_text": "Shop now and enjoy deals!",
                         "highlight_text": true,
-                        "highlight_text_content": "X Made Without Compromise.",
+                        "highlight_text_content": "X Never",
                         "highlight_text_type": "text",
                         "underline_width": 100,
                         "underline_height": 18,
@@ -9809,7 +9809,8 @@
         "group_fQxjXT"
       ],
       "custom_css": [
-        "@media (max-width: 751px) {.home-hero {order: 2; }}"
+        "@media (max-width: 751px) {.home-hero {order: 2; }}",
+        ".never-class {color: #9AA0A8;}"
       ],
       "name": "Real food you can pronounce.",
       "settings": {
