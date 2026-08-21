@@ -24,7 +24,7 @@
             "media_type_1": "image",
             "image_1": "shopify://shop_images/home-hero.jpg",
             "image_mb_1": "shopify://shop_images/DSC0234-Edit_1_2.png",
-            "ab_test_enabled": false,
+            "ab_test_enabled": true,
             "image_1_b": "shopify://shop_images/New_Website_Homepage_Banner_Desktop.png",
             "image_mb_1_b": "shopify://shop_images/Rectangle_30_4.png",
             "inherit_color_scheme": true,
