@@ -95,7 +95,7 @@
     "cart_type": "drawer",
     "show_vendor": false,
     "show_cart_note": true,
-    "show_cart_estimate_shipping": true,
+    "show_cart_estimate_shipping": false,
     "show_cart_coupon": true,
     "gift_wrap_product": "100-macaron-tower",
     "show_quick_edit_cart": false,
