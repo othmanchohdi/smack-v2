@@ -1126,7 +1126,7 @@
         "enable_multi_level_category": false,
         "section_width": "page-width",
         "page_width_custom": 1570,
-        "slide_height": "full-screen",
+        "slide_height": "adapt_image",
         "section_height_custom": 100,
         "slide_height_mb": "full-screen",
         "section_height_custom_mb": 100,
