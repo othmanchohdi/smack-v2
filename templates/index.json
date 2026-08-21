@@ -736,7 +736,7 @@
                             "wrap": "pretty",
                             "color": "var(--color-primary)",
                             "background": false,
-                            "background_color": "#ffffff",
+                            "background_color": "#F41D8B33",
                             "background_gradient": "",
                             "enable_border": true,
                             "enable_border_bottom": false,
@@ -749,10 +749,10 @@
                             "heading_only": false,
                             "heading_effect": "none",
                             "animation_repeat": false,
-                            "padding-block-start": 10,
-                            "padding-block-end": 10,
-                            "padding-inline-start": 10,
-                            "padding-inline-end": 10
+                            "padding-block-start": 0,
+                            "padding-block-end": 0,
+                            "padding-inline-start": 0,
+                            "padding-inline-end": 0
                           },
                           "blocks": {}
                         }
@@ -900,7 +900,7 @@
                             "wrap": "pretty",
                             "color": "var(--color-primary)",
                             "background": false,
-                            "background_color": "#ffffff",
+                            "background_color": "#F41D8B33",
                             "background_gradient": "",
                             "enable_border": true,
                             "enable_border_bottom": false,
@@ -1064,7 +1064,7 @@
                             "wrap": "pretty",
                             "color": "var(--color-primary)",
                             "background": false,
-                            "background_color": "#ffffff",
+                            "background_color": "#F41D8B33",
                             "background_gradient": "",
                             "enable_border": true,
                             "enable_border_bottom": false,
