@@ -341,11 +341,6 @@
 {% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
 {% capture wlmRedirectURL %}/account/login{% endcapture %}
 {% endif %}
-{% else %}
-{% assign wlmLockON = true %}
-{% capture wlmPnfHead %}Page not found{% endcapture %}
-{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
-{% capture wlmRedirectURL %}/account/login{% endcapture %}
 {% endunless %}
 {% endif %}
 {% endunless %}
