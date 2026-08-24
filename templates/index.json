@@ -4162,7 +4162,7 @@
             "loop": false,
             "centered_slides": false,
             "navigation": "arrows",
-            "arrows_position": "bottom",
+            "arrows_position": "inside",
             "pagination_type": "progressbar",
             "movement_direction": "reverse",
             "marquee_type": "auto",
