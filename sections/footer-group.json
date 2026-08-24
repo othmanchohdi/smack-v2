@@ -203,7 +203,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Receive the latest deals & <br/>pet care tips!</p>",
+                    "text": "<p>Receive the latest deals + enter our monthly giveaway!</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -211,7 +211,7 @@
                     "secondary_text": "Exclusive offers just for you.",
                     "third_text": "Shop now and enjoy deals!",
                     "highlight_text": true,
-                    "highlight_text_content": "Receive the latest deals & pet care tips!",
+                    "highlight_text_content": "Receive the latest deals + enter our monthly giveaway!",
                     "highlight_text_type": "text",
                     "underline_width": 100,
                     "underline_height": 18,
