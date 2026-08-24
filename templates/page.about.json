@@ -1194,6 +1194,7 @@
             "media_type_1": "image",
             "image_1": "shopify://shop_images/Container_2.png",
             "image_mb_1": "shopify://shop_images/Rectangle_12.png",
+            "ab_test_enabled": false,
             "inherit_color_scheme": true,
             "scheme_background": "#ffffff",
             "scheme_background_gradient": "",
@@ -2243,7 +2244,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Smack's story began with Zorro, the Giller family's beloved dog. When Zorro was diagnosed with cancer, Emily Giller and her son Michael began handcrafting nutrient-packed meals to help improve his quality of life.</p>",
+                    "text": "<p>Smack’s story began with Zorro,<br/>the Giller family’s beloved dog.<br/>When Zorro was diagnosed with<br/>cancer, Emily Giller used her<br/>background in food science,<br/>alongside her son Michael, to begin<br/>handcrafting nutrient-packed meals<br/>to help improve his quality of life.</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -2447,7 +2448,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>2007 — FAMILY BUSINESS</p>",
+                    "text": "<p>2007 — WHERE IT BEGAN</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -2529,7 +2530,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Established by the Giller family in 2007, Smack grew with parents Yuri and Emily's guidance and a shared purpose: helping pets thrive through better nutrition. Today, Jonathon and Michael lead Smack, crafting raw dehydrated superfoods for dogs and cats.</p>",
+                    "text": "<p>Established by the Giller family in<br/>2007, Smack grew with parents<br/>Yuri and Emily’s guidance and a<br/>shared purpose: helping pets<br/>thrive through better nutrition. Our<br/>first products were handcrafted<br/>and made in our family basement,<br/>laying the foundation for the raw<br/>dehydrated superfood for dogs<br/>and cats we create today.</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -2733,7 +2734,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>SELF-MANUFACTURED</p>",
+                    "text": "<p>SELF-OUR FIRST FACILITY</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -2815,7 +2816,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>All Smack recipes are handcrafted through a gentle raw dehydration process, using low temperatures to help preserve the benefits of a raw food diet while keeping every meal nutrient-dense, delicious, and easy to serve.</p>",
+                    "text": "<p>A year later, we moved out of our<br/>family basement and into our first<br/>facility on Notre Dame Ave. in<br/>Winnipeg, Manitoba. With more<br/>space and professional equipment,<br/>we were able to grow our<br/>small-batch process while staying<br/>true to the quality and care that<br/>started it all</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -3019,7 +3020,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>JUST REAL FOOD</p>",
+                    "text": "<p>CANADA EXPANSION</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -3101,7 +3102,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Made with meat, organs, bone, and organic fruits and vegetables, Smack recipes are crafted to nourish pets naturally with real whole-food ingredients — with no fillers, lentils, soy, corn, or synthetic vitamins and minerals.</p>",
+                    "text": "<p>As demand grew, our production<br/>space grew with us. We expanded<br/>from our first 2,000 sq. ft.<br/>Canadian facility to 6,600 sq. ft.,<br/>and today, Smack operates in a<br/>25,000 sq. ft. facility on Sherwin<br/>Road in Winnipeg, Manitoba, built<br/>to support our continued growth.</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -3387,7 +3388,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Our second manufacturing facility in Aberdeen, South Dakota marks an important growth milestone, supporting U.S. operations, faster order fulfillment, and stronger service for retailers and pet parents.</p>",
+                    "text": "<p>Our second manufacturing facility<br/>in Aberdeen, South Dakota marks<br/>an important growth milestone,<br/>supporting U.S. operations, faster<br/>order fulfillment, and stronger<br/>service for retailers and pet<br/>parents.</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
@@ -3673,7 +3674,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Family-owned and growing, Smack partners with 2,500+ retailers across North America and is sold in Canada, the U.S., South Korea, Hong Kong, Taiwan, and Singapore. As demand grows, Smack is also preparing for future expansion into Mainland China and broader Asian markets.</p>",
+                    "text": "<p>Still proudly family-owned and<br/>growing, Smack serves pet parents<br/>directly through our online store,<br/>partners with more than 2,500<br/>retailers across North America, and<br/>is available in Canada, the USA,<br/>South Korea, Hong Kong, Taiwan,<br/>and Singapore.</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
