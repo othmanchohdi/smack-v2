@@ -1,4 +1,4 @@
-<script type='text/javascript' src='https://www.smackpetfood.com/apps/wlm/js/wlm-1.1.js'></script>
+<script type='text/javascript' src='/apps/wlm/js/wlm-1.1.js?v=3.1'></script>
 {% assign wlmEnabled = true %}
 {% assign wlmLockON = false %}
 {% assign wlmRedirectURL = '' %} 
@@ -23,7 +23,6 @@
 {% assign wlmLockedTags164322 = false %}
 {% assign wlmLockedTags163983 = false %}
 {% assign wlmLockedTags19752 = false %}
-{% assign wlmLockedTags163972 = false %}
 {% assign wlmLockedTags164237 = false %}
 {% assign wlmLockedTags352208 = false %}
 {% assign wlmLockedTags163998 = false %}
@@ -39,7 +38,6 @@
 {% if tag == 'W1' %}{% assign wlmLockedTags164322 = true %}{% endif %}
 {% if tag == 'W1' %}{% assign wlmLockedTags163983 = true %}{% endif %}
 {% if tag == 'W1' %}{% assign wlmLockedTags19752 = true %}{% endif %}
-{% if tag == 'W1' %}{% assign wlmLockedTags163972 = true %}{% endif %}
 {% if tag == 'W1' %}{% assign wlmLockedTags164237 = true %}{% endif %}
 {% if tag == 'W1' %}{% assign wlmLockedTags352208 = true %}{% endif %}
 {% if tag == 'W1' %}{% assign wlmLockedTags163998 = true %}{% endif %}
@@ -222,32 +220,6 @@
 
 {% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
 {% assign wlmLockedContent = false %}
-{% if template contains 'page' and page %}{% if page.id == 44855099525 %}{% assign wlmLockedContent = true %}{% endif %}{% endif %}
-{% if wlmLockedContent %}
-{% unless customer %}
-{% assign wlmLockON = true %}
-{% capture wlmPnfHead %}Page not found{% endcapture %}
-{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
-{% capture wlmRedirectURL %}/account/login{% endcapture %}
-{% else %}
-{% unless wlmLockedTags163972 %}{% assign wlmLockON = true %}{% endunless %}
-{% if wlmLockON %}
-{% capture wlmPnfHead %}Page not found{% endcapture %}
-{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
-{% capture wlmRedirectURL %}/account/login{% endcapture %}
-{% endif %}
-{% else %}
-{% assign wlmLockON = true %}
-{% capture wlmPnfHead %}Page not found{% endcapture %}
-{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
-{% capture wlmRedirectURL %}/account/login{% endcapture %}
-{% endunless %}
-{% endif %}
-{% endunless %}
-
-
-{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
-{% assign wlmLockedContent = false %}
 {% if template == 'index' %}{% assign wlmLockedContent = true %}{% endif %}
 {% if wlmLockedContent %}
 {% if customer %}
@@ -341,6 +313,11 @@
 {% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
 {% capture wlmRedirectURL %}/account/login{% endcapture %}
 {% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/account/login{% endcapture %}
 {% endunless %}
 {% endif %}
 {% endunless %}
