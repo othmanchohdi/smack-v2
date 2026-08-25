@@ -1164,7 +1164,7 @@
                   "type": "menu",
                   "name": "Menu",
                   "settings": {
-                    "menu": "1o8-support",
+                    "menu": "1o8-support-copy",
                     "heading": "Support",
                     "margin-block-end": 10,
                     "content_direction": "column",
