@@ -134,7 +134,8 @@
     "page_b8ezTa": {
       "type": "page",
       "custom_css": [
-        ".page-title {display: none;}"
+        ".page-title {display: none;}",
+        ".shogun-heading-component h1{text-align: center; font-size: 38px !important;}"
       ],
       "name": "t:names.page",
       "settings": {
