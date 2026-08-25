@@ -1,0 +1,1951 @@
+
+    {% render 'gp-head', isThemeSection: true %}
+    
+    <style {% if section.settings.section_preload == "false" %} class="gps-link gps-style" type="text/disabled-css" {% endif %}>.gps-501964060196078622.gps.gpsil [style*="--ai:"]{align-items:var(--ai)}.gps-501964060196078622.gps.gpsil [style*="--as:"]{align-self:var(--as)}.gps-501964060196078622.gps.gpsil [style*="--aspect:"]{aspect-ratio:var(--aspect)}.gps-501964060196078622.gps.gpsil [style*="--bg:"]{background:var(--bg)}.gps-501964060196078622.gps.gpsil [style*="--hvr-bg:"]:hover{background:var(--hvr-bg)}.gps-501964060196078622.gps.gpsil [style*="--bga:"]{background-attachment:var(--bga)}.gps-501964060196078622.gps.gpsil [style*="--bgc:"]{background-color:var(--bgc)}.gps-501964060196078622.gps.gpsil [style*="--bgi:"]{background-image:var(--bgi)}.gps-501964060196078622.gps.gpsil [style*="--bgp:"]{background-position:var(--bgp)}.gps-501964060196078622.gps.gpsil [style*="--bgr:"]{background-repeat:var(--bgr)}.gps-501964060196078622.gps.gpsil [style*="--bgs:"]{background-size:var(--bgs)}.gps-501964060196078622.gps.gpsil [style*="--b:"]{border:var(--b)}.gps-501964060196078622.gps.gpsil [style*="--hvr-b:"]:hover{border:var(--hvr-b)}.gps-501964060196078622.gps.gpsil [style*="--bb:"]{border-bottom:var(--bb)}.gps-501964060196078622.gps.gpsil [style*="--bc:"]{border-color:var(--bc)}.gps-501964060196078622.gps.gpsil [style*="--bblr:"]{border-bottom-left-radius:var(--bblr)}.gps-501964060196078622.gps.gpsil [style*="--bbrr:"]{border-bottom-right-radius:var(--bbrr)}.gps-501964060196078622.gps.gpsil [style*="--radius:"]{border-radius:var(--radius)}.gps-501964060196078622.gps.gpsil [style*="--hvr-radius:"]:hover{border-radius:var(--hvr-radius)}.gps-501964060196078622.gps.gpsil [style*="--bt:"]{border-top:var(--bt)}.gps-501964060196078622.gps.gpsil [style*="--btlr:"]{border-top-left-radius:var(--btlr)}.gps-501964060196078622.gps.gpsil [style*="--btrr:"]{border-top-right-radius:var(--btrr)}.gps-501964060196078622.gps.gpsil [style*="--bw:"]{border-width:var(--bw)}.gps-501964060196078622.gps.gpsil [style*="--bottom:"]{bottom:var(--bottom)}.gps-501964060196078622.gps.gpsil [style*="--shadow:"]{box-shadow:var(--shadow)}.gps-501964060196078622.gps.gpsil [style*="--c:"]{color:var(--c)}.gps-501964060196078622.gps.gpsil [style*="--cg:"]{-moz-column-gap:var(--cg);column-gap:var(--cg)}.gps-501964060196078622.gps.gpsil [style*="--ff:"]{font-family:var(--ff)}.gps-501964060196078622.gps.gpsil [style*="--size:"]{font-size:var(--size)}.gps-501964060196078622.gps.gpsil [style*="--weight:"]{font-weight:var(--weight)}.gps-501964060196078622.gps.gpsil [style*="--fs:"]{font-style:var(--fs)}.gps-501964060196078622.gps.gpsil [style*="--gtc:"]{grid-template-columns:var(--gtc)}.gps-501964060196078622.gps.gpsil [style*="--h:"]{height:var(--h)}.gps-501964060196078622.gps.gpsil [style*="--jc:"]{justify-content:var(--jc)}.gps-501964060196078622.gps.gpsil [style*="--left:"]{left:var(--left)}.gps-501964060196078622.gps.gpsil [style*="--ls:"]{letter-spacing:var(--ls)}.gps-501964060196078622.gps.gpsil [style*="--tdt:"]{text-decoration-thickness:var(--tdt)}.gps-501964060196078622.gps.gpsil [style*="--m:"]{margin:var(--m)}.gps-501964060196078622.gps.gpsil [style*="--mb:"]{margin-bottom:var(--mb)}.gps-501964060196078622.gps.gpsil [style*="--ml:"]{margin-left:var(--ml)}.gps-501964060196078622.gps.gpsil [style*="--mr:"]{margin-right:var(--mr)}.gps-501964060196078622.gps.gpsil [style*="--mt:"]{margin-top:var(--mt)}.gps-501964060196078622.gps.gpsil [style*="--maxw:"]{max-width:var(--maxw)}.gps-501964060196078622.gps.gpsil [style*="--minw:"]{min-width:var(--minw)}.gps-501964060196078622.gps.gpsil [style*="--objf:"]{-o-object-fit:var(--objf);object-fit:var(--objf)}.gps-501964060196078622.gps.gpsil [style*="--op:"]{opacity:var(--op)}.gps-501964060196078622.gps.gpsil [style*="--o:"]{order:var(--o)}.gps-501964060196078622.gps.gpsil [style*="--pc:"]{place-content:var(--pc)}.gps-501964060196078622.gps.gpsil [style*="--p:"]{padding:var(--p)}.gps-501964060196078622.gps.gpsil [style*="--pb:"]{padding-bottom:var(--pb)}.gps-501964060196078622.gps.gpsil [style*="--pl:"]{padding-left:var(--pl)}.gps-501964060196078622.gps.gpsil [style*="--pr:"]{padding-right:var(--pr)}.gps-501964060196078622.gps.gpsil [style*="--pt:"]{padding-top:var(--pt)}.gps-501964060196078622.gps.gpsil [style*="--pos:"]{position:var(--pos)}.gps-501964060196078622.gps.gpsil [style*="--right:"]{right:var(--right)}.gps-501964060196078622.gps.gpsil [style*="--ta:"]{text-align:var(--ta)}.gps-501964060196078622.gps.gpsil [style*="--top:"]{top:var(--top)}.gps-501964060196078622.gps.gpsil [style*="--t:"]{transform:var(--t)}.gps-501964060196078622.gps.gpsil [style*="--w:"]{width:var(--w)}.gps-501964060196078622.gps.gpsil [style*="--line-clamp:"]{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:var(--line-clamp)}@media only screen and (max-width:1024px){.gps-501964060196078622.gps.gpsil [style*="--aspect-tablet:"]{aspect-ratio:var(--aspect-tablet)}.gps-501964060196078622.gps.gpsil [style*="--bottom-tablet:"]{bottom:var(--bottom-tablet)}.gps-501964060196078622.gps.gpsil [style*="--cg-tablet:"]{-moz-column-gap:var(--cg-tablet);column-gap:var(--cg-tablet)}.gps-501964060196078622.gps.gpsil [style*="--size-tablet:"]{font-size:var(--size-tablet)}.gps-501964060196078622.gps.gpsil [style*="--h-tablet:"]{height:var(--h-tablet)}.gps-501964060196078622.gps.gpsil [style*="--left-tablet:"]{left:var(--left-tablet)}.gps-501964060196078622.gps.gpsil [style*="--mb-tablet:"]{margin-bottom:var(--mb-tablet)}.gps-501964060196078622.gps.gpsil [style*="--ml-tablet:"]{margin-left:var(--ml-tablet)}.gps-501964060196078622.gps.gpsil [style*="--mr-tablet:"]{margin-right:var(--mr-tablet)}.gps-501964060196078622.gps.gpsil [style*="--mt-tablet:"]{margin-top:var(--mt-tablet)}.gps-501964060196078622.gps.gpsil [style*="--maxw-tablet:"]{max-width:var(--maxw-tablet)}.gps-501964060196078622.gps.gpsil [style*="--minw-tablet:"]{min-width:var(--minw-tablet)}.gps-501964060196078622.gps.gpsil [style*="--pb-tablet:"]{padding-bottom:var(--pb-tablet)}.gps-501964060196078622.gps.gpsil [style*="--pl-tablet:"]{padding-left:var(--pl-tablet)}.gps-501964060196078622.gps.gpsil [style*="--pr-tablet:"]{padding-right:var(--pr-tablet)}.gps-501964060196078622.gps.gpsil [style*="--pt-tablet:"]{padding-top:var(--pt-tablet)}.gps-501964060196078622.gps.gpsil [style*="--right-tablet:"]{right:var(--right-tablet)}.gps-501964060196078622.gps.gpsil [style*="--top-tablet:"]{top:var(--top-tablet)}.gps-501964060196078622.gps.gpsil [style*="--w-tablet:"]{width:var(--w-tablet)}.gps-501964060196078622.gps.gpsil [style*="--line-clamp-tablet:"]{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:var(--line-clamp-tablet)}}@media only screen and (max-width:767px){.gps-501964060196078622.gps.gpsil [style*="--aspect-mobile:"]{aspect-ratio:var(--aspect-mobile)}.gps-501964060196078622.gps.gpsil [style*="--bottom-mobile:"]{bottom:var(--bottom-mobile)}.gps-501964060196078622.gps.gpsil [style*="--cg-mobile:"]{-moz-column-gap:var(--cg-mobile);column-gap:var(--cg-mobile)}.gps-501964060196078622.gps.gpsil [style*="--size-mobile:"]{font-size:var(--size-mobile)}.gps-501964060196078622.gps.gpsil [style*="--gtc-mobile:"]{grid-template-columns:var(--gtc-mobile)}.gps-501964060196078622.gps.gpsil [style*="--h-mobile:"]{height:var(--h-mobile)}.gps-501964060196078622.gps.gpsil [style*="--left-mobile:"]{left:var(--left-mobile)}.gps-501964060196078622.gps.gpsil [style*="--mb-mobile:"]{margin-bottom:var(--mb-mobile)}.gps-501964060196078622.gps.gpsil [style*="--maxw-mobile:"]{max-width:var(--maxw-mobile)}.gps-501964060196078622.gps.gpsil [style*="--minw-mobile:"]{min-width:var(--minw-mobile)}.gps-501964060196078622.gps.gpsil [style*="--pb-mobile:"]{padding-bottom:var(--pb-mobile)}.gps-501964060196078622.gps.gpsil [style*="--pl-mobile:"]{padding-left:var(--pl-mobile)}.gps-501964060196078622.gps.gpsil [style*="--pr-mobile:"]{padding-right:var(--pr-mobile)}.gps-501964060196078622.gps.gpsil [style*="--pt-mobile:"]{padding-top:var(--pt-mobile)}.gps-501964060196078622.gps.gpsil [style*="--right-mobile:"]{right:var(--right-mobile)}.gps-501964060196078622.gps.gpsil [style*="--top-mobile:"]{top:var(--top-mobile)}.gps-501964060196078622.gps.gpsil [style*="--w-mobile:"]{width:var(--w-mobile)}.gps-501964060196078622.gps.gpsil [style*="--line-clamp-mobile:"]{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:var(--line-clamp-mobile)}}.gps-501964060196078622 .gp-rotate-0,.gps-501964060196078622 .gp-rotate-180,.gps-501964060196078622 .mobile\:gp-rotate-0,.gps-501964060196078622 .mobile\:gp-rotate-180,.gps-501964060196078622 .tablet\:gp-rotate-0,.gps-501964060196078622 .tablet\:gp-rotate-180{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1}.gps-501964060196078622 .gp-static{position:static}.gps-501964060196078622 .gp-relative{position:relative}.gps-501964060196078622 .gp-left-0{left:0}.gps-501964060196078622 .gp-right-0{right:0}.gps-501964060196078622 .gp-z-1{z-index:1}.gps-501964060196078622 .gp-z-2{z-index:2}.gps-501964060196078622 .gp-mx-auto{margin-left:auto;margin-right:auto}.gps-501964060196078622 .gp-my-0{margin-bottom:0;margin-top:0}.gps-501964060196078622 .gp-mb-0{margin-bottom:0}.gps-501964060196078622 .gp-block{display:block}.gps-501964060196078622 .gp-inline-block{display:inline-block}.gps-501964060196078622 .gp-flex{display:flex}.gps-501964060196078622 .gp-inline-flex{display:inline-flex}.gps-501964060196078622 .gp-grid{display:grid}.gps-501964060196078622 .\!gp-hidden{display:none!important}.gps-501964060196078622 .gp-hidden{display:none}.gps-501964060196078622 .gp-h-auto{height:auto}.gps-501964060196078622 .gp-h-full{height:100%}.gps-501964060196078622 .\!gp-min-h-full{min-height:100%!important}.gps-501964060196078622 .gp-w-full{width:100%}.gps-501964060196078622 .gp-max-w-full{max-width:100%}.gps-501964060196078622 .gp-flex-1{flex:1 1 0%}.gps-501964060196078622 .gp-flex-none{flex:none}.gps-501964060196078622 .gp-shrink-0{flex-shrink:0}.gps-501964060196078622 .gp-rotate-0{--tw-rotate:0deg}.gps-501964060196078622 .gp-rotate-0,.gps-501964060196078622 .gp-rotate-180{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.gps-501964060196078622 .gp-rotate-180{--tw-rotate:180deg}.gps-501964060196078622 .gp-cursor-pointer{cursor:pointer}.gps-501964060196078622 .gp-select-none{-webkit-user-select:none;-moz-user-select:none;user-select:none}.gps-501964060196078622 .gp-grid-rows-\[1fr\]{grid-template-rows:1fr}.gps-501964060196078622 .\!gp-flex-row{flex-direction:row!important}.gps-501964060196078622 .gp-flex-row{flex-direction:row}.gps-501964060196078622 .gp-flex-col{flex-direction:column}.gps-501964060196078622 .\!gp-flex-nowrap{flex-wrap:nowrap!important}.gps-501964060196078622 .gp-items-center{align-items:center}.gps-501964060196078622 .gp-justify-center{justify-content:center}.gps-501964060196078622 .gp-justify-between{justify-content:space-between}.gps-501964060196078622 .gp-gap-2{gap:8px}.gps-501964060196078622 .gp-overflow-hidden{overflow:hidden}.gps-501964060196078622 .gp-break-words{overflow-wrap:break-word}.gps-501964060196078622 .gp-text-center{text-align:center}.gps-501964060196078622 .gp-text-g-text-2{color:var(--g-c-text-2)}.gps-501964060196078622 .gp-text-g-text-3{color:var(--g-c-text-3)}.gps-501964060196078622 .gp-text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128/var(--tw-text-opacity,1))}.gps-501964060196078622 .gp-no-underline{text-decoration-line:none}.gps-501964060196078622 .gp-transition-colors{transition-duration:.15s;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1)}.gps-501964060196078622 .gp-duration-200{transition-duration:.2s}.gps-501964060196078622 .gp-ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}.gps-501964060196078622 .disabled\:gp-btn-disabled:disabled{cursor:default}.gps-501964060196078622 .disabled\:gp-opacity-30:disabled{opacity:.3}.gps-501964060196078622 .gp-group\/button:active .group-active\/button\:\!gp-text-inherit{color:inherit!important}.gps-501964060196078622 .gp-group[data-state=loading] .group-data-\[state\=loading\]\:gp-invisible{visibility:hidden}@media (max-width:1024px){.gps-501964060196078622 .tablet\:gp-static{position:static}.gps-501964060196078622 .tablet\:gp-left-0{left:0}.gps-501964060196078622 .tablet\:gp-right-0{right:0}.gps-501964060196078622 .tablet\:gp-block{display:block}.gps-501964060196078622 .tablet\:\!gp-hidden{display:none!important}.gps-501964060196078622 .tablet\:gp-hidden{display:none}.gps-501964060196078622 .tablet\:gp-h-auto{height:auto}.gps-501964060196078622 .tablet\:\!gp-min-h-full{min-height:100%!important}.gps-501964060196078622 .tablet\:gp-flex-none{flex:none}.gps-501964060196078622 .tablet\:gp-rotate-0{--tw-rotate:0deg}.gps-501964060196078622 .tablet\:gp-rotate-0,.gps-501964060196078622 .tablet\:gp-rotate-180{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.gps-501964060196078622 .tablet\:gp-rotate-180{--tw-rotate:180deg}.gps-501964060196078622 .tablet\:\!gp-flex-row{flex-direction:row!important}.gps-501964060196078622 .tablet\:gp-flex-row{flex-direction:row}.gps-501964060196078622 .tablet\:\!gp-flex-nowrap{flex-wrap:nowrap!important}.gps-501964060196078622 .tablet\:gp-px-0{padding-left:0;padding-right:0}}@media (max-width:767px){.gps-501964060196078622 .mobile\:gp-static{position:static}.gps-501964060196078622 .mobile\:gp-left-0{left:0}.gps-501964060196078622 .mobile\:gp-right-0{right:0}.gps-501964060196078622 .mobile\:gp-block{display:block}.gps-501964060196078622 .mobile\:\!gp-hidden{display:none!important}.gps-501964060196078622 .mobile\:gp-hidden{display:none}.gps-501964060196078622 .mobile\:gp-h-auto{height:auto}.gps-501964060196078622 .mobile\:\!gp-min-h-full{min-height:100%!important}.gps-501964060196078622 .mobile\:gp-flex-none{flex:none}.gps-501964060196078622 .mobile\:gp-rotate-0{--tw-rotate:0deg}.gps-501964060196078622 .mobile\:gp-rotate-0,.gps-501964060196078622 .mobile\:gp-rotate-180{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.gps-501964060196078622 .mobile\:gp-rotate-180{--tw-rotate:180deg}.gps-501964060196078622 .mobile\:\!gp-flex-row{flex-direction:row!important}.gps-501964060196078622 .mobile\:gp-flex-row{flex-direction:row}.gps-501964060196078622 .mobile\:\!gp-flex-nowrap{flex-wrap:nowrap!important}.gps-501964060196078622 .mobile\:gp-px-0{padding-left:0;padding-right:0}}.gps-501964060196078622 .\[\&\>svg\]\:gp-h-full>svg{height:100%}.gps-501964060196078622 .\[\&\>svg\]\:gp-w-full>svg{width:100%}.gps-501964060196078622 .\[\&_\*\]\:gp-max-w-full *{max-width:100%}.gps-501964060196078622 .\[\&_p\]\:gp-whitespace-pre-line p{white-space:pre-line}</style>
+    <style {% if section.settings.section_preload == "false" %} class="gps-link" type="text/disabled-css" {% endif %}>@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjg.woff) format('woff');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYAZ9hjg.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVQ.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1x4gaVQ.woff) format('woff');
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSKmu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* math */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTVOmu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
+}
+/* symbols */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTUGmu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSGmu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSKmu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* math */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTVOmu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
+}
+/* symbols */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTUGmu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSGmu0SC55K5gw.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+  
+    
+    
+    
+
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+
+    
+        <section
+          class="gp-mx-auto gp-max-w-full [&_*]:gp-max-w-full {% if section.settings.section_preload == "false" %}gps-lazy {% endif %}"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--pl:none;--pl-tablet:none;--pl-mobile:none;--pr:none;--pr-tablet:none;--pr-mobile:none"
+        >
+          
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"#FFFFFF","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"gtmz3S_3FR"}' data-id="gtmz3S_3FR" id="gtmz3S_3FR" data-same-height-subgrid-container class="gtmz3S_3FR gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--bblr:20px;--bbrr:20px;--btlr:20px;--btrr:20px;--pt:var(--g-s-4xl);--pl:15px;--pb:var(--g-s-4xl);--pr:15px;--pt-mobile:var(--g-s-4xl);--pl-mobile:var(--g-s-l);--pb-mobile:var(--g-s-4xl);--pr-mobile:var(--g-s-l);--pt-tablet:var(--g-s-4xl);--pl-tablet:var(--g-s-l);--pb-tablet:var(--g-s-4xl);--pr-tablet:var(--g-s-l);--cg:30px;--gtc:minmax(0, 12fr);--w:100%;--w-tablet:100%;--w-mobile:100%;--bgc:#FFFFFF;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:start">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:start;--o:0"
+      class="gcgeRTc7Jy gp-relative gp-flex gp-flex-col"
+    >
+      
+    
+
+    
+
+    
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"transparent","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"gN8nNhfmk2"}' data-id="gN8nNhfmk2" id="gN8nNhfmk2" data-same-height-subgrid-container class="gN8nNhfmk2 gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--radius:var(--g-radius-small);--pt:0px;--cg:30px;--gtc:minmax(0, 12fr);--w:var(--g-ct-w, 1200px);--w-tablet:100%;--w-mobile:100%;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:start">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:start;--o:0"
+      class="ggWelyDw_1 gp-relative gp-flex gp-flex-col"
+    >
+      
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gUpHgR4gTw"
+        class="gUpHgR4gTw"
+        style="--ta:center;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-l);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:center">
+        <h2
+          data-gp-text
+          class="gp-text-g-text-2 gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--c:#242424;--fs:normal;--ff:var(--g-font-Open-Sans, 'Open Sans'), var(--g-font-heading, heading);--weight:700;--size:40px;--size-tablet:40px;--size-mobile:35px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          <p><span style="font-size:35px;">{{ section.settings.ggUpHgR4gTw_text_565870621 | replace: '$locationOrigin', locationOrigin }}</span></p>
+        </h2>
+      </div>
+    </div>
+    
+    <gp-carousel gp-data='{"id":"gdaYSx4060","setting":{"arrow":{"desktop":true,"mobile":false,"tablet":false},"arrowCustom":"<svg height=\"20\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\"  viewBox=\"0 0 256 256\" fill=\"currentColor\" data-id=\"493334322670666077\">\n              <path fill=\"currentColor\" strokeLinecap=\"round\" strokeLinejoin=\"round\" fill=\"currentColor\" d=\"M240.49,119.51l-96-96A12,12,0,0,0,124,32V68h-4a12,12,0,0,0-12,12v96a12,12,0,0,0,12,12h4v36a12,12,0,0,0,20.49,8.49l96-96A12,12,0,0,0,240.49,119.51ZM148,195V176a12,12,0,0,0-12-12h-4V92h4a12,12,0,0,0,12-12V61l67,67ZM52,80v96a12,12,0,0,1-24,0V80a12,12,0,0,1,24,0Zm40,0v96a12,12,0,0,1-24,0V80a12,12,0,0,1,24,0Z\" /></svg>","arrowCustomColor":"#E1238D","autoplay":false,"autoplayTimeout":"8","childItem":["Slide 1","Slide 3","Slide 2"],"controlOverContent":{"desktop":false},"dot":{"desktop":true,"mobile":true,"tablet":true},"dotActiveColor":{"desktop":"brand","tablet":"#242424"},"dotColor":{"desktop":"bg-1","tablet":"#E0E0E0"},"enableDrag":true,"loop":{"desktop":false},"navigationEnable":{"desktop":true,"mobile":true,"tablet":true},"pauseOnHover":true,"slidesToShow":{"desktop":1,"mobile":1,"tablet":1},"vertical":{"desktop":false,"mobile":false,"tablet":false}},"styles":{"adaptiveHeight":{"desktop":false},"fullWidth":{"desktop":true},"height":{"desktop":"auto"},"spacing":{"desktop":16},"width":{"desktop":"300px"}}}' data-id="gdaYSx4060" id="gp-root-carousel-gdaYSx4060"  class="gp-group/carousel gp-w-full gp-flex">
+      <div
+        
+        class="gdaYSx4060 gp-relative gp-my-0 tablet:gp-px-0 gp-max-w-full mobile:gp-px-0 gp-carousel-wrapper mobile:gp-block tablet:gp-block gp-block"
+        style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--h:auto;--h-tablet:auto;--h-mobile:auto;--w:auto;--w-tablet:auto;--w-mobile:auto"
+      >
+        <div class="gp-relative gp-flex gp-items-center gp-justify-between mobile:!gp-flex-row tablet:!gp-flex-row !gp-flex-row" style="--h:100%;--h-tablet:100%;--h-mobile:100%;gap:16px">
+          
+    <button
+      type="button"
+      aria-label='Carousel Back Arrow'
+      class="gp-z-1 gp-items-center gp-justify-center gp-overflow-hidden gp-shrink-0 gp-carousel-arrow-gdaYSx4060 gdaYSx4060 gp-carousel-action-back gem-slider-previous gp-cursor-pointer gp-text-gray-500 !gp-hidden tablet:!gp-hidden mobile:!gp-hidden"
+      style="--d:none;--d-tablet:none;--d-mobile:none;--left:3px;--right:initial;--top:initial;--left-tablet:3px;--right-tablet:initial;--top-tablet:initial;--left-mobile:3px;--right-mobile:initial;--top-mobile:initial"
+    >
+      <style type="text/css">
+      .gp-carousel-arrow-gdaYSx4060 {
+        
+      }
+      .gp-carousel-arrow-gdaYSx4060::before {
+        content: '';
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        pointer-events: none;
+        z-index: 10;
+        
+        
+      }
+      @media only screen and (max-width: 1024px) and (min-width: 768px) {
+        .gp-carousel-arrow-gdaYSx4060 {
+          
+        }
+        .gp-carousel-arrow-gdaYSx4060::before {
+          
+          
+        }
+      }
+      @media only screen and (max-width: 768px) {
+        .gp-carousel-arrow-gdaYSx4060 {
+          
+        }
+        .gp-carousel-arrow-gdaYSx4060::before {
+          
+          
+        }
+      }
+    </style>
+      
+    <div
+      class="gp-flex gp-items-center gp-justify-center [&>svg]:gp-h-full [&>svg]:gp-w-full gp-rotate-180 tablet:gp-rotate-180 mobile:gp-rotate-180"
+      style="--c:#E1238D"
+    >
+        <svg height="20" width="20" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 256 256" fill="currentColor" data-id="493334322670666077">
+              <path fill="currentColor" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" d="M240.49,119.51l-96-96A12,12,0,0,0,124,32V68h-4a12,12,0,0,0-12,12v96a12,12,0,0,0,12,12h4v36a12,12,0,0,0,20.49,8.49l96-96A12,12,0,0,0,240.49,119.51ZM148,195V176a12,12,0,0,0-12-12h-4V92h4a12,12,0,0,0,12-12V61l67,67ZM52,80v96a12,12,0,0,1-24,0V80a12,12,0,0,1,24,0Zm40,0v96a12,12,0,0,1-24,0V80a12,12,0,0,1,24,0Z" /></svg>
+    </div>
+  
+    </button>
+  
+          <div id="gp-carousel-gdaYSx4060" class="gem-slider gp-h-full gp-overflow-hidden gp-select-none gp-carousel-slider-gdaYSx4060 mobile:!gp-flex-nowrap tablet:!gp-flex-nowrap !gp-flex-nowrap mobile:!gp-min-h-full tablet:!gp-min-h-full !gp-min-h-full" style="--cg-mobile:16px;--cg-tablet:16px;--cg:16px">
+            
+    
+    <div
+      
+      id=""
+      class="gem-slider-item gp-w-full gem-slider-item-gdaYSx4060 gp-child-item-gdaYSx4060 gv8HFrnL98"
+      style="--minw:calc(100% / 1 - 0px);--minw-tablet:calc(100% / 1 - 0px);--minw-mobile:calc(100% / 1 - 0px);--maxw:calc(100% / 1 - 0px);--maxw-tablet:calc(100% / 1 - 0px);--maxw-mobile:calc(100% / 1 - 0px);--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%"
+      data-index="0"
+      grid-index="{{forloop.index}}"
+      external-id="{{media.external_id}}"
+      media-type="{{media.media_type}}"
+      media-poster="{{media.preview_image.src}}"
+      media-source-url="{{media.sources.first.url}}"
+      media-last-source-url="{{mediaSourceUrl}}"
+    >
+      <div
+        class="gp-w-full gp-h-full"
+        
+      >
+      
+    
+
+    
+
+    
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"transparent","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"gwNOOs2nS6"}' data-id="gwNOOs2nS6" id="gwNOOs2nS6" data-same-height-subgrid-container class="gwNOOs2nS6 gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--pos:static;--radius:var(--g-radius-small);--mb:0px;--cg:30px;--gtc:minmax(0, 4fr) minmax(0, 4fr) minmax(0, 4fr);--gtc-mobile:minmax(0, 12fr);--w:100%;--w-tablet:100%;--w-mobile:100%;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:start">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:start;--o:0"
+      class="glQ5H4VB5I gp-relative gp-flex gp-flex-col"
+    >
+      
+    <div
+      role="presentation"
+      data-id="gPHyThtBJC"
+      style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-2xl);--ta:left"
+      class="gp-group/image gp-relative force-publish-1787682838744 gp-flex-none gp-h-auto mobile:gp-flex-none mobile:gp-h-auto tablet:gp-flex-none tablet:gp-h-auto gPHyThtBJC"
+    >
+      <a
+        href="https://www.smackpetfood.com/blogs/news/winter-pet-care-guide-learn-how-to-keep-your-dog-warm" target="_blank" title="{{ section.settings.ggPHyThtBJC_title_-2124750075 }}"
+        style="border-radius:inherit;--jc:left"
+        class="gp-h-full gp-w-full gp-flex pointer-events-auto"
+      >
+        
+    <img
+      alt="{{ section.settings.ggPHyThtBJC_alt_1978768214 }}" title="{{ section.settings.ggPHyThtBJC_title_-2124750075 }}" width="2160" height="1800" draggable="false" quality-type quality-percent data-sizes="auto" sizes="100vw" src="https://ucarecdn.com/5c8a33fb-4309-4bdb-86e0-5b681772ff83/-/format/auto/" isNotLazyload="true" srcset base-src="https://ucarecdn.com/5c8a33fb-4309-4bdb-86e0-5b681772ff83/-/format/auto/" loading="lazy"
+      id=""
+      style="--w:100%;--w-tablet:100%;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--radius:var(--g-radius-small);--aspect:2160/1800;--aspect-tablet:2160/1800;--aspect-mobile:2160/1800;--objf:cover"
+      class="gp-inline-block gp-w-full gp-max-w-full"
+    />
+      </a>
+    </div>
+  
+    
+
+    
+
+    
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"transparent","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"gqaK8uYr6m"}' data-id="gqaK8uYr6m" id="gqaK8uYr6m" data-same-height-subgrid-container class="gqaK8uYr6m gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--radius:var(--g-radius-small);--mt:0px;--ml:auto;--mb:var(--g-s-s);--mr:auto;--mt-tablet:0px;--ml-tablet:auto;--mb-tablet:var(--g-s-s);--mr-tablet:auto;--cg:4px;--gtc:minmax(0, auto);--gtc-mobile:minmax(0, auto);--w:100%;--w-tablet:100%;--w-mobile:100%;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:center">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:center;--o:0"
+      class="gItdWwahta gp-relative gp-flex gp-flex-col"
+    >
+      
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gLMcyqQknL"
+        class="gLMcyqQknL"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:left;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#B4B4B4;--fs:normal;--ff:var(--g-font-Open-Sans, 'Open Sans'), var(--g-font-body, body);--weight:400;--size:13px;--size-tablet:13px;--size-mobile:12px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.ggLMcyqQknL_text_1973843017 | replace: '$locationOrigin', locationOrigin }}</p>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+
+      
+    </gp-row>
+  
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gAOC0DXCt6"
+        class="gAOC0DXCt6"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--c:#242424;--fs:normal;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-heading, heading);--size:23px;--size-tablet:23px;--size-mobile:20px;--ls:normal;--weight:bold;word-break:break-word;overflow:hidden"
+        >
+          <p><span style="font-size:21px;"><strong>{{ section.settings.ggAOC0DXCt6_text_2090831064 | replace: '$locationOrigin', locationOrigin }}</strong></span></p>
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gRuJn9pZfI"
+        class="gRuJn9pZfI"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb-mobile:42px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#424242;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word;overflow:hidden"
+        >
+          {{ section.settings.ggRuJn9pZfI_text_502480683 | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    <gp-button
+      gp-data='{"btnLink":{"link":"https://www.smackpetfood.com/blogs/news/winter-pet-care-guide-learn-how-to-keep-your-dog-warm","target":"_blank"}}'
+      
+      class="gp-flex gp-flex-col"
+    >
+      <div style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mb:var(--g-s-l);--ta:center" >
+        <style>[data-id="gb4n1QfM-Z"].gp-button-base::before, [data-id="gb4n1QfM-Z-interaction"].gp-button-base::before {
+      
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    border-style: solid;
+  border-width: 0px 0px 0px 0px;
+  border-color: #121212;
+  
+    border-radius: var(--g-radius-small);
+  
+    }
+  
+      
+  [data-id="gb4n1QfM-Z"]:hover::before, [data-id="gb4n1QfM-Z-interaction"]:hover::before {
+    
+    
+  }</style>
+        
+        <a
+          data-id="gb4n1QfM-Z" dataId="gb4n1QfM-Z" data-state="idle" aria-label="Read More"
+          
+          href="https://www.smackpetfood.com/blogs/news/winter-pet-care-guide-learn-how-to-keep-your-dog-warm" target="_blank"
+          style="--w:Auto;--w-tablet:Auto;--w-mobile:Auto;--h:36px;--h-tablet:36px;--h-mobile:36px;--pl:24px;--pr:24px;--pt:var(--g-s-s);--pb:8px;--radius:var(--g-radius-small);--hvr-radius:var(--g-radius-small);--shadow:none;--hvr-bg:var(--g-c-highlight, highlight);--bg:#E1238D;--c:var(--g-c-text-3, text-3);--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px"
+          class="gb4n1QfM-Z gp-text-center gp-button-base gp-group gp-relative gp-inline-flex gp-max-w-full gp-items-center gp-justify-center gp-no-underline gp-transition-colors gp-duration-200 disabled:gp-btn-disabled disabled:gp-opacity-30 gp-text-g-text-3 "
+        >
+        
+        <div class="gp-inline-flex">
+          
+          
+    <span
+      data-gp-text
+      style="--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word"
+      class="gp-content-product-button group-active/button:!gp-text-inherit gp-relative gp-flex gp-h-full gp-items-center gp-overflow-hidden gp-break-words group-data-[state=loading]:gp-invisible [&_p]:gp-whitespace-pre-line gp-text button-text"
+    >
+      {{ section.settings.ggb4n1QfM-Z_label_1474786502 }}
+    </span>
+        </div>
+        
+        </a>
+      </div>
+      <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://assets.gemcommerce.com/assets-v2/gp-button-v7-5.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+    </gp-button>
+  
+    </div><div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:start;--o:0"
+      class="g4Yyu8FpDo gp-relative gp-flex gp-flex-col"
+    >
+      
+    <div
+      role="presentation"
+      data-id="g3EEOEb7Rv"
+      style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-2xl);--ta:left"
+      class="gp-group/image gp-relative force-publish-1787682838747 gp-flex-none gp-h-auto mobile:gp-flex-none mobile:gp-h-auto tablet:gp-flex-none tablet:gp-h-auto g3EEOEb7Rv"
+    >
+      <a
+        href="https://www.smackpetfood.com/blogs/news/local-business-spotlight-loves-pets" target="_blank" title="{{ section.settings.gg3EEOEb7Rv_title_-2124750075 }}"
+        style="border-radius:inherit;--jc:left"
+        class="gp-h-full gp-w-full gp-flex pointer-events-auto"
+      >
+        
+    <img
+      alt="{{ section.settings.gg3EEOEb7Rv_alt_1978768214 }}" title="{{ section.settings.gg3EEOEb7Rv_title_-2124750075 }}" width="2565" height="2138" draggable="false" quality-type quality-percent data-sizes="auto" sizes="100vw" src="{{ "485391223989732606-81bb7db0-7e8b-4d9b-bb74-620680e99e8f.png" | asset_url }}" isNotLazyload="true" srcset base-src="{{ "485391223989732606-81bb7db0-7e8b-4d9b-bb74-620680e99e8f.png" | asset_url }}" loading="lazy"
+      id=""
+      style="--w:100%;--w-tablet:100%;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--radius:var(--g-radius-small);--aspect:2565/2138;--aspect-tablet:2565/2138;--aspect-mobile:2565/2138;--objf:cover"
+      class="gp-inline-block gp-w-full gp-max-w-full"
+    />
+      </a>
+    </div>
+  
+    
+
+    
+
+    
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"transparent","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"gquYvKXTR9"}' data-id="gquYvKXTR9" id="gquYvKXTR9" data-same-height-subgrid-container class="gquYvKXTR9 gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--radius:var(--g-radius-small);--mt:0px;--ml:auto;--mb:var(--g-s-s);--mr:auto;--mt-tablet:0px;--ml-tablet:auto;--mb-tablet:var(--g-s-s);--mr-tablet:auto;--cg:4px;--gtc:minmax(0, auto);--gtc-mobile:minmax(0, auto);--w:100%;--w-tablet:100%;--w-mobile:100%;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:center">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:center;--o:0"
+      class="gobtMDGc24 gp-relative gp-flex gp-flex-col"
+    >
+      
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gwx7psBRZu"
+        class="gwx7psBRZu"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:left;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#B4B4B4;--fs:normal;--ff:var(--g-font-Open-Sans, 'Open Sans'), var(--g-font-body, body);--weight:400;--size:13px;--size-tablet:13px;--size-mobile:12px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.ggwx7psBRZu_text_-6825648 | replace: '$locationOrigin', locationOrigin }}</p>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+
+      
+    </gp-row>
+  
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gySUrJdFRp"
+        class="gySUrJdFRp"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:0px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--c:#242424;--fs:normal;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-heading, heading);--size:23px;--size-tablet:23px;--size-mobile:20px;--ls:normal;--weight:bold;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.ggySUrJdFRp_text_-609159063 | replace: '$locationOrigin', locationOrigin }}</p>
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gOpM0YfBP5"
+        class="gOpM0YfBP5"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb-mobile:42px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#424242;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.ggOpM0YfBP5_text_743878517 | replace: '$locationOrigin', locationOrigin }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <gp-button
+      gp-data='{"btnLink":{"link":"https://www.smackpetfood.com/blogs/news/local-business-spotlight-loves-pets","target":"_blank"}}'
+      
+      class="gp-flex gp-flex-col"
+    >
+      <div style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mb:var(--g-s-l);--ta:center" >
+        <style>[data-id="gAZxJhMusb"].gp-button-base::before, [data-id="gAZxJhMusb-interaction"].gp-button-base::before {
+      
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    border-style: solid;
+  border-width: 0px 0px 0px 0px;
+  border-color: #121212;
+  
+    border-radius: var(--g-radius-small);
+  
+    }
+  
+      
+  [data-id="gAZxJhMusb"]:hover::before, [data-id="gAZxJhMusb-interaction"]:hover::before {
+    
+    
+  }</style>
+        
+        <a
+          data-id="gAZxJhMusb" dataId="gAZxJhMusb" data-state="idle" aria-label="Read More"
+          
+          href="https://www.smackpetfood.com/blogs/news/local-business-spotlight-loves-pets" target="_blank"
+          style="--w:Auto;--w-tablet:Auto;--w-mobile:Auto;--h:36px;--h-tablet:36px;--h-mobile:36px;--pl:24px;--pr:24px;--pt:var(--g-s-s);--pb:8px;--radius:var(--g-radius-small);--hvr-radius:var(--g-radius-small);--shadow:none;--hvr-bg:var(--g-c-highlight, highlight);--bg:#E1238D;--c:var(--g-c-text-3, text-3);--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px"
+          class="gAZxJhMusb gp-text-center gp-button-base gp-group gp-relative gp-inline-flex gp-max-w-full gp-items-center gp-justify-center gp-no-underline gp-transition-colors gp-duration-200 disabled:gp-btn-disabled disabled:gp-opacity-30 gp-text-g-text-3 "
+        >
+        
+        <div class="gp-inline-flex">
+          
+          
+    <span
+      data-gp-text
+      style="--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word"
+      class="gp-content-product-button group-active/button:!gp-text-inherit gp-relative gp-flex gp-h-full gp-items-center gp-overflow-hidden gp-break-words group-data-[state=loading]:gp-invisible [&_p]:gp-whitespace-pre-line gp-text button-text"
+    >
+      {{ section.settings.ggAZxJhMusb_label_1474786502 }}
+    </span>
+        </div>
+        
+        </a>
+      </div>
+      <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://assets.gemcommerce.com/assets-v2/gp-button-v7-5.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+    </gp-button>
+  
+    </div><div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:start;--o:0"
+      class="gtEEC2TvE9 gp-relative gp-flex gp-flex-col"
+    >
+      
+    <div
+      role="presentation"
+      data-id="gg6KfcPQZG"
+      style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-2xl);--ta:left"
+      class="gp-group/image gp-relative force-publish-1787682838750 gp-flex-none gp-h-auto mobile:gp-flex-none mobile:gp-h-auto tablet:gp-flex-none tablet:gp-h-auto gg6KfcPQZG"
+    >
+      <a
+        href="https://www.smackpetfood.com/blogs/news/elevating-the-health-of-your-senior-dog" target="_blank" title="{{ section.settings.ggg6KfcPQZG_title_-2124750075 }}"
+        style="border-radius:inherit;--jc:left"
+        class="gp-h-full gp-w-full gp-flex pointer-events-auto"
+      >
+        
+    <img
+      alt="{{ section.settings.ggg6KfcPQZG_alt_1978768214 }}" title="{{ section.settings.ggg6KfcPQZG_title_-2124750075 }}" width="2160" height="1800" draggable="false" quality-type quality-percent data-sizes="auto" sizes="100vw" src="https://ucarecdn.com/ba8185ea-7c69-48ea-a366-d68e8d02111f/-/format/auto/" isNotLazyload="true" srcset base-src="https://ucarecdn.com/ba8185ea-7c69-48ea-a366-d68e8d02111f/-/format/auto/" loading="lazy"
+      id=""
+      style="--w:100%;--w-tablet:100%;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--radius:var(--g-radius-small);--aspect:2160/1800;--aspect-tablet:2160/1800;--aspect-mobile:2160/1800;--objf:cover"
+      class="gp-inline-block gp-w-full gp-max-w-full"
+    />
+      </a>
+    </div>
+  
+    
+
+    
+
+    
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"transparent","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"gBEdg5Z3Gq"}' data-id="gBEdg5Z3Gq" id="gBEdg5Z3Gq" data-same-height-subgrid-container class="gBEdg5Z3Gq gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--radius:var(--g-radius-small);--mt:0px;--ml:auto;--mb:var(--g-s-s);--mr:auto;--mt-tablet:0px;--ml-tablet:auto;--mb-tablet:var(--g-s-s);--mr-tablet:auto;--cg:4px;--gtc:minmax(0, auto);--gtc-mobile:minmax(0, auto);--w:100%;--w-tablet:100%;--w-mobile:100%;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:center">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:center;--o:0"
+      class="gmQjiTmOfc gp-relative gp-flex gp-flex-col"
+    >
+      
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gSCJ043XWG"
+        class="gSCJ043XWG"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:left;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#B4B4B4;--fs:normal;--ff:var(--g-font-Open-Sans, 'Open Sans'), var(--g-font-body, body);--weight:400;--size:13px;--size-tablet:13px;--size-mobile:12px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.ggSCJ043XWG_text_-637051751 | replace: '$locationOrigin', locationOrigin }}</p>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+
+      
+    </gp-row>
+  
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="g8T8dJb2Z6"
+        class="g8T8dJb2Z6"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:1px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--c:#242424;--fs:normal;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-heading, heading);--size:23px;--size-tablet:23px;--size-mobile:20px;--ls:normal;--weight:bold;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.gg8T8dJb2Z6_text_311078194 | replace: '$locationOrigin', locationOrigin }}</p>
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gciEcfm229"
+        class="gciEcfm229"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:0px;--mb-mobile:42px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#424242;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word;overflow:hidden"
+        >
+          {{ section.settings.ggciEcfm229_text_-1969963852 | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    <gp-button
+      gp-data='{"btnLink":{"link":"https://www.smackpetfood.com/blogs/news/elevating-the-health-of-your-senior-dog","target":"_blank"}}'
+      
+      class="gp-flex gp-flex-col"
+    >
+      <div style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mb:var(--g-s-l);--ta:center" >
+        <style>[data-id="gUjN1dR4FK"].gp-button-base::before, [data-id="gUjN1dR4FK-interaction"].gp-button-base::before {
+      
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    border-style: solid;
+  border-width: 0px 0px 0px 0px;
+  border-color: #121212;
+  
+    border-radius: var(--g-radius-small);
+  
+    }
+  
+      
+  [data-id="gUjN1dR4FK"]:hover::before, [data-id="gUjN1dR4FK-interaction"]:hover::before {
+    
+    
+  }</style>
+        
+        <a
+          data-id="gUjN1dR4FK" dataId="gUjN1dR4FK" data-state="idle" aria-label="Read More"
+          
+          href="https://www.smackpetfood.com/blogs/news/elevating-the-health-of-your-senior-dog" target="_blank"
+          style="--w:Auto;--w-tablet:Auto;--w-mobile:Auto;--h:36px;--h-tablet:36px;--h-mobile:36px;--pl:24px;--pr:24px;--pt:var(--g-s-s);--pb:8px;--radius:var(--g-radius-small);--hvr-radius:var(--g-radius-small);--shadow:none;--hvr-bg:var(--g-c-highlight, highlight);--bg:#E1238D;--c:var(--g-c-text-3, text-3);--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px"
+          class="gUjN1dR4FK gp-text-center gp-button-base gp-group gp-relative gp-inline-flex gp-max-w-full gp-items-center gp-justify-center gp-no-underline gp-transition-colors gp-duration-200 disabled:gp-btn-disabled disabled:gp-opacity-30 gp-text-g-text-3 "
+        >
+        
+        <div class="gp-inline-flex">
+          
+          
+    <span
+      data-gp-text
+      style="--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word"
+      class="gp-content-product-button group-active/button:!gp-text-inherit gp-relative gp-flex gp-h-full gp-items-center gp-overflow-hidden gp-break-words group-data-[state=loading]:gp-invisible [&_p]:gp-whitespace-pre-line gp-text button-text"
+    >
+      {{ section.settings.ggUjN1dR4FK_label_1474786502 }}
+    </span>
+        </div>
+        
+        </a>
+      </div>
+      <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://assets.gemcommerce.com/assets-v2/gp-button-v7-5.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+    </gp-button>
+  
+    </div>
+
+      
+    </gp-row>
+  
+  
+      </div>
+    </div>
+  
+    <div
+      
+      id=""
+      class="gem-slider-item gp-w-full gem-slider-item-gdaYSx4060 gp-child-item-gdaYSx4060 gmYvmNzbF0"
+      style="--minw:calc(100% / 1 - 0px);--minw-tablet:calc(100% / 1 - 0px);--minw-mobile:calc(100% / 1 - 0px);--maxw:calc(100% / 1 - 0px);--maxw-tablet:calc(100% / 1 - 0px);--maxw-mobile:calc(100% / 1 - 0px);--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%"
+      data-index="1"
+      grid-index="{{forloop.index}}"
+      external-id="{{media.external_id}}"
+      media-type="{{media.media_type}}"
+      media-poster="{{media.preview_image.src}}"
+      media-source-url="{{media.sources.first.url}}"
+      media-last-source-url="{{mediaSourceUrl}}"
+    >
+      <div
+        class="gp-w-full gp-h-full"
+        
+      >
+      
+    
+
+    
+
+    
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"transparent","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"gMG2T8luPo"}' data-id="gMG2T8luPo" id="gMG2T8luPo" data-same-height-subgrid-container class="gMG2T8luPo gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--pos:static;--radius:var(--g-radius-small);--mb:0px;--cg:30px;--gtc:minmax(0, 4fr) minmax(0, 4fr) minmax(0, 4fr);--gtc-mobile:minmax(0, 12fr);--w:100%;--w-tablet:100%;--w-mobile:100%;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:start">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:start;--o:0"
+      class="gSpZI3ZeOm gp-relative gp-flex gp-flex-col"
+    >
+      
+    <div
+      role="presentation"
+      data-id="gVwVZiFU_H"
+      style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-2xl);--ta:left"
+      class="gp-group/image gp-relative force-publish-1787682838753 gp-flex-none gp-h-auto mobile:gp-flex-none mobile:gp-h-auto tablet:gp-flex-none tablet:gp-h-auto gVwVZiFU_H"
+    >
+      <a
+        href="https://www.smackpetfood.com/blogs/news/the-benefits-of-curly-parsley" target="_blank" title="{{ section.settings.ggVwVZiFU_H_title_-2124750075 }}"
+        style="border-radius:inherit;--jc:left"
+        class="gp-h-full gp-w-full gp-flex pointer-events-auto"
+      >
+        
+    <img
+      alt="{{ section.settings.ggVwVZiFU_H_alt_1978768214 }}" title="{{ section.settings.ggVwVZiFU_H_title_-2124750075 }}" width="2160" height="1800" draggable="false" quality-type quality-percent data-sizes="auto" sizes="100vw" src="{{ "485391223989732606-86651e14-7a41-4408-903f-ffdee9058cc7.png" | asset_url }}" isNotLazyload="true" srcset base-src="{{ "485391223989732606-86651e14-7a41-4408-903f-ffdee9058cc7.png" | asset_url }}" loading="lazy"
+      id=""
+      style="--w:100%;--w-tablet:100%;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--radius:var(--g-radius-small);--aspect:2160/1800;--aspect-tablet:2160/1800;--aspect-mobile:2160/1800;--objf:cover"
+      class="gp-inline-block gp-w-full gp-max-w-full"
+    />
+      </a>
+    </div>
+  
+    
+
+    
+
+    
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"transparent","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"gRUId_vHnK"}' data-id="gRUId_vHnK" id="gRUId_vHnK" data-same-height-subgrid-container class="gRUId_vHnK gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--radius:var(--g-radius-small);--mt:0px;--ml:auto;--mb:var(--g-s-s);--mr:auto;--mt-tablet:0px;--ml-tablet:auto;--mb-tablet:var(--g-s-s);--mr-tablet:auto;--cg:4px;--gtc:minmax(0, auto);--gtc-mobile:minmax(0, auto);--w:100%;--w-tablet:100%;--w-mobile:100%;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:center">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:center;--o:0"
+      class="gJuqYKARLM gp-relative gp-flex gp-flex-col"
+    >
+      
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gdSOQnoOm4"
+        class="gdSOQnoOm4"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:left;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#B4B4B4;--fs:normal;--ff:var(--g-font-Open-Sans, 'Open Sans'), var(--g-font-body, body);--weight:400;--size:13px;--size-tablet:13px;--size-mobile:12px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.ggdSOQnoOm4_text_-502296209 | replace: '$locationOrigin', locationOrigin }}</p>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+
+      
+    </gp-row>
+  
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gqADxiD5lw"
+        class="gqADxiD5lw"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-l);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--c:#242424;--fs:normal;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-heading, heading);--size:23px;--size-tablet:23px;--size-mobile:20px;--ls:normal;--weight:bold;word-break:break-word;overflow:hidden"
+        >
+          <p><span style="font-size:21px;"><strong>{{ section.settings.ggqADxiD5lw_text_99754950 | replace: '$locationOrigin', locationOrigin }}</strong></span></p>
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="guGOdGH1R3"
+        class="guGOdGH1R3"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb-mobile:42px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#424242;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.gguGOdGH1R3_text_-694066912 | replace: '$locationOrigin', locationOrigin }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <gp-button
+      gp-data='{"btnLink":{"link":"https://www.smackpetfood.com/blogs/news/the-benefits-of-curly-parsley","target":"_blank"}}'
+      
+      class="gp-flex gp-flex-col"
+    >
+      <div style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mb:var(--g-s-l);--ta:center" >
+        <style>[data-id="gtq9gYAZ4C"].gp-button-base::before, [data-id="gtq9gYAZ4C-interaction"].gp-button-base::before {
+      
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    border-style: solid;
+  border-width: 0px 0px 0px 0px;
+  border-color: #121212;
+  
+    border-radius: var(--g-radius-small);
+  
+    }
+  
+      
+  [data-id="gtq9gYAZ4C"]:hover::before, [data-id="gtq9gYAZ4C-interaction"]:hover::before {
+    
+    
+  }</style>
+        
+        <a
+          data-id="gtq9gYAZ4C" dataId="gtq9gYAZ4C" data-state="idle" aria-label="Read More"
+          
+          href="https://www.smackpetfood.com/blogs/news/the-benefits-of-curly-parsley" target="_blank"
+          style="--w:Auto;--w-tablet:Auto;--w-mobile:Auto;--h:36px;--h-tablet:36px;--h-mobile:36px;--pl:24px;--pr:24px;--pt:var(--g-s-s);--pb:8px;--radius:var(--g-radius-small);--hvr-radius:var(--g-radius-small);--shadow:none;--hvr-bg:var(--g-c-highlight, highlight);--bg:#E1238D;--c:var(--g-c-text-3, text-3);--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px"
+          class="gtq9gYAZ4C gp-text-center gp-button-base gp-group gp-relative gp-inline-flex gp-max-w-full gp-items-center gp-justify-center gp-no-underline gp-transition-colors gp-duration-200 disabled:gp-btn-disabled disabled:gp-opacity-30 gp-text-g-text-3 "
+        >
+        
+        <div class="gp-inline-flex">
+          
+          
+    <span
+      data-gp-text
+      style="--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word"
+      class="gp-content-product-button group-active/button:!gp-text-inherit gp-relative gp-flex gp-h-full gp-items-center gp-overflow-hidden gp-break-words group-data-[state=loading]:gp-invisible [&_p]:gp-whitespace-pre-line gp-text button-text"
+    >
+      {{ section.settings.ggtq9gYAZ4C_label_1474786502 }}
+    </span>
+        </div>
+        
+        </a>
+      </div>
+      <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://assets.gemcommerce.com/assets-v2/gp-button-v7-5.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+    </gp-button>
+  
+    </div><div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:start;--o:0"
+      class="gM33dsreQT gp-relative gp-flex gp-flex-col"
+    >
+      
+    <div
+      role="presentation"
+      data-id="gSKJEx0C9Y"
+      style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-2xl);--ta:left"
+      class="gp-group/image gp-relative force-publish-1787682838781 gp-flex-none gp-h-auto mobile:gp-flex-none mobile:gp-h-auto tablet:gp-flex-none tablet:gp-h-auto gSKJEx0C9Y"
+    >
+      <a
+        href="https://www.smackpetfood.com/blogs/news/blog-animal-pain-awareness" target="_blank" title="{{ section.settings.ggSKJEx0C9Y_title_-2124750075 }}"
+        style="border-radius:inherit;--jc:left"
+        class="gp-h-full gp-w-full gp-flex pointer-events-auto"
+      >
+        
+    <img
+      alt="{{ section.settings.ggSKJEx0C9Y_alt_1978768214 }}" title="{{ section.settings.ggSKJEx0C9Y_title_-2124750075 }}" width="1080" height="900" draggable="false" quality-type quality-percent data-sizes="auto" sizes="100vw" src="https://ucarecdn.com/09a5eb9b-6684-4dac-9f02-460a6b85ca8a/-/format/auto/" isNotLazyload="true" srcset base-src="https://ucarecdn.com/09a5eb9b-6684-4dac-9f02-460a6b85ca8a/-/format/auto/" loading="lazy"
+      id=""
+      style="--w:100%;--w-tablet:100%;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--radius:var(--g-radius-small);--aspect:1080/900;--aspect-tablet:1080/900;--aspect-mobile:1080/900;--objf:cover"
+      class="gp-inline-block gp-w-full gp-max-w-full"
+    />
+      </a>
+    </div>
+  
+    
+
+    
+
+    
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"transparent","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"g2s9AyQ8UH"}' data-id="g2s9AyQ8UH" id="g2s9AyQ8UH" data-same-height-subgrid-container class="g2s9AyQ8UH gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--radius:var(--g-radius-small);--mt:0px;--ml:auto;--mb:var(--g-s-s);--mr:auto;--mt-tablet:0px;--ml-tablet:auto;--mb-tablet:var(--g-s-s);--mr-tablet:auto;--cg:4px;--gtc:minmax(0, auto);--gtc-mobile:minmax(0, auto);--w:100%;--w-tablet:100%;--w-mobile:100%;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:center">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:center;--o:0"
+      class="gCrVETb9fh gp-relative gp-flex gp-flex-col"
+    >
+      
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gWYZkL69BL"
+        class="gWYZkL69BL"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:left;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#B4B4B4;--fs:normal;--ff:var(--g-font-Open-Sans, 'Open Sans'), var(--g-font-body, body);--weight:400;--size:13px;--size-tablet:13px;--size-mobile:12px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.ggWYZkL69BL_text_1860969097 | replace: '$locationOrigin', locationOrigin }}</p>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+
+      
+    </gp-row>
+  
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="glaSKJYXUb"
+        class="glaSKJYXUb"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-l);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--c:#242424;--fs:normal;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-heading, heading);--size:23px;--size-tablet:23px;--size-mobile:20px;--ls:normal;--weight:bold;word-break:break-word;overflow:hidden"
+        >
+          <p><span style="font-size:21px;"><strong>{{ section.settings.gglaSKJYXUb_text_1587376970 | replace: '$locationOrigin', locationOrigin }}</strong></span></p>
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="g1YsjY8v4G"
+        class="g1YsjY8v4G"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb-mobile:42px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#424242;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word;overflow:hidden"
+        >
+          {{ section.settings.gg1YsjY8v4G_text_-1891948880 | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    <gp-button
+      gp-data='{"btnLink":{"link":"https://www.smackpetfood.com/blogs/news/blog-animal-pain-awareness","target":"_blank"}}'
+      
+      class="gp-flex gp-flex-col"
+    >
+      <div style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mb:var(--g-s-l);--ta:center" >
+        <style>[data-id="gHHzh_1YGL"].gp-button-base::before, [data-id="gHHzh_1YGL-interaction"].gp-button-base::before {
+      
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    border-style: solid;
+  border-width: 0px 0px 0px 0px;
+  border-color: #121212;
+  
+    border-radius: var(--g-radius-small);
+  
+    }
+  
+      
+  [data-id="gHHzh_1YGL"]:hover::before, [data-id="gHHzh_1YGL-interaction"]:hover::before {
+    
+    
+  }</style>
+        
+        <a
+          data-id="gHHzh_1YGL" dataId="gHHzh_1YGL" data-state="idle" aria-label="Read More"
+          
+          href="https://www.smackpetfood.com/blogs/news/blog-animal-pain-awareness" target="_blank"
+          style="--w:Auto;--w-tablet:Auto;--w-mobile:Auto;--h:36px;--h-tablet:36px;--h-mobile:36px;--pl:24px;--pr:24px;--pt:var(--g-s-s);--pb:8px;--radius:var(--g-radius-small);--hvr-radius:var(--g-radius-small);--shadow:none;--hvr-bg:var(--g-c-highlight, highlight);--bg:#E1238D;--c:var(--g-c-text-3, text-3);--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px"
+          class="gHHzh_1YGL gp-text-center gp-button-base gp-group gp-relative gp-inline-flex gp-max-w-full gp-items-center gp-justify-center gp-no-underline gp-transition-colors gp-duration-200 disabled:gp-btn-disabled disabled:gp-opacity-30 gp-text-g-text-3 "
+        >
+        
+        <div class="gp-inline-flex">
+          
+          
+    <span
+      data-gp-text
+      style="--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word"
+      class="gp-content-product-button group-active/button:!gp-text-inherit gp-relative gp-flex gp-h-full gp-items-center gp-overflow-hidden gp-break-words group-data-[state=loading]:gp-invisible [&_p]:gp-whitespace-pre-line gp-text button-text"
+    >
+      {{ section.settings.ggHHzh_1YGL_label_1474786502 }}
+    </span>
+        </div>
+        
+        </a>
+      </div>
+      <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://assets.gemcommerce.com/assets-v2/gp-button-v7-5.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+    </gp-button>
+  
+    </div><div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:start;--o:0"
+      class="gTTPXkRCi2 gp-relative gp-flex gp-flex-col"
+    >
+      
+    <div
+      role="presentation"
+      data-id="gDeTeoAYL-"
+      style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-2xl);--ta:left"
+      class="gp-group/image gp-relative force-publish-1787682838784 gp-flex-none gp-h-auto mobile:gp-flex-none mobile:gp-h-auto tablet:gp-flex-none tablet:gp-h-auto gDeTeoAYL-"
+    >
+      <a
+        href="https://www.smackpetfood.com/blogs/news/pumpkin-benefits" target="_blank" title="{{ section.settings.ggDeTeoAYL-_title_-2124750075 }}"
+        style="border-radius:inherit;--jc:left"
+        class="gp-h-full gp-w-full gp-flex pointer-events-auto"
+      >
+        
+    <img
+      alt="{{ section.settings.ggDeTeoAYL-_alt_1978768214 }}" title="{{ section.settings.ggDeTeoAYL-_title_-2124750075 }}" width="1080" height="900" draggable="false" quality-type quality-percent data-sizes="auto" sizes="100vw" src="https://ucarecdn.com/37c5a726-8b34-4ca0-a362-cbef62e428fc/-/format/auto/" isNotLazyload="true" srcset base-src="https://ucarecdn.com/37c5a726-8b34-4ca0-a362-cbef62e428fc/-/format/auto/" loading="lazy"
+      id=""
+      style="--w:100%;--w-tablet:100%;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--radius:var(--g-radius-small);--aspect:1080/900;--aspect-tablet:1080/900;--aspect-mobile:1080/900;--objf:cover"
+      class="gp-inline-block gp-w-full gp-max-w-full"
+    />
+      </a>
+    </div>
+  
+    
+
+    
+
+    
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"transparent","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"g5WutKgcHY"}' data-id="g5WutKgcHY" id="g5WutKgcHY" data-same-height-subgrid-container class="g5WutKgcHY gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--radius:var(--g-radius-small);--mt:0px;--ml:auto;--mb:var(--g-s-s);--mr:auto;--mt-tablet:0px;--ml-tablet:auto;--mb-tablet:var(--g-s-s);--mr-tablet:auto;--cg:4px;--gtc:minmax(0, auto);--gtc-mobile:minmax(0, auto);--w:100%;--w-tablet:100%;--w-mobile:100%;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:center">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--ai:normal;--jc:center;--o:0"
+      class="gm7KK9iVsd gp-relative gp-flex gp-flex-col"
+    >
+      
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gDXLQsMld3"
+        class="gDXLQsMld3"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:left;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#B4B4B4;--fs:normal;--ff:var(--g-font-Open-Sans, 'Open Sans'), var(--g-font-body, body);--weight:400;--size:13px;--size-tablet:13px;--size-mobile:12px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.ggDXLQsMld3_text_1084757635 | replace: '$locationOrigin', locationOrigin }}</p>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+
+      
+    </gp-row>
+  
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gfPUsPfKRa"
+        class="gfPUsPfKRa"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-l);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--c:#242424;--fs:normal;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-heading, heading);--size:23px;--size-tablet:23px;--size-mobile:20px;--ls:normal;--weight:bold;word-break:break-word;overflow:hidden"
+        >
+          <p><span style="font-size:21px;"><strong>{{ section.settings.ggfPUsPfKRa_text_30260774 | replace: '$locationOrigin', locationOrigin }}</strong></span></p>
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="guVvTphE3n"
+        class="guVvTphE3n"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb-mobile:42px;--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#424242;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word;overflow:hidden"
+        >
+          {{ section.settings.gguVvTphE3n_text_-2106492649 | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    <gp-button
+      gp-data='{"btnLink":{"link":"https://www.smackpetfood.com/blogs/news/pumpkin-benefits","target":"_blank"}}'
+      
+      class="gp-flex gp-flex-col"
+    >
+      <div style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mb:var(--g-s-l);--ta:center" >
+        <style>[data-id="gABSY1VIug"].gp-button-base::before, [data-id="gABSY1VIug-interaction"].gp-button-base::before {
+      
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    border-style: solid;
+  border-width: 0px 0px 0px 0px;
+  border-color: #121212;
+  
+    border-radius: var(--g-radius-small);
+  
+    }
+  
+      
+  [data-id="gABSY1VIug"]:hover::before, [data-id="gABSY1VIug-interaction"]:hover::before {
+    
+    
+  }</style>
+        
+        <a
+          data-id="gABSY1VIug" dataId="gABSY1VIug" data-state="idle" aria-label="Read More"
+          
+          href="https://www.smackpetfood.com/blogs/news/pumpkin-benefits" target="_blank"
+          style="--w:Auto;--w-tablet:Auto;--w-mobile:Auto;--h:36px;--h-tablet:36px;--h-mobile:36px;--pl:24px;--pr:24px;--pt:var(--g-s-s);--pb:8px;--radius:var(--g-radius-small);--hvr-radius:var(--g-radius-small);--shadow:none;--hvr-bg:var(--g-c-highlight, highlight);--bg:#E1238D;--c:var(--g-c-text-3, text-3);--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px"
+          class="gABSY1VIug gp-text-center gp-button-base gp-group gp-relative gp-inline-flex gp-max-w-full gp-items-center gp-justify-center gp-no-underline gp-transition-colors gp-duration-200 disabled:gp-btn-disabled disabled:gp-opacity-30 gp-text-g-text-3 "
+        >
+        
+        <div class="gp-inline-flex">
+          
+          
+    <span
+      data-gp-text
+      style="--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word"
+      class="gp-content-product-button group-active/button:!gp-text-inherit gp-relative gp-flex gp-h-full gp-items-center gp-overflow-hidden gp-break-words group-data-[state=loading]:gp-invisible [&_p]:gp-whitespace-pre-line gp-text button-text"
+    >
+      {{ section.settings.ggABSY1VIug_label_1474786502 }}
+    </span>
+        </div>
+        
+        </a>
+      </div>
+      <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://assets.gemcommerce.com/assets-v2/gp-button-v7-5.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+    </gp-button>
+  
+    </div>
+
+      
+    </gp-row>
+  
+  
+      </div>
+    </div>
+  
+    <div
+      
+      id=""
+      class="gem-slider-item gp-w-full gem-slider-item-gdaYSx4060 gp-child-item-gdaYSx4060 gt3TJpMzBK"
+      style="--minw:calc(100% / 1 - 0px);--minw-tablet:calc(100% / 1 - 0px);--minw-mobile:calc(100% / 1 - 0px);--maxw:calc(100% / 1 - 0px);--maxw-tablet:calc(100% / 1 - 0px);--maxw-mobile:calc(100% / 1 - 0px);--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%"
+      data-index="2"
+      grid-index="{{forloop.index}}"
+      external-id="{{media.external_id}}"
+      media-type="{{media.media_type}}"
+      media-poster="{{media.preview_image.src}}"
+      media-source-url="{{media.sources.first.url}}"
+      media-last-source-url="{{mediaSourceUrl}}"
+    >
+      <div
+        class="gp-w-full gp-h-full"
+        
+      >
+      
+    
+
+    
+
+    
+    <gp-row gp-data='{"background":{"desktop":{"attachment":"scroll","color":"transparent","image":{"height":0,"src":"","width":0},"position":{"x":50,"y":50},"repeat":"no-repeat","size":"cover","type":"color"}},"uid":"gz2EQYjYPK"}' data-id="gz2EQYjYPK" id="gz2EQYjYPK" data-same-height-subgrid-container class="gz2EQYjYPK gp-relative gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full gp-grid-rows-[1fr]" style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--radius:var(--g-radius-small);--cg:30px;--gtc:minmax(0, 4fr) minmax(0, 4fr) minmax(0, 4fr);--w:100%;--w-tablet:100%;--w-mobile:100%;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;--pc:start">
+      
+
+      <div
+      data-same-height-display-contents
+      style="--jc:start"
+      class="gOu0EMeRXA gp-relative gp-flex gp-flex-col"
+    >
+      
+    <div
+      role="presentation"
+      data-id="gXG42J5kAe"
+      style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-2xl);--ta:left"
+      class="gp-group/image gp-relative force-publish-1787682838788 gp-flex-none gp-h-auto mobile:gp-flex-none mobile:gp-h-auto tablet:gp-flex-none tablet:gp-h-auto gXG42J5kAe"
+    >
+      <a
+        href="https://www.smackpetfood.com/blogs/news/fresh-comparison" target="_blank" title="{{ section.settings.ggXG42J5kAe_title_-2124750075 }}"
+        style="border-radius:inherit;--jc:left"
+        class="gp-h-full gp-w-full gp-flex pointer-events-auto"
+      >
+        
+    <img
+      alt="{{ section.settings.ggXG42J5kAe_alt_1978768214 }}" title="{{ section.settings.ggXG42J5kAe_title_-2124750075 }}" width="1080" height="900" draggable="false" quality-type quality-percent data-sizes="auto" sizes="100vw" src="https://ucarecdn.com/36bb66ed-47ae-4bf3-a1ce-7d6bceec5f1d/-/format/auto/" isNotLazyload="true" srcset base-src="https://ucarecdn.com/36bb66ed-47ae-4bf3-a1ce-7d6bceec5f1d/-/format/auto/" loading="lazy"
+      id=""
+      style="--w:100%;--w-tablet:100%;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--radius:var(--g-radius-small);--aspect:1080/900;--aspect-tablet:1080/900;--aspect-mobile:1080/900;--objf:cover"
+      class="gp-inline-block gp-w-full gp-max-w-full"
+    />
+      </a>
+    </div>
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gCimA_uJpn"
+        class="gCimA_uJpn"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#B4B4B4;--fs:normal;--ff:var(--g-font-Open-Sans, 'Open Sans'), var(--g-font-body, body);--weight:400;--size:13px;--size-tablet:13px;--size-mobile:12px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.ggCimA_uJpn_text_935468558 | replace: '$locationOrigin', locationOrigin }}</p>
+        </div>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gkU3Ie5bKG"
+        class="gkU3Ie5bKG"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-l);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--c:#242424;--fs:normal;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-heading, heading);--weight:700;--size:23px;--size-tablet:23px;--size-mobile:20px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          <p><span style="background-color:rgb(255,255,255);color:rgb(0,0,0);font-size:21px;"><strong>{{ section.settings.ggkU3Ie5bKG_text_-1996924845 | replace: '$locationOrigin', locationOrigin }}</strong></span></p>
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gDuNKIIPQm"
+        class="gDuNKIIPQm"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#424242;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word;overflow:hidden"
+        >
+          {{ section.settings.ggDuNKIIPQm_text_-1895423628 | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    <gp-button
+      gp-data='{"btnLink":{"link":"https://www.smackpetfood.com/blogs/news/fresh-comparison","target":"_blank"}}'
+      
+      class="gp-flex gp-flex-col"
+    >
+      <div style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mb:var(--g-s-l);--ta:center" >
+        <style>[data-id="gFeCncFTNg"].gp-button-base::before, [data-id="gFeCncFTNg-interaction"].gp-button-base::before {
+      
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    border-style: solid;
+  border-width: 0px 0px 0px 0px;
+  border-color: #121212;
+  
+    border-radius: var(--g-radius-small);
+  
+    }
+  
+      
+  [data-id="gFeCncFTNg"]:hover::before, [data-id="gFeCncFTNg-interaction"]:hover::before {
+    
+    
+  }</style>
+        
+        <a
+          data-id="gFeCncFTNg" dataId="gFeCncFTNg" data-state="idle" aria-label="Read More"
+          
+          href="https://www.smackpetfood.com/blogs/news/fresh-comparison" target="_blank"
+          style="--w:Auto;--w-tablet:Auto;--w-mobile:Auto;--h:36px;--h-tablet:36px;--h-mobile:36px;--pl:24px;--pr:24px;--pt:var(--g-s-s);--pb:8px;--radius:var(--g-radius-small);--hvr-radius:var(--g-radius-small);--shadow:none;--hvr-bg:var(--g-c-highlight, highlight);--bg:#E1238D;--c:var(--g-c-text-3, text-3);--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px"
+          class="gFeCncFTNg gp-text-center gp-button-base gp-group gp-relative gp-inline-flex gp-max-w-full gp-items-center gp-justify-center gp-no-underline gp-transition-colors gp-duration-200 disabled:gp-btn-disabled disabled:gp-opacity-30 gp-text-g-text-3 "
+        >
+        
+        <div class="gp-inline-flex">
+          
+          
+    <span
+      data-gp-text
+      style="--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word"
+      class="gp-content-product-button group-active/button:!gp-text-inherit gp-relative gp-flex gp-h-full gp-items-center gp-overflow-hidden gp-break-words group-data-[state=loading]:gp-invisible [&_p]:gp-whitespace-pre-line gp-text button-text"
+    >
+      {{ section.settings.ggFeCncFTNg_label_1474786502 }}
+    </span>
+        </div>
+        
+        </a>
+      </div>
+      <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://assets.gemcommerce.com/assets-v2/gp-button-v7-5.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+    </gp-button>
+  
+    </div><div
+      data-same-height-display-contents
+      style="--jc:start"
+      class="g2DfgFqJHK gp-relative gp-flex gp-flex-col"
+    >
+      
+    <div
+      role="presentation"
+      data-id="gazE46sjjf"
+      style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:32px;--ta:left"
+      class="gp-group/image gp-relative force-publish-1787682838790 gp-flex-none gp-h-auto mobile:gp-flex-none mobile:gp-h-auto tablet:gp-flex-none tablet:gp-h-auto gazE46sjjf"
+    >
+      <a
+        href="https://ca.smackpetfood.com/blogs/news/red-barn-market" target="_blank" title="{{ section.settings.ggazE46sjjf_title_-2124750075 }}"
+        style="border-radius:inherit;--jc:left"
+        class="gp-h-full gp-w-full gp-flex pointer-events-auto"
+      >
+        
+    <img
+      alt="{{ section.settings.ggazE46sjjf_alt_1978768214 }}" title="{{ section.settings.ggazE46sjjf_title_-2124750075 }}" width="1080" height="900" draggable="false" quality-type quality-percent data-sizes="auto" sizes="100vw" src="https://ucarecdn.com/52cc974d-cc8b-4c46-83fd-abe3d3936a2b/-/format/auto/" isNotLazyload="true" srcset base-src="https://ucarecdn.com/52cc974d-cc8b-4c46-83fd-abe3d3936a2b/-/format/auto/" loading="lazy"
+      id=""
+      style="--w:100%;--w-tablet:100%;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--radius:var(--g-radius-small);--aspect:1080/900;--aspect-tablet:1080/900;--aspect-mobile:1080/900;--objf:cover"
+      class="gp-inline-block gp-w-full gp-max-w-full"
+    />
+      </a>
+    </div>
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gakppSKiU2"
+        class="gakppSKiU2"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#B4B4B4;--fs:normal;--ff:var(--g-font-Open-Sans, 'Open Sans'), var(--g-font-body, body);--weight:400;--size:13px;--size-tablet:13px;--size-mobile:12px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.ggakppSKiU2_text_-1014154723 | replace: '$locationOrigin', locationOrigin }}</p>
+        </div>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gT1fAsFhVI"
+        class="gT1fAsFhVI"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-l);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--c:#242424;--fs:normal;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-heading, heading);--weight:700;--size:23px;--size-tablet:23px;--size-mobile:20px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          {{ section.settings.ggT1fAsFhVI_text_-1679528747 | replace: '$locationOrigin', locationOrigin }}
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gjK7jp-qyd"
+        class="gjK7jp-qyd"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#424242;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word;overflow:hidden"
+        >
+          {{ section.settings.ggjK7jp-qyd_text_1863231141 | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    <gp-button
+      gp-data='{"btnLink":{"link":"https://ca.smackpetfood.com/blogs/news/red-barn-market","target":"_blank"}}'
+      
+      class="gp-flex gp-flex-col"
+    >
+      <div style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mb:var(--g-s-l);--ta:center" >
+        <style>[data-id="g5-M2-dgna"].gp-button-base::before, [data-id="g5-M2-dgna-interaction"].gp-button-base::before {
+      
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    border-style: solid;
+  border-width: 0px 0px 0px 0px;
+  border-color: #121212;
+  
+    border-radius: var(--g-radius-small);
+  
+    }
+  
+      
+  [data-id="g5-M2-dgna"]:hover::before, [data-id="g5-M2-dgna-interaction"]:hover::before {
+    
+    
+  }</style>
+        
+        <a
+          data-id="g5-M2-dgna" dataId="g5-M2-dgna" data-state="idle" aria-label="Read More"
+          
+          href="https://ca.smackpetfood.com/blogs/news/red-barn-market" target="_blank"
+          style="--w:Auto;--w-tablet:Auto;--w-mobile:Auto;--h:36px;--h-tablet:36px;--h-mobile:36px;--pl:24px;--pr:24px;--pt:var(--g-s-s);--pb:8px;--radius:var(--g-radius-small);--hvr-radius:var(--g-radius-small);--shadow:none;--hvr-bg:var(--g-c-highlight, highlight);--bg:#E1238D;--c:var(--g-c-text-3, text-3);--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px"
+          class="g5-M2-dgna gp-text-center gp-button-base gp-group gp-relative gp-inline-flex gp-max-w-full gp-items-center gp-justify-center gp-no-underline gp-transition-colors gp-duration-200 disabled:gp-btn-disabled disabled:gp-opacity-30 gp-text-g-text-3 "
+        >
+        
+        <div class="gp-inline-flex">
+          
+          
+    <span
+      data-gp-text
+      style="--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word"
+      class="gp-content-product-button group-active/button:!gp-text-inherit gp-relative gp-flex gp-h-full gp-items-center gp-overflow-hidden gp-break-words group-data-[state=loading]:gp-invisible [&_p]:gp-whitespace-pre-line gp-text button-text"
+    >
+      {{ section.settings.gg5-M2-dgna_label_1474786502 }}
+    </span>
+        </div>
+        
+        </a>
+      </div>
+      <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://assets.gemcommerce.com/assets-v2/gp-button-v7-5.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+    </gp-button>
+  
+    </div><div
+      data-same-height-display-contents
+      style="--jc:start"
+      class="gZdTB9dafI gp-relative gp-flex gp-flex-col"
+    >
+      
+    <div
+      role="presentation"
+      data-id="gayvTpBCX0"
+      style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:32px;--ta:left"
+      class="gp-group/image gp-relative force-publish-1787682838792 gp-flex-none gp-h-auto mobile:gp-flex-none mobile:gp-h-auto tablet:gp-flex-none tablet:gp-h-auto gayvTpBCX0"
+    >
+      <a
+        href="https://ca.smackpetfood.com/blogs/news/help-your-pet-thrive-while-home-alone" target="_blank" title="{{ section.settings.ggayvTpBCX0_title_-2124750075 }}"
+        style="border-radius:inherit;--jc:left"
+        class="gp-h-full gp-w-full gp-flex pointer-events-auto"
+      >
+        
+    <img
+      alt="{{ section.settings.ggayvTpBCX0_alt_1978768214 }}" title="{{ section.settings.ggayvTpBCX0_title_-2124750075 }}" width="1080" height="900" draggable="false" quality-type quality-percent data-sizes="auto" sizes="100vw" src="https://ucarecdn.com/d8075b24-c9df-4b3e-8334-4b442831dc00/-/format/auto/" isNotLazyload="true" srcset base-src="https://ucarecdn.com/d8075b24-c9df-4b3e-8334-4b442831dc00/-/format/auto/" loading="lazy"
+      id=""
+      style="--w:100%;--w-tablet:100%;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--radius:var(--g-radius-small);--aspect:1080/900;--aspect-tablet:1080/900;--aspect-mobile:1080/900;--objf:cover"
+      class="gp-inline-block gp-w-full gp-max-w-full"
+    />
+      </a>
+    </div>
+  
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gCdBzaywm4"
+        class="gCdBzaywm4"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#B4B4B4;--fs:normal;--ff:var(--g-font-Open-Sans, 'Open Sans'), var(--g-font-body, body);--weight:400;--size:13px;--size-tablet:13px;--size-mobile:12px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.ggCdBzaywm4_text_722672888 | replace: '$locationOrigin', locationOrigin }}</p>
+        </div>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="gx5QJKZghN"
+        class="gx5QJKZghN"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-l);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h2
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--c:#242424;--fs:normal;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-heading, heading);--weight:700;--size:23px;--size-tablet:23px;--size-mobile:20px;--ls:normal;word-break:break-word;overflow:hidden"
+        >
+          <p>{{ section.settings.ggx5QJKZghN_text_311078194 | replace: '$locationOrigin', locationOrigin }}</p>
+        </h2>
+      </div>
+    </div>
+    
+    {% assign locationOrigin = request.origin | append: routes.root_url | split: '/' | join: '/' %}
+    <div data-id="ghGbv-SFOU"
+        class="ghGbv-SFOU"
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--dynamic-source-color:#F4F4F4"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+          data-gp-text
+          class=" gp-text-instant gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--tdt:auto;--ta:center;--line-clamp:0;--line-clamp-tablet:0;--line-clamp-mobile:0;--c:#424242;--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word;overflow:hidden"
+        >
+          {{ section.settings.gghGbv-SFOU_text_-2049004257 | replace: '$locationOrigin', locationOrigin }}
+        </div>
+      </div>
+    </div>
+    
+    <gp-button
+      gp-data='{"btnLink":{"link":"https://ca.smackpetfood.com/blogs/news/help-your-pet-thrive-while-home-alone","target":"_blank"}}'
+      
+      class="gp-flex gp-flex-col"
+    >
+      <div style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mb:var(--g-s-l);--ta:center" >
+        <style>[data-id="gTiybxBFzw"].gp-button-base::before, [data-id="gTiybxBFzw-interaction"].gp-button-base::before {
+      
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    border-style: solid;
+  border-width: 0px 0px 0px 0px;
+  border-color: #121212;
+  
+    border-radius: var(--g-radius-small);
+  
+    }
+  
+      
+  [data-id="gTiybxBFzw"]:hover::before, [data-id="gTiybxBFzw-interaction"]:hover::before {
+    
+    
+  }</style>
+        
+        <a
+          data-id="gTiybxBFzw" dataId="gTiybxBFzw" data-state="idle" aria-label="Read More"
+          
+          href="https://ca.smackpetfood.com/blogs/news/help-your-pet-thrive-while-home-alone" target="_blank"
+          style="--w:Auto;--w-tablet:Auto;--w-mobile:Auto;--h:36px;--h-tablet:36px;--h-mobile:36px;--pl:24px;--pr:24px;--pt:var(--g-s-s);--pb:8px;--radius:var(--g-radius-small);--hvr-radius:var(--g-radius-small);--shadow:none;--hvr-bg:var(--g-c-highlight, highlight);--bg:#E1238D;--c:var(--g-c-text-3, text-3);--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px"
+          class="gTiybxBFzw gp-text-center gp-button-base gp-group gp-relative gp-inline-flex gp-max-w-full gp-items-center gp-justify-center gp-no-underline gp-transition-colors gp-duration-200 disabled:gp-btn-disabled disabled:gp-opacity-30 gp-text-g-text-3 "
+        >
+        
+        <div class="gp-inline-flex">
+          
+          
+    <span
+      data-gp-text
+      style="--ff:var(--g-font-Inter, 'Inter'), var(--g-font-body, body);--weight:400;--size:16px;--size-tablet:16px;--size-mobile:14px;word-break:break-word"
+      class="gp-content-product-button group-active/button:!gp-text-inherit gp-relative gp-flex gp-h-full gp-items-center gp-overflow-hidden gp-break-words group-data-[state=loading]:gp-invisible [&_p]:gp-whitespace-pre-line gp-text button-text"
+    >
+      {{ section.settings.ggTiybxBFzw_label_1474786502 }}
+    </span>
+        </div>
+        
+        </a>
+      </div>
+      <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://assets.gemcommerce.com/assets-v2/gp-button-v7-5.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+    </gp-button>
+  
+    </div>
+
+      
+    </gp-row>
+  
+  
+      </div>
+    </div>
+  
+          </div>
+          
+    <button
+      type="button"
+      aria-label='Carousel Next Arrow'
+      class="gp-z-1 gp-items-center gp-justify-center gp-overflow-hidden gp-shrink-0 gp-carousel-arrow-gdaYSx4060 gdaYSx4060 gp-carousel-action-next gem-slider-next gp-cursor-pointer gp-text-gray-500 !gp-hidden tablet:!gp-hidden mobile:!gp-hidden"
+      style="--d:none;--d-tablet:none;--d-mobile:none;--right:3px;--left:initial;--bottom:initial;--right-tablet:3px;--left-tablet:initial;--bottom-tablet:initial;--right-mobile:3px;--left-mobile:initial;--bottom-mobile:initial"
+    >
+      <style type="text/css">
+      .gp-carousel-arrow-gdaYSx4060 {
+        
+      }
+      .gp-carousel-arrow-gdaYSx4060::before {
+        content: '';
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        pointer-events: none;
+        z-index: 10;
+        
+        
+      }
+      @media only screen and (max-width: 1024px) and (min-width: 768px) {
+        .gp-carousel-arrow-gdaYSx4060 {
+          
+        }
+        .gp-carousel-arrow-gdaYSx4060::before {
+          
+          
+        }
+      }
+      @media only screen and (max-width: 768px) {
+        .gp-carousel-arrow-gdaYSx4060 {
+          
+        }
+        .gp-carousel-arrow-gdaYSx4060::before {
+          
+          
+        }
+      }
+    </style>
+      
+    <div
+      class="gp-flex gp-items-center gp-justify-center [&>svg]:gp-h-full [&>svg]:gp-w-full gp-rotate-0 tablet:gp-rotate-0 mobile:gp-rotate-0"
+      style="--c:#E1238D"
+    >
+        <svg height="20" width="20" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 256 256" fill="currentColor" data-id="493334322670666077">
+              <path fill="currentColor" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" d="M240.49,119.51l-96-96A12,12,0,0,0,124,32V68h-4a12,12,0,0,0-12,12v96a12,12,0,0,0,12,12h4v36a12,12,0,0,0,20.49,8.49l96-96A12,12,0,0,0,240.49,119.51ZM148,195V176a12,12,0,0,0-12-12h-4V92h4a12,12,0,0,0,12-12V61l67,67ZM52,80v96a12,12,0,0,1-24,0V80a12,12,0,0,1,24,0Zm40,0v96a12,12,0,0,1-24,0V80a12,12,0,0,1,24,0Z" /></svg>
+    </div>
+  
+    </button>
+  
+        </div>
+        
+    
+        <div class="gp-carousel-dot-container gp-carousel-dot-container-gdaYSx4060 gp-z-2 gp-flex gp-flex-1 gp-items-center gp-justify-center gp-gap-2 gp-text-center gp-static gp-flex-row gp-left-0 gp-right-0 tablet:gp-static tablet:gp-flex-row tablet:gp-left-0 tablet:gp-right-0 mobile:gp-static mobile:gp-flex-row mobile:gp-left-0 mobile:gp-right-0" style="--bottom:0px;--bottom-tablet:0px;--bottom-mobile:0px;--d:none;--d-tablet:none;--d-mobile:none">
+          <!-- item render by js -->
+        </div>
+      
+  
+      </div>
+    </gp-carousel>
+    <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://assets.gemcommerce.com/assets-v2/gp-carousel-v7-5.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+
+  
+    </div>
+
+      
+    </gp-row>
+  
+  
+    </div>
+
+      
+    </gp-row>
+  
+        </section>
+      
+  
+    
+{% schema %}
+  {
+    "presets": [{ "name": "More Blogs to Read USA" }],
+    "name": "More Blogs to Read USA",
+    "tag": "section",
+    "class": "gps-501964060196078622 gps gpsil",
+    "settings": [{"type":"paragraph","content":"Section design by GemPages. [Click here to start design](https://admin.shopify.com/store/smack-pet-food-usa/apps/gempages-cro/app/shopify/edit?pageType=THEME_SECTION&editorId=501964060196078622)"},{"type":"select","label":"Section Preload","id":"section_preload","options":[{"label":"On","value":"true"},{"label":"Off","value":"false"},{"label":"Off Lazy Script","value":"off_lazy_script"}],"default":"off_lazy_script"},{"type":"text","label":"Checksum","id":"checksum"},{"type":"html","id":"ggUpHgR4gTw_text_565870621","label":"ggUpHgR4gTw_text_565870621","default":"More Blogs to Read..."},{"type":"html","id":"ggPHyThtBJC_srcSet_desktop_src_-555133884","label":"ggPHyThtBJC_srcSet_desktop_src_-555133884","default":"https://ucarecdn.com/ee6d5074-1640-4cc7-8933-47c8589c3dee/-/format/auto/"},{"type":"html","id":"ggPHyThtBJC_alt_1978768214","label":"ggPHyThtBJC_alt_1978768214","default":"Alt Image"},{"type":"html","id":"ggPHyThtBJC_title_-2124750075","label":"ggPHyThtBJC_title_-2124750075","default":"Image Title"},{"type":"html","id":"ggLMcyqQknL_text_1973843017","label":"ggLMcyqQknL_text_1973843017","default":"January 27,2024"},{"type":"html","id":"ggAOC0DXCt6_text_2090831064","label":"ggAOC0DXCt6_text_2090831064","default":"Winter Pet Care Guide"},{"type":"html","id":"ggRuJn9pZfI_text_502480683","label":"ggRuJn9pZfI_text_502480683","default":"<p><span style=\"background-color:rgb(255,255,255);color:rgb(0,0,0);font-size:15px;\">As the winter chill sets in, it's crucial to ensure our furry friends stay warm and comfortable. Our latest blog dives into essential winter pet care tips, offering valuable advice on how to protect your dog from the cold. From cozy bedding to nutritional needs, discover how to keep your beloved pet happy and healthy throughout the colder months. Click below to read more about safeguarding your pet's well-being this winter.</span></p><p>&nbsp;</p>"},{"type":"html","id":"ggb4n1QfM-Z_label_1474786502","label":"ggb4n1QfM-Z_label_1474786502","default":"Read More"},{"type":"html","id":"gg3EEOEb7Rv_srcSet_desktop_src_-555133884","label":"gg3EEOEb7Rv_srcSet_desktop_src_-555133884","default":"https://ucarecdn.com/ee6d5074-1640-4cc7-8933-47c8589c3dee/-/format/auto/"},{"type":"html","id":"gg3EEOEb7Rv_alt_1978768214","label":"gg3EEOEb7Rv_alt_1978768214","default":"Alt Image"},{"type":"html","id":"gg3EEOEb7Rv_title_-2124750075","label":"gg3EEOEb7Rv_title_-2124750075","default":"Image Title"},{"type":"html","id":"ggwx7psBRZu_text_-6825648","label":"ggwx7psBRZu_text_-6825648","default":"January 18, 2023"},{"type":"html","id":"ggySUrJdFRp_text_-609159063","label":"ggySUrJdFRp_text_-609159063","default":"<span style=\"font-size:21px;\"><strong>Local Business Spotlight -&nbsp;</strong></span><br><span style=\"font-size:21px;\"><strong>Love's Pets</strong></span>"},{"type":"html","id":"ggOpM0YfBP5_text_743878517","label":"ggOpM0YfBP5_text_743878517","default":"<span style=\"background-color:rgb(255,255,255);color:rgb(0,0,0);font-size:15px;\">Discover the heartwarming story behind a cherished local business that's making a significant impact on pet health and happiness. In our latest blog, we shine the spotlight on Love's Pets, a haven for pet owners seeking quality nutrition and care for their furry friends. Dive into the journey, philosophy, and community spirit that make Love's Pets a beloved part of our neighborhood. Read more about how they're changing the game for pet wellness here.</span><br>&nbsp;"},{"type":"html","id":"ggAZxJhMusb_label_1474786502","label":"ggAZxJhMusb_label_1474786502","default":"Read More"},{"type":"html","id":"ggg6KfcPQZG_srcSet_desktop_src_-555133884","label":"ggg6KfcPQZG_srcSet_desktop_src_-555133884","default":"https://ucarecdn.com/ee6d5074-1640-4cc7-8933-47c8589c3dee/-/format/auto/"},{"type":"html","id":"ggg6KfcPQZG_alt_1978768214","label":"ggg6KfcPQZG_alt_1978768214","default":"Alt Image"},{"type":"html","id":"ggg6KfcPQZG_title_-2124750075","label":"ggg6KfcPQZG_title_-2124750075","default":"Image Title"},{"type":"html","id":"ggSCJ043XWG_text_-637051751","label":"ggSCJ043XWG_text_-637051751","default":"December 7, 2023"},{"type":"html","id":"gg8T8dJb2Z6_text_311078194","label":"gg8T8dJb2Z6_text_311078194","default":"<span style=\"font-size:21px;\"><strong>Elevating the Health of&nbsp;</strong></span><br><span style=\"font-size:21px;\"><strong>Your Senior Dog</strong></span>"},{"type":"html","id":"ggciEcfm229_text_-1969963852","label":"ggciEcfm229_text_-1969963852","default":"<p><span style=\"background-color:rgb(255,255,255);color:rgb(0,0,0);font-size:15px;\">Did you know that Smack Pet Food is a versatile choice that can cater to every stage of your furry friend's life? Our raw dehydrated superfood product offers the ideal blend of raw, fresh nutrition in a convenient, no-fuss format—no fridge or freezer required! In this blog, we're excited to shed light on how transitioning your senior dog to a Smack-exclusive diet can make a remarkable difference in their well-being and quality of life.</span></p><p>&nbsp;</p>"},{"type":"html","id":"ggUjN1dR4FK_label_1474786502","label":"ggUjN1dR4FK_label_1474786502","default":"Read More"},{"type":"html","id":"ggVwVZiFU_H_srcSet_desktop_src_-555133884","label":"ggVwVZiFU_H_srcSet_desktop_src_-555133884","default":"https://ucarecdn.com/ee6d5074-1640-4cc7-8933-47c8589c3dee/-/format/auto/"},{"type":"html","id":"ggVwVZiFU_H_alt_1978768214","label":"ggVwVZiFU_H_alt_1978768214","default":"Alt Image"},{"type":"html","id":"ggVwVZiFU_H_title_-2124750075","label":"ggVwVZiFU_H_title_-2124750075","default":"Image Title"},{"type":"html","id":"ggdSOQnoOm4_text_-502296209","label":"ggdSOQnoOm4_text_-502296209","default":"November 14,2023"},{"type":"html","id":"ggqADxiD5lw_text_99754950","label":"ggqADxiD5lw_text_99754950","default":"The Benefits of (Curly) Parsley"},{"type":"html","id":"gguGOdGH1R3_text_-694066912","label":"gguGOdGH1R3_text_-694066912","default":"<span style=\"background-color:rgb(255,255,255);color:rgb(0,0,0);font-size:14.6667px;\">Parsley - probably not the first ingredient we think of when it comes to superfoods, but this herb has more to offer than just a pop of green on your plate. Parsley - the curly variety - actually offers a range of AMAZING nutritional benefits to our pets (and us!). A powerhouse of vitamins as well as anti-inflammatory and antioxidant properties, we’re all about including it in our pets’ bowls. Read on for more about why parsley really is a paw-some herb</span><br>&nbsp;"},{"type":"html","id":"ggtq9gYAZ4C_label_1474786502","label":"ggtq9gYAZ4C_label_1474786502","default":"Read More"},{"type":"html","id":"ggSKJEx0C9Y_srcSet_desktop_src_-555133884","label":"ggSKJEx0C9Y_srcSet_desktop_src_-555133884","default":"https://ucarecdn.com/ee6d5074-1640-4cc7-8933-47c8589c3dee/-/format/auto/"},{"type":"html","id":"ggSKJEx0C9Y_alt_1978768214","label":"ggSKJEx0C9Y_alt_1978768214","default":"Alt Image"},{"type":"html","id":"ggSKJEx0C9Y_title_-2124750075","label":"ggSKJEx0C9Y_title_-2124750075","default":"Image Title"},{"type":"html","id":"ggWYZkL69BL_text_1860969097","label":"ggWYZkL69BL_text_1860969097","default":"October 30, 2023"},{"type":"html","id":"gglaSKJYXUb_text_1587376970","label":"gglaSKJYXUb_text_1587376970","default":"Animal Pain Awareness"},{"type":"html","id":"gg1YsjY8v4G_text_-1891948880","label":"gg1YsjY8v4G_text_-1891948880","default":"<p><span style=\"background-color:rgb(255,255,255);color:rgb(0,0,0);font-size:15px;\">One often-overlooked aspect crucial for the well-being of our pets is recognizing the signs of pain they exhibit. Equally significant is our knowledge of how to maintain their overall health through a proper diet, which aids in preserving robust joint health and alleviating discomfort for our beloved companions. In this blog, we delve into the topic of animal pain awareness and offer expert insights from Belinda Morrison, the founder of CB Rescue, a non-profit dog rescue organization in Calgary, Alberta.</span></p><p>&nbsp;</p>"},{"type":"html","id":"ggHHzh_1YGL_label_1474786502","label":"ggHHzh_1YGL_label_1474786502","default":"Read More"},{"type":"html","id":"ggDeTeoAYL-_srcSet_desktop_src_-555133884","label":"ggDeTeoAYL-_srcSet_desktop_src_-555133884","default":"https://ucarecdn.com/ee6d5074-1640-4cc7-8933-47c8589c3dee/-/format/auto/"},{"type":"html","id":"ggDeTeoAYL-_alt_1978768214","label":"ggDeTeoAYL-_alt_1978768214","default":"Alt Image"},{"type":"html","id":"ggDeTeoAYL-_title_-2124750075","label":"ggDeTeoAYL-_title_-2124750075","default":"Image Title"},{"type":"html","id":"ggDXLQsMld3_text_1084757635","label":"ggDXLQsMld3_text_1084757635","default":"October 4, 2023"},{"type":"html","id":"ggfPUsPfKRa_text_30260774","label":"ggfPUsPfKRa_text_30260774","default":"The Benefits of Pumpkin"},{"type":"html","id":"gguVvTphE3n_text_-2106492649","label":"gguVvTphE3n_text_-2106492649","default":"<p><span style=\"background-color:rgb(255,255,255);color:rgb(0,0,0);font-size:15px;\">’Tis the pumpkin season! Pumpkin pie, pumpkin spice lattes, pumpkin bread - it’s hard to avoid this Thanksgiving favourite. But did you ever wonder if your pet was missing out by not getting to join in on this taste of fall? Perhaps surprisingly, pumpkin is an amazing ingredient to include in your dog or cat’s diet, and offers a huge range of benefits to their short and long-term health. Read on for more about what makes pumpkin so perfect!</span></p><p>&nbsp;</p>"},{"type":"html","id":"ggABSY1VIug_label_1474786502","label":"ggABSY1VIug_label_1474786502","default":"Read More"},{"type":"html","id":"ggXG42J5kAe_srcSet_desktop_src_-555133884","label":"ggXG42J5kAe_srcSet_desktop_src_-555133884","default":"https://ucarecdn.com/ee6d5074-1640-4cc7-8933-47c8589c3dee/-/format/auto/"},{"type":"html","id":"ggXG42J5kAe_alt_1978768214","label":"ggXG42J5kAe_alt_1978768214","default":"Alt Image"},{"type":"html","id":"ggXG42J5kAe_title_-2124750075","label":"ggXG42J5kAe_title_-2124750075","default":"Image Title"},{"type":"html","id":"ggCimA_uJpn_text_935468558","label":"ggCimA_uJpn_text_935468558","default":"September 15, 2023"},{"type":"html","id":"ggkU3Ie5bKG_text_-1996924845","label":"ggkU3Ie5bKG_text_-1996924845","default":"Smack...vs Fresh Food"},{"type":"html","id":"ggDuNKIIPQm_text_-1895423628","label":"ggDuNKIIPQm_text_-1895423628","default":"<p><span style=\"background-color:rgb(255,255,255);color:rgb(0,0,0);font-size:15px;\">We take pride in crafting top-quality pet nutrition. Our raw, dehydrated offerings deliver the goodness of fresh and raw ingredients in an easy-to-serve format, no refrigeration needed. Wondering how we stack up against traditional fresh pet food? Let's explore the benefits of choosing Smack for your furry friend.</span></p><p>&nbsp;</p>"},{"type":"html","id":"ggFeCncFTNg_label_1474786502","label":"ggFeCncFTNg_label_1474786502","default":"Read More"},{"type":"html","id":"ggazE46sjjf_srcSet_desktop_src_-555133884","label":"ggazE46sjjf_srcSet_desktop_src_-555133884","default":"https://ucarecdn.com/ee6d5074-1640-4cc7-8933-47c8589c3dee/-/format/auto/"},{"type":"html","id":"ggazE46sjjf_alt_1978768214","label":"ggazE46sjjf_alt_1978768214","default":"Alt Image"},{"type":"html","id":"ggazE46sjjf_title_-2124750075","label":"ggazE46sjjf_title_-2124750075","default":"Image Title"},{"type":"html","id":"ggakppSKiU2_text_-1014154723","label":"ggakppSKiU2_text_-1014154723","default":"September 11, 2023"},{"type":"html","id":"ggT1fAsFhVI_text_-1679528747","label":"ggT1fAsFhVI_text_-1679528747","default":"<p><span style=\"font-size:21px;\"><strong>Local Business Spotlight</strong></span></p><p><span style=\"font-size:21px;\"><strong>Red Barn Market</strong></span></p>"},{"type":"html","id":"ggjK7jp-qyd_text_1863231141","label":"ggjK7jp-qyd_text_1863231141","default":"<p><span style=\"background-color:rgb(255,255,255);color:rgb(0,0,0);font-size:15px;\">Discover the story of Red Barn Market, a local farmers' market turned pet food haven under the management of Tracy Dow. Explore their commitment to Canadian-made pet products, nutrient-dense options like Smack Pet Foods, and the mission to offer value and quality to loyal customers in the Greater Victoria area.</span></p><p>&nbsp;</p>"},{"type":"html","id":"gg5-M2-dgna_label_1474786502","label":"gg5-M2-dgna_label_1474786502","default":"Read More"},{"type":"html","id":"ggayvTpBCX0_srcSet_desktop_src_-555133884","label":"ggayvTpBCX0_srcSet_desktop_src_-555133884","default":"https://ucarecdn.com/ee6d5074-1640-4cc7-8933-47c8589c3dee/-/format/auto/"},{"type":"html","id":"ggayvTpBCX0_alt_1978768214","label":"ggayvTpBCX0_alt_1978768214","default":"Alt Image"},{"type":"html","id":"ggayvTpBCX0_title_-2124750075","label":"ggayvTpBCX0_title_-2124750075","default":"Image Title"},{"type":"html","id":"ggCdBzaywm4_text_722672888","label":"ggCdBzaywm4_text_722672888","default":"September 7, 2023"},{"type":"html","id":"ggx5QJKZghN_text_311078194","label":"ggx5QJKZghN_text_311078194","default":"<span style=\"font-size:21px;\"><strong>Elevating the Health of&nbsp;</strong></span><br><span style=\"font-size:21px;\"><strong>Your Senior Dog</strong></span>"},{"type":"html","id":"gghGbv-SFOU_text_-2049004257","label":"gghGbv-SFOU_text_-2049004257","default":"<p><span style=\"background-color:rgb(255,255,255);color:rgb(0,0,0);font-size:15px;\">We understand that leaving your beloved pet alone at home can be a daunting task. Whether you are returning to the office after years of remote work or the kids are heading back to school after a summer of play, your pet will likely need some support as they adapt to solitude. Discover how to smooth this transition and understand the emotional cues your pet may convey during your absence.</span></p><p>&nbsp;</p>"},{"type":"html","id":"ggTiybxBFzw_label_1474786502","label":"ggTiybxBFzw_label_1474786502","default":"Read More"}],
+    "blocks": [{"type": "@app"}],
+    "locales": {}
+  }
+{% endschema %}

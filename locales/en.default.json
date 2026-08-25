@@ -696,6 +696,11 @@
       "title": "Here's your {{ value }} gift card balance for {{ shop }}!"
     }
   },
+  "navigation": {
+    "sale_label": "Sale",
+    "new_label": "New",
+    "hot_label": "Hot"
+  },
   "placeholders": {
     "blog_post_author": "Author",
     "blog_post_date": "Date",
@@ -853,10 +858,5 @@
       "xr_button": "View in your space",
       "xr_button_label": "View in your space, loads item in augmented reality window"
     }
-  },
-  "navigation": {
-    "sale_label": "Sale",
-    "new_label": "New",
-    "hot_label": "Hot"
   }
 }

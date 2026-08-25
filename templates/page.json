@@ -145,10 +145,20 @@
         "padding-block-start": 36,
         "padding-block-end": 36
       }
+    },
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "settings": {}
     }
   },
   "order": [
+    "shogun-helper",
     "main",
-    "page_b8ezTa"
+    "page_b8ezTa",
+    "shogun-optimizer"
   ]
 }
