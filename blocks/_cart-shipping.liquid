@@ -1,6 +1,19 @@
 {% assign bl_stts = block.settings %}
 
-{%- if cart != empty and settings.show_calculator_free_shipping_message -%}
+{%- liquid
+  assign show_free_shipping_bar = false
+  if cart != empty and settings.show_calculator_free_shipping_message
+    assign is_wholesale_customer = false
+    if settings.wholesale_gate_enabled and customer and customer.tags contains settings.wholesale_customer_tag
+      assign is_wholesale_customer = true
+    endif
+    unless settings.wholesale_hide_free_shipping and is_wholesale_customer
+      assign show_free_shipping_bar = true
+    endunless
+  endif
+-%}
+
+{%- if show_free_shipping_bar -%}
   <div
     class="cart-shipping-message spacing-style {{ bl_stts.alignment }}"
     style="{% render 'spacing-style', settings: bl_stts %}"
