@@ -39,8 +39,19 @@
   >
     {% liquid
       assign limit = settings.quick_products_to_show | default: 9
+      assign _ps_is_wholesale = false
+      if settings.wholesale_gate_enabled and customer and customer.tags contains settings.wholesale_customer_tag
+        assign _ps_is_wholesale = true
+      endif
     %}
     {% for product in products limit: limit %}
+      {% if settings.wholesale_gate_enabled %}
+        {% if _ps_is_wholesale %}
+          {% unless product.tags contains settings.wholesale_product_tag %}{% continue %}{% endunless %}
+        {% else %}
+          {% if product.tags contains settings.wholesale_product_tag %}{% continue %}{% endif %}
+        {% endif %}
+      {% endif %}
       <li class="predictive-search-results__card predictive-search-results__card--product">
         {% render 'resource-card',
           resource_type: 'product',

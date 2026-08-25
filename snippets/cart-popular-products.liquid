@@ -9,7 +9,12 @@
   assign pagination_type = nil
 -%}
 
-{%- if popular_collection != blank and popular_collection.products_count > 0 -%}
+{%- assign _show_recs = true -%}
+{%- if settings.wholesale_gate_enabled and settings.wholesale_hide_cart_recommendations and customer and customer.tags contains settings.wholesale_customer_tag -%}
+  {%- assign _show_recs = false -%}
+{%- endif -%}
+
+{%- if _show_recs and popular_collection != blank and popular_collection.products_count > 0 -%}
   <div class="cart-drawer__recommendations" style="--m: 1.5rem 0 0;">
     <div class="cart-drawer__recommendations-header flex justify-between items-center" style="--mb: 1rem;">
       <h3 class="h5 m-0">{{ bl_stts.popular_products_title }}</h3>

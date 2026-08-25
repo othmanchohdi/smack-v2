@@ -358,6 +358,13 @@
       "label": "Hide free shipping bar for wholesale customers",
       "default": true,
       "info": "When enabled, the free shipping progress bar is hidden in the cart page and cart drawer for wholesale customers."
+    },
+    {
+      "type": "checkbox",
+      "id": "wholesale_hide_cart_recommendations",
+      "label": "Hide 'You may also like' in cart drawer for wholesale customers",
+      "default": true,
+      "info": "When enabled, the product recommendation carousel in the cart drawer is hidden for wholesale customers."
     }
   ]
 },

@@ -175,8 +175,21 @@
                     class="relative collection"
                   >
                     <div class="loading-overlay"></div>
+                    {%- liquid
+                      assign _sr_is_wholesale = false
+                      if settings.wholesale_gate_enabled and customer and customer.tags contains settings.wholesale_customer_tag
+                        assign _sr_is_wholesale = true
+                      endif
+                    -%}
                     {% capture children %}
                       {% for item in search.results %}
+                        {% if item.object_type == 'product' and settings.wholesale_gate_enabled %}
+                          {% if _sr_is_wholesale %}
+                            {% unless item.tags contains settings.wholesale_product_tag %}{% continue %}{% endunless %}
+                          {% else %}
+                            {% if item.tags contains settings.wholesale_product_tag %}{% continue %}{% endif %}
+                          {% endif %}
+                        {% endif %}
                         <li
                           id="{{ section.id }}-{{ item.id }}"
                           class="product-grid__item product-grid__item--{{ forloop.index0 }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
