@@ -192,7 +192,7 @@
         "message_position": "right",
         "message_row": "top",
         "show_account": true,
-        "enable_account_drawer": true,
+        "enable_account_drawer": false,
         "account_type": "icon",
         "account_display_type": "block",
         "account_row": "top",
