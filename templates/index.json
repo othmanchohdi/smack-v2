@@ -447,7 +447,7 @@
                       "name": "t:names.button",
                       "settings": {
                         "label": "Shop best sellers",
-                        "link": "shopify://collections/all",
+                        "link": "shopify://collections/best-sellers",
                         "open_in_new_tab": false,
                         "style_class": "button",
                         "button_style": "default",
