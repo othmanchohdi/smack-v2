@@ -1,52 +1,25 @@
 {% comment %}
-  Renders a two-store (multi-domain) country switcher.
-
-  Since the US and CA storefronts are two SEPARATE Shopify stores, this does
-  NOT use Shopify's native `localization` object. Instead this compares
-  the current request host against two manually configured domains from
-  the theme editor and links directly to the other store.
-
-  Params:
-  - us_domain:  string, e.g. "https://www.smackpetfood.com"
-  - ca_domain:  string, e.g. "https://ca.smackpetfood.com"
-  - localization_position: 'left' | 'right'
-  - localization_type: 'text' | 'icon'
-  - hide_mobile: boolean
-  - section_id: string
+  Smack Pet Food US / Canada Store Switcher
 {% endcomment %}
 
 {%- liquid
   assign current_host = request.host | downcase
 
-  assign us_clean = us_domain | remove: 'https://' | remove: 'http://' | split: '/' | first | downcase
-  assign ca_clean = ca_domain | remove: 'https://' | remove: 'http://' | split: '/' | first | downcase
+  assign us_host = 'www.smackpetfood.com'
+  assign ca_host = 'ca.smackpetfood.com'
 
-  assign us_url = us_domain
-  assign ca_url = ca_domain
+  assign us_url = 'https://www.smackpetfood.com/'
+  assign ca_url = 'https://ca.smackpetfood.com/'
 
-  unless us_url contains '://'
-    assign us_url = 'https://' | append: us_url
-  endunless
-
-  unless ca_url contains '://'
-    assign ca_url = 'https://' | append: ca_url
-  endunless
-
-  assign current_code = 'US'
   assign current_flag = '🇺🇸'
   assign current_name = 'United States'
+  assign other_flag = '🇨🇦'
+  assign other_name = 'Canada'
+  assign other_url = ca_url
 
-  if current_host == ca_clean
-    assign current_code = 'CA'
+  if current_host == ca_host
     assign current_flag = '🇨🇦'
     assign current_name = 'Canada'
-  endif
-
-  if current_code == 'US'
-    assign other_flag = '🇨🇦'
-    assign other_name = 'Canada'
-    assign other_url = ca_url
-  else
     assign other_flag = '🇺🇸'
     assign other_name = 'United States'
     assign other_url = us_url
@@ -71,12 +44,11 @@
       </span>
     {% endif %}
 
-    <span class="store-switcher__caret" aria-hidden="true">
-      ▾
-    </span>
+    <span class="store-switcher__caret" aria-hidden="true">▾</span>
   </summary>
 
   <ul class="store-switcher__menu" role="list">
+
     <li
       class="store-switcher__item store-switcher__item--current"
       aria-current="true"
@@ -85,9 +57,7 @@
         {{ current_flag }}
       </span>
 
-      <span>
-        {{ current_name }}
-      </span>
+      <span>{{ current_name }}</span>
     </li>
 
     <li class="store-switcher__item">
@@ -99,11 +69,10 @@
           {{ other_flag }}
         </span>
 
-        <span>
-          {{ other_name }}
-        </span>
+        <span>{{ other_name }}</span>
       </a>
     </li>
+
   </ul>
 </details>
 
@@ -145,11 +114,11 @@
     margin-top: 6px;
     min-width: 160px;
     background: var(--color-background, #fff);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0,0,0,0.1);
     border-radius: 4px;
     padding: 4px;
     list-style: none;
-    z-index: 20;
+    z-index: 999;
   }
 
   .store-switcher--right .store-switcher__menu {
@@ -173,7 +142,7 @@
   }
 
   .store-switcher__link:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0,0,0,0.05);
   }
 
   .store-switcher__item--current {
