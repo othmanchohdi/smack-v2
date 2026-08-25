@@ -3020,7 +3020,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>2022 --- CANADA EXPANSION</p>",
+                    "text": "<p>2022 — CANADA EXPANSION</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
