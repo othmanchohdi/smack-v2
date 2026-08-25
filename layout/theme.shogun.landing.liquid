@@ -65,7 +65,9 @@ This file can be re-written at any time.
 {{ content_for_header }}
 
     {%- render 'wholesale-gate' -%}
-  </head>
+  
+  {% render 'shogun-head' %}
+</head>
   <body class="
       template-{{ request.page_type | replace: 'customers/', '' }}{% if settings.enable_preloading_screen %} has--preload-screen{% endif %}
       {% if settings.animations_hover_elements != 'none' %} card-hover--{{ settings.animations_hover_elements }}{% endif %}

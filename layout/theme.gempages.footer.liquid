@@ -81,9 +81,9 @@
       {% if settings.animation_hover_buttons %} button-hover--effect{% endif %}
     "
   >
-    {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
+    <div style="display:none"> {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %} </div>
 
-    {% render 'preload-screen' %}
+    <div style="display:none"> {% render 'preload-screen' %} </div>
 
 {% if request.page_type == 'collection' %}
 <script>
@@ -102,14 +102,14 @@
 {% endif %}
 
     <div id="header-group">
-      {% sections 'header-group' %}
+      <div style="display:none"> {% sections 'header-group' %} </div>
     </div>
 
-    {%- liquid
+    <div style="display:none"> {%- liquid
       sections 'popup-group'
       sections 'general-group'
       sections 'toolbar-mobile'
-    -%}
+    -%} </div>
 
     <main
       id="MainContent"

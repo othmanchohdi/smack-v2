@@ -1,3 +1,4 @@
+{% include 'shogun-content-handler' %}
 {%- capture direction -%}
   {%- assign rtl_locales = "ar,ae,arc,fa,he,ur,ps,sd,dv,yi,ug,ha,ckb,ku,ks,pnb,bcc,bqi,azb,mzn,glk,nqo,kwh" | split: "," -%}
   {%- if rtl_locales contains request.locale.iso_code -%}
@@ -68,7 +69,9 @@
     {{ content_for_header }}
 
     {%- render 'wholesale-gate' -%}
-  </head>
+  
+  {% render 'shogun-head' %}
+</head>
 
   <body
     class="
