@@ -2498,9 +2498,8 @@
       "block_order": [
         "group_pNNYMN"
       ],
-      "disabled": true,
       "custom_css": [
-        "@media (min-width: 670px) {.hide-desktop {display: none; }}"
+        "@media (min-width: 670px) {{display: none; }}"
       ],
       "name": "t:names.custom_section",
       "settings": {
