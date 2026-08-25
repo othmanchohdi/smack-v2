@@ -105,10 +105,21 @@
             assign products = recommendations.products
           endif
         %}
+        {% assign is_wholesale_customer = false %}
+        {% if settings.wholesale_gate_enabled and customer and customer.tags contains settings.wholesale_customer_tag %}
+          {% assign is_wholesale_customer = true %}
+        {% endif %}
+
         {% capture list_items %}
           {% assign displayed = 0 %}
           {% for product in products %}
-            {% if settings.wholesale_gate_enabled and product.tags contains settings.wholesale_product_tag %}{% continue %}{% endif %}
+            {% if settings.wholesale_gate_enabled %}
+              {% if is_wholesale_customer %}
+                {% unless product.tags contains settings.wholesale_product_tag %}{% continue %}{% endunless %}
+              {% else %}
+                {% if product.tags contains settings.wholesale_product_tag %}{% continue %}{% endif %}
+              {% endif %}
+            {% endif %}
             {% assign displayed = displayed | plus: 1 %}
             {% if displayed > max_items %}{% break %}{% endif %}
             <li id="Slide-{{ section.id }}-{{ product.id }}-{{ displayed }}" class="grid__item{% if show_mobile_slider or layout_type == 'carousel' %} swiper-slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"

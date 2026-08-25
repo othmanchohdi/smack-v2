@@ -30,8 +30,19 @@
         class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ columns_tablet }}-col-tablet-down grid--{{ section.settings.columns_mobile }}-col-mobile"
         role="list"
       >
+        {% assign is_wholesale_customer = false %}
+        {% if settings.wholesale_gate_enabled and customer and customer.tags contains settings.wholesale_customer_tag %}
+          {% assign is_wholesale_customer = true %}
+        {% endif %}
         {% assign skip_card_product_styles = false %}
         {% for recommendation in recommendations.products %}
+          {% if settings.wholesale_gate_enabled %}
+            {% if is_wholesale_customer %}
+              {% unless recommendation.tags contains settings.wholesale_product_tag %}{% continue %}{% endunless %}
+            {% else %}
+              {% if recommendation.tags contains settings.wholesale_product_tag %}{% continue %}{% endif %}
+            {% endif %}
+          {% endif %}
           <li class="grid__item">
             {% render 'card-product',
               card_product: recommendation,
