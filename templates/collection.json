@@ -5298,14 +5298,34 @@
         "padding-inline-start": 0,
         "padding-inline-end": 0
       }
+    },
+    "shogun-above": {
+      "type": "shogun-above",
+      "settings": {}
+    },
+    "shogun-below": {
+      "type": "shogun-below",
+      "settings": {}
+    },
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "settings": {}
     }
   },
   "order": [
+    "shogun-helper",
+    "shogun-above",
     "banner",
     "product-grid",
     "slideshow_9tWNFb",
     "featured_collection_U74pBC",
     "section_Hf3wyg",
-    "section_ykyXBc"
+    "section_ykyXBc",
+    "shogun-below",
+    "shogun-optimizer"
   ]
 }
