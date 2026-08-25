@@ -2816,7 +2816,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>A year later, we moved out of our<br/>family basement and into our first<br/>facility on Notre Dame Ave. in<br/>Winnipeg, Manitoba. With more<br/>space and professional equipment,<br/>we were able to grow our<br/>small-batch process while staying<br/>true to the quality and care that<br/>started it all</p>",
+                    "text": "<p>A year later, we moved out of our<br/>family basement and into our first<br/>facility on Notre Dame Ave. in<br/>Winnipeg, Manitoba. With more<br/>space and professional equipment,<br/>we were able to grow our<br/>small-batch process while staying<br/>true to the quality and care that<br/>started it all.</p>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
