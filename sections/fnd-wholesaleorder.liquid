@@ -1,63 +1,66 @@
-{% assign min_cart_value = section.settings.fnd_wholesale_by_total %}
-{% assign col = collections[section.settings.wholesale_products_collection] %}
-
-{% capture product_data %}
-[
-  {%- paginate col.products by 1000 -%}
-    {% for product in col.products %}
-
-      {% capture product_variant_data %}
-        [
-          {% for variant in product.variants %}
-            ,{
-              "available":                 {{ variant.available | json }},
-              "title":                     {{ variant.title | json }},
-              "id":                        {{ variant.id | json }},
-              "featured_image":            {{ variant.featured_image | img_url: 'large' | json }},
-              "price":                     {{ variant.price | json }},
-              "original_price":            {{ variant.price | json }},
-              "compare_at_price":          {{ variant.compare_at_price | json }},
-              "original_compare_at_price": {{ variant.compare_at_price | json }},
-              "quantity":                  {{ variant.inventory_quantity | json }}
-            }
-          {% endfor %}
-        ]
-      {% endcapture %}
-
-      ,{
-        "available":                 {{ product.available | json }},
-        "title":                     {{ product.title | json }},
-        "id":                        {{ product.id | json }},
-        "featured_image":            {{ product.featured_image | img_url: 'large' | json }},
-        "price":                     {{ product.price | json }},
-        "original_price":            {{ product.price | json }},
-        "compare_at_price":          {{ product.compare_at_price | json }},
-        "original_compare_at_price": {{ product.compare_at_price | json }},
-        "tags":                      {{ product.tags | json }},
-        "type":                      {{ product.type | json }},
-        "handle":                    {{ product.handle | json }},
-        "vendor":                    {{ product.vendor | json }},
-        "variants":                  {{ product_variant_data | remove_first: ',' | strip | strip_newlines }}
-      }
-    {% endfor %}
-  {%- endpaginate -%}
-]
-{% endcapture %}
-
-<script id="wholesale-app-settings" type="application/json">
-  {
-    "minCartValue": {{ min_cart_value | json }},
-    "products": {{ product_data | remove_first: ',' | strip | strip_newlines }}
-  }
-</script>
-
-<div id="wholesale-app"></div>
+<div
+  id="wholesale-app"
+  data-collection="{{ section.settings.wholesale_products_collection | escape }}"
+  data-min-cart="{{ section.settings.fnd_wholesale_by_total }}"
+></div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    const settings = JSON.parse(document.querySelector('#wholesale-app-settings').innerHTML);
-    const elem = document.querySelector('#wholesale-app');
-    FND.BUILDS.Page.WholeSaleApp(settings, elem);
+    var elem = document.querySelector('#wholesale-app');
+    var collection = elem.dataset.collection;
+    var minCartValue = parseInt(elem.dataset.minCart, 10) || 0;
+
+    function toCents(price) {
+      return price ? Math.round(parseFloat(price) * 100) : null;
+    }
+
+    function fetchPage(page, accumulated) {
+      return fetch('/collections/' + collection + '/products.json?limit=250&page=' + page)
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          var batch = data.products || [];
+          accumulated = accumulated.concat(batch);
+          if (batch.length === 250) {
+            return fetchPage(page + 1, accumulated);
+          }
+          return accumulated;
+        });
+    }
+
+    fetchPage(1, []).then(function(rawProducts) {
+      var products = rawProducts.map(function(p) {
+        var firstVariant = p.variants[0] || {};
+        return {
+          available:                 p.variants.some(function(v) { return v.available; }),
+          title:                     p.title,
+          id:                        p.id,
+          featured_image:            p.images && p.images[0] ? p.images[0].src : null,
+          price:                     toCents(firstVariant.price),
+          original_price:            toCents(firstVariant.price),
+          compare_at_price:          toCents(firstVariant.compare_at_price),
+          original_compare_at_price: toCents(firstVariant.compare_at_price),
+          tags:                      p.tags,
+          type:                      p.product_type,
+          handle:                    p.handle,
+          vendor:                    p.vendor,
+          variants: p.variants.map(function(v) {
+            return {
+              available:                 v.available,
+              title:                     v.title,
+              id:                        v.id,
+              featured_image:            v.featured_image ? v.featured_image.src : null,
+              price:                     toCents(v.price),
+              original_price:            toCents(v.price),
+              compare_at_price:          toCents(v.compare_at_price),
+              original_compare_at_price: toCents(v.compare_at_price),
+              quantity:                  v.inventory_quantity || 0
+            };
+          })
+        };
+      });
+
+      FND.BUILDS.Page.WholeSaleApp({ minCartValue: minCartValue, products: products }, elem);
+    });
   });
 </script>
 
