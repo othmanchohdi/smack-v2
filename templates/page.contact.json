@@ -1557,7 +1557,7 @@
         "group_G7iBCy"
       ],
       "custom_css": [
-        "@media (max-width: 768px) {.contact-form-section {margin-top: 250px; } .contact-form-section {margin-top:25px; }}"
+        "@media (max-width: 768px) {.contact-form-section {margin-top: 250px; } .contact-form-section {margin-top: 25px; }}"
       ],
       "name": "t:names.custom_section",
       "settings": {
@@ -2498,6 +2498,7 @@
       "block_order": [
         "group_pNNYMN"
       ],
+      "disabled": true,
       "custom_css": [
         "@media (min-width: 670px) {.hide-desktop {display: none; }}"
       ],
