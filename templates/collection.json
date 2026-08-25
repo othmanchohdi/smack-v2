@@ -2676,7 +2676,7 @@
             "loop": false,
             "centered_slides": false,
             "navigation": "arrows",
-            "arrows_position": "inside",
+            "arrows_position": "bottom",
             "pagination_type": "progressbar",
             "movement_direction": "reverse",
             "marquee_type": "auto",
@@ -5258,9 +5258,9 @@
         "testimonial_pCxFgB"
       ],
       "custom_css": [
-        ".swiper .swiper-pagination-progressbar {width: 35%; margin: 50px auto 0px;}",
         ".group-block--content-overlay > .group-block-content {position: relative;}",
-        ".swiper-slide .group-block--height-fill {min-height: 395px;}"
+        ".swiper-slide .group-block--height-fill {min-height: 395px;}",
+        ".swiper-btns-wrap {margin-top: 35px;}"
       ],
       "name": "t:names.testimonial",
       "settings": {
