@@ -452,7 +452,7 @@
               "type": "_product-description",
               "name": "t:names.product_description",
               "settings": {
-                "text": "{{ closest.product.metafields.custom.product_description | metafield_tag }}",
+                "text": "<p>{{ closest.product.metafields.custom.product_description | metafield_tag }}</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "truncate_type": "none",
@@ -1634,42 +1634,6 @@
         "padding-block-end": 50
       }
     },
-    "1782127932ee1954c3": {
-      "type": "apps",
-      "blocks": {
-        "yotpo_product_reviews_reviews_CL6Xkx": {
-          "type": "shopify://apps/yotpo-product-reviews/blocks/reviews/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
-          "settings": {
-            "product": "{{product}}"
-          }
-        }
-      },
-      "block_order": [
-        "yotpo_product_reviews_reviews_CL6Xkx"
-      ],
-      "custom_css": [],
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "faq_product_wUEGiF": {
-      "type": "faq-product",
-      "name": "Product FAQs",
-      "settings": {
-        "heading": "Frequently asked questions",
-        "heading_alignment": "center",
-        "single_open": true,
-        "faq_object": "{{ product.metafields.custom.faq_content.value }}",
-        "max_width": 840,
-        "corner_radius": 8,
-        "bg_color": "#ffffff",
-        "text_color": "#1a1a1a",
-        "border_color": "#f0f0f0",
-        "accent_color": "#1a1a1a",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
     "product_recommendations_BUq6TH": {
       "type": "product-recommendations",
       "blocks": {
@@ -2140,12 +2104,48 @@
         "padding-inline-start": 0,
         "padding-inline-end": 0
       }
+    },
+    "1782127932ee1954c3": {
+      "type": "apps",
+      "blocks": {
+        "yotpo_product_reviews_reviews_CL6Xkx": {
+          "type": "shopify://apps/yotpo-product-reviews/blocks/reviews/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+          "settings": {
+            "product": "{{product}}"
+          }
+        }
+      },
+      "block_order": [
+        "yotpo_product_reviews_reviews_CL6Xkx"
+      ],
+      "custom_css": [],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "faq_product_wUEGiF": {
+      "type": "faq-product",
+      "name": "Product FAQs",
+      "settings": {
+        "heading": "Frequently asked questions",
+        "heading_alignment": "center",
+        "single_open": true,
+        "faq_object": "{{ product.metafields.custom.faq_content.value }}",
+        "max_width": 840,
+        "corner_radius": 8,
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "border_color": "#f0f0f0",
+        "accent_color": "#1a1a1a",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
     "main",
+    "product_recommendations_BUq6TH",
     "1782127932ee1954c3",
-    "faq_product_wUEGiF",
-    "product_recommendations_BUq6TH"
+    "faq_product_wUEGiF"
   ]
 }
