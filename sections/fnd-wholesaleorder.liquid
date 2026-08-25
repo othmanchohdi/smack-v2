@@ -1,0 +1,90 @@
+{% assign min_cart_value = section.settings.fnd_wholesale_by_total %}
+{% assign col = collections[section.settings.wholesale_products_collection] %}
+
+{% capture product_data %}
+[
+  {%- paginate col.products by 1000 -%}
+    {% for product in col.products %}
+
+      {% capture product_variant_data %}
+        [
+          {% for variant in product.variants %}
+            ,{
+              "available":                 {{ variant.available | json }},
+              "title":                     {{ variant.title | json }},
+              "id":                        {{ variant.id | json }},
+              "featured_image":            {{ variant.featured_image | img_url: 'large' | json }},
+              "price":                     {{ variant.price | json }},
+              "original_price":            {{ variant.price | json }},
+              "compare_at_price":          {{ variant.compare_at_price | json }},
+              "original_compare_at_price": {{ variant.compare_at_price | json }},
+              "quantity":                  {{ variant.inventory_quantity | json }}
+            }
+          {% endfor %}
+        ]
+      {% endcapture %}
+
+      ,{
+        "available":                 {{ product.available | json }},
+        "title":                     {{ product.title | json }},
+        "id":                        {{ product.id | json }},
+        "featured_image":            {{ product.featured_image | img_url: 'large' | json }},
+        "price":                     {{ product.price | json }},
+        "original_price":            {{ product.price | json }},
+        "compare_at_price":          {{ product.compare_at_price | json }},
+        "original_compare_at_price": {{ product.compare_at_price | json }},
+        "tags":                      {{ product.tags | json }},
+        "type":                      {{ product.type | json }},
+        "handle":                    {{ product.handle | json }},
+        "vendor":                    {{ product.vendor | json }},
+        "variants":                  {{ product_variant_data | remove_first: ',' | strip | strip_newlines }}
+      }
+    {% endfor %}
+  {%- endpaginate -%}
+]
+{% endcapture %}
+
+<script id="wholesale-app-settings" type="application/json">
+  {
+    "minCartValue": {{ min_cart_value | json }},
+    "products": {{ product_data | remove_first: ',' | strip | strip_newlines }}
+  }
+</script>
+
+<div id="wholesale-app"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const settings = JSON.parse(document.querySelector('#wholesale-app-settings').innerHTML);
+    const elem = document.querySelector('#wholesale-app');
+    FND.BUILDS.Page.WholeSaleApp(settings, elem);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FND Wholesale App",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "wholesale_products_collection",
+      "label": "Wholesale Products Collection"
+    },
+    {
+      "type": "number",
+      "id": "fnd_wholesale_by_total",
+      "label": "Minimum Cart Value (cents)",
+      "info": "In cents, e.g. 45000 = $450.00. Passed to the FND wholesale app as minCartValue.",
+      "default": 45000
+    }
+  ],
+  "presets": [
+    {
+      "name": "FND Wholesale App",
+      "category": "FND Wholesale App"
+    }
+  ]
+}
+{% endschema %}

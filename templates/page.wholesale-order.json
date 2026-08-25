@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "wholesale_intro": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<p style=\"text-align:center\">Make wholesale orders quickly. Search the SKU you want to add, put in your desired quantity, and add to cart. Once you have added all of your Smack, checkout from the cart page.</p><br><p style=\"text-align:center;\"><b>Volume Discounts</b><br>4% OFF $800+<br>6% OFF $1,600+<br>8% OFF $2,400+<br>10% OFF $3,200+</p>",
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 20
+      }
+    },
+    "wholesale_order": {
+      "type": "fnd-wholesaleorder",
+      "settings": {
+        "wholesale_products_collection": "wholesale-catalogue-order",
+        "fnd_wholesale_by_total": 45000
+      }
+    }
+  },
+  "order": [
+    "wholesale_intro",
+    "wholesale_order"
+  ]
+}
