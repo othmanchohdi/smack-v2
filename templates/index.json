@@ -3723,7 +3723,7 @@
                 "collection": "best-sellers",
                 "products_to_show": 12,
                 "columns_desktop": 4,
-                "columns_desktop_carousel": 4,
+                "columns_desktop_carousel": 3,
                 "columns_mobile": "1",
                 "product_grid_type": "carousel",
                 "columns_gap": 25,
@@ -6746,7 +6746,7 @@
       "custom_css": [
         ".group-block--content-overlay > .group-block-content {position: relative;}",
         ".swiper-slide .group-block--height-fill {min-height: 395px;}",
-        ".swiper-btns-wrap{margin-top: 35px;}"
+        ".swiper-btns-wrap {margin-top: 35px;}"
       ],
       "name": "t:names.testimonial",
       "settings": {
