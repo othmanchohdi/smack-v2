@@ -1483,7 +1483,7 @@
                     "accordion_row_R9QWk7": {
                       "type": "_accordion-row",
                       "settings": {
-                        "heading": "Should I be adding more meat to Smack?",
+                        "heading": "Can I order one large bag?",
                         "open_by_default": false,
                         "inherit_color_scheme": false,
                         "scheme_background": "#ffffff",
@@ -1511,7 +1511,7 @@
                         "text_HQKcHj": {
                           "type": "text",
                           "settings": {
-                            "text": "<p>We would urge against it! Smack diets are very dense foods! In one heaping cup of Very Berry Chicken there is 13 ounces of chicken (bone-in, with organs). </p>",
+                            "text": "<p>No - we do orders by the case-lot. Please see the order form to make a purchase.</p>",
                             "collection_description_only": false,
                             "collapse_text": false,
                             "typing_text": false,
