@@ -1139,8 +1139,9 @@
                     },
                     "accordion_row_jbe89z": {
                       "type": "_accordion-row",
+                      "name": "What is the process to become a retail partner?",
                       "settings": {
-                        "heading": "How do I introduce Smack to my dog?",
+                        "heading": "What is the process to become a retail partner?",
                         "open_by_default": false,
                         "inherit_color_scheme": false,
                         "scheme_background": "#ffffff",
@@ -1168,7 +1169,7 @@
                         "text_MDJDM7": {
                           "type": "text",
                           "settings": {
-                            "text": "<p>If you feed your dog 1 cup of food, start with 1/4 dry cup of Smack added as a topper to 3/4 cup of the existing diet. Pay attention to how your pet responds and increase gradually over a period of two weeks.</p>",
+                            "text": "<p>Please reach out to us via email <a href=\"mailto:customercare@smackpetfood.com\">customercare@smackpetfood.com</a> or phone us to register. Once qualified, you will be provided with all information to get started including our web portal for ordering along with support materials for your store and social media!</p>",
                             "collection_description_only": false,
                             "collapse_text": false,
                             "typing_text": false,
