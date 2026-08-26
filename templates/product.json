@@ -9,6 +9,14 @@
  */
 {
   "sections": {
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "shogun-above": {
+      "type": "shogun-above",
+      "settings": {}
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -1413,6 +1421,7 @@
                 "accordion_row_NWRQkJ": {
                   "type": "_accordion-row",
                   "name": "Ingredients",
+                  "disabled": true,
                   "settings": {
                     "heading": "Ingredients",
                     "open_by_default": false,
@@ -2141,16 +2150,8 @@
         "padding_bottom": 60
       }
     },
-    "shogun-above": {
-      "type": "shogun-above",
-      "settings": {}
-    },
     "shogun-below": {
       "type": "shogun-below",
-      "settings": {}
-    },
-    "shogun-helper": {
-      "type": "shogun-helper",
       "settings": {}
     },
     "shogun-optimizer": {
