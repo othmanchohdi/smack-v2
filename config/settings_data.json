@@ -244,13 +244,6 @@
           "product": ""
         }
       },
-      "15351435345818755577": {
-        "type": "shopify://apps/pandectes-gdpr/blocks/banner/58c0baa2-6cc1-480c-9ea6-38d6d559556a",
-        "disabled": true,
-        "settings": {
-          "fast_load": false
-        }
-      },
       "2640576625794464016": {
         "type": "shopify://apps/yotpo-loyalty-rewards/blocks/spotlight-drawer-app-embed/2f9660df-5018-4e02-9868-ee1fb88d6ccd",
         "disabled": true,
@@ -328,6 +321,13 @@
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
+      },
+      "15351435345818755577": {
+        "type": "shopify://apps/pandectes-gdpr/blocks/banner/58c0baa2-6cc1-480c-9ea6-38d6d559556a",
+        "disabled": false,
+        "settings": {
+          "fast_load": false
+        }
       }
     },
     "color_schemes": {
