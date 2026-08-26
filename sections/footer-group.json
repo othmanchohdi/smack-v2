@@ -1036,7 +1036,7 @@
                   "type": "menu",
                   "name": "Menu",
                   "settings": {
-                    "menu": "108-learn",
+                    "menu": "108-learn-copy",
                     "heading": "Learn",
                     "margin-block-end": 10,
                     "content_direction": "column",
