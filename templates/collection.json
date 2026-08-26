@@ -9,6 +9,15 @@
  */
 {
   "sections": {
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "shogun-above": {
+      "type": "shogun-above",
+      "disabled": true,
+      "settings": {}
+    },
     "banner": {
       "type": "main-collection-banner",
       "blocks": {
@@ -5299,16 +5308,8 @@
         "padding-inline-end": 0
       }
     },
-    "shogun-above": {
-      "type": "shogun-above",
-      "settings": {}
-    },
     "shogun-below": {
       "type": "shogun-below",
-      "settings": {}
-    },
-    "shogun-helper": {
-      "type": "shogun-helper",
       "settings": {}
     },
     "shogun-optimizer": {
