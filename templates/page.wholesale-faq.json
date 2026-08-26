@@ -1283,7 +1283,7 @@
                         "text_w7DX8h": {
                           "type": "text",
                           "settings": {
-                            "text": "<p>We crafted the food with the proper amount of calcium (in grams Ca per 1kg food) to properly grow the skeletal structure of both large and small breed puppies and dogs.</p>",
+                            "text": "<p>We have brick and mortar stores as well as breeders, groomers and veterinary/holistic clinics all partnered with us to sell Smack. We require your company name with complete address and ZIP Code, phone number, primary contact person and email address for account login, along with your Business Number and/or State Tax ID (and kennel registration for breeders).</p>",
                             "collection_description_only": false,
                             "collapse_text": false,
                             "typing_text": false,
@@ -1369,7 +1369,7 @@
                     "accordion_row_hbTipM": {
                       "type": "_accordion-row",
                       "settings": {
-                        "heading": "How long will a bag last?",
+                        "heading": "How do I order?",
                         "open_by_default": false,
                         "inherit_color_scheme": false,
                         "scheme_background": "#ffffff",
@@ -1397,7 +1397,7 @@
                         "text_QciYUw": {
                           "type": "text",
                           "settings": {
-                            "text": "<p>Our bags have an 18-month shelf life when left unopened. Once opened, our food stays fresh for around 3 months.</p>",
+                            "text": "<p>Place your order using the online order form and checkout using credit card.</p>",
                             "collection_description_only": false,
                             "collapse_text": false,
                             "typing_text": false,
