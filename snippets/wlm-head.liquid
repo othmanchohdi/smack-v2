@@ -29,7 +29,7 @@
 {% assign wlmLockedTags171007 = false %}
 {% assign wlmLockedTags171910 = false %}
 {% assign wlmLockedTags177494 = false %}
-{% assign wlmLockedTags178177 = false %}
+{% assign wlmLockedTags399833 = false %}
 {% assign wlmLockedTags244442 = false %}
 {% for tag in customer.tags %}
 {% if tag == 'W1' %}{% assign wlmLockedTags19695 = true %}{% endif %}
@@ -44,7 +44,7 @@
 {% if tag == 'W1' %}{% assign wlmLockedTags171007 = true %}{% endif %}
 {% if tag == 'W1' %}{% assign wlmLockedTags171910 = true %}{% endif %}
 {% if tag == 'W1' %}{% assign wlmLockedTags177494 = true %}{% endif %}
-{% if tag == 'W1' %}{% assign wlmLockedTags178177 = true %}{% endif %}
+{% if tag == 'W1' %}{% assign wlmLockedTags399833 = true %}{% endif %}
 {% if tag == 'W1' %}{% assign wlmLockedTags244442 = true %}{% endif %}
 {% endfor %}
 
@@ -381,11 +381,11 @@
 {% if template contains 'page' and page %}{% if page.id == 202636225 %}{% assign wlmLockedContent = true %}{% endif %}{% endif %}
 {% if wlmLockedContent %}
 {% if customer %}
-{% if wlmLockedTags178177 %}{% assign wlmLockON = true %}{% else %}{% assign wlmLockON = false %}{% endif %}
+{% if wlmLockedTags399833 %}{% assign wlmLockON = true %}{% else %}{% assign wlmLockON = false %}{% endif %}
 {% if wlmLockON %}
 {% capture wlmPnfHead %}Page not found{% endcapture %}
 {% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
-{% capture wlmRedirectURL %}/pages/how-to-order{% endcapture %}
+{% capture wlmRedirectURL %}/collections/wholesale-catalogue-order{% endcapture %}
 {% endif %}
 {% endif %}
 {% endif %}
