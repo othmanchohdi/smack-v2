@@ -1,3 +1,14 @@
+{%- liquid
+  assign _slideshow_is_wholesale_customer = false
+  if settings.wholesale_gate_enabled and customer and customer.tags contains settings.wholesale_customer_tag
+    assign _slideshow_is_wholesale_customer = true
+  endif
+-%}
+
+{%- if section.settings.hide_for_wholesale and _slideshow_is_wholesale_customer -%}
+  {%- comment -%} Section hidden for wholesale customers {%- endcomment -%}
+{%- else -%}
+
 {%- if section.settings.slideshow_type == 'default' -%}
   <link rel="stylesheet" href="{{ 'component-slideshow.css' | asset_url }}" media="print" onload="this.media='all'">
   <noscript>
@@ -282,6 +293,8 @@
   </div>
 </div>
 
+{%- endif -%}
+
 {% schema %}
 {
   "name": "t:names.slideshow",
@@ -291,6 +304,17 @@
   },
   "blocks": [{ "type": "_slide" }],
   "settings": [
+    {
+      "type": "header",
+      "content": "Wholesale"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_for_wholesale",
+      "label": "Hide for wholesale customers",
+      "default": false,
+      "info": "When enabled, this section will not be shown to customers with the wholesale tag."
+    },
     {
       "type": "header",
       "content": "t:content.layout"
