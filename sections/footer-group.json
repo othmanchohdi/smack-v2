@@ -457,8 +457,9 @@
       ],
       "custom_css": [
         ".page-width,.signup-form {margin: auto;}",
-        ".email-signup__button {margin-left: -5%; height: 46px;}",
-        ".email-signup__input {padding-left: 97%;}",
+        "email-signup {display: flex; justify-content: center;}",
+        ".email-signup__input-group {width: 100%;}",
+        ".button{height: 49px;}",
         "@media screen and (max-width: 749px) {.slide__image-container img {border-radius: 12px; }}"
       ],
       "name": "t:names.slideshow",
