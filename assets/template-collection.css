@@ -98,11 +98,6 @@
   }
 }
 
-/* Contain horizontal overflow so subsequent sections don't shift right */
-.template-collection {
-  overflow-x: clip;
-}
-
 /* Mint fix layout disable filter */
 @media screen and (min-width: 750px) {
   .template-collection:not(:has(.facets-block-wrapper)) {

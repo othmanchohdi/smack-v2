@@ -1024,6 +1024,19 @@
     font-style: var(--font-body--style);
     font-weight: var(--font-body--weight);
   }
+
+  /*
+    wlm-body.liquid wraps all sections in a <wlm> custom element.
+    Custom elements default to display:inline, which puts block-level
+    .shopify-section children into block-in-inline (anonymous block box)
+    mode. When any section creates horizontal overflow, the inline <wlm>
+    box widens, and every subsequent anonymous block box is positioned
+    relative to that wider context — causing all later sections to shift
+    right. Forcing display:block restores normal block flow.
+  */
+  wlm {
+    display: block;
+  }
 {% endstyle %}
 
 {% comment %}theme-check-disable AssetPreload{% endcomment %}
