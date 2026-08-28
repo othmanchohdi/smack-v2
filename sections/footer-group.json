@@ -458,7 +458,7 @@
       "custom_css": [
         ".page-width,.signup-form {margin: auto;}",
         "email-signup {display: flex; justify-content: center;}",
-        ".email-signup__input-group {width: 100%;}",
+        ".email-signup__input {min-width: 520px;}",
         ".button {height: 49px; position: absolute;}",
         "@media screen and (max-width: 749px) {.slide__image-container img {border-radius: 12px; }}"
       ],
