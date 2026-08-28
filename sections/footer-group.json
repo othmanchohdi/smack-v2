@@ -463,6 +463,7 @@
       ],
       "name": "t:names.slideshow",
       "settings": {
+        "hide_for_wholesale": true,
         "slideshow_type": "default",
         "enable_multi_level_category": false,
         "section_width": "page-width",
