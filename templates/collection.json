@@ -5267,6 +5267,7 @@
         "text_DFr36z",
         "testimonial_pCxFgB"
       ],
+      "disabled": true,
       "custom_css": [
         ".group-block--content-overlay > .group-block-content {position: relative;}",
         ".swiper-slide .group-block--height-fill {min-height: 395px;}",
