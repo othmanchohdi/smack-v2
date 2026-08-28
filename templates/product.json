@@ -11,10 +11,12 @@
   "sections": {
     "shogun-helper": {
       "type": "shogun-helper",
+      "disabled": true,
       "settings": {}
     },
     "shogun-above": {
       "type": "shogun-above",
+      "disabled": true,
       "settings": {}
     },
     "main": {
@@ -2152,10 +2154,12 @@
     },
     "shogun-below": {
       "type": "shogun-below",
+      "disabled": true,
       "settings": {}
     },
     "shogun-optimizer": {
       "type": "shogun-optimizer",
+      "disabled": true,
       "settings": {}
     }
   },
