@@ -1709,6 +1709,7 @@
                     },
                     "accordion_row_3VWK4i": {
                       "type": "_accordion-row",
+                      "disabled": true,
                       "settings": {
                         "heading": "How do you ensure Smack is safe from nasty bacteria and parasites?",
                         "open_by_default": false,
