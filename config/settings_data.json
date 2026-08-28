@@ -108,6 +108,7 @@
     "calculator_free_shipping_message_bg_3": "#F9813B",
     "swatch_type": "color",
     "variant_swatch_size": 20,
+    "show_variant_media_grouped": true,
     "variant_pills_border_thickness": 1,
     "variant_pills_radius": 40,
     "variant_pills_shadow_horizontal_offset": 0,

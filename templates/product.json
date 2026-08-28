@@ -52,7 +52,7 @@
             "video_loop": true,
             "video_autoplay": true,
             "video_type": "inline",
-            "hide_variants": false,
+            "hide_variants": true,
             "padding-block-start": 0,
             "padding-block-end": 30,
             "padding-inline-start": 0,
