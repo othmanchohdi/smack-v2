@@ -330,6 +330,11 @@
         "settings": {
           "fast_load": false
         }
+      },
+      "8669066016853369741": {
+        "type": "shopify://apps/hotjar-install/blocks/global/2903e4ea-7615-463e-8b60-582f487dac4f",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
