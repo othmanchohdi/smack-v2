@@ -307,13 +307,6 @@
           "inject_sdk_loader": false
         }
       },
-      "9431864395560886015": {
-        "type": "shopify://apps/polar-analytics/blocks/polar-tracker/019c2e93-19fa-7dab-8368-903d1c54902c",
-        "disabled": true,
-        "settings": {
-          "debug_mode": false
-        }
-      },
       "973392885551459638": {
         "type": "shopify://apps/powr-wholesale-orders/blocks/app-embed/668426c5-7e7a-462e-b09e-e672a6f17c5e",
         "disabled": false,
@@ -335,6 +328,13 @@
         "type": "shopify://apps/hotjar-install/blocks/global/2903e4ea-7615-463e-8b60-582f487dac4f",
         "disabled": false,
         "settings": {}
+      },
+      "9431864395560886015": {
+        "type": "shopify://apps/polar-analytics/blocks/polar-tracker/019c2e93-19fa-7dab-8368-903d1c54902c",
+        "disabled": false,
+        "settings": {
+          "debug_mode": false
+        }
       }
     },
     "color_schemes": {
