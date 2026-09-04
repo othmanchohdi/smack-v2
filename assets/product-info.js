@@ -17,32 +17,76 @@ if (!customElements.get('product-info')) {
       postProcessHtmlCallbacks = [];
       includeVariantInUrl = false;
 
-      constructor() {
-        super();
+constructor() {
+  super();
 
-        this.quantityInput = this.querySelector('.quantity__input');
-        this.stickyQuantityContainer = document.querySelector('.sticky-cart__quantity');
-        this.stickyQuantityInput = this.stickyQuantityContainer?.querySelector('.quantity__input') || undefined;
-        this.includeVariantInUrl = new URLSearchParams(window.location.search).has('variant');
-        this.setRecentlyViewed();
-      }
+  this.quantityInput = this.querySelector('.quantity__input');
 
-      connectedCallback() {
-        this.initializeProductSwapUtility();
+  /*
+   * Do NOT connect Quick Add product-info instances
+   * to the global PDP sticky cart.
+   *
+   * Quick Add receives data-original-section from
+   * quick-add-modal.js.
+   */
+  if (!this.dataset.originalSection) {
+    this.stickyQuantityContainer =
+      document.querySelector('.sticky-cart__quantity');
 
-        requestAnimationFrame(() => updateProductShareButtonWidth());
+    this.stickyQuantityInput =
+      this.stickyQuantityContainer?.querySelector('.quantity__input') ||
+      undefined;
+  } else {
+    this.stickyQuantityContainer = undefined;
+    this.stickyQuantityInput = undefined;
+  }
 
-        this.onVariantChangeUnsubscriber = subscribe(
-          PUB_SUB_EVENTS.optionValueSelectionChange,
-          this.handleOptionValueChange.bind(this)
-        );
+  this.includeVariantInUrl =
+    new URLSearchParams(window.location.search).has('variant');
 
-        this.initQuantityHandlers();
-        this.initStickyQuantityHandlers();
-        this.initVariantSyncHandlers();
-        this.classList.add('initialized');
-        this.dispatchEvent(new CustomEvent('product-info:loaded', { bubbles: true }));
-      }
+  this.setRecentlyViewed();
+}
+
+connectedCallback() {
+  this.initializeProductSwapUtility();
+
+  requestAnimationFrame(() => {
+    updateProductShareButtonWidth();
+  });
+
+  this.onVariantChangeUnsubscriber = subscribe(
+    PUB_SUB_EVENTS.optionValueSelectionChange,
+    this.handleOptionValueChange.bind(this)
+  );
+
+  /*
+   * Quantity handling is required on both
+   * the PDP and Quick Add.
+   */
+  this.initQuantityHandlers();
+
+  /*
+   * IMPORTANT:
+   *
+   * data-original-section is added by quick-add-modal.js.
+   * If it exists, this product-info belongs to Quick Add.
+   *
+   * Quick Add must NOT connect itself to the PDP's
+   * global sticky quantity or sticky variant controls.
+   */
+  if (!this.dataset.originalSection) {
+    this.initStickyQuantityHandlers();
+    this.initVariantSyncHandlers();
+  }
+
+  this.classList.add('initialized');
+
+  this.dispatchEvent(
+    new CustomEvent('product-info:loaded', {
+      bubbles: true
+    })
+  );
+}
 
       addPreProcessCallback(callback) {
         this.preProcessHtmlCallbacks.push(callback);
