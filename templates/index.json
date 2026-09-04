@@ -203,7 +203,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h1>Raw Dehydrated Superfood with Scoop & Serve Convenience</h1>",
+                    "text": "<h1>Raw Dehydrated Superfood with Scoop & Serve Convenience </h1>",
                     "collection_description_only": false,
                     "collapse_text": false,
                     "typing_text": false,
