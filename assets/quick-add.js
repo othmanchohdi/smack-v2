@@ -6,250 +6,285 @@ if (!customElements.get('quick-add-modal')) {
         super();
 
         this.modalContent = this.querySelector('#QuickStandardModal');
+
         this.clearTimer = null;
-        this.abortController = null;
+        this.quickAddAbortController = null;
 
         this.addEventListener('product-info:loaded', ({ target }) => {
           if (typeof target.addPreProcessCallback === 'function') {
-            target.addPreProcessCallback(this.preprocessHTML.bind(this));
+            target.addPreProcessCallback(
+              this.preprocessHTML.bind(this)
+            );
           }
         });
       }
 
       hide(preventFocus = false) {
-        const cartDrawer = document.querySelector('cart-drawer');
+        const cartNotification =
+          document.querySelector('cart-drawer');
 
-        if (cartDrawer) {
-          cartDrawer.setActiveElement(this.openedBy);
+        if (cartNotification) {
+          cartNotification.setActiveElement(this.openedBy);
         }
 
-        /*
-         * Cancel any previous delayed cleanup.
-         */
+        if (this.quickAddAbortController) {
+          this.quickAddAbortController.abort();
+          this.quickAddAbortController = null;
+        }
+
         if (this.clearTimer) {
           clearTimeout(this.clearTimer);
           this.clearTimer = null;
         }
-
-        /*
-         * Cancel an in-progress product request.
-         */
-        if (this.abortController) {
-          this.abortController.abort();
-          this.abortController = null;
-        }
-
-        /*
-         * Clear the modal after the close animation.
-         */
-        this.clearTimer = setTimeout(() => {
-          if (this.modalContent) {
-            this.modalContent.replaceChildren();
-          }
-
-          this.clearTimer = null;
-        }, 300);
 
         if (preventFocus) {
           this.openedBy = null;
         }
 
         super.hide();
+
+        this.clearTimer = setTimeout(() => {
+          if (this.modalContent) {
+            this.modalContent.innerHTML = '';
+          }
+
+          this.clearTimer = null;
+        }, 300);
       }
 
-      async show(opener) {
-        /*
-         * Prevent a previous hide() timer from clearing the
-         * product we're about to load.
-         */
+      show(opener) {
+        if (!opener) return;
+
         if (this.clearTimer) {
           clearTimeout(this.clearTimer);
           this.clearTimer = null;
         }
 
-        /*
-         * Cancel any previous quick-add request.
-         */
-        if (this.abortController) {
-          this.abortController.abort();
+        if (this.quickAddAbortController) {
+          this.quickAddAbortController.abort();
         }
 
-        this.abortController = new AbortController();
+        this.quickAddAbortController =
+          new AbortController();
 
-        const spinner = opener.querySelector('.loading__spinner');
+        /*
+         * Completely remove the previous product before
+         * loading the next one.
+         */
+        if (this.modalContent) {
+          this.modalContent.innerHTML = '';
 
-        opener.setAttribute('aria-disabled', 'true');
+          /*
+           * Remove any color scheme classes carried over
+           * from the previously opened product.
+           */
+          Array.from(
+            this.modalContent.classList
+          ).forEach((className) => {
+            if (
+              className.startsWith('color-') ||
+              className === 'gradient'
+            ) {
+              this.modalContent.classList.remove(
+                className
+              );
+            }
+          });
+        }
+
+        opener.setAttribute(
+          'aria-disabled',
+          'true'
+        );
+
         opener.classList.add('loading');
+
+        const spinner =
+          opener.querySelector(
+            '.loading__spinner'
+          );
 
         if (spinner) {
           spinner.classList.remove('hidden');
         }
 
-        /*
-         * IMPORTANT:
-         * Remove ALL DOM/state from the previously opened product
-         * before inserting the new product.
-         */
-        if (this.modalContent) {
-          this.modalContent.replaceChildren();
-
-          /*
-           * Remove color scheme classes inherited from the previous
-           * product-info element.
-           */
-          Array.from(this.modalContent.classList).forEach((className) => {
-            if (
-              className.startsWith('color-') ||
-              className === 'gradient'
-            ) {
-              this.modalContent.classList.remove(className);
-            }
-          });
-        }
-
-        const productUrl = opener
-          .getAttribute('data-product-url')
-          .split('?')[0];
-
-        try {
-          const response = await fetch(
-            `${productUrl}?view=quick_add&_=${Date.now()}`,
-            {
-              signal: this.abortController.signal,
-              credentials: 'same-origin',
-              headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-              }
-            }
+        const productUrlAttribute =
+          opener.getAttribute(
+            'data-product-url'
           );
 
-          if (!response.ok) {
-            throw new Error(
-              `Quick add request failed: ${response.status}`
-            );
-          }
-
-          const responseText = await response.text();
-
-          const responseHTML = new DOMParser().parseFromString(
-            responseText,
-            'text/html'
+        if (!productUrlAttribute) {
+          opener.removeAttribute(
+            'aria-disabled'
           );
 
-          const productElement =
-            responseHTML.querySelector('product-info');
-
-          if (!productElement) {
-            throw new Error(
-              `No product-info element found for ${productUrl}`
-            );
-          }
-
-          /*
-           * Process the NEW product before it enters the modal.
-           */
-          this.preprocessHTML(productElement);
-
-          /*
-           * Make sure the element knows which product was loaded.
-           */
-          productElement.dataset.productUrl = productUrl;
-
-          /*
-           * Insert a completely fresh product-info component.
-           */
-          HTMLUpdateUtility.setInnerHTML(
-            this.modalContent,
-            productElement.outerHTML
+          opener.classList.remove(
+            'loading'
           );
-
-          /*
-           * Force the newly created ProductInfo custom element to
-           * start from the newly loaded product rather than any
-           * previous product state.
-           */
-          const newProductInfo =
-            this.modalContent.querySelector('product-info');
-
-          if (newProductInfo) {
-            newProductInfo.dataset.updateUrl = 'false';
-
-            /*
-             * Trigger a clean initialization cycle.
-             */
-            requestAnimationFrame(() => {
-              newProductInfo.dispatchEvent(
-                new CustomEvent('quick-add:product-changed', {
-                  bubbles: true,
-                  detail: {
-                    productUrl: productUrl
-                  }
-                })
-              );
-            });
-          }
-
-          /*
-           * Reinitialize Shopify dynamic checkout if it exists.
-           */
-          if (
-            window.Shopify &&
-            Shopify.PaymentButton
-          ) {
-            Shopify.PaymentButton.init();
-          }
-
-          /*
-           * Reload Shopify's 3D model component if required.
-           */
-          if (window.ProductModel) {
-            window.ProductModel.loadShopifyXR();
-          }
-
-          super.show(opener);
-        } catch (error) {
-          /*
-           * An aborted fetch is expected when the customer
-           * rapidly opens another product.
-           */
-          if (error.name !== 'AbortError') {
-            console.error(
-              'Quick Add Modal Error:',
-              error
-            );
-          }
-        } finally {
-          opener.removeAttribute('aria-disabled');
-          opener.classList.remove('loading');
 
           if (spinner) {
-            spinner.classList.add('hidden');
+            spinner.classList.add(
+              'hidden'
+            );
           }
+
+          console.error(
+            'Quick Add: data-product-url was not found.'
+          );
+
+          return;
         }
+
+        const productUrl =
+          productUrlAttribute.split('?')[0];
+
+        fetch(
+          `${productUrl}?view=quick_add&_=${Date.now()}`,
+          {
+            signal:
+              this.quickAddAbortController
+                .signal,
+            credentials: 'same-origin'
+          }
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                `Quick Add request failed: ${response.status}`
+              );
+            }
+
+            return response.text();
+          })
+
+          .then((responseText) => {
+            const responseHTML =
+              new DOMParser()
+                .parseFromString(
+                  responseText,
+                  'text/html'
+                );
+
+            const productElement =
+              responseHTML.querySelector(
+                'product-info'
+              );
+
+            if (!productElement) {
+              throw new Error(
+                `Quick Add: No product-info element found for ${productUrl}`
+              );
+            }
+
+            /*
+             * Preserve the theme's existing
+             * section ID architecture.
+             */
+            this.preprocessHTML(
+              productElement
+            );
+
+            /*
+             * Insert a completely fresh
+             * product-info element.
+             */
+            HTMLUpdateUtility.setInnerHTML(
+              this.modalContent,
+              productElement.outerHTML
+            );
+
+            const newProductInfo =
+              this.modalContent.querySelector(
+                'product-info'
+              );
+
+            if (newProductInfo) {
+              newProductInfo.dataset.updateUrl =
+                'false';
+            }
+
+            if (
+              window.Shopify &&
+              Shopify.PaymentButton
+            ) {
+              Shopify.PaymentButton.init();
+            }
+
+            if (window.ProductModel) {
+              window.ProductModel
+                .loadShopifyXR();
+            }
+
+            super.show(opener);
+          })
+
+          .catch((error) => {
+            if (
+              error.name !==
+              'AbortError'
+            ) {
+              console.error(
+                'Quick Add Modal Error:',
+                error
+              );
+            }
+          })
+
+          .finally(() => {
+            opener.removeAttribute(
+              'aria-disabled'
+            );
+
+            opener.classList.remove(
+              'loading'
+            );
+
+            if (spinner) {
+              spinner.classList.add(
+                'hidden'
+              );
+            }
+          });
       }
 
       preprocessHTML(productElement) {
         if (!productElement) return;
 
-        /*
-         * Copy the current product's color scheme only.
-         */
-        productElement.classList.forEach((classApplied) => {
-          if (
-            classApplied.startsWith('color-') ||
-            classApplied === 'gradient'
-          ) {
-            this.modalContent.classList.add(classApplied);
+        productElement.classList.forEach(
+          (classApplied) => {
+            if (
+              classApplied.startsWith(
+                'color-'
+              ) ||
+              classApplied === 'gradient'
+            ) {
+              this.modalContent.classList.add(
+                classApplied
+              );
+            }
           }
-        });
+        );
 
-        this.preventDuplicatedIDs(productElement);
-        this.removeDOMElements(productElement);
-        this.removeGalleryListSemantic(productElement);
-        this.preventVariantURLSwitching(productElement);
+        this.preventDuplicatedIDs(
+          productElement
+        );
+
+        this.removeDOMElements(
+          productElement
+        );
+
+        this.removeGalleryListSemantic(
+          productElement
+        );
+
+        this.preventVariantURLSwitching(
+          productElement
+        );
       }
 
-      preventVariantURLSwitching(productElement) {
+      preventVariantURLSwitching(
+        productElement
+      ) {
         productElement.setAttribute(
           'data-update-url',
           'false'
@@ -258,35 +293,50 @@ if (!customElements.get('quick-add-modal')) {
 
       removeDOMElements(productElement) {
         const pickupAvailability =
-          productElement.querySelector('pickup-availability');
+          productElement.querySelector(
+            'pickup-availability'
+          );
 
         if (pickupAvailability) {
           pickupAvailability.remove();
         }
 
         const shareButton =
-          productElement.querySelector('share-button');
+          productElement.querySelector(
+            'share-button'
+          );
 
         if (shareButton) {
           shareButton.remove();
         }
 
         const productModal =
-          productElement.querySelector('product-modal');
+          productElement.querySelector(
+            'product-modal'
+          );
 
         if (productModal) {
           productModal.remove();
         }
 
-        productElement
-          .querySelectorAll('modal-dialog')
-          .forEach((modal) => {
-            modal.remove();
-          });
+        const modalDialogs =
+          productElement.querySelectorAll(
+            'modal-dialog'
+          );
 
-        productElement
-          .querySelectorAll('side-drawer-opener')
-          .forEach((button) => {
+        modalDialogs.forEach(
+          (modal) => {
+            modal.remove();
+          }
+        );
+
+        const sideDrawerOpeners =
+          productElement.querySelectorAll(
+            'side-drawer-opener'
+          );
+
+        sideDrawerOpeners.forEach(
+          (button) => {
             if (
               !button.classList.contains(
                 'product-popup-modal__opener--keep'
@@ -294,11 +344,16 @@ if (!customElements.get('quick-add-modal')) {
             ) {
               button.remove();
             }
-          });
+          }
+        );
 
-        productElement
-          .querySelectorAll('side-drawer')
-          .forEach((drawer) => {
+        const sideDrawers =
+          productElement.querySelectorAll(
+            'side-drawer'
+          );
+
+        sideDrawers.forEach(
+          (drawer) => {
             if (
               !drawer.classList.contains(
                 'product-popup-modal__drawer--keep'
@@ -306,53 +361,60 @@ if (!customElements.get('quick-add-modal')) {
             ) {
               drawer.remove();
             }
-          });
+          }
+        );
       }
 
-      preventDuplicatedIDs(productElement) {
-        const sectionId = productElement.dataset.section;
+      preventDuplicatedIDs(
+        productElement
+      ) {
+        const sectionId =
+          productElement.dataset.section;
 
         if (!sectionId) return;
 
         const oldId = sectionId;
 
         /*
-         * Make the quick-add ID unique to this modal load.
+         * Keep the theme's original
+         * Quick Add section naming system.
          */
-        const uniqueSuffix =
-          Math.random().toString(36).slice(2, 8);
-
         const newId =
-          `quickadd-${sectionId}-${uniqueSuffix}`;
+          `quickadd-${sectionId}`;
 
         productElement.innerHTML =
-          productElement.innerHTML.replaceAll(
-            oldId,
-            newId
-          );
+          productElement.innerHTML
+            .replaceAll(
+              oldId,
+              newId
+            );
 
-        Array.from(productElement.attributes).forEach(
-          (attribute) => {
-            if (
-              attribute.value &&
-              attribute.value.includes(oldId)
-            ) {
-              productElement.setAttribute(
-                attribute.name,
-                attribute.value.replaceAll(
-                  oldId,
-                  newId
-                )
-              );
-            }
+        Array.from(
+          productElement.attributes
+        ).forEach((attribute) => {
+          if (
+            attribute.value &&
+            attribute.value.includes(
+              oldId
+            )
+          ) {
+            productElement.setAttribute(
+              attribute.name,
+              attribute.value.replaceAll(
+                oldId,
+                newId
+              )
+            );
           }
-        );
+        });
 
-        productElement.dataset.originalSection =
-          sectionId;
+        productElement.dataset
+          .originalSection = sectionId;
       }
 
-      removeGalleryListSemantic(productElement) {
+      removeGalleryListSemantic(
+        productElement
+      ) {
         const galleryList =
           productElement.querySelector(
             '[id^="Slider-Gallery"]'
@@ -366,7 +428,9 @@ if (!customElements.get('quick-add-modal')) {
         );
 
         galleryList
-          .querySelectorAll('[id^="Slide-"]')
+          .querySelectorAll(
+            '[id^="Slide-"]'
+          )
           .forEach((slide) => {
             slide.setAttribute(
               'role',
