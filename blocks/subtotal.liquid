@@ -1,21 +1,20 @@
+
+
 {% liquid
   assign block_settings = block.settings
   assign product = product | default: closest.product
-
   if request.visual_preview_mode and product == blank
     assign product = collections.all.products.first
   endif
 
   assign selected_variant = product.selected_or_first_available_variant
   assign quantity_default = selected_variant.quantity_rule.min | default: 1
-
   if quantity_default < 1
     assign quantity_default = 1
   endif
 %}
 
 {%- if product != blank and selected_variant != blank -%}
-
   <div
     class="product-form__subtotal spacing-style"
     data-product-subtotal
@@ -25,629 +24,89 @@
     style="{% render 'spacing-style', settings: block_settings %}"
     {{ block.shopify_attributes }}
   >
-
     <script type="application/json" data-subtotal-variants>
-      [
-        {%- for variant in product.variants -%}
-          {
-            "id": {{ variant.id | json }},
-            "price": {{ variant.price | json }},
-            "available": {{ variant.available | json }}
-          }{% unless forloop.last %},{% endunless %}
-        {%- endfor -%}
-      ]
+      {{ product.variants | json }}
     </script>
-
     <div class="product-form__subtotal-text">
       <span>{{ 'content.product_subtotal' | t }}:</span>
-
       <strong data-subtotal-price>
         {{ selected_variant.price | times: quantity_default | money }}
       </strong>
     </div>
-
   </div>
-
 {%- endif -%}
 
-
 {% javascript %}
+  (() => {
+    const initSubtotal = (subtotalNode) => {
+      if (!subtotalNode || subtotalNode.dataset.subtotalReady === 'true') return;
+      subtotalNode.dataset.subtotalReady = 'true';
 
-(() => {
+      const sectionId = subtotalNode.dataset.sectionId;
+      const productForm = subtotalNode.closest('product-form-component');
+      if (!productForm) return;
 
-  const initSubtotal = (subtotalNode) => {
+      const subtotalPriceEl = subtotalNode.querySelector('[data-subtotal-price]');
+      const variantsDataNode = subtotalNode.querySelector('[data-subtotal-variants]');
+      if (!subtotalPriceEl || !variantsDataNode) return;
 
-    if (!subtotalNode) return;
-
-    if (subtotalNode.dataset.subtotalReady === 'true') {
-      return;
-    }
-
-    subtotalNode.dataset.subtotalReady = 'true';
-
-
-    /*
-     * ------------------------------------------------------------
-     * FIND THE PRODUCT FORM
-     * ------------------------------------------------------------
-     */
-
-    const productForm =
-      subtotalNode.closest('product-form-component') ||
-      subtotalNode.closest('product-info') ||
-      subtotalNode.closest('[data-product-info]') ||
-      subtotalNode.closest('form')?.parentElement;
-
-    if (!productForm) {
-      console.warn('[Smack Subtotal] Product form not found.');
-      return;
-    }
-
-
-    /*
-     * ------------------------------------------------------------
-     * VARIANT DATA
-     * ------------------------------------------------------------
-     */
-
-    const variantsDataNode =
-      subtotalNode.querySelector('[data-subtotal-variants]');
-
-    const subtotalPriceEl =
-      subtotalNode.querySelector('[data-subtotal-price]');
-
-    if (!variantsDataNode || !subtotalPriceEl) return;
-
-
-    let variants = [];
-
-    try {
-
-      variants = JSON.parse(
-        variantsDataNode.textContent || '[]'
-      );
-
-    } catch (error) {
-
-      console.error(
-        '[Smack Subtotal] Could not parse variants.',
-        error
-      );
-
-      return;
-
-    }
-
-
-    /*
-     * ------------------------------------------------------------
-     * FIND CURRENT VARIANT INPUT
-     * ------------------------------------------------------------
-     */
-
-    const getVariantInput = () => {
-
-      return (
-        productForm.querySelector('input[name="id"]') ||
-        productForm.querySelector('[name="id"]')
-      );
-
-    };
-
-
-    /*
-     * ------------------------------------------------------------
-     * FIND QUANTITY
-     * ------------------------------------------------------------
-     */
-
-    const getQuantityInput = () => {
-
-      return (
-        productForm.querySelector('.quantity__input') ||
-        productForm.querySelector('input[name="quantity"]')
-      );
-
-    };
-
-
-    /*
-     * ------------------------------------------------------------
-     * MONEY FORMAT
-     * ------------------------------------------------------------
-     */
-
-    const formatMoney = (cents) => {
-
-      /*
-       * Use theme formatter if available
-       */
-
-      if (
-        window.Shopify &&
-        typeof window.Shopify.formatMoney === 'function'
-      ) {
-
-        return window.Shopify.formatMoney(
-          Number(cents),
-          window.money_format ||
-          subtotalNode.dataset.moneyFormat
-        );
-
+      let variants = [];
+      try {
+        variants = JSON.parse(variantsDataNode.textContent || '[]');
+      } catch (error) {
+        variants = [];
       }
 
+      const quantityInput = productForm.querySelector(`#Quantity-${sectionId}`) || productForm.querySelector('.quantity__input');
+      const variantInput = productForm.querySelector('input[name="id"]');
+      if (!quantityInput || !variantInput) return;
 
-      /*
-       * Fallback
-       */
-
-      return new Intl.NumberFormat(
-        document.documentElement.lang || 'en-US',
-        {
-          style: 'currency',
-          currency:
-            subtotalNode.dataset.currencyCode || 'USD'
+      const formatMoney = (cents) => {
+        if (Shopify && typeof Shopify.formatMoney === 'function') {
+          return Shopify.formatMoney(cents, window.money_format || subtotalNode.dataset.moneyFormat);
         }
-      ).format(
-        Number(cents) / 100
-      );
+        return null;
+      };
 
-    };
+      const updateSubtotal = () => {
+        const quantity = Math.max(1, Number(quantityInput.value) || 1);
+        const selectedVariantId = String(variantInput.value || '');
+        const selectedVariant = variants.find((variant) => String(variant.id) === selectedVariantId);
+        if (!selectedVariant) return;
 
-
-    /*
-     * ------------------------------------------------------------
-     * UPDATE SUBTOTAL
-     * ------------------------------------------------------------
-     */
-
-    let lastVariantId = '';
-    let lastQuantity = null;
-
-
-    const updateSubtotal = () => {
-
-      const variantInput = getVariantInput();
-      const quantityInput = getQuantityInput();
-
-      if (!variantInput) return;
-
-
-      const selectedVariantId =
-        String(variantInput.value || '');
-
-
-      const quantity = Math.max(
-        1,
-        Number(
-          quantityInput
-            ? quantityInput.value
-            : 1
-        ) || 1
-      );
-
-
-      /*
-       * Skip unnecessary DOM updates
-       */
-
-      if (
-        selectedVariantId === lastVariantId &&
-        quantity === lastQuantity
-      ) {
-        return;
-      }
-
-
-      const selectedVariant =
-        variants.find((variant) => {
-
-          return (
-            String(variant.id) ===
-            selectedVariantId
-          );
-
-        });
-
-
-      if (!selectedVariant) {
-
-        /*
-         * Variant input may be updated one frame
-         * after the option button.
-         */
-
-        return;
-
-      }
-
-
-      const subtotal =
-        Number(selectedVariant.price) *
-        quantity;
-
-
-      subtotalPriceEl.textContent =
-        formatMoney(subtotal);
-
-
-      lastVariantId =
-        selectedVariantId;
-
-      lastQuantity =
-        quantity;
-
-    };
-
-
-    /*
-     * ------------------------------------------------------------
-     * DELAYED UPDATE
-     *
-     * Shopify themes frequently update the hidden variant input
-     * AFTER the option/button change event.
-     * ------------------------------------------------------------
-     */
-
-    const delayedUpdate = () => {
-
-      /*
-       * Immediate
-       */
+        const formattedSubtotal = formatMoney(selectedVariant.price * quantity);
+        if (!formattedSubtotal) return;
+        subtotalPriceEl.textContent = formattedSubtotal;
+      };
 
       updateSubtotal();
+      quantityInput.addEventListener('input', updateSubtotal);
+      quantityInput.addEventListener('change', updateSubtotal);
+      variantInput.addEventListener('change', updateSubtotal);
 
-
-      /*
-       * Next browser paint
-       */
-
-      requestAnimationFrame(() => {
-
-        updateSubtotal();
-
-        requestAnimationFrame(() => {
-          updateSubtotal();
-        });
-
-      });
-
-
-      /*
-       * Theme JS fallback
-       */
-
-      setTimeout(updateSubtotal, 50);
-      setTimeout(updateSubtotal, 150);
-      setTimeout(updateSubtotal, 300);
-
-    };
-
-
-    /*
-     * ------------------------------------------------------------
-     * INITIAL UPDATE
-     * ------------------------------------------------------------
-     */
-
-    delayedUpdate();
-
-
-    /*
-     * ------------------------------------------------------------
-     * QUANTITY EVENTS
-     * ------------------------------------------------------------
-     */
-
-    const quantityInput =
-      getQuantityInput();
-
-    if (quantityInput) {
-
-      quantityInput.addEventListener(
-        'input',
-        delayedUpdate
-      );
-
-      quantityInput.addEventListener(
-        'change',
-        delayedUpdate
-      );
-
-    }
-
-
-    /*
-     * ------------------------------------------------------------
-     * LISTEN TO ALL PRODUCT FORM CHANGES
-     *
-     * This catches radio buttons, selects, swatches, pills, etc.
-     * ------------------------------------------------------------
-     */
-
-    productForm.addEventListener(
-      'change',
-      delayedUpdate,
-      true
-    );
-
-    productForm.addEventListener(
-      'input',
-      delayedUpdate,
-      true
-    );
-
-
-    /*
-     * ------------------------------------------------------------
-     * CLICK EVENTS
-     *
-     * Smack's quick-add popup can update variants from buttons
-     * without firing a useful change event on input[name="id"].
-     * ------------------------------------------------------------
-     */
-
-    productForm.addEventListener(
-      'click',
-      (event) => {
-
-        const optionControl =
-          event.target.closest(
-            [
-              'button',
-              '[data-option-value]',
-              '[data-value]',
-              '[data-variant-id]',
-              '.swatch',
-              '.swatch__button',
-              'label'
-            ].join(',')
-          );
-
-
-        if (!optionControl) return;
-
-        delayedUpdate();
-
-      },
-      true
-    );
-
-
-    /*
-     * ------------------------------------------------------------
-     * COMMON SHOPIFY/THEME EVENTS
-     * ------------------------------------------------------------
-     */
-
-    const themeEvents = [
-
-      'variant:change',
-      'variant-change',
-      'variantChanged',
-      'product:variant-change',
-      'product:variant-changed',
-      'product-info:variant-change',
-      'product-form:variant-change'
-
-    ];
-
-
-    themeEvents.forEach((eventName) => {
-
-      productForm.addEventListener(
-        eventName,
-        delayedUpdate
-      );
-
-      document.addEventListener(
-        eventName,
-        delayedUpdate
-      );
-
-    });
-
-
-    /*
-     * ------------------------------------------------------------
-     * OBSERVE PRODUCT FORM
-     *
-     * This catches themes that rewrite portions of the form.
-     * ------------------------------------------------------------
-     */
-
-    const formObserver =
-      new MutationObserver(() => {
-
-        delayedUpdate();
-
-      });
-
-
-    formObserver.observe(
-      productForm,
-      {
-        childList: true,
-        subtree: true,
+      const variantObserver = new MutationObserver(updateSubtotal);
+      variantObserver.observe(variantInput, {
         attributes: true,
-        attributeFilter: [
-          'value',
-          'checked',
-          'selected',
-          'data-variant-id'
-        ]
-      }
-    );
-
-
-    /*
-     * ------------------------------------------------------------
-     * PROPERTY CHANGE WATCH
-     *
-     * Important:
-     *
-     * MutationObserver does NOT reliably detect:
-     *
-     * input.value = newVariantId
-     *
-     * So we lightly check the hidden input's property.
-     * ------------------------------------------------------------
-     */
-
-    let watchedVariantId =
-      getVariantInput()
-        ? String(getVariantInput().value || '')
-        : '';
-
-
-    const watchVariant = () => {
-
-      if (!document.contains(subtotalNode)) {
-        return;
-      }
-
-
-      const currentVariantInput =
-        getVariantInput();
-
-
-      const currentVariantId =
-        currentVariantInput
-          ? String(
-              currentVariantInput.value || ''
-            )
-          : '';
-
-
-      if (
-        currentVariantId &&
-        currentVariantId !== watchedVariantId
-      ) {
-
-        watchedVariantId =
-          currentVariantId;
-
-        delayedUpdate();
-
-      }
-
-
-      requestAnimationFrame(
-        watchVariant
-      );
-
+        attributeFilter: ['value']
+      });
     };
 
+    const initAllSubtotals = () => {
+      document.querySelectorAll('[data-product-subtotal]').forEach(initSubtotal);
+    };
 
-    requestAnimationFrame(
-      watchVariant
-    );
-
-  };
-
-
-  /*
-   * ============================================================
-   * INITIALIZE ALL SUBTOTALS
-   * ============================================================
-   */
-
-  const initAllSubtotals = () => {
-
-    document
-      .querySelectorAll(
-        '[data-product-subtotal]'
-      )
-      .forEach(
-        initSubtotal
-      );
-
-  };
-
-
-  /*
-   * Initial page
-   */
-
-  initAllSubtotals();
-
-
-  /*
-   * DOM ready
-   */
-
-  document.addEventListener(
-    'DOMContentLoaded',
-    initAllSubtotals
-  );
-
-
-  /*
-   * Shopify theme editor
-   */
-
-  document.addEventListener(
-    'shopify:section:load',
-    initAllSubtotals
-  );
-
-
-  /*
-   * Quick add / dynamically loaded product
-   */
-
-  document.addEventListener(
-    'product-info:loaded',
-    () => {
-
-      /*
-       * Allow newly rendered subtotal block
-       * to exist before initializing.
-       */
-
-      requestAnimationFrame(
-        initAllSubtotals
-      );
-
-      setTimeout(
-        initAllSubtotals,
-        100
-      );
-
-    }
-  );
-
-
-  /*
-   * Watch dynamically inserted quick-add modals
-   */
-
-  const documentObserver =
-    new MutationObserver(() => {
-
-      initAllSubtotals();
-
-    });
-
-
-  documentObserver.observe(
-    document.body,
-    {
-      childList: true,
-      subtree: true
-    }
-  );
-
-})();
-
+    initAllSubtotals();
+    document.addEventListener('DOMContentLoaded', initAllSubtotals);
+    document.addEventListener('shopify:section:load', initAllSubtotals);
+    document.addEventListener('product-info:loaded', initAllSubtotals);
+  })();
 {% endjavascript %}
-
 
 {% schema %}
 {
   "name": "Subtotal",
   "tag": null,
-  "settings": [
+  "settings": [ 
     {
       "type": "header",
       "content": "t:content.padding"
