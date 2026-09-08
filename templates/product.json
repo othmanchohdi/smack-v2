@@ -487,35 +487,6 @@
               },
               "blocks": {}
             },
-            "product_description_UDEcF4": {
-              "type": "_product-description",
-              "name": "Ingredients",
-              "settings": {
-                "text": "{{ closest.product.metafields.custom.product_ingredients | metafield_tag }}",
-                "width": "fit-content",
-                "max_width": "normal",
-                "truncate_type": "none",
-                "truncatewords": 30,
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1.6rem",
-                "font_weight": "400",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "payment_icons_q48rKE": {
               "type": "payment-icons",
               "name": "t:names.payment_icons",
@@ -1600,7 +1571,6 @@
             "buy_buttons_eYQEYi",
             "yotpo_product_reviews_star_rating_VVzCfy",
             "product_description_c4h6TB",
-            "product_description_UDEcF4",
             "payment_icons_q48rKE",
             "multicolumn_E4bEkr",
             "accordion_JiTgN3"
