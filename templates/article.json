@@ -367,7 +367,7 @@
               "name": "t:names.details",
               "settings": {
                 "show_date": true,
-                "show_author": true,
+                "show_author": false,
                 "show_comments": false,
                 "type_preset": "",
                 "alignment": "left",
