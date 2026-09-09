@@ -117,7 +117,7 @@
     "card_image_padding": 0,
     "enable_price_percent": true,
     "enable_wishlist": false,
-    "enable_quick_view": false,
+    "enable_quick_view": true,
     "enable_compare": false,
     "quick_add_type": "text",
     "card_color_scheme": "scheme-3",
@@ -340,6 +340,17 @@
         "type": "shopify://apps/triplewhale/blocks/triple_pixel_snippet/483d496b-3f1a-4609-aea7-8eee3b6b7a2a",
         "disabled": false,
         "settings": {}
+      },
+      "6159598353363395418": {
+        "type": "shopify://apps/google-youtube/blocks/store_widget/14ec7bd0-ac77-49a9-9417-90752398bdff",
+        "disabled": false,
+        "settings": {
+          "widget_position": "LEFT_BOTTOM",
+          "side_margin": 36,
+          "bottom_margin": 36,
+          "mobile_side_margin": 16,
+          "mobile_bottom_margin": 46
+        }
       }
     },
     "color_schemes": {
