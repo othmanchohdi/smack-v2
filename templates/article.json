@@ -333,7 +333,7 @@
                 "hide_on_mobile": false,
                 "hide_on_desktop": false,
                 "image_ratio": "adapt",
-                "width": "fit-content",
+                "width": "custom",
                 "unit": "percent",
                 "custom_width": 100,
                 "custom_width_pixel": 100,
