@@ -585,6 +585,9 @@
           ]
         }
       },
+      "custom_css": [
+        ".placeholder-svg {display: none;}"
+      ],
       "settings": {
         "section_width": "page-width",
         "show_next_prev": true,
