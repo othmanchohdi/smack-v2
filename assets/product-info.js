@@ -64,6 +64,7 @@ connectedCallback() {
    * the PDP and Quick Add.
    */
   this.initQuantityHandlers();
+  this.initSubtotal();
 
   /*
    * IMPORTANT:
@@ -250,6 +251,69 @@ connectedCallback() {
         }
       }
 
+      initSubtotal() {
+        this.subtotalNode = this.querySelector('[data-product-subtotal]');
+        this.subtotalForm = this.subtotalNode?.closest('product-form-component');
+        if (!this.subtotalForm) return;
+
+        try {
+          this.subtotalVariants = JSON.parse(
+            this.subtotalNode.querySelector('[data-subtotal-variants]')?.textContent || '[]'
+          );
+        } catch {
+          this.subtotalVariants = [];
+        }
+
+        const variantId = this.subtotalForm.querySelector('input[name="id"]')?.value;
+        this.updateSubtotal(
+          this.getSelectedVariant(this) ||
+          this.subtotalVariants.find((variant) => String(variant.id) === variantId) || null
+        );
+        this.subtotalForm.addEventListener('input', this.handleSubtotalChange);
+        this.subtotalForm.addEventListener('change', this.handleSubtotalChange);
+      }
+
+      handleSubtotalChange = ({ target }) => {
+        if (target.matches('.quantity__input')) {
+          this.updateSubtotal();
+        } else if (target.matches('input[name="id"]')) {
+          const selectedVariant = this.getSelectedVariant(this);
+          this.updateSubtotal(
+            String(selectedVariant?.id) === target.value ? selectedVariant :
+            this.subtotalVariants.find((variant) => String(variant.id) === target.value) || null
+          );
+        }
+      };
+
+      previewSubtotal(variantSelects) {
+        if (!this.subtotalNode || !variantSelects) return;
+        const options = Array.from(
+          variantSelects.querySelectorAll('select option:checked, fieldset input:checked')
+        ).map((option) => option.value);
+        const variant = this.subtotalVariants.find((variant) =>
+          variant.options.length === options.length &&
+          variant.options.every((value, index) => value === options[index])
+        );
+        this.updateSubtotal(variant || null);
+      }
+
+      updateSubtotal(variant = this.subtotalVariant) {
+        if (!this.subtotalNode) return;
+        this.subtotalVariant = variant;
+        this.subtotalNode.hidden = !variant;
+        if (!variant) return;
+
+        const price = this.subtotalNode.querySelector('[data-subtotal-price]');
+        const quantityInput = this.subtotalForm.querySelector('.quantity__input');
+        if (!price || !quantityInput || typeof window.Shopify?.formatMoney !== 'function') return;
+
+        const quantity = Math.max(1, Number(quantityInput.value) || 1);
+        price.innerHTML = window.Shopify.formatMoney(
+          variant.price * quantity,
+          this.subtotalNode.dataset.moneyFormat || window.money_format
+        );
+      }
+
       initStickyQuantityHandlers() {
         if (!this.stickyQuantityInput || !this.quantityInput) return;
 
@@ -308,6 +372,9 @@ connectedCallback() {
         this.onVariantChangeUnsubscriber();
         this.cartUpdateUnsubscriber?.();
         this.variantChangeUnsubscriber?.();
+        this.abortController?.abort();
+        this.subtotalForm?.removeEventListener('input', this.handleSubtotalChange);
+        this.subtotalForm?.removeEventListener('change', this.handleSubtotalChange);
       }
 
       initializeProductSwapUtility() {
@@ -332,6 +399,9 @@ connectedCallback() {
         const shouldSwapProduct = this.dataset.url !== productUrl;
         const shouldFetchFullPage = this.dataset.updateUrl === 'true' && shouldSwapProduct;
         const isStickyChanged = event.target.closest('variant-selects');
+        if (this.dataset.originalSection && !shouldSwapProduct) {
+          this.previewSubtotal(isStickyChanged);
+        }
         this.renderProductInfo({
           requestUrl: this.buildRequestUrlWithParams(productUrl, selectedOptionValues, shouldFetchFullPage),
           targetId: target.id,
@@ -381,17 +451,22 @@ connectedCallback() {
       renderProductInfo({ requestUrl, targetId, callback, isStickyChanged = false }) {
         this.abortController?.abort();
         this.abortController = new AbortController();
+        const { signal } = this.abortController;
 
-        fetch(requestUrl, { signal: this.abortController.signal })
-          .then((response) => response.text())
+        return fetch(requestUrl, { signal })
+          .then((response) => {
+            if (!response.ok) throw new Error(`Product request failed: ${response.status}`);
+            return response.text();
+          })
           .then((responseText) => {
+            if (signal.aborted || !this.isConnected) return;
             this.pendingRequestUrl = null;
             const html = new DOMParser().parseFromString(responseText, 'text/html');
             callback(html);
           })
           .then(() => {
-            if (!isStickyChanged) {
-              document.querySelector(`#${targetId}`)?.focus();
+            if (!signal.aborted && this.isConnected && !isStickyChanged) {
+              this.querySelector(`#${targetId}`)?.focus();
             }
           })
           .catch((error) => {
@@ -412,6 +487,7 @@ connectedCallback() {
         const params = [];
 
         !shouldFetchFullPage && params.push(`section_id=${this.sectionId}`);
+        if (this.closest('quick-add-modal')) params.push('view=quick_add');
 
         if (optionValues.length) {
           params.push(`option_values=${optionValues.join(',')}`);
@@ -469,6 +545,7 @@ connectedCallback() {
           this.updateVariantInputs(variant?.id);
 
           if (!variant) {
+            this.updateSubtotal(null);
             this.setUnavailable();
             return;
           }
@@ -512,6 +589,7 @@ connectedCallback() {
           updateSourceFromDestination('Volume');
           updateSourceFromDestination('Price-Per-Item', ({ classList }) => classList.contains('hidden'));
           this.updateQuantityRules(this.sectionId, html);
+          this.updateSubtotal(variant);
           this.querySelector(`#Quantity-Rules-${this.dataset.section}`)?.classList.remove('hidden');
           this.querySelector(`#Volume-Note-${this.dataset.section}`)?.classList.remove('hidden');
 
@@ -693,6 +771,7 @@ connectedCallback() {
           this.quantityInput.removeAttribute('max');
         }
         this.quantityInput.value = min;
+        this.updateSubtotal();
 
         publish(PUB_SUB_EVENTS.quantityUpdate, undefined);
       }
