@@ -327,6 +327,7 @@
             "image_kV4cGm": {
               "type": "image",
               "name": "t:names.image",
+              "disabled": true,
               "settings": {
                 "image": "{{ closest.article.image }}",
                 "link": "",
