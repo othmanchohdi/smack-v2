@@ -18,7 +18,7 @@
           "settings": {
             "title": "News & Stories",
             "search_placeholder": "Search for...",
-            "tag_1": "{{ closest.blog.title }}",
+            "tag_1": "",
             "tag_2": "",
             "tag_3": "",
             "tag_4": "",
