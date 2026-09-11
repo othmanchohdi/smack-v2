@@ -332,6 +332,7 @@
                 "card_article_title_flex_eVMTwP": {
                   "type": "_card-article-title-flex",
                   "name": "Article title",
+                  "disabled": true,
                   "settings": {
                     "article": "{{ closest.article }}",
                     "type_preset": "rte",
@@ -351,6 +352,7 @@
                 "card_article_description_flex_i3qeP9": {
                   "type": "_card-article-description-flex",
                   "name": "Article description",
+                  "disabled": true,
                   "settings": {
                     "article": "{{ closest.article }}",
                     "truncatewords": 90,
@@ -371,6 +373,7 @@
                 "card_article_details_flex_C897Ww": {
                   "type": "_card-article-details-flex",
                   "name": "Article details",
+                  "disabled": true,
                   "settings": {
                     "article": "{{ closest.article }}",
                     "show_date": true,
@@ -444,6 +447,9 @@
           ]
         }
       },
+      "custom_css": [
+        ".article-card-wrapper {display: none;}"
+      ],
       "settings": {
         "layout_type": "grid",
         "product_grid_width": "centered",
@@ -454,7 +460,7 @@
         "columns_gap_vertical": 16,
         "product_card_size": "medium",
         "color_scheme": "scheme-1",
-        "article_show_date": true,
+        "article_show_date": false,
         "article_show_author": false,
         "columns_mobile": "2",
         "pagination_type": "infinite",
