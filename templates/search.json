@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main-search": {
@@ -83,6 +92,7 @@
           "type": "_product-card",
           "static": true,
           "settings": {
+            "show_badges": true,
             "inherit_color_scheme": true,
             "scheme_background": "#ffffff",
             "scheme_background_gradient": "",
@@ -177,6 +187,7 @@
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
                     "font_size": "1.6rem",
+                    "weight": "default",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
@@ -198,6 +209,7 @@
                     "alignment": "left",
                     "font": "var(--font-body--family)",
                     "font_size": "1.6rem",
+                    "font_weight": "default",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
@@ -233,6 +245,7 @@
         },
         "static-blog-post-block": {
           "type": "_blog-post-block",
+          "disabled": true,
           "static": true,
           "settings": {
             "content_direction": "column",
@@ -256,6 +269,7 @@
             "card_article_group_infor_QwPcEY": {
               "type": "_card-article-group-infor",
               "name": "Group: Article infor",
+              "disabled": true,
               "settings": {
                 "article": "{{ closest.article }}",
                 "link": "",
@@ -323,6 +337,7 @@
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
                     "font_size": "1.6rem",
+                    "font_weight": "default",
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
@@ -342,6 +357,7 @@
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
                     "font_size": "1.6rem",
+                    "font_weight": "default",
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
@@ -362,6 +378,7 @@
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
                     "font_size": "1.6rem",
+                    "font_weight": "default",
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
@@ -382,13 +399,15 @@
             },
             "group-media": {
               "type": "_card-article-group-media",
+              "disabled": true,
               "static": true,
               "settings": {
-                "article": "{{ closest.article }}"
+                "article": ""
               },
               "blocks": {
                 "image": {
                   "type": "_blog-post-image",
+                  "disabled": true,
                   "static": true,
                   "settings": {
                     "image_ratio": "portrait",
