@@ -126,7 +126,7 @@
               "static": true,
               "settings": {
                 "show_date": true,
-                "show_author": true,
+                "show_author": false,
                 "show_comments": true,
                 "type_preset": "",
                 "alignment": "left",
